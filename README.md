@@ -12,8 +12,8 @@ The name of your project must be of the form `2022-ca326-XXXXXXX`, where "`XXXXX
 should be replaced with your usernames (e.g. `2022-ca326-sblott-pclarke`).
 
 **Note** that the year should be set as appropriate to your year of study. For example, in the
-2022/2023 academic year this would change to '2023-ca326-sblott-pclarke'),
-in the 2023/2024 academic year this would change to '2024-ca326-sblott-pclarke'), etc.
+2022/2023 academic year this would change to `2023-ca326-sblott-pclarke`),
+in the 2023/2024 academic year this would change to `2024-ca326-sblott-pclarke`), etc.
 
 It is the *name of your repo* which matters (not the name of your project).
 
