@@ -23,6 +23,6 @@ You can change the name of your repo on GitLab under:
 
 It looks like this:
 
-![change-repo-path](./res/res_repo-change-path1.png "Change repo path.")
+![change-repo-path](./res/repo-change-path.png "Change repo path.")
 
 You should replace all of this file with a README describing your own project.
