@@ -68,7 +68,10 @@ class Order(models.Model):
     internal_order_notes = models.CharField(max_length=5000, null=True)
 
 class IrishBillingAddress(models.Model):
-    user_id = models.ForeignKey(APIUser, on_delete=models.CASCADE, null=False)
+    class Meta:
+        verbose_name_plural = "Irish Billing Addresses"
+    user_id = models.ForeignKey(APIUser, on_delete=models.CASCADE, null=True)
+    order_id = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
     contact_name = models.CharField("Contact name", max_length=102, null=False)
     company_name = models.CharField("Company name", max_length=102, null=True)
     address_line1 = models.CharField("Address line 1", max_length=1024, null=False)
@@ -105,7 +108,10 @@ class IrishBillingAddress(models.Model):
     ]
 
 class IrishShippingAddress(models.Model):
-    user_id = models.ForeignKey(APIUser, on_delete=models.CASCADE, null=False)
+    class Meta:
+        verbose_name_plural = "Irish Shipping Addresses"
+    user_id = models.ForeignKey(APIUser, on_delete=models.CASCADE, null=True)
+    order_id = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
     contact_name = models.CharField("Contact name", max_length=102, null=False)
     company_name = models.CharField("Company name", max_length=102, null=True)
     address_line1 = models.CharField("Address line 1", max_length=1024, null=False)
