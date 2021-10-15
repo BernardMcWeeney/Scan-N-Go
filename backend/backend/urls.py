@@ -30,7 +30,9 @@ router.register(r'baskets', views.BasketViewSet)
 router.register(r'basket_items', views.BasketItemViewSet)
 router.register(r'orders', views.OrderViewSet)
 router.register(r'irish_billing_addresses', views.IrishBillingAddressViewSet)
+router.register(r'irish_shipping_addresses', views.IrishShippingAddressViewSet)
 router.register(r'api_users', views.APIUserViewSet)
+
 
 
 urlpatterns = [
@@ -39,4 +41,8 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api-auth/', include('rest_framework.urls')),
+    path('register/', views.UserRegistrationAPIView.as_view(), name="register"),
+    path('add/', views.AddBasketItemAPIView.as_view(), name="add_to_basket"),
+    path('remove/', views.RemoveBasketItemAPIView.as_view(), name="remove_from_basket"),
+    path('checkout/', views.CheckoutAPIView.as_view(), name="checkout_basket"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

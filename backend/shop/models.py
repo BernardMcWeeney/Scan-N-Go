@@ -35,15 +35,17 @@ class BasketItem(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     dateCreated = models.DateTimeField(auto_now_add=True)
-
+    user_id = models.ForeignKey(APIUser, on_delete=models.CASCADE, null=False)
+    '''
     @property
     def getCalculatedTotal(self):
         calculatedTotal = self.quantity * self.product_id.price
         return calculatedTotal
-
+    
     def save(self, *args, **kwargs):
         self.calculatedTotal = self.getCalculatedTotal
         super(BasketItem, self).save(*args, **kwargs)
+    '''
 
 class Order(models.Model):
     id = models.AutoField(primary_key=True)
@@ -51,7 +53,7 @@ class Order(models.Model):
     basket_id = models.ForeignKey(Basket, on_delete=models.CASCADE)
     user_id = models.ForeignKey(APIUser, on_delete=models.CASCADE)
     total_price = models.DecimalField(max_digits=6, decimal_places=2, default=0.0)
-    status = [
+    statuses = [
         ('Prepared', 'Prepared'),
         ('Order', 'Order'),
         ('Processing', 'Processing'),
@@ -60,10 +62,12 @@ class Order(models.Model):
         ('Refunded', 'Refunded'),
         ('Issue', 'Issue'),
     ]
-    payment_status = [
+    status = models.CharField(max_length=32,choices=statuses,default="Prepared")
+    payment_statuses = [
         ('NotReceived', 'Not Received'),
         ('Received', 'Received'),
     ]
+    payment_status = models.CharField(max_length=32,choices=payment_statuses,default="NotReceived")
     customer_order_notes = models.CharField(max_length=5000, null=True)
     internal_order_notes = models.CharField(max_length=5000, null=True)
 
