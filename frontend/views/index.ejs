@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <script>
+    let req = "http://127.0.0.1:8000/products/"
+      fetch(req) // make a request to this endpoint
+				.then(response => response.json()) // with our response, get the json data returned
+				.then(data => console.log(data)); // print the json data
+		</script>
+  </body>
+</html>
