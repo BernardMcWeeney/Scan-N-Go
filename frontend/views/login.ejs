@@ -1,60 +1,60 @@
-<html>
-    <head>
-			<title>Login Page</title>
-    </head>
-    <body>
-        <h1>Login</h1>
-        <form id="login-form">
-            <label for="username-input">Username</label>
-            <input type="text" name="username-input" id="username" placeholder="Your username" required>
-            <label for="password-input">Password</label>
-            <input type="password" id="password" name="password-input" placeholder="Your password" required>
-            <button type="submit">Login</button>
-        </form>
-				<script>
-          function formValidator(event) {
-              event.preventDefault(); // always prevent default events when using javascript
-              // get the value the in the username box
-              let username = document.getElementById("username").value;
-              // get the value in the password box
-              let password = document.getElementById("password").value;
-              console.log("test")
-              if (username == "") {
-                  alert("Username cannot be null");
-              } else if (password == "") {
-                  alert("Password cannot be null");
-              } else {
-                  uname = document.getElementById("username").value;
-                  pword = document.getElementById("password").value;
-                  console.log(uname, pword)
-                  fetch("http://127.0.0.1:8000/api/token/", {
-                          method: 'POST',
-                          headers: {
-                              'Accept': 'application/json',
-                              'Content-Type': 'application/json'
-                          },
-                          body: JSON.stringify({
-                              username: uname,
-                              password: pword
-                          })
-                      })
-                      .then(response => response.json()) // extract the json from the response you get from the server
-                      .then(data => {
-                          if ('access' in data) {
-                              let accessToken = data['access'];
-                              let refreshToken = data['refresh'];
-                              localStorage.setItem("access", accessToken);
-                              localStorage.setItem("refresh", refreshToken);
-                              window.location.href = "/";
-                          } else {
-                              console.log(data); // still log it so we can debug
-                              alert("username or password invalid");
-                          }
-                      });
-              }
-          };
-          let myform = document.getElementById("login-form");// get the form
-          myform.addEventListener('submit', formValidator); // bind the validator function to the submit button for the for
-				</script>
-    </body>
-</html>
+<%- include('partials/head.ejs') %>
+<%- include('partials/header.ejs') %>
+
+<h1>Login</h1>
+<form id="login-form">
+    <label for="username-input">Username</label>
+    <input type="text" name="username-input" id="username" placeholder="Your username" required>
+    <label for="password-input">Password</label>
+    <input type="password" id="password" name="password-input" placeholder="Your password" required>
+    <button type="submit">Login</button>
+</form>
+<script>
+  function formValidator(event) {
+      event.preventDefault(); // always prevent default events when using javascript
+      // get the value the in the username box
+      let username = document.getElementById("username").value;
+      // get the value in the password box
+      let password = document.getElementById("password").value;
+      console.log("test")
+      if (username == "") {
+          alert("Username cannot be null");
+      } else if (password == "") {
+          alert("Password cannot be null");
+      } else {
+          uname = document.getElementById("username").value;
+          pword = document.getElementById("password").value;
+          console.log(uname, pword)
+          fetch("http://127.0.0.1:8000/api/token/", {
+                  method: 'POST',
+                  headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                      username: uname,
+                      password: pword
+                  })
+              })
+              .then(response => response.json()) // extract the json from the response you get from the server
+              .then(data => {
+                  if ('access' in data) {
+                      let accessToken = data['access'];
+                      let refreshToken = data['refresh'];
+                      localStorage.setItem("access", accessToken);
+                      localStorage.setItem("refresh", refreshToken);
+                      window.location.href = "/";
+                  } else {
+                      console.log(data); // still log it so we can debug
+                      alert("username or password invalid");
+                  }
+              });
+      }
+  };
+  let myform = document.getElementById("login-form");// get the form
+  myform.addEventListener('submit', formValidator); // bind the validator function to the submit button for the for
+</script>
+
+
+<%- include('partials/footer.ejs') %>
+
