@@ -13,6 +13,12 @@
 </div>
 <script>
 
+document.getElementById("basket-navbar-icon").style.display = "none";
+
+if (isLoggedIn() == true){
+  location.href = '/';
+}
+
   function formValidator(event) {
       event.preventDefault(); // always prevent default events when using javascript
       // get the value the in the username box
@@ -45,6 +51,7 @@
                       let refreshToken = data['refresh'];
                       sessionStorage.setItem("access", accessToken);
                       sessionStorage.setItem("refresh", refreshToken);
+                      sessionStorage.setItem("username", uname);
                       window.location.href = "/";
                   } else {
                       console.log(data); // still log it so we can debug

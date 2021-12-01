@@ -1,6 +1,19 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
 
-<h1>Scan N Go</h1>
+<h1 id="welcome-message">Scan N Go</h1>
+<script>
 
+
+function createWelcome() {
+  var username = sessionStorage.getItem('username')
+  document.getElementById("welcome-message").innerHTML = "Welcome, " + username + "!"
+}
+
+window.onload = function() {
+  checkLogin();
+  createWelcome();
+};
+
+</script>
 <%- include('partials/footer.ejs') %>

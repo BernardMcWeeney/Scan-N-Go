@@ -18,11 +18,34 @@ $(()=>{
     $('#logreg-forms #cancel_signup').click(toggleSignUp);
 })
 
+function checkLogin(){
+  console.log(sessionStorage)
+  if (sessionStorage.getItem('access') != null) {
+    var isLoggedIn= true;
+  } else {
+    var isLoggedIn = false;
+  }
+  if (isLoggedIn == false){
+    console.log("test")
+    location.href = '/login';
+    console.log("User is not Logged In")
+}
+}
+
+function getUsername() {
+  if (sessionStorage.getItem('username') != null) {
+    var username = sessionStorage.getItem('username')
+  } else {
+    var username = "User is not logged in"
+}
+  return username
+}
+
 function isLoggedIn(){
   console.log(sessionStorage)
   if (sessionStorage.getItem('access') != null) {
     return true;
   } else {
     return false;
-  }
-}
+  }}
+
