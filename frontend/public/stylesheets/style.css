@@ -5,3 +5,10 @@ body {
 a {
   color: #00B7FF;
 }
+
+.scan-n-go-content {
+  max-width: 1200px;
+  margin: auto;
+  padding-top: 20px;
+}
+
