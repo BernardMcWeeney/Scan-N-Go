@@ -1,6 +1,15 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
 
-<h1>All Products</h1>
+<div id="all-prods">
+
+<H1>All Products</H1>
+<script>
+      let req = "http://127.0.0.1:8000/products/"
+      fetch(req) // make a request to this product endpoint
+				.then(response => response.json()) // get the json data returned
+				.then(data => console.log(data)); // print the json data to console
+</script>
+</div>
 
 <%- include('partials/footer.ejs') %>
