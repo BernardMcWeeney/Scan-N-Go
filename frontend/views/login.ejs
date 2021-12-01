@@ -1,32 +1,32 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
+<div id="logreg-forms">
 
-<h1>Login</h1>
-<form id="login-form">
-    <label for="username-input">Username</label>
-    <input type="text" name="username-input" id="username" placeholder="Your username" required>
-    <label for="password-input">Password</label>
-    <input type="password" id="password" name="password-input" placeholder="Your password" required>
-    <button type="submit">Login</button>
+<form class="form-signin" id="login-form">
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Login</h1>
+    <input type="text" name="username-input" id="inputEmail" class="form-control" placeholder="Your Username" required>
+    <input type="password" id="inputPassword" name="password-input" class="form-control" placeholder="Your password" required>
+    <button class="btn btn-success btn-block" type="submit">Login</button>
+    <hr>
+    <button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up New Account</button>
 </form>
-
+</div>
 <script>
 
   function formValidator(event) {
       event.preventDefault(); // always prevent default events when using javascript
       // get the value the in the username box
-      let username = document.getElementById("username").value;
+      let username = document.getElementById("inputEmail").value;
       // get the value in the password box
-      let password = document.getElementById("password").value;
-      console.log("test")
+      let password = document.getElementById("inputPassword").value;
       if (username == "") {
           alert("Username cannot be null");
       } else if (password == "") {
           alert("Password cannot be null");
       } else {
-          uname = document.getElementById("username").value;
-          pword = document.getElementById("password").value;
-          console.log(uname, pword)
+          uname = document.getElementById("inputEmail").value;
+          pword = document.getElementById("inputPassword").value;
+          console.log("Username:", uname,"Password:", pword)
           fetch("http://127.0.0.1:8000/api/token/", {
                   method: 'POST',
                   headers: {
@@ -43,8 +43,8 @@
                   if ('access' in data) {
                       let accessToken = data['access'];
                       let refreshToken = data['refresh'];
-                      localStorage.setItem("access", accessToken);
-                      localStorage.setItem("refresh", refreshToken);
+                      sessionStorage.setItem("access", accessToken);
+                      sessionStorage.setItem("refresh", refreshToken);
                       window.location.href = "/";
                   } else {
                       console.log(data); // still log it so we can debug

@@ -79,5 +79,5 @@ function main(args) {
   }
 }
 
-// The first and second args are: path/to/node script.js
+// The first and second args are: path/to/node loginScript.js
 main(process.argv.slice(2))
