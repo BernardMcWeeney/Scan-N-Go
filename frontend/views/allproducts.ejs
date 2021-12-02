@@ -1,14 +1,62 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
+<style>
+* {
+  box-sizing: border-box;
+}
 
+#myInput {
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+</style>
 <div id="all-prods">
 
 <H1>All Products</H1>
+<input type="text" id="myInput" placeholder="Search for names.." title="Type in a name">
+
+<div id="productdata"></div>
+
 <script>
-      let req = "http://127.0.0.1:8000/products/"
-      fetch(req) // make a request to this product endpoint
+    function fetchData() {
+        console.log("START FETCH")
+        let req = "http://127.0.0.1:8000/products/"
+        fetch(req) // make a request to this product endpoint
 				.then(response => response.json()) // get the json data returned
-				.then(data => console.log(data)); // print the json data to console
+				.then(data => console.log(data)) // print the json data to console
+		        const html = data.map(product => {
+		            return `<p>Name: ${product.name} </p>`;
+		        });
+		        console.log(html);
+    }
+    fetchData()
+
 </script>
 </div>
 
