@@ -42,7 +42,6 @@
 <input type="text" id="myInput" placeholder="Search for names.." title="Type in a name">
 
 <div id="productdata"></div>
-<div id="myData"></div>
 
 <script>
 fetch("http://127.0.0.1:8000/products/")
@@ -57,7 +56,7 @@ fetch("http://127.0.0.1:8000/products/")
   });
 
   function appendData(data) {
-  var mainContainer = document.getElementById("myData");
+  var mainContainer = document.getElementById("productdata");
   for (var i = 0; i < data.length; i++) {
     var div = document.createElement("div");
     div.innerHTML = 'Name: ' + data[i].name;
