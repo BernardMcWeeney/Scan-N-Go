@@ -23,11 +23,16 @@ class Product(models.Model):
     ]
     '''
 
+    def __str__(self):
+        return self.name
+
 class Basket(models.Model):
     id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(APIUser, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
     dateCreated = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.id
 
 class BasketItem(models.Model):
     id = models.AutoField(primary_key=True)
@@ -46,6 +51,8 @@ class BasketItem(models.Model):
         self.calculatedTotal = self.getCalculatedTotal
         super(BasketItem, self).save(*args, **kwargs)
     '''
+    def __str__(self):
+        return self.id
 
 class Order(models.Model):
     id = models.AutoField(primary_key=True)
@@ -70,6 +77,8 @@ class Order(models.Model):
     payment_status = models.CharField(max_length=32,choices=payment_statuses,default="NotReceived")
     customer_order_notes = models.CharField(max_length=5000, null=True)
     internal_order_notes = models.CharField(max_length=5000, null=True)
+    def __str__(self):
+        return self.id
 
 class IrishBillingAddress(models.Model):
     class Meta:
@@ -110,6 +119,8 @@ class IrishBillingAddress(models.Model):
         ('Wexford', 'Wexford'),
         ('Wicklow', 'Wicklow'),
     ]
+    def __str__(self):
+        return self.contact_name
 
 class IrishShippingAddress(models.Model):
     class Meta:
@@ -150,3 +161,5 @@ class IrishShippingAddress(models.Model):
         ('Wexford', 'Wexford'),
         ('Wicklow', 'Wicklow'),
     ]
+    def __str__(self):
+        return self.contact_name
