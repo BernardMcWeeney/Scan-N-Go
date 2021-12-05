@@ -3,4 +3,58 @@
 
 <h1>Your Basket</h1>
 
+<style>
+
+.card {
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+    transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    border: 0;
+    border-radius: 1rem
+}
+
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06)
+}
+
+
+</style>
+
+<div id="productdata">
+<main>
+    <div class="card h-100 shadow-sm">
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <img height="200px" width="200px" src="https://media.istockphoto.com/photos/classic-cocacola-can-picture-id465133878?k=20&m=465133878&s=612x612&w=0&h=vgcvEz4ts5WZQOhKMaKon8mIQVbr20-JhP7DKgo_wD0=" alt="...">
+        </div>
+                <div class="col-md-8">
+                    <h3 class="text-left mt-4">Coca Cola, 330ml</h3>
+                    <h5 class="text-left mb-3"> <span class="float-start price-hp">Quantity: 1</span></h5>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h1 class="text-left mt-2">€9.95</h1>
+                            </div>
+                            <div class="col-md-2">
+                            <img class="mx-auto d-block" src="images/trash.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+</main>
+</div>
+
+
+<script>
+
+</script>
+
 <%- include('partials/footer.ejs') %>
