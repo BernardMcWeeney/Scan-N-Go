@@ -46,122 +46,80 @@
 
 </style>
 
-<div id="productdata">
+<div class="productdata">
 <div class="row">
 
-
 	<div class="col-md-4">
 		<figure class="card card-product-grid card-lg">
-		    <img height= "200" width= "200" src="http://127.0.0.1:8000/media/images/hammer.jpg" class="rounded mx-auto d-block" alt="...">
-
+		    <div id=productimage>
+		         <!-- Product Image -->
+		    </div>
 			<figcaption class="info-wrap">
-					<p class="title">Hammer </p>
-					<p class="text-muted">A great big hammer for banging</p>
+			        <div id=productname>
+					    <!-- Product Name -->
+					</div>
+					<div id=productdesc>
+					    <!-- Product Description -->
+					</div>
+                    <div id=producttag>
+					    <span class="tag">Hammer Inc</span> <!-- Product Tag -->
+					</div>
 
-					<span class="tag">Hammer Inc</span>
-					<span class="tag">Brand new</span>
-					<span class="tag">256 px</span>
 			</figcaption>
 			<div class="bottom-wrap d-flex align-items-center">
-				<div class="mr-3"> <span class="price h5">14.95</span> <br> <small class="text-success">In Stock</small> </div>
+				<div class="mr-3"> <span class="price h5">14.95</span> <br> <small class="text-success">In Stock</small> </div> <!-- Product Price & Availability  Status -->
 				<div class="ml-auto form-inline">
 
 					<select class="form-control mr-2">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
+						<option>1</option> <!-- Product Quantity  -->
 					</select>
 					<a href="#" class="btn btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i> </a>
 				</div>
 			</div>
 		</figure>
 	</div>
-
-	<div class="col-md-4">
-		<figure class="card card-product-grid card-lg">
-		    <img height= "200" width= "200" src="http://127.0.0.1:8000/media/images/screwdriver.jpg" class="rounded mx-auto d-block" alt="...">
-
-			<figcaption class="info-wrap">
-					<p class="title">Screwdriver </p>
-					<p class="text-muted">A small screwdriver for small screwing jobs</p>
-
-					<span class="tag">Screwdriver Inc</span>
-					<span class="tag">Brand new</span>
-					<span class="tag">256 px</span>
-			</figcaption>
-			<div class="bottom-wrap d-flex align-items-center">
-				<!-- <div class="mr-3"> <span class="price h5">9.95</span> <br> <small class="text-success">In Stock</small> </div> -->
-				<div class="mr-3"> <span class="price h5">9.95</span> <br> <small class="text-danger">Out of Stock</small> </div>
-				<div class="ml-auto form-inline">
-
-					<select class="form-control mr-2">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-					</select>
-					<a href="#" class="btn btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i> </a>
-				</div>
-			</div>
-		</figure>
-	</div>
-
-	<div class="col-md-4">
-		<figure class="card card-product-grid card-lg">
-		    <img height= "200" width= "200" src="http://127.0.0.1:8000/media/images/STIHL_MS_180.jpeg" class="rounded mx-auto d-block" alt="...">
-
-			<figcaption class="info-wrap">
-					<p class="title">Chainsaw </p>
-					<p class="text-muted">A medium sized chainsaw for cutting trees</p>
-
-					<span class="tag">Stihl Inc</span>
-					<span class="tag">Brand new</span>
-					<span class="tag">256 px</span>
-			</figcaption>
-			<div class="bottom-wrap d-flex align-items-center">
-				<div class="mr-3"> <span class="price h5">350.00</span> <br> <small class="text-success">In Stock</small> </div>
-				<div class="ml-auto form-inline">
-
-					<select class="form-control mr-2">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-					</select>
-					<a href="#" class="btn btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i> </a>
-				</div>
-			</div>
-		</figure>
-	</div>
-
 </div>
 
 
 <script>
-fetch("http://127.0.0.1:8000/products/")
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    appendData(data);
-  })
-  .catch(function (err) {
-    console.log(err);
-  });
+let productimagediv = document.getElementById("productimage");
+let productnamediv = document.getElementById("productname");
+let productdescdiv = document.getElementById("productdesc");
+let producttagdiv = document.getElementById("producttag");
 
-  function appendData(data) {
-  var mainContainer = document.getElementById("productdata");
-  for (var i = 0; i < data.length; i++) {
-    var h1 = document.createElement("h1");
-    h1.innerHTML = data[i].name;
-    var h2 = document.createElement("h2");
-    h2.innerHTML = data[i].description;
-    var h3 = document.createElement("h3");
-    h3.innerHTML = data[i].price;
+//ProductData
+function CreateProductCardImage() {
 
-    mainContainer.appendChild(h1);
-    mainContainer.appendChild(h2);
-    mainContainer.appendChild(h3);
-  }
+       let cardimage = document.createElement('img');
+       cardimage.className = "rounded mx-auto d-block";
+       cardimage.setAttribute("height","200");
+       cardimage.setAttribute("width", "200");
+       cardimage.setAttribute("src", "http://127.0.0.1:8000/media/images/hammer.jpg");
+       cardimage.setAttribute("alt", "Product Image");
+
+       return cardimage;
 }
+function CreateProductCardName() {
+        let cardname = document.createElement('p');
+            cardname.className = "title";
+            cardname.innerHTML = "test satu dua tiga";
+
+        return cardname;
+
+}
+
+function CreateProductCardDesc() {
+        let cardDesc = document.createElement('p');
+            cardDesc.className = "text-muted";
+            cardDesc.innerHTML = "A great small hammer for banging";
+
+        return cardDesc;
+
+}
+
+productimagediv.appendChild(CreateProductCardImage());
+productnamediv.appendChild(CreateProductCardName());
+productdescdiv.appendChild(CreateProductCardDesc());
 </script>
 
 <%- include('partials/footer.ejs') %>
