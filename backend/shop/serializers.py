@@ -8,14 +8,14 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['id', 'name', 'price', 'description', 'productImage','product_quantity']
 
 
-class BasketItemSerializer(serializers.HyperlinkedModelSerializer):
+class BasketItemsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = BasketItem
-        fields = ['id', 'basket_id', 'product_id', 'quantity', 'user_id']
+        model = BasketItems
+        fields = ['id', 'basket_id','product_name', 'product_id', 'quantity', 'user_id']
 
 
 class BasketSerializer(serializers.HyperlinkedModelSerializer):
-    items = BasketItemSerializer(many=True, read_only=True, source='basketitems_set')
+    items = BasketItemsSerializer(many=True, read_only=True, source='basketitems_set')
 
     class Meta:
         model = Basket
@@ -82,34 +82,33 @@ class UserRegistrationSerializer(serializers.HyperlinkedModelSerializer):
 
 class AddBasketItemSerializer(serializers.ModelSerializer):
     class Meta:
-        model = BasketItem
+        model = BasketItems
         fields = ['product_id']
 
     def create(self, validated_data):
         product_id = validated_data['product_id']
         request = self.context.get('request', None)
-        print("request", request.data)
         if request:
             current_user = request.user
             shopping_basket = Basket.objects.filter(user_id=current_user, is_active=True).first()
             # Check if the item is already in the basket
-            basket_items = BasketItem.objects.filter(product_id=product_id).first()
+            basket_items = BasketItems.objects.filter(product_id=product_id).first()
             if basket_items:
                 basket_items.quantity = basket_items.quantity + 1  # if it is already in the basket, add to the quantity
                 basket_items.save()
                 return basket_items
             else:
-                new_basket_item = BasketItem.objects.create(basket_id=shopping_basket, product_id=product_id,
-                                                            user_id=current_user)
+                new_basket_item = BasketItems.objects.create(basket_id=shopping_basket, product_id=product_id)
                 new_basket_item.save()
                 return new_basket_item
+
         else:
             return None
 
 
 class RemoveBasketItemSerializer(serializers.ModelSerializer):
     class Meta:
-        model = BasketItem
+        model = BasketItems
         fields = ['product_id']
 
     def create(self, validated_data):
@@ -120,7 +119,7 @@ class RemoveBasketItemSerializer(serializers.ModelSerializer):
             current_user = request.user
             shopping_basket = Basket.objects.filter(user_id=current_user, is_active=True).first()
             # Check if the item is already in the basket
-            basket_items = BasketItem.objects.filter(product_id=product_id).first()
+            basket_items = BasketItems.objects.filter(product_id=product_id).first()
 
             if basket_items:
                 if basket_items.quantity > 1:
@@ -129,10 +128,10 @@ class RemoveBasketItemSerializer(serializers.ModelSerializer):
                     return basket_items
                 else:
                     basket_items.delete()
-                    return BasketItem.objects.create(basket_id=shopping_basket, product_id=product_id, quantity=0,
+                    return BasketItems.objects.create(basket_id=shopping_basket, product_id=product_id, quantity=0,
                                                      user_id=current_user)
             else:
-                return BasketItem.objects.create(basket_id=shopping_basket, product_id=product_id, quantity=0,
+                return BasketItems.objects.create(basket_id=shopping_basket, product_id=product_id, quantity=0,
                                                  user_id=current_user)
         else:
             return None

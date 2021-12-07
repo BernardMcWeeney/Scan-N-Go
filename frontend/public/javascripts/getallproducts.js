@@ -75,7 +75,7 @@ function GetAllProducts() {
           prepricewrapdiv[i].appendChild(availabilitystatus);
 
           let prodquantity = document.createElement("select");
-          prodquantity.className = "form-control mr-4";
+          prodquantity.className = "form-control";
           let preprodquantity = document.getElementsByClassName("bottom-wrap d-flex align-items-center");
           preprodquantity[i].appendChild(prodquantity);
 
@@ -84,10 +84,15 @@ function GetAllProducts() {
           for (var quantity = 1; quantity <= data[i].product_quantity; quantity++) {
               let prodquantityoption = document.createElement("option");
               prodquantityoption.className = "quantity-option";
+              prodquantityoption.setAttribute("value", quantity);
               prodquantityoption.appendChild(document.createTextNode(quantity));
-              let preprodquantityoption = document.getElementsByClassName("form-control mr-4");
+              let preprodquantityoption = document.getElementsByClassName("form-control");
               preprodquantityoption[i].appendChild(prodquantityoption);
+
           }
+
+
+
           let addtocart = document.createElement("a");
           addtocart.className = "btn btn-primary";
           let preaddtocart = document.getElementsByClassName("bottom-wrap d-flex align-items-center");

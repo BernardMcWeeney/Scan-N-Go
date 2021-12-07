@@ -26,8 +26,8 @@ class BasketViewSet(viewsets.ModelViewSet):
 
 
 class BasketItemViewSet(viewsets.ModelViewSet):
-    queryset = BasketItem.objects.all()
-    serializer_class = BasketItemSerializer
+    queryset = BasketItems.objects.all()
+    serializer_class = BasketItemsSerializer
     permission_classes = [IsAuthenticated]
 
 class OrderViewSet(viewsets.ModelViewSet):
@@ -65,12 +65,12 @@ class UserRegistrationAPIView(generics.CreateAPIView):
 class AddBasketItemAPIView(generics.CreateAPIView):
     serializer_class = AddBasketItemSerializer
     permission_classes = [IsAuthenticated]
-    queryset = BasketItem.objects.all()
+    queryset = BasketItems.objects.all()
 
 class RemoveBasketItemAPIView(generics.CreateAPIView):
     serializer_class = RemoveBasketItemSerializer
     permission_classes = [IsAuthenticated]
-    queryset = BasketItem.objects.all()
+    queryset = BasketItems.objects.all()
 
 class CheckoutAPIView(generics.CreateAPIView):
     serializer_class = CheckoutSerializer
