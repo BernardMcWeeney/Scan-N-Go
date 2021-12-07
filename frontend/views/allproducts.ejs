@@ -7,11 +7,11 @@
     box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
     transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
     border: 0;
-    border-radius: 1rem
+    border-radius: 1rem;
+    margin: 20px
 }
 
 .card:hover {
-    transform: scale(1.05);
     box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06)
 }
 .tag {
@@ -47,79 +47,13 @@
 </style>
 
 <div class="productdata">
-<div class="row">
+    <div class="row">
 
-	<div class="col-md-4">
-		<figure class="card card-product-grid card-lg">
-		    <div id=productimage>
-		         <!-- Product Image -->
-		    </div>
-			<figcaption class="info-wrap">
-			        <div id=productname>
-					    <!-- Product Name -->
-					</div>
-					<div id=productdesc>
-					    <!-- Product Description -->
-					</div>
-                    <div id=producttag>
-					    <span class="tag">Hammer Inc</span> <!-- Product Tag -->
-					</div>
-
-			</figcaption>
-			<div class="bottom-wrap d-flex align-items-center">
-				<div class="mr-3"> <span class="price h5">14.95</span> <br> <small class="text-success">In Stock</small> </div> <!-- Product Price & Availability  Status -->
-				<div class="ml-auto form-inline">
-
-					<select class="form-control mr-2">
-						<option>1</option> <!-- Product Quantity  -->
-					</select>
-					<a href="#" class="btn btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i> </a>
-				</div>
-			</div>
-		</figure>
-	</div>
+    </div>
 </div>
 
 
-<script>
-let productimagediv = document.getElementById("productimage");
-let productnamediv = document.getElementById("productname");
-let productdescdiv = document.getElementById("productdesc");
-let producttagdiv = document.getElementById("producttag");
 
-//ProductData
-function CreateProductCardImage() {
-
-       let cardimage = document.createElement('img');
-       cardimage.className = "rounded mx-auto d-block";
-       cardimage.setAttribute("height","200");
-       cardimage.setAttribute("width", "200");
-       cardimage.setAttribute("src", "http://127.0.0.1:8000/media/images/hammer.jpg");
-       cardimage.setAttribute("alt", "Product Image");
-
-       return cardimage;
-}
-function CreateProductCardName() {
-        let cardname = document.createElement('p');
-            cardname.className = "title";
-            cardname.innerHTML = "test satu dua tiga";
-
-        return cardname;
-
-}
-
-function CreateProductCardDesc() {
-        let cardDesc = document.createElement('p');
-            cardDesc.className = "text-muted";
-            cardDesc.innerHTML = "A great small hammer for banging";
-
-        return cardDesc;
-
-}
-
-productimagediv.appendChild(CreateProductCardImage());
-productnamediv.appendChild(CreateProductCardName());
-productdescdiv.appendChild(CreateProductCardDesc());
-</script>
+<script src="javascripts/getallproducts.js"></script>
 
 <%- include('partials/footer.ejs') %>
