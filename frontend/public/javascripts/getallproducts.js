@@ -49,8 +49,8 @@ function GetAllProducts() {
           let proddtag = document.createElement("span");
           proddtag.className = "tag";
           proddtag.setAttribute("id", "producttag");
-          //proddtag.appendChild(document.createTextNode(data[i].tag));
-          //preprodname[i].appendChild(proddtag);
+          proddtag.appendChild(document.createTextNode("data[i].tag"));
+          preprodname[i].appendChild(proddtag);
 
           let pricediv = document.createElement("div");
           pricediv.className = "bottom-wrap d-flex align-items-center";
