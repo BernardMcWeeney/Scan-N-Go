@@ -12,14 +12,14 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2, default=0.0)
     description = models.CharField(max_length=5000, null=True)
     productImage = models.FileField(upload_to='images/')
+    product_quantity = models.PositiveIntegerField(default=0)
     '''
-    Product tags to be decided. 
     productTag = [
-        (1, '1'),
-        (2, '2'),
-        (3, '3'),
-        (4, '4'),
-        (5, '5'),
+        (1, 'Tools'),
+        (2, 'Accessories'),
+        (3, 'Engine'),
+        (4, 'Electric'),
+        (5, 'Hybrid'),
     ]
     '''
 

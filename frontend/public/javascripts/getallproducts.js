@@ -6,17 +6,10 @@ function GetAllProducts() {
       console.log(data)
       for (var i = 0; i < data.length; i++) { // for every product in the array
 
-          let rowdiv = document.getElementsByClassName("row");
-          let creatediv = document.createElement("div");
-
-          let coloumndiv = creatediv;
-          coloumndiv.className = "col-md-3";
-          rowdiv[0].appendChild(coloumndiv);
-
           let figurediv = document.createElement("figure");
           figurediv.className = "card card-product-grid card-lg";
           let prefigurediv = document.getElementsByClassName("col-md-3");
-          prefigurediv[i].appendChild((figurediv));
+          prefigurediv[0].appendChild((figurediv));
 
           let cardimage = document.createElement('img');
           cardimage.className = "rounded mx-auto d-block";
@@ -72,7 +65,13 @@ function GetAllProducts() {
 
           let availabilitystatus = document.createElement("small");
           availabilitystatus.className = "text-success";
-          availabilitystatus.appendChild(document.createTextNode("data[i].quantity"));
+          if (data[i].product_quantity > 0){
+              availabilitystatus.className = "text-success";
+              availabilitystatus.appendChild(document.createTextNode("In Stock"));
+          } else{
+              availabilitystatus.className = "text-danger";
+              availabilitystatus.appendChild(document.createTextNode("Out of Stock"));
+          }
           prepricewrapdiv[i].appendChild(availabilitystatus);
 
           let prodquantity = document.createElement("select");
