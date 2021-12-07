@@ -88,11 +88,7 @@ function GetAllProducts() {
               prodquantityoption.appendChild(document.createTextNode(quantity));
               let preprodquantityoption = document.getElementsByClassName("form-control");
               preprodquantityoption[i].appendChild(prodquantityoption);
-
           }
-
-
-
           let addtocart = document.createElement("a");
           addtocart.className = "btn btn-primary";
           let preaddtocart = document.getElementsByClassName("bottom-wrap d-flex align-items-center");
@@ -108,12 +104,6 @@ function GetAllProducts() {
           addtocarti.className = "fas fa-shopping-cart";
           let preaddtocarti = document.getElementsByClassName("btn btn-primary");
           preaddtocarti[i].appendChild(addtocarti);
-
-
-          var h = document.createElement("H1"); // Create the H1 element
-          var t = document.createTextNode(data[i].name); // Create a text element
-          h.appendChild(t); // Append the text node to the H1 element
-          document.body.appendChild(h); //  Append the H1 element to the document body
 
       }
       } );
