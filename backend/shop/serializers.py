@@ -98,7 +98,7 @@ class AddBasketItemSerializer(serializers.ModelSerializer):
                 basket_items.save()
                 return basket_items
             else:
-                new_basket_item = BasketItems.objects.create(basket_id=shopping_basket, product_id=product_id)
+                new_basket_item = BasketItems.objects.create(basket_id=shopping_basket, product_id=product_id, user_id=current_user)
                 new_basket_item.save()
                 return new_basket_item
 

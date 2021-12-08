@@ -1,3 +1,29 @@
+function addToCart1(id) {
+            url = "http://0.0.0.0:8000/add/"
+            token = sessionStorage.getItem('access').toString()
+            console.log(token)
+            var obj = {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Origin': '',
+                'Host': 'api.producthunt.com',
+                'Authorization': 'Bearer ' + token
+              },
+              body: JSON.stringify({
+                'product_id': id.toString(),
+              })
+            }
+
+            fetch(url, obj)
+              .then(response => response.json()) // extract the json from the response you get from the server
+              .then(data => {
+                console.log(data)
+              })
+          }
+
+
 function GetAllProducts() {
     let url = "http://127.0.0.1:8000/products/"
     fetch(url)
@@ -94,11 +120,19 @@ function GetAllProducts() {
               let preprodquantityoption = document.getElementsByClassName("productbottomwrap");
               preprodquantityoption[i].appendChild(prodquantityoption);
           }
+
+
+
+
           let addtocart = document.createElement("a");
+          var blahblah = "addToCart1(" + data[i].id.toString() + ")"
+          addtocart.setAttribute('onclick', blahblah )
+          //addtocart.onclick = function(){addToCart1(}
+          addtocart.id = "add-to-cart-a-link";
           addtocart.className = "btn btn-primary productbutton";
-          addtocart.setAttribute("href", "#");
           let preaddtocart = document.getElementsByClassName("productwrapdiv");
           preaddtocart[i].appendChild(addtocart);
+
 
           let addtocartspan = document.createElement("span");
           addtocartspan.className = "text productaddtocart";

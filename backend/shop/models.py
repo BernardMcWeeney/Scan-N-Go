@@ -44,7 +44,7 @@ class BasketItems(models.Model):
     def getCalculatedTotal(self):
         calculatedTotal = self.quantity * self.product_id.price
         return calculatedTotal
-    
+
     def save(self, *args, **kwargs):
         self.calculatedTotal = self.getCalculatedTotal
         super(BasketItem, self).save(*args, **kwargs)

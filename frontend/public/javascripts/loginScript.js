@@ -26,9 +26,9 @@ function checkLogin(){
     var isLoggedIn = false;
   }
   if (isLoggedIn == false){
-    console.log("test")
+    //console.log("test")
     location.href = '/login';
-    console.log("User is not Logged In")
+   // console.log("User is not Logged In")
 }
 }
 
@@ -42,7 +42,7 @@ function getUsername() {
 }
 
 function isLoggedIn(){
-  console.log(sessionStorage)
+  // console.log(sessionStorage)
   if (sessionStorage.getItem('access') != null) {
     return true;
   } else {

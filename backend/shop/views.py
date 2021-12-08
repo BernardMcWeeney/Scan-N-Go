@@ -62,10 +62,12 @@ class UserRegistrationAPIView(generics.CreateAPIView):
     permission_classes = [AllowAny] #No login is needed to access this route
     queryset = APIUser.objects.all()
 
+
 class AddBasketItemAPIView(generics.CreateAPIView):
-    serializer_class = AddBasketItemSerializer
-    permission_classes = [IsAuthenticated]
-    queryset = BasketItems.objects.all()
+  serializer_class = AddBasketItemSerializer
+  permission_classes = [IsAuthenticated]
+  queryset = BasketItems.objects.all()
+
 
 class RemoveBasketItemAPIView(generics.CreateAPIView):
     serializer_class = RemoveBasketItemSerializer
