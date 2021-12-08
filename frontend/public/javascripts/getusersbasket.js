@@ -1,4 +1,4 @@
-function GetAllProducts() {
+function GetUserBasket() {
     let url = "http://127.0.0.1:8000/products/"
     fetch(url)
       .then(response => response.json()) // extract the json from the response you get from the server
@@ -109,5 +109,5 @@ function GetAllProducts() {
       } );
 }
 
-GetAllProducts()
+GetUserBasket()
 
