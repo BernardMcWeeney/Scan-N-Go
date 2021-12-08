@@ -6,10 +6,16 @@ function GetAllProducts() {
       console.log(data)
       for (var i = 0; i < data.length; i++) { // for every product in the array
 
+          let articlediv = document.createElement("article");
+          articlediv.className = "card-body mb-3 productarticle";
+          let prearticlediv = document.getElementsByClassName("productdata");
+          prearticlediv[0].appendChild((articlediv));
+
+
           let figurediv = document.createElement("figure");
           figurediv.className = "card card-product-grid card-lg productfigure";
-          let prefigurediv = document.getElementsByClassName("productcol");
-          prefigurediv[0].appendChild((figurediv));
+          let prefigurediv = document.getElementsByClassName("productarticle");
+          prefigurediv[i].appendChild((figurediv));
 
           let cardimage = document.createElement('img');
           cardimage.className = "rounded mx-auto d-block productimage";
