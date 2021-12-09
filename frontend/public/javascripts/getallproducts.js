@@ -32,15 +32,14 @@ function GetAllProducts() {
       console.log(data)
       for (var i = 0; i < data.length; i++) { // for every product in the array
 
-          let articlediv = document.createElement("article");
-          articlediv.className = "card-body mb-3 productarticle";
-          let prearticlediv = document.getElementsByClassName("productdata");
-          prearticlediv[0].appendChild((articlediv));
-
+          let prodcol = document.createElement("div");
+          prodcol.className = "col-md-4 prodcol";
+          let preprodcol = document.getElementsByClassName("productdata");
+          preprodcol[0].appendChild((prodcol));
 
           let figurediv = document.createElement("figure");
-          figurediv.className = "card card-product-grid card-lg productfigure";
-          let prefigurediv = document.getElementsByClassName("productarticle");
+          figurediv.className = "card card-product-grid card-lg  productfigure";
+          let prefigurediv = document.getElementsByClassName("prodcol");
           prefigurediv[i].appendChild((figurediv));
 
           let cardimage = document.createElement('img');
@@ -64,12 +63,6 @@ function GetAllProducts() {
           prodname.setAttribute("id", "productname");
           prodname.appendChild(document.createTextNode(data[i].name));
           preprodname[i].appendChild(prodname);
-
-          let proddesc = document.createElement("p");
-          proddesc.className = "text-muted productdescription";
-          proddesc.setAttribute("id", "productdesc");
-          proddesc.appendChild(document.createTextNode(data[i].description));
-          preprodname[i].appendChild(proddesc);
 
           let proddtag = document.createElement("span");
           proddtag.className = "tag producttag";
@@ -106,9 +99,14 @@ function GetAllProducts() {
           }
           prepricewrapdiv[i].appendChild(availabilitystatus);
 
+          let subquantdiv = document.createElement("div");
+          subquantdiv.className = "ml-auto form-inline subquantdiv";
+          let presubquantdiv = document.getElementsByClassName("productwrapdiv");
+          presubquantdiv[i].appendChild(subquantdiv);
+
           let prodquantity = document.createElement("select");
-          prodquantity.className = "form-control productbottomwrap";
-          let preprodquantity = document.getElementsByClassName("productwrapdiv");
+          prodquantity.className = "form-control mr-2 productbottomwrap";
+          let preprodquantity = document.getElementsByClassName("subquantdiv");
           preprodquantity[i].appendChild(prodquantity);
 
           let prodquantityoption = document.createElement("option");
@@ -121,9 +119,6 @@ function GetAllProducts() {
               preprodquantityoption[i].appendChild(prodquantityoption);
           }
 
-
-
-
           let addtocart = document.createElement("a");
           var blahblah = "addToCart1(" + data[i].id.toString() + ")"
           addtocart.setAttribute('onclick', blahblah )
@@ -133,15 +128,9 @@ function GetAllProducts() {
           let preaddtocart = document.getElementsByClassName("productwrapdiv");
           preaddtocart[i].appendChild(addtocart);
 
-
-          let addtocartspan = document.createElement("span");
-          addtocartspan.className = "text productaddtocart";
-          addtocartspan.appendChild(document.createTextNode("Add to cart"));
-          let preaddtocartspan = document.getElementsByClassName("productbutton");
-          preaddtocartspan[i].appendChild(addtocartspan);
-
           let addtocarti = document.createElement("i");
           addtocarti.className = "fas fa-shopping-cart productshoppingcart";
+          addtocarti.appendChild(document.createTextNode("Add to cart"));
           let preaddtocarti = document.getElementsByClassName("productbutton");
           preaddtocarti[i].appendChild(addtocarti);
 
@@ -150,4 +139,3 @@ function GetAllProducts() {
 }
 
 GetAllProducts()
-
