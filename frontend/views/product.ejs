@@ -2,7 +2,9 @@
 <%- include('partials/header.ejs') %>
 
 <style>
-
+body {
+    padding-bottom:100px
+}
 .card {
     background: #fff;
     box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
@@ -44,197 +46,15 @@
   color:#630436;
   border-color: #630436;
  }
+a:not([href]):not([tabindex]) {
+    color:#fff;
+}
+
 </style>
 
 
 <h1>Product</h1>
-<!--
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container">
-  <div class="row row-cols-2">
-    <div class="col-md-6">
-        <article class="card card-body mb-3">
-				<div class="row align-items-center">
-					<div class="col-md-6">
-						<figure class="itemside">
-							<div class="aside"><img width="80" height="80" src="http://127.0.0.1:8000/media/images/hammer.jpg" class="border img-sm"></div>
-                                <figcaption class="info">
-                                    <a href="#" class="title text-dark">Some name of item goes here nice</a>
-                                    <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
-                                </figcaption>
-						</figure>
-					</div>
-					<div class="col">
-						<div class="input-group input-spinner">
-							<div class="input-group-prepend">
-							<button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </button>
-							</div>
-							<input type="text" class="form-control" value="1">
-							<div class="input-group-append">
-							<button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="price-wrap">
-                            <var class="price">$1156.00</var>
-                            <small class="text-muted"> $315.20 each </small>
-                        </div>
-					</div>
-					<div class="col flex-grow-0 text-right">
-						<a href="#" class="btn btn-light"> <i class="fa fa-times"></i> </a>
-					</div>
-				</div>
-		</article>
-    </div>
-    <div class="col-md-6">
-        <article class="card card-body mb-3">
-				<div class="row align-items-center">
-					<div class="col-md-6">
-						<figure class="itemside">
-							<div class="aside"><img width="80" height="80" src="http://127.0.0.1:8000/media/images/hammer.jpg" class="border img-sm"></div>
-                                <figcaption class="info">
-                                    <a href="#" class="title text-dark">Some name of item goes here nice</a>
-                                    <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
-                                </figcaption>
-						</figure>
-					</div>
-					<div class="col">
-						<div class="input-group input-spinner">
-							<div class="input-group-prepend">
-							<button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </button>
-							</div>
-							<input type="text" class="form-control" value="1">
-							<div class="input-group-append">
-							<button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="price-wrap">
-                            <var class="price">$1156.00</var>
-                            <small class="text-muted"> $315.20 each </small>
-                        </div>
-					</div>
-					<div class="col flex-grow-0 text-right">
-						<a href="#" class="btn btn-light"> <i class="fa fa-times"></i> </a>
-					</div>
-				</div>
-		</article>
-    </div>
-    <div class="col-md-6">
-        <article class="card card-body mb-3">
-				<div class="row align-items-center">
-					<div class="col-md-6">
-						<figure class="itemside">
-							<div class="aside"><img width="80" height="80" src="http://127.0.0.1:8000/media/images/hammer.jpg" class="border img-sm"></div>
-                                <figcaption class="info">
-                                    <a href="#" class="title text-dark">Some name of item goes here nice</a>
-                                    <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
-                                </figcaption>
-						</figure>
-					</div>
-					<div class="col">
-						<div class="input-group input-spinner">
-							<div class="input-group-prepend">
-							<button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </button>
-							</div>
-							<input type="text" class="form-control" value="1">
-							<div class="input-group-append">
-							<button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="price-wrap">
-                            <var class="price">$1156.00</var>
-                            <small class="text-muted"> $315.20 each </small>
-                        </div>
-					</div>
-					<div class="col flex-grow-0 text-right">
-						<a href="#" class="btn btn-light"> <i class="fa fa-times"></i> </a>
-					</div>
-				</div>
-		</article>
-    </div>
-    <div class="col-md-6">
-        <article class="card card-body mb-3">
-				<div class="row align-items-center">
-					<div class="col-md-6">
-						<figure class="itemside">
-							<div class="aside"><img width="80" height="80" src="http://127.0.0.1:8000/media/images/hammer.jpg" class="border img-sm"></div>
-                                <figcaption class="info">
-                                    <a href="#" class="title text-dark">Some name of item goes here nice</a>
-                                    <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
-                                </figcaption>
-						</figure>
-					</div>
-					<div class="col">
-						<div class="input-group input-spinner">
-							<div class="input-group-prepend">
-							<button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </button>
-							</div>
-							<input type="text" class="form-control" value="1">
-							<div class="input-group-append">
-							<button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="price-wrap">
-                            <var class="price">$1156.00</var>
-                            <small class="text-muted"> $315.20 each </small>
-                        </div>
-					</div>
-					<div class="col flex-grow-0 text-right">
-						<a href="#" class="btn btn-light"> <i class="fa fa-times"></i> </a>
-					</div>
-				</div>
-		</article>
-    </div>
-  </div>
-</div>
--->
-<div class="row">
 
-   <!-- col.// -->
-   <div class="col-md-4">
-      <figure class="card card-product-grid card-lg">
-         <a href="#" class="img-wrap"><img src="http://127.0.0.1:8000/media/images/hammer.jpg"></a>
-         <figcaption class="info-wrap">
-            <p>
-               <a href="#" class="title">Another name of item</a>
-            </p>
-            <span class="tag">32 GB</span> <span class="tag">Brand new</span>
-            <span class="tag">256 px</span>
-            <span class="tag">Water proof</span>
-         </figcaption>
-         <div class="bottom-wrap d-flex align-items-center">
-            <div class="mr-3"> <span class="price h5">$1280</span>
-            <br>
-            <small class="text-success">Free shipping</small>
-            </div>
-            <!-- price.// -->
-            <div class="ml-auto form-inline">
-               <select class="form-control mr-2">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-               </select>
-            </div>
-            <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart">Add to Cart</i></a>
-
-         </div>
-         <!-- bottom-wrap.// -->
-      </figure>
-   </div>
-
-
-
-
-
-
-   <!-- col.// -->
 </div>
 
 

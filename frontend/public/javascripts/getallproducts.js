@@ -23,7 +23,6 @@ function addToCart1(id) {
               })
           }
 
-
 function GetAllProducts() {
     let url = "http://127.0.0.1:8000/products/"
     fetch(url)
@@ -119,15 +118,13 @@ function GetAllProducts() {
               preprodquantityoption[i].appendChild(prodquantityoption);
           }
 
-          let addtocart = document.createElement("a");
-          var blahblah = "addToCart1(" + data[i].id.toString() + ")"
-          addtocart.setAttribute('onclick', blahblah )
-          //addtocart.onclick = function(){addToCart1(}
-          addtocart.id = "add-to-cart-a-link";
-          addtocart.className = "btn btn-primary productbutton";
+          let addtocartlink = document.createElement("a");
+          var ProdID = "addToCart1(" + data[i].id.toString() + ")"
+          addtocartlink.setAttribute('onclick', ProdID )
+          addtocartlink.id = "add-to-cart-a-link";
+          addtocartlink.className = "btn btn-primary productbutton";
           let preaddtocart = document.getElementsByClassName("productwrapdiv");
-          preaddtocart[i].appendChild(addtocart);
-
+          preaddtocart[i].appendChild(addtocartlink);
           let addtocarti = document.createElement("i");
           addtocarti.className = "fas fa-shopping-cart productshoppingcart";
           addtocarti.appendChild(document.createTextNode("Add to cart"));

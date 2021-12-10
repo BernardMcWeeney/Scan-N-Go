@@ -1,7 +1,9 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
 <style>
-
+body {
+    padding-bottom:100px
+}
 .card {
     background: #fff;
     box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
@@ -43,9 +45,61 @@
   color:#630436;
   border-color: #630436;
  }
+a:not([href]):not([tabindex]) {
+    color:#fff;
+}
+.btn-outline-primary {
+    background-color: #630436;
+    color:#FFF;
+    border-color: #630436;
+}
+.btn-outline-primary:hover, .btn-outline-primary.active {
+    color:#630436;
+    border-color: #630436;
+    background-color: transparent;
+    background-image: none;
+}
+.btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
+    color:#630436;
+    border-color: #630436;
+    background-color: transparent;
+    background-image: none;
+}
+.searchproduct {
+    margin-left: 10px;
+}
+
 </style>
 
 <h1>All Products</h1>
+<div class="card">
+<div class="card-body d-flex">
+
+	<div class="form-inline d-inline-flex mr-auto">
+		<label>Category
+		<select class="ml-2 form-control">
+			<option>Clothes</option>
+			<option>Electronics</option>
+			<option>Home Items</option>
+			<option>Foods</option>
+		</select>
+	</label>
+	    <div class="input-group searchproduct">
+	        <input type="text" class="form-control" name="" placeholder="Search Products">
+				<span class="input-group-append">
+					<button class="btn btn-primary">Search</button>
+				</span>
+		</div>
+	</div>
+	<div class="btn-group" role="group" aria-label="Filter by">
+	  <button type="button" class="btn btn-outline-primary active">Featured</button>
+	  <button type="button" class="btn btn-outline-primary">New Items</button>
+	  <button type="button" class="btn btn-outline-primary">On Sale</button>
+	</div>
+</div>
+</div>
+
+
 <div class="container">
     <div class="row productdata">
         <!-- Product Card is Inserted here with JavaScript -->
