@@ -1,0 +1,44 @@
+{
+  "name": "mkcert",
+  "version": "1.4.0",
+  "description": "Create Self Signed Development Certificates",
+  "main": "src/mkcert.js",
+  "bin": {
+    "mkcert": "src/cli.js"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "fixtures"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Subash/mkcert.git"
+  },
+  "keywords": [
+    "signed",
+    "certificate",
+    "cert"
+  ],
+  "author": "Subash Pathak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Subash/mkcert/issues"
+  },
+  "homepage": "https://github.com/Subash/mkcert#readme",
+  "dependencies": {
+    "commander": "^6.1.0",
+    "is-ip": "^3.1.0",
+    "node-forge": "^0.10.0",
+    "random-int": "^2.0.1"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2"
+  }
+}

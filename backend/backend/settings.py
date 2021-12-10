@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-ai2hkel7q+9cbg+xe50bimhipq3)(!u00xenqhkn$5)7$(7ua+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1','*']
 
 
 # Application definition
@@ -57,8 +57,11 @@ MIDDLEWARE = [
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000", # node on port 3000
-    "http://127.0.0.1:3000"  # node on port 3000
+    "http://127.0.0.1:3000",
+    "http://0.0.0.0:3000",
+    "https://scanngo-frontend-app.azurewebsites.net",
 ]
+
 
 ROOT_URLCONF = 'backend.urls'
 

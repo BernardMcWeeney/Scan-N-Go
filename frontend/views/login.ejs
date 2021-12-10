@@ -13,6 +13,23 @@
 </div>
 <script>
 
+function backendServer() {
+  url = window.location.href;
+  let domain = (new URL(url));
+  if (domain.hostname == "scanngo-frontend-app.azurewebsites.net") {
+    let backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
+  }
+  else if ( (domain.hostname == "127.0.0.1") || (domain.hostname == "localhost") || (domain.hostname == "0.0.0.0") ) {
+    let backendServerURL = "127.0.0.0:8000/";
+    }
+  else {
+    alert("ERROR: Cannot determine Backend Server (Django) URL");
+    }
+
+  console.log('Backend Server URL', backendServerURL)
+  return backendServerURL
+}
+
 document.getElementById("basket-navbar-icon").style.display = "none";
 
 if (isLoggedIn() == true){
@@ -33,7 +50,10 @@ if (isLoggedIn() == true){
           uname = document.getElementById("inputEmail").value;
           pword = document.getElementById("inputPassword").value;
           console.log("Username:", uname,"Password:", pword)
-          fetch("http://127.0.0.1:8000/api/token/", {
+          let url = backendServer()
+          let backendServerURL1 = backendServer() + "api/token/"
+          console.log("Sending Login Data to ", backendServerURL1)
+          fetch(backendServerURL1, {
                   method: 'POST',
                   headers: {
                       'Accept': 'application/json',
@@ -46,6 +66,7 @@ if (isLoggedIn() == true){
               })
               .then(response => response.json()) // extract the json from the response you get from the server
               .then(data => {
+                  console.log(data)
                   if ('access' in data) {
                       let accessToken = data['access'];
                       let refreshToken = data['refresh'];

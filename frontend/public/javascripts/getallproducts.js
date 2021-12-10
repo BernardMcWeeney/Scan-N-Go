@@ -1,31 +1,51 @@
-function addToCart1(id) {
-            url = "http://0.0.0.0:8000/add/"
-            token = sessionStorage.getItem('access').toString()
-            console.log(token)
-            var obj = {
-              method: 'POST',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Origin': '',
-                'Host': 'api.producthunt.com',
-                'Authorization': 'Bearer ' + token
-              },
-              body: JSON.stringify({
-                'product_id': id.toString(),
-              })
-            }
+function backendServer() {
+  const domain = window.location.hostname.toString();
+  console.log("Domain: ", domain)
+  if (domain == "scanngo-frontend-app.azurewebsites.net") {
+    var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
+  }
+  else if ( (domain == "127.0.0.1") || (domain == "localhost") || (domain == "0.0.0.0") ) {
+    var backendServerURL = "http://127.0.0.1:8000/";
+    }
+  else {
+    alert("ERROR: Cannot determine Backend Server (Django) URL");
+    }
 
-            fetch(url, obj)
-              .then(response => response.json()) // extract the json from the response you get from the server
-              .then(data => {
-                console.log(data)
-              })
-          }
+  console.log('Backend Server URL', backendServerURL)
+  return backendServerURL
+}
+
+function addToCart1(id) {
+    let backendServerURL = backendServer()
+    let djangoServer = backendServerURL + "add/"
+    let token = sessionStorage.getItem('access').toString()
+    console.log("Access Token from sessionStorage: ", token)
+    var obj = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin': '',
+        'Host': 'api.producthunt.com',
+        'Authorization': 'Bearer ' + token
+      },
+      body: JSON.stringify({
+        'product_id': id.toString(),
+      })
+    }
+
+    fetch(djangoServer, obj)
+      .then(response => response.json()) // extract the json from the response you get from the server
+      .then(data => {
+        console.log(data)
+      })
+  }
 
 function GetAllProducts() {
-    let url = "http://127.0.0.1:8000/products/"
-    fetch(url)
+    let backendServerURL = backendServer()
+    let djangoServer = backendServerURL + "products/"
+    console.log("sending data to ",djangoServer)
+    fetch(djangoServer)
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(data => {
       console.log(data)
