@@ -5,12 +5,15 @@ body {
     padding-bottom:100px
 }
 .card {
-    background: #fff;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
-    transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
-    border: 0;
-    border-radius: 1rem;
-    margin: 20px
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.37rem;
 }
 
 .card:hover {
@@ -69,39 +72,95 @@ a:not([href]):not([tabindex]) {
     margin-left: 10px;
 }
 
+.filtersidebar {
+    margin-bottom: 50px;
+}
+
 </style>
 
 <h1>All Products</h1>
-<div class="card">
-<div class="card-body d-flex">
-
-	<div class="form-inline d-inline-flex mr-auto">
-		<label>Category
-		<select class="ml-2 form-control">
-			<option>Clothes</option>
-			<option>Electronics</option>
-			<option>Home Items</option>
-			<option>Foods</option>
-		</select>
-	</label>
-	    <div class="input-group searchproduct">
-	        <input type="text" class="form-control" name="" placeholder="Search Products">
-				<span class="input-group-append">
-					<button class="btn btn-primary">Search</button>
-				</span>
-		</div>
-	</div>
-	<div class="btn-group" role="group" aria-label="Filter by">
-	  <button type="button" class="btn btn-outline-primary active">Featured</button>
-	  <button type="button" class="btn btn-outline-primary">New Items</button>
-	  <button type="button" class="btn btn-outline-primary">On Sale</button>
-	</div>
-</div>
-</div>
-
 
 <div class="container">
-    <div class="row productdata">
+    <div class="row">
+        <aside class="col-md-3 filtersidebar">
+            <div class="card">
+                <article class="filter-group">
+                    <header class="card-header">
+                        <!-- <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
+                            <i class="icon-control fa fa-chevron-down"></i> -->
+                            <h6 class="title">Product type</h6>
+                        </a>
+                    </header>
+                    <div class="filter-content collapse show" id="collapse_1" style="">
+                        <div class="card-body">
+                            <form class="pb-3">
+                            <div class="input-group">
+                              <input type="text" class="form-control" type="search" name="title_contains" placeholder="Search">
+                                  <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">Search<i class="fa fa-search"></i></button>
+                                  </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </article>
+                <article class="filter-group">
+                    <header class="card-header">
+
+                            <h6 class="title">Tags </h6>
+                        </a>
+                    </header>
+                    <div class="filter-content collapse show" id="collapse_4" style="">
+                        <div class="card-body">
+                          <label class="checkbox-btn">
+                            <input type="checkbox">
+                            <span class="btn btn-light"> XS </span>
+                          </label>
+
+                          <label class="checkbox-btn">
+                            <input type="checkbox">
+                            <span class="btn btn-light"> SM </span>
+                          </label>
+
+                          <label class="checkbox-btn">
+                            <input type="checkbox">
+                            <span class="btn btn-light"> LG </span>
+                          </label>
+
+                          <label class="checkbox-btn">
+                            <input type="checkbox">
+                            <span class="btn btn-light"> XXL </span>
+                          </label>
+		                </div>
+		            </div>
+                </article>
+                <article class="filter-group">
+                    <header class="card-header">
+                        <!--<a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+                            <i class="icon-control fa fa-chevron-down"></i>-->
+                            <h6 class="title">Price range </h6>
+                        </a>
+                    </header>
+                    <div class="filter-content collapse show" id="collapse_3" style="">
+                        <div class="card-body">
+                            <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label>Min</label>
+                              <input class="form-control" placeholder="$0" type="number">
+                            </div>
+                            <div class="form-group text-right col-md-6">
+                              <label>Max</label>
+                              <input class="form-control" placeholder="$1,0000" type="number">
+                            </div>
+                            </div>
+                            <button class="btn btn-block btn-primary">Apply</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </aside>
+
+    <div class="col-md-9 productdata">
         <!-- Product Card is Inserted here with JavaScript -->
     </div>
 </div>

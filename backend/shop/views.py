@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from rest_framework import generics
+from django.db.models import Q
 from django.shortcuts import render
 from .models import *
 from .serializers import *
@@ -78,3 +79,14 @@ class CheckoutAPIView(generics.CreateAPIView):
     serializer_class = CheckoutSerializer
     permission_classes = [IsAuthenticated]
     queryset = Order.objects.all()
+'''
+class SearchResultsView(generics.ListAPIView):
+    model = Product
+    template_name = 'frontend/views/allproducts.ejs'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        query = self.request.GET.get('title_contains')
+        products = Product.objects.filter(Q(name__icontains=query))
+        return products
+'''

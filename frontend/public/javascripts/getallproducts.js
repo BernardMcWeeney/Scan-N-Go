@@ -52,7 +52,7 @@ function GetAllProducts() {
       for (var i = 0; i < data.length; i++) { // for every product in the array
 
           let prodcol = document.createElement("div");
-          prodcol.className = "col-md-4 prodcol";
+          prodcol.className = "card-product-list prodcol";
           let preprodcol = document.getElementsByClassName("productdata");
           preprodcol[0].appendChild((prodcol));
 
