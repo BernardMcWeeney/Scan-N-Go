@@ -18,58 +18,122 @@ function backendServer() {
 function GetUserBasket() {
     let backendServerURL = backendServer()
     let djangoServer = backendServerURL + "products/"
+    console.log("sending data to ",djangoServer)
     fetch(djangoServer)
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(data => {
       console.log(data)
-      for (var i = 0; i < data.length; i++) { // for every product in the array
+      for (var i = 0; i < data.length; i++) { // for every product in the basket array
+
+          let prodcarticle = document.createElement("article");
+          prodcarticle.className = "card card-body mb-3 prodcarticle";
+          let preprodcarticle = document.getElementsByClassName("productdata");
+          preprodcarticle[0].appendChild((prodcarticle));
+
+          let prodcol = document.createElement("div");
+          prodcol.className = "row align-items-center prodcol";
+          let preprodcol = document.getElementsByClassName("prodcarticle");
+          preprodcol[i].appendChild((prodcol));
+
+          let prodcol1 = document.createElement("div");
+          prodcol1.className = "col-md-6 prodcol1";
+          let preprodcol1 = document.getElementsByClassName("prodcol");
+          preprodcol1[i].appendChild((prodcol1));
+
           let figurediv = document.createElement("figure");
-          figurediv.className = "card card-product-grid card-lg productfigure";
-          let prefigurediv = document.getElementsByClassName("productcol");
-          prefigurediv[0].appendChild((figurediv));
+          figurediv.className = "itemside  productfigure";
+          let prefigurediv = document.getElementsByClassName("prodcol1");
+          prefigurediv[i].appendChild((figurediv));
+
+          let imagediv = document.createElement("div");
+          imagediv.className = "aside  imagediv";
+          let preimagediv = document.getElementsByClassName("productfigure");
+          preimagediv[i].appendChild((imagediv));
 
           let cardimage = document.createElement('img');
-          cardimage.className = "rounded mx-auto d-block productimage";
-          cardimage.setAttribute("height","200");
-          cardimage.setAttribute("width", "200");
+          cardimage.className = "border img-sm productimage";
+          cardimage.setAttribute("height","80");
+          cardimage.setAttribute("width", "80");
           cardimage.setAttribute("src", data[i].productImage);
           cardimage.setAttribute("alt", "Product Image");
           cardimage.setAttribute("id", "productimage");
-          let precardimage = document.getElementsByClassName("productfigure");
+          let precardimage = document.getElementsByClassName("imagediv");
           precardimage[i].appendChild(cardimage);
 
           let figcaptiondiv = document.createElement("figcaption");
-          figcaptiondiv.className = "info-wrap productinfo";
-          let prefigcaptiondiv = document.getElementsByClassName("productfigure");
+          figcaptiondiv.className = "info productinfo";
+          let prefigcaptiondiv = document.getElementsByClassName("imagediv");
           prefigcaptiondiv[i].appendChild((figcaptiondiv));
 
           let preprodname = document.getElementsByClassName("productinfo");
           let prodname = document.createElement("p");
-          prodname.className = "title producttitle";
+          prodname.className = "title text-dark producttitle";
           prodname.setAttribute("id", "productname");
           prodname.appendChild(document.createTextNode(data[i].name));
           preprodname[i].appendChild(prodname);
 
-          let proddesc = document.createElement("p");
-          proddesc.className = "text-muted productdescription";
-          proddesc.setAttribute("id", "productdesc");
-          proddesc.appendChild(document.createTextNode(data[i].description));
-          preprodname[i].appendChild(proddesc);
-
           let proddtag = document.createElement("span");
-          proddtag.className = "tag producttag";
+          proddtag.className = "text-muted small producttag";
           proddtag.setAttribute("id", "producttag");
           proddtag.appendChild(document.createTextNode("data[i].tag"));
           preprodname[i].appendChild(proddtag);
 
-          let pricediv = document.createElement("div");
-          pricediv.className = "bottom-wrap d-flex align-items-center productwrapdiv";
-          prefigcaptiondiv[i].appendChild(pricediv);
+          let prodcol2 = document.createElement("div");
+          prodcol2.className = "col prodcol2";
+          let preprodcol2 = document.getElementsByClassName("prodcol");
+          preprodcol2[i].appendChild((prodcol2));
 
-          let subpricediv = document.createElement("div");
-          subpricediv.className = "mr-3 subwrapdiv";
-          let presubpricediv = document.getElementsByClassName("productwrapdiv");
-          presubpricediv[i].appendChild(subpricediv);
+          let qtydiv = document.createElement("div");
+          qtydiv.className = "input-group input-spinner qtydiv";
+          let preqtydiv = document.getElementsByClassName("prodcol2");
+          preqtydiv[i].appendChild(qtydiv);
+
+          let preinputdiv = document.getElementsByClassName("qtydiv");
+          let inputdiv = document.createElement("div");
+          inputdiv.className = "input-group-prepend inputdiv";
+          preinputdiv[i].appendChild(inputdiv);
+
+          let buttonplusdiv = document.createElement("button");
+          buttonplusdiv.className = "btn btn-light buttonplusdiv";
+          buttonplusdiv.setAttribute("id", "button-plus");
+          buttonplusdiv.setAttribute("type", "button");
+          let prebuttonplusdiv = document.getElementsByClassName("inputdiv");
+          prebuttonplusdiv[i].appendChild(buttonplusdiv);
+
+          let butplusdivi = document.createElement("i");
+          butplusdivi.className = "fa fa-minus butplusdivi";
+          let prebutplusdivi = document.getElementsByClassName("buttonplusdiv");
+          prebutplusdivi[i].appendChild(butplusdivi);
+
+          let qtyinputdiv = document.createElement("div");
+          qtyinputdiv.className = "input-group-prepend qtyinputdiv";
+          preinputdiv[i].appendChild(qtyinputdiv);
+
+          let inputdiv1 = document.createElement("div");
+          inputdiv1.className = "input-group-append inputdiv1";
+          preinputdiv[i].appendChild(inputdiv1);
+
+          let buttonminusdiv = document.createElement("button");
+          buttonminusdiv.className = "btn btn-light buttonminusdiv";
+          buttonminusdiv.setAttribute("id", "button-minus");
+          buttonminusdiv.setAttribute("type", "button");
+          let prebuttonminusdiv = document.getElementsByClassName("inputdiv");
+          prebuttonminusdiv[i].appendChild(buttonminusdiv);
+
+          let butminusdivi = document.createElement("i");
+          butminusdivi.className = "fa fa-m butminusdivi";
+          let prebutminusdivi = document.getElementsByClassName("buttonplusdiv");
+          prebutminusdivi[i].appendChild(butminusdivi);
+
+          let prodcol3 = document.createElement("div");
+          prodcol3.className = "col prodcol3";
+          let preprodcol3 = document.getElementsByClassName("prodcol");
+          preprodcol3[i].appendChild((prodcol3));
+
+          let pricewrap = document.createElement("div");
+          pricewrap.className = "price-wrap pricewrap";
+          let prepricewrap = document.getElementsByClassName("prodcol3");
+          prepricewrap[i].appendChild((pricewrap));
 
           let subpricespan = document.createElement("span");
           subpricespan.className = "price h5 productprice";
@@ -77,50 +141,9 @@ function GetUserBasket() {
           let prepricewrapdiv = document.getElementsByClassName("subwrapdiv");
           prepricewrapdiv[i].appendChild(subpricespan);
 
-          let brele = document.createElement("br");
-          prepricewrapdiv[i].appendChild(brele);
 
-          let availabilitystatus = document.createElement("small");
-          availabilitystatus.className = "text-success product-availability-status";
-          if (data[i].product_quantity > 0){
-              availabilitystatus.className = "text-success productinstock";
-              availabilitystatus.appendChild(document.createTextNode("In Stock"));
-          } else{
-              availabilitystatus.className = "text-danger productoutstock";
-              availabilitystatus.appendChild(document.createTextNode("Out of Stock"));
-          }
-          prepricewrapdiv[i].appendChild(availabilitystatus);
 
-          let prodquantity = document.createElement("select");
-          prodquantity.className = "form-control productbottomwrap";
-          let preprodquantity = document.getElementsByClassName("productwrapdiv");
-          preprodquantity[i].appendChild(prodquantity);
 
-          let prodquantityoption = document.createElement("option");
-          prodquantityoption.className = "quantity-option productquantity";
-          for (var quantity = 1; quantity <= data[i].product_quantity; quantity++) {
-              let prodquantityoption = document.createElement("option");
-              prodquantityoption.setAttribute("value", quantity);
-              prodquantityoption.appendChild(document.createTextNode(quantity));
-              let preprodquantityoption = document.getElementsByClassName("productbottomwrap");
-              preprodquantityoption[i].appendChild(prodquantityoption);
-          }
-          let addtocart = document.createElement("a");
-          addtocart.className = "btn btn-primary productbutton";
-          addtocart.setAttribute("href", "#");
-          let preaddtocart = document.getElementsByClassName("productwrapdiv");
-          preaddtocart[i].appendChild(addtocart);
-
-          let addtocartspan = document.createElement("span");
-          addtocartspan.className = "text productaddtocart";
-          addtocartspan.appendChild(document.createTextNode("Add to cart"));
-          let preaddtocartspan = document.getElementsByClassName("productbutton");
-          preaddtocartspan[i].appendChild(addtocartspan);
-
-          let addtocarti = document.createElement("i");
-          addtocarti.className = "fas fa-shopping-cart productshoppingcart";
-          let preaddtocarti = document.getElementsByClassName("productbutton");
-          preaddtocarti[i].appendChild(addtocarti);
 
       }
       } );
