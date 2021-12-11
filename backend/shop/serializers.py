@@ -11,7 +11,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
 class BasketItemsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BasketItems
-        fields = ['id', 'basket_id','product_name', 'product_id', 'quantity', 'user_id']
+        fields = ['id', 'basket_id','product_name', 'product_id', 'quantity', 'user_id', 'product_image']
 
 
 class BasketSerializer(serializers.HyperlinkedModelSerializer):
@@ -89,11 +89,16 @@ class AddBasketItemSerializer(serializers.ModelSerializer):
         product_id = validated_data['product_id']
         request = self.context.get('request', None)
         if request:
+            print('123')
             current_user = request.user
+            print(current_user)
             shopping_basket = Basket.objects.filter(user_id=current_user, is_active=True).first()
             # Check if the item is already in the basket
             basket_items = BasketItems.objects.filter(product_id=product_id).first()
+            print(456)
             if basket_items:
+                print(basket_items.id)
+                print(145)
                 basket_items.quantity = basket_items.quantity + 1  # if it is already in the basket, add to the quantity
                 basket_items.save()
                 return basket_items
@@ -101,7 +106,6 @@ class AddBasketItemSerializer(serializers.ModelSerializer):
                 new_basket_item = BasketItems.objects.create(basket_id=shopping_basket, product_id=product_id, user_id=current_user)
                 new_basket_item.save()
                 return new_basket_item
-
         else:
             return None
 

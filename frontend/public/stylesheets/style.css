@@ -1,5 +1,6 @@
 body {
   background-color: #f7fafc !important;
+  padding-bottom: 70px;
 }
 
 a {
@@ -12,3 +13,10 @@ a {
   padding-top: 20px;
 }
 
+#scanning-area {
+  height: 380px;
+  min-width: 350px;
+  background-color: antiquewhite;
+  max-width: 90%;
+  margin: auto;
+}

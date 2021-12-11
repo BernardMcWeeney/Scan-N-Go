@@ -17,14 +17,28 @@ function backendServer() {
 
 function GetUserBasket() {
     let backendServerURL = backendServer()
-    let djangoServer = backendServerURL + "products/"
+    let djangoServer = backendServerURL + "baskets/"
+    let token = sessionStorage.getItem('access').toString()
+
+    var obj = {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin': '',
+        'Host': 'api.producthunt.com',
+        'Authorization': 'Bearer ' + token
+      },}
+
     console.log("sending data to ",djangoServer)
-    fetch(djangoServer)
+    fetch(djangoServer, obj)
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(data => {
       console.log(data)
-      for (var i = 0; i < data.length; i++) { // for every product in the basket array
-
+      console.log(data[0]['items'])
+      let bernsData = data[0]['items']
+      for (var i = 0; i < bernsData.length; i++) { // for every product in the basket array
+          console.log(bernsData)
           let prodcarticle = document.createElement("article");
           prodcarticle.className = "card card-body mb-3 prodcarticle";
           let preprodcarticle = document.getElementsByClassName("productdata");
@@ -46,7 +60,7 @@ function GetUserBasket() {
           prefigurediv[i].appendChild((figurediv));
 
           let imagediv = document.createElement("div");
-          imagediv.className = "aside  imagediv";
+          imagediv.className = "aside imagediv";
           let preimagediv = document.getElementsByClassName("productfigure");
           preimagediv[i].appendChild((imagediv));
 
@@ -54,7 +68,8 @@ function GetUserBasket() {
           cardimage.className = "border img-sm productimage";
           cardimage.setAttribute("height","80");
           cardimage.setAttribute("width", "80");
-          cardimage.setAttribute("src", data[i].productImage);
+          cardimage.setAttribute("src", backendServer() + "media/" + bernsData[i].product_image);
+          console.log(backendServer() + "media/" + bernsData[i].product_image)
           cardimage.setAttribute("alt", "Product Image");
           cardimage.setAttribute("id", "productimage");
           let precardimage = document.getElementsByClassName("imagediv");

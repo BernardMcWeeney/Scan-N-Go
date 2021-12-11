@@ -39,6 +39,10 @@ class BasketItems(models.Model):
     quantity = models.IntegerField(default=1)
     dateCreated = models.DateTimeField(auto_now_add=True)
     user_id = models.ForeignKey(APIUser, on_delete=models.CASCADE, null=False)
+
+    def product_image(self):
+      return str(self.product_id.productImage)
+
     '''
     @property
     def getCalculatedTotal(self):

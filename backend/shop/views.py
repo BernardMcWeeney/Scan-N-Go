@@ -65,9 +65,9 @@ class UserRegistrationAPIView(generics.CreateAPIView):
 
 
 class AddBasketItemAPIView(generics.CreateAPIView):
-  serializer_class = AddBasketItemSerializer
-  permission_classes = [IsAuthenticated]
-  queryset = BasketItems.objects.all()
+    serializer_class = AddBasketItemSerializer
+    permission_classes = [IsAuthenticated]
+    queryset = BasketItems.objects.all()
 
 
 class RemoveBasketItemAPIView(generics.CreateAPIView):

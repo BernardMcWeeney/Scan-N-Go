@@ -20,7 +20,7 @@ function addToCart1(id) {
     let djangoServer = backendServerURL + "add/"
     let token = sessionStorage.getItem('access').toString()
     console.log("Access Token from sessionStorage: ", token)
-    var obj = {
+    var obj123 = {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -34,7 +34,7 @@ function addToCart1(id) {
       })
     }
 
-    fetch(djangoServer, obj)
+    fetch(djangoServer, obj123)
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(data => {
         console.log(data)
