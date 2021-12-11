@@ -42,11 +42,16 @@ function addToCart1(id) {
       })
   }
 
-function GetAllProducts() {
+function GetAllProducts(searchterm) {
     let backendServerURL = backendServer()
     let djangoServer = backendServerURL + "products/"
+    if (searchterm !== "") {
+      var djangoServerURL = backendServerURL + "products/?product_name=" + searchterm
+    } else {
+      var djangoServerURL = djangoServer
+    }
     console.log("sending data to ",djangoServer)
-    fetch(djangoServer)
+    fetch(djangoServerURL)
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(data => {
       console.log(data)
@@ -156,4 +161,4 @@ function GetAllProducts() {
       } );
 }
 
-GetAllProducts()
+GetAllProducts("")

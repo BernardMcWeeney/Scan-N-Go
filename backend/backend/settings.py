@@ -32,7 +32,17 @@ SECRET_KEY = 'django-insecure-ai2hkel7q+9cbg+xe50bimhipq3)(!u00xenqhkn$5)7$(7ua+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    "http://localhost:3000", # node on port 3000
+    "http://127.0.0.1:3000",
+    "127.0.0.1:8000",
+    "http://0.0.0.0:3000",
+    "https://scanngo-frontend-app.azurewebsites.net",
+     "http://127.0.0.1:8000",
+    "http://0.0.0.0:8000",
+    "0.0.0.0",
+    "*"
+]
 
 
 # Application definition
