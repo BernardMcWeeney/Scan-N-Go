@@ -11,7 +11,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
 class BasketItemsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BasketItems
-        fields = ['id', 'basket_id','product_name', 'product_id', 'quantity', 'user_id', 'product_image']
+        fields = ['id', 'basket_id','product_name', 'product_id', 'quantity', 'user_id', 'product_image', 'product_price']
 
 
 class BasketSerializer(serializers.HyperlinkedModelSerializer):

@@ -37,7 +37,8 @@ function addToCart1(id) {
     fetch(djangoServer, obj123)
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(data => {
-        console.log(data)
+        console.log(data);
+        alert("Added Product to Cart");
       })
   }
 
