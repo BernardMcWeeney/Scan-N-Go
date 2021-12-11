@@ -7,7 +7,6 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         model = Product
         fields = ['id', 'name', 'price', 'description', 'productImage','product_quantity']
 
-
 class BasketItemsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BasketItems
@@ -88,10 +87,11 @@ class AddBasketItemSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         product_id = validated_data['product_id']
         request = self.context.get('request', None)
+        quantity = 1
+        if "quantity" in request.data:
+          quantity = int(request.data['quantity'])
         if request:
-            print('123')
             current_user = request.user
-            print(current_user)
             shopping_basket = Basket.objects.filter(user_id=current_user, is_active=True).first()
             # Check if the item is already in the basket
             basket_items = BasketItems.objects.filter(product_id=product_id).first()
@@ -99,11 +99,11 @@ class AddBasketItemSerializer(serializers.ModelSerializer):
             if basket_items:
                 print(basket_items.id)
                 print(145)
-                basket_items.quantity = basket_items.quantity + 1  # if it is already in the basket, add to the quantity
+                basket_items.quantity = basket_items.quantity + quantity  # if it is already in the basket, add to the quantity
                 basket_items.save()
                 return basket_items
             else:
-                new_basket_item = BasketItems.objects.create(basket_id=shopping_basket, product_id=product_id, user_id=current_user)
+                new_basket_item = BasketItems.objects.create(basket_id=shopping_basket, product_id=product_id, user_id=current_user, quantity=quantity)
                 new_basket_item.save()
                 return new_basket_item
         else:
@@ -163,3 +163,4 @@ class CheckoutSerializer(serializers.ModelSerializer):
         new_basket.save()
         # return the order
         return order
+

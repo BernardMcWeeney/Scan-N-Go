@@ -33,8 +33,6 @@ router.register(r'irish_billing_addresses', views.IrishBillingAddressViewSet)
 router.register(r'irish_shipping_addresses', views.IrishShippingAddressViewSet)
 router.register(r'api_users', views.APIUserViewSet)
 
-
-
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),

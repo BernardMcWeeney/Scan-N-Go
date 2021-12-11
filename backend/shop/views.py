@@ -11,6 +11,19 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
+    def get_queryset(self):
+      queryset = Product.objects.all()
+      prod_id = self.request.query_params.get('product_id')
+      prod_name = self.request.query_params.get('product_name')
+      print('product name ', prod_name)
+      if (prod_id is not None) and (prod_name is not None):
+        return Product.objects.none()
+      if prod_id is not None:
+        queryset = queryset.filter(id=prod_id)
+      elif prod_name is not None:
+        queryset = queryset.filter(name__contains=prod_name)
+      return queryset
+
 class BasketViewSet(viewsets.ModelViewSet):
     serializer_class = BasketSerializer
     queryset = Basket.objects.all()
@@ -79,6 +92,7 @@ class CheckoutAPIView(generics.CreateAPIView):
     serializer_class = CheckoutSerializer
     permission_classes = [IsAuthenticated]
     queryset = Order.objects.all()
+
 '''
 class SearchResultsView(generics.ListAPIView):
     model = Product

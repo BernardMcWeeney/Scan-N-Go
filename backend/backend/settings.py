@@ -14,6 +14,11 @@ import os
 from pathlib import Path
 from datetime import timedelta
 
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = False
+CORS_ALLOW_HEADERS = ['*']
+CSRF_TRUSTED_ORIGINS = ['*']
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,7 +32,7 @@ SECRET_KEY = 'django-insecure-ai2hkel7q+9cbg+xe50bimhipq3)(!u00xenqhkn$5)7$(7ua+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1','*']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,26 +46,35 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-    'corsheaders',
-    'shop'
+    'shop',
+  'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+  'django.middleware.common.CommonMiddleware',
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000", # node on port 3000
     "http://127.0.0.1:3000",
     "http://0.0.0.0:3000",
     "https://scanngo-frontend-app.azurewebsites.net",
+     "http://127.0.0.1:8000",
 ]
+
+CORS_ALLOWED_ORIGIN_REGEXES = [
+  r"^http://localhost:3000",
+  r"^http://127.0.0.1:3000",
+  r"^http://0.0.0.0:3000",
+  r"^https://scanngo-frontend-app.azurewebsites.net",
+]
+
 
 
 ROOT_URLCONF = 'backend.urls'
