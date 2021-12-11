@@ -20,3 +20,11 @@ a {
   max-width: 90%;
   margin: auto;
 }
+.navbar-brand
+{
+  position:absolute;
+  left: calc(50% - 65px);
+  top:8px;
+}
+
+
