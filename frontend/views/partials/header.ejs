@@ -1,5 +1,20 @@
 <header style="background-color: #630436;">
+
 <nav class="navbar navbar-expand-lg" style="background-color: #630436; max-width: 1200px; margin: auto;">
+<div class="container-fluid">
+<ul class="navbar-nav">
+<li class="nav-item dropdown">
+        <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="images/hamburger.png" height="30" alt="" style="">
+        </a>
+        <div class="dropdown-menu position-absolute" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/">Home</a>
+          <a class="dropdown-item" href="/allproducts">All Products</a>
+          <a class="dropdown-item" href="/basket">Basket</a>
+          <a class="dropdown-item" href="#">Logout</a>
+        </div>
+      </li>
+    </ul>
   <a class="navbar-brand" href="/"><img src="images/logo.png" height="30" alt=""></a>
 
   <ul class="navbar-nav ml-auto">
@@ -7,7 +22,18 @@
       <a class="nav-link text-white" href="/basket"><img src="images/cart.png" height="30" alt="" style="border-left: 1.5px solid #FFFFFF45;padding-left: 8px;"> </a>
     </li>
   </ul>
-
+</div>
 </nav>
 </header>
+<script>
+  // Add slideDown animation to Bootstrap dropdown when expanding.
+  $('.dropdown').on('show.bs.dropdown', function() {
+    $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
+  });
+
+  // Add slideUp animation to Bootstrap dropdown when collapsing.
+  $('.dropdown').on('hide.bs.dropdown', function() {
+    $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
+  });
+</script>
 <div class="scan-n-go-content">
