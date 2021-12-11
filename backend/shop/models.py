@@ -43,6 +43,9 @@ class BasketItems(models.Model):
     def product_image(self):
       return str(self.product_id.productImage)
 
+    def product_price(self):
+      return int(self.product_id.price)
+
     '''
     @property
     def getCalculatedTotal(self):

@@ -2,154 +2,104 @@
 <%- include('partials/header.ejs') %>
 
 <style>
+body {
+    padding-bottom:100px
+}
 .card {
-    background: #fff;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
-    transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
-    border: 0;
-    border-radius: 1rem;
-    margin: 20px
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.37rem;
 }
 
 .card:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06)
 }
+.tag {
+    display: inline-block;
+    padding: 3px 7px;
+    background: #f2f2f2;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    margin-top: 4px;
+    margin-right: 2px;
+    font-size: 85%;
+}
+.card-product-grid .bottom-wrap {
+    padding: 18px;
+    border-top: 1px solid #e4e4e4;
+}
+.card-product-grid .info-wrap {
+    overflow: hidden;
+    padding: 18px 20px;
+}
+
+.btn-primary {
+  background-color: #630436;
+  color:#FFF;
+  border-color: #630436;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-default {
+  background-color: #fff;
+  color:#630436;
+  border-color: #630436;
+ }
+a:not([href]):not([tabindex]) {
+    color:#fff;
+}
+.btn-outline-primary {
+    background-color: #630436;
+    color:#FFF;
+    border-color: #630436;
+}
+.btn-outline-primary:hover, .btn-outline-primary.active {
+    color:#630436;
+    border-color: #630436;
+    background-color: transparent;
+    background-image: none;
+}
+.btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
+    color:#630436;
+    border-color: #630436;
+    background-color: transparent;
+    background-image: none;
+}
+.searchproduct {
+    margin-left: 10px;
+}
+
+.filtersidebar {
+    margin-bottom: 50px;
+}
 </style>
 
-
-<h1>Basket</h1>
+<h3 id="user-welcome-message" class="display-4 text-center">Your Basket</h3>
+<p class="lead text-center">Here is your basket with all your selected products! You can remove a product from your basket or alternatively checkout your basket from this page</p>
 <div class="container">
     <div class="row">
             <main class="col-md-9 productdata">
                  <!-- Product Card is Inserted here with JavaScript -->
-                <article class="card card-body mb-3">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <figure class="itemside">
-                                <div class="aside"><img width="80" height="80" src="http://127.0.0.1:8000/media/images/hammer.jpg" class="border img-sm"></div>
-                                    <figcaption class="info">
-                                        <a href="#" class="title text-dark">Some name of item goes here nice</a>
-                                        <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
-                                    </figcaption>
-                            </figure>
-                        </div>
-                        <div class="col">
-                            <div class="input-group input-spinner">
-                                <div class="input-group-prepend">
-                                <button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </button>
-                                </div>
-                                <input type="text" class="form-control" value="1">
-                                <div class="input-group-append">
-                                <button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="price-wrap">
-                                <var class="price">$1156.00</var>
-                                <small class="text-muted"> $315.20 each </small>
-                            </div>
-                        </div>
-                        <div class="col flex-grow-0 text-right">
-                            <a href="#" class="btn btn-light"> <i class="fa fa-times"></i> </a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="card card-body mb-3">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <figure class="itemside">
-                                <div class="aside"><img width="80" height="80" src="http://127.0.0.1:8000/media/images/hammer.jpg" class="border img-sm"></div>
-                                    <figcaption class="info">
-                                        <a href="#" class="title text-dark">Some name of item goes here nice</a>
-                                        <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
-                                    </figcaption>
-                            </figure>
-                        </div>
-                        <div class="col">
-                            <div class="input-group input-spinner">
-                                <div class="input-group-prepend">
-                                <button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </button>
-                                </div>
-                                <input type="text" class="form-control" value="1">
-                                <div class="input-group-append">
-                                <button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="price-wrap">
-                                <var class="price">$1156.00</var>
-                                <small class="text-muted"> $315.20 each </small>
-                            </div>
-                        </div>
-                        <div class="col flex-grow-0 text-right">
-                            <a href="#" class="btn btn-light"> <i class="fa fa-times"></i> </a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="card card-body mb-3">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <figure class="itemside">
-                                <div class="aside"><img width="80" height="80" src="http://127.0.0.1:8000/media/images/hammer.jpg" class="border img-sm"></div>
-                                    <figcaption class="info">
-                                        <a href="#" class="title text-dark">Some name of item goes here nice</a>
-                                        <p class="text-muted small">Size: XL, Color: blue, <br> Brand: Gucci</p>
-                                    </figcaption>
-                            </figure>
-                        </div>
-                        <div class="col">
-                            <div class="input-group input-spinner">
-                                <div class="input-group-prepend">
-                                <button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </button>
-                                </div>
-                                <input type="text" class="form-control" value="1">
-                                <div class="input-group-append">
-                                <button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="price-wrap">
-                                <var class="price">$1156.00</var>
-                                <small class="text-muted"> $315.20 each </small>
-                            </div>
-                        </div>
-                        <div class="col flex-grow-0 text-right">
-                            <a href="#" class="btn btn-light"> <i class="fa fa-times"></i> </a>
-                        </div>
-                    </div>
-                </article>
-
             </main>
             <aside class="col-md-3">
                 <div class="card">
                 <div class="card-body">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="" placeholder="Promo code">
-                        <span class="input-group-append">
-                            <button class="btn btn-primary">Ok</button>
-                        </span>
-                    </div>
-                    <dl class="dlist-align">
-                      <dt>Subtotal:</dt>
-                      <dd class="text-right">$938.50</dd>
-                    </dl>
-                    <dl class="dlist-align">
-                      <dt>Discount:</dt>
-                      <dd class="text-right text-danger">10%</dd>
-                    </dl>
                     <dl class="dlist-align">
                       <dt>Grand Total:</dt>
-                      <dd class="text-right text-dark"><strong>$948.50</strong></dd>
+                      <dd class="text-right text-dark grandtotal"><strong id="grandpricetotal"></strong></dd>
                     </dl>
                     <hr>
+                    <p class="text-center mb-3">
+						<img src="images/payments.png" height="26">
+					</p>
+					<hr>
                     <a href="#" class="btn btn-primary btn-block"> Purchase </a>
 
-                    <p class="small my-3 text-muted">Some extra informative text  can be placed here as dummy text will be replaced</p>
+                    <p class="small my-3 text-muted">Some extra informative text can be placed here as dummy text will be replaced</p>
 
                 </div>
                 </div>
