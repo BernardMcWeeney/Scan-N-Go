@@ -24,9 +24,9 @@ class Product(models.Model):
     ]
     product_tag = models.CharField(max_length=20,choices=productTags,default="Confectionary")
 
-
     def __str__(self):
         return self.name
+
 
 class Basket(models.Model):
     id = models.AutoField(primary_key=True)
@@ -45,19 +45,14 @@ class BasketItems(models.Model):
     def product_image(self):
       return str(self.product_id.productImage)
 
+    def product_id_num(self):
+      return self.product_id.id
+
     def product_price(self):
-      return int(self.product_id.price)
+      return float(self.product_id.price)
 
-    '''
-    @property
-    def getCalculatedTotal(self):
-        calculatedTotal = self.quantity * self.product_id.price
-        return calculatedTotal
-
-    def save(self, *args, **kwargs):
-        self.calculatedTotal = self.getCalculatedTotal
-        super(BasketItem, self).save(*args, **kwargs)
-    '''
+    def product_tag(self):
+        return self.product_id.product_tag
 
     def product_name(self):
         return self.product_id.name

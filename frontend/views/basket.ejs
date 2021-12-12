@@ -97,7 +97,14 @@ a:not([href]):not([tabindex]) {
 						<img src="images/payments.png" height="26">
 					</p>
 					<hr>
-                    <a href="#" class="btn btn-primary btn-block"> Purchase </a>
+					<button class="btn btn-dark btn-block applepaybtn" onclick="toggleText('applepay-display')"> Apple Pay </button>
+					    <p id="applepay-display" style="display:none" >Apple Page</p>
+					<br>
+					<button class="btn btn-light btn-block googlepaybtn"onclick="toggleText('googlepay-display')"> Google Pay </button>
+					    <p id="googlepay-display" style="display:none">Google Page</p>
+					<br>
+                    <button class="btn btn-primary btn-block creditcardbtn"onclick="toggleText('creditcard-display')"> Debit / Credit Card </button>
+                        <p id="creditcard-display"style="display:none">Card Page</p>
 
                     <p class="small my-3 text-muted">Some extra informative text can be placed here as dummy text will be replaced</p>
 
@@ -108,5 +115,15 @@ a:not([href]):not([tabindex]) {
     </div>
 </div>
 
+<script>
+function toggleText(divid){
+  var x = document.getElementById(divid);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
 <script src="javascripts/getusersbasket.js"></script>
 <%- include('partials/footer.ejs') %>

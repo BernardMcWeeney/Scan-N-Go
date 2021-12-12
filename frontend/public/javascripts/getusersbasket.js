@@ -19,10 +19,39 @@ function UserWelcome() {
   var username = sessionStorage.getItem('username')
   document.getElementById("user-welcome-message").innerHTML = "Welcome, " + username + " to your Basket!"
 }
-
 window.onload = function() {
   UserWelcome();
 };
+
+function removefromcart(id) {
+    console.log(id + "-qty-selector")
+    let quantity = document.getElementById(id + "-qty-selector").value;
+    let backendServerURL = backendServer()
+    let djangoServer = backendServerURL + "remove/"
+    let token = sessionStorage.getItem('access').toString()
+    console.log("Access Token from sessionStorage: ", token)
+    var obj123 = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Origin': '',
+            'Host': 'api.producthunt.com',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({
+            'product_id': id.toString(),
+            //'quantity' : quantity
+        })
+    }
+    fetch(djangoServer, obj123)
+        .then(response => response.json()) // extract the json from the response you get from the server
+        .then(data => {
+            console.log(data);
+            alert("Removed Product From Cart");
+        })
+    window.location.reload();
+    }
 
 function GetUserBasket() {
     let backendServerURL = backendServer()
@@ -99,9 +128,9 @@ function GetUserBasket() {
           preprodname[i].appendChild(prodname);
 
           let proddtag = document.createElement("span");
-          proddtag.className = "text-muted small producttag";
+          proddtag.className = "tag text-muted small producttag";
           proddtag.setAttribute("id", "producttag");
-          proddtag.appendChild(document.createTextNode("UserCartData[i].tag"));
+          proddtag.appendChild(document.createTextNode(UserCartData[i].product_tag));
           preprodname[i].appendChild(proddtag);
 
           let prodcol2 = document.createElement("div");
@@ -111,7 +140,7 @@ function GetUserBasket() {
 
           let prodQTY = document.createElement("p");
           prodQTY.className = "title text-dark prodQTY";
-          prodQTY.setAttribute("id", "prodQTY");
+          prodQTY.id = UserCartData[i].product_id_num + "-qty-selector";
           prodQTY.appendChild(document.createTextNode("Quantity: " + UserCartData[i].quantity));
           let preprodQTY = document.getElementsByClassName("prodcol2");
           preprodQTY[i].appendChild(prodQTY);
@@ -128,7 +157,7 @@ function GetUserBasket() {
 
           let priceP = document.createElement("p");
           priceP.className = "price totalproductprice";
-          priceP.appendChild(document.createTextNode("€"+ UserCartData[i].product_price * UserCartData[i].quantity ));
+          priceP.appendChild(document.createTextNode("€"+ (UserCartData[i].product_price * UserCartData[i].quantity).toFixed(2)));
           let prepriceP = document.getElementsByClassName("pricewrap");
           prepriceP[i].appendChild(priceP);
 
@@ -142,13 +171,13 @@ function GetUserBasket() {
           let preprodcol4 = document.getElementsByClassName("prodcol");
           preprodcol4[i].appendChild((prodcol4));
 
-          let removefromcart = document.createElement("a");
-          // var ProdID = "addToCart1(" + data[i].id.toString() + ")"
-          // removefromcart.setAttribute('onclick', ProdID )
-          removefromcart.id = "remove-from-cart";
-          removefromcart.className = "btn btn-primary removeproductbutton";
+          let remfromcart = document.createElement("a");
+          var ProdID = "removefromcart(" + UserCartData[i].product_id_num.toString() + ")"
+          remfromcart.setAttribute('onclick', ProdID )
+          remfromcart.id = "remove-from-cart";
+          remfromcart.className = "btn btn-primary removeproductbutton";
           let preremovefromcart = document.getElementsByClassName("prodcol4");
-          preremovefromcart[i].appendChild(removefromcart);
+          preremovefromcart[i].appendChild(remfromcart);
           let removefromcarti = document.createElement("i");
           removefromcarti.className = "fas fa-shopping-cart productshoppingcart";
           removefromcarti.appendChild(document.createTextNode("Remove"));
@@ -157,7 +186,7 @@ function GetUserBasket() {
 
       }
       console.log(grandtotal);
-      document.getElementById("grandpricetotal").innerHTML = grandtotal;
+      document.getElementById("grandpricetotal").innerHTML = grandtotal.toFixed(2);
       } );
 }
 GetUserBasket()
