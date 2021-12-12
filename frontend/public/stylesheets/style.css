@@ -27,4 +27,29 @@ a {
   top:8px;
 }
 
+.badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+  background-color: #c67605;
+}
+
+#lblCartCount {
+    font-size: 12px;
+    padding: 0 5px;
+    vertical-align: top;
+    margin-left: -6px;
+    background-color: #ffffffde;
+    border: 1px solid #86868670;
+    border-radius: 8px;
+    margin-top: -5px;
+    color: #630436;
+    font-weight: bold;
+}
 

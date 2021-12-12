@@ -8,6 +8,19 @@
 <script>
   var isLoggedIn = isLoggedIn();
   console.log("Is the user logged in? -> ", isLoggedIn)
+  if (isLoggedIn == true) {
+    let label = document.getElementById("lblCartCount")
+    label.innerHTML = "?"
+    let spinnerdiv = document.createElement('div');
+    spinnerdiv.className = "spinner-border text-light";
+    spinnerdiv.setAttribute('role', 'status');
+    let spandiv = document.createElement('span');
+    spandiv.className = "sr-only";
+    spandiv.innerHTML = "Loading..."
+    spinnerdiv.appendChild(spandiv)
+    label.appendChild(spinnerdiv)
+
+  }
 </script>
 </body>
 </html>

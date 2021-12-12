@@ -16,6 +16,8 @@ function backendServer() {
 }
 
 function addToCart1(id) {
+    console.log(id + "-qty-selector")
+    let quantity = document.getElementById(id + "-qty-selector").value;
     let backendServerURL = backendServer()
     let djangoServer = backendServerURL + "add/"
     let token = sessionStorage.getItem('access').toString()
@@ -31,6 +33,7 @@ function addToCart1(id) {
       },
       body: JSON.stringify({
         'product_id': id.toString(),
+        'quantity' : quantity
       })
     }
 
@@ -159,12 +162,14 @@ function GetAllProducts(searchterm) {
           presubquantdiv[i].appendChild(subquantdiv);
 
           let prodquantity = document.createElement("select");
+          prodquantity.id = data[i].id + "-qty-selector";
           prodquantity.className = "form-control mr-2 productbottomwrap";
           let preprodquantity = document.getElementsByClassName("subquantdiv");
           preprodquantity[i].appendChild(prodquantity);
 
           let prodquantityoption = document.createElement("option");
           prodquantityoption.className = "quantity-option productquantity";
+
           for (var quantity = 1; quantity <= data[i].product_quantity; quantity++) {
               let prodquantityoption = document.createElement("option");
               prodquantityoption.setAttribute("value", quantity);

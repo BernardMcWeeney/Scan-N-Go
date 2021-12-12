@@ -98,7 +98,7 @@ a:not([href]):not([tabindex]) {
                             <div class="input-group">
                               <input type="text" id="product-search-text-box" class="form-control" type="search" name="title_contains" placeholder="Search">
                                   <div class="input-group-append">
-                                    <button class="btn btn-primary" onclick="searchProducts()" type="button">Search<i class="fa fa-search"></i></button>
+                                    <button id="filter-search-button" class="btn btn-primary" onclick="searchProducts()" type="button">Search<i class="fa fa-search"></i></button>
                                   </div>
                             </div>
                             </form>
@@ -150,6 +150,16 @@ a:not([href]):not([tabindex]) {
 
 <script src="javascripts/getallproducts.js"></script>
 <script>
+document.getElementById('filter-search-button').focus()
+
+var input = document.getElementById("product-search-text-box");
+
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("filter-search-button").click();
+  }
+});
 function searchProducts() {
   if (document.getElementById("product-search-text-box").value !== "") {
     const productElements = document.getElementsByClassName("card-product-list prodcol");
