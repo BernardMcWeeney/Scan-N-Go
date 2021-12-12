@@ -92,8 +92,37 @@ function GetAllProducts(searchterm) {
           let proddtag = document.createElement("span");
           proddtag.className = "tag producttag";
           proddtag.setAttribute("id", "producttag");
-          proddtag.appendChild(document.createTextNode("data[i].tag"));
+          proddtag.appendChild(document.createTextNode(data[i].product_tag));
           preprodname[i].appendChild(proddtag);
+
+
+          var currentTabs = document.getElementsByClassName("btn btn-light");
+          console.log(currentTabs)
+
+          let isTagged = false
+
+          for (var counter = 0; counter < currentTabs.length; counter++) {
+              console.log('i', counter);
+              if (currentTabs[counter].innerHTML === data[i].product_tag) {
+                isTagged = true;
+              };
+          }
+
+          if (isTagged == false) {
+            let tagsPane = document.getElementById("product-tags-filter-pane");
+            let tag = document.createElement("label");
+            proddtag.className = "btn btn-light";
+            let checkbox = document.createElement("input");
+            checkbox.type = "checkbox"
+            let spanner = document.createElement("span");
+            spanner.className = "btn btn-light";
+            spanner.innerHTML = data[i].product_tag
+            tag.appendChild(checkbox)
+            tag.appendChild(spanner)
+            tagsPane.appendChild(tag)
+        }
+
+
 
           let pricediv = document.createElement("div");
           pricediv.className = "bottom-wrap d-flex align-items-center productwrapdiv";

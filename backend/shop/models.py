@@ -13,15 +13,17 @@ class Product(models.Model):
     description = models.CharField(max_length=5000, null=True)
     productImage = models.FileField(upload_to='images/')
     product_quantity = models.PositiveIntegerField(default=0)
-    '''
-    productTag = [
-        (1, 'Tools'),
-        (2, 'Accessories'),
-        (3, 'Engine'),
-        (4, 'Electric'),
-        (5, 'Hybrid'),
+
+    productTags = [
+        ("Confectionary", 'Confectionary'),
+        ("Drinks", 'Drinks'),
+        ("Homeware", 'Homeware'),
+        ("Cleaning", 'Cleaning'),
+        ("Hot Items", 'Hot Items'),
+        ("Frozen Items", 'Frozen Items'),
     ]
-    '''
+    product_tag = models.CharField(max_length=20,choices=productTags,default="Confectionary")
+
 
     def __str__(self):
         return self.name
