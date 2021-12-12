@@ -23,14 +23,12 @@ window.onload = function() {
   UserWelcome();
 };
 
-function removefromcart(id) {
-    console.log(id + "-qty-selector")
-    let quantity = document.getElementById(id + "-qty-selector").value;
+function removefromcart(id,QTY) {
     let backendServerURL = backendServer()
-    let djangoServer = backendServerURL + "remove/"
+    let djangoServer = backendServerURL + "add/"
     let token = sessionStorage.getItem('access').toString()
     console.log("Access Token from sessionStorage: ", token)
-    var obj123 = {
+    var obj12 = {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -41,16 +39,15 @@ function removefromcart(id) {
         },
         body: JSON.stringify({
             'product_id': id.toString(),
-            //'quantity' : quantity
+            'quantity' : -QTY
         })
     }
-    fetch(djangoServer, obj123)
+    fetch(djangoServer, obj12)
         .then(response => response.json()) // extract the json from the response you get from the server
         .then(data => {
             console.log(data);
             alert("Removed Product From Cart");
-        })
-    window.location.reload();
+        }).then(window.location.reload())
     }
 
 function GetUserBasket() {
@@ -172,9 +169,9 @@ function GetUserBasket() {
           preprodcol4[i].appendChild((prodcol4));
 
           let remfromcart = document.createElement("a");
-          var ProdID = "removefromcart(" + UserCartData[i].product_id_num.toString() + ")"
+          var ProdID = "removefromcart(" + UserCartData[i].product_id_num.toString() + "," + UserCartData[i].quantity + ")"
           remfromcart.setAttribute('onclick', ProdID )
-          remfromcart.id = "remove-from-cart";
+          remfromcart.id = UserCartData[i].product_id_num.toString() +"-remove-from-cart";
           remfromcart.className = "btn btn-primary removeproductbutton";
           let preremovefromcart = document.getElementsByClassName("prodcol4");
           preremovefromcart[i].appendChild(remfromcart);
