@@ -74,7 +74,7 @@ function checkoutcart(basketid) {
         .then(data => {
             console.log(data);
             alert("Checked Out");
-        }).then(window.location.href= backendServerURL + "receipt/")
+        }).then(window.location.href=  "http://127.0.0.1:3000/receipt/")
     }
 
 function GetUserBasket() {
