@@ -1,61 +1,18 @@
-function backendServer() {
-  const domain = window.location.hostname.toString();
-  console.log("Domain: ", domain)
-  if (domain == "scanngo-frontend-app.azurewebsites.net") {
-    var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
-  }
-  else if ( (domain == "127.0.0.1") || (domain == "localhost") || (domain == "0.0.0.0") ) {
-    var backendServerURL = "http://127.0.0.1:8000/";
-    }
-  else {
-    alert("ERROR: Cannot determine Backend Server (Django) URL");
-    }
+function GetAllProductsFilter(tags, prices, searchterm)  {
+    let queryString = "?product_name="
+    queryString = queryString + searchterm + "&"
+    queryString = queryString + "min_price=" + prices[0] + "&"
+    queryString = queryString + "max_price=" + prices[1] + "&"
+  console.log('tags', tags)
+    if (tags.length > 0) { queryString = queryString + 'tags=' + tags.join()}
 
-  console.log('Backend Server URL', backendServerURL)
-  return backendServerURL
-}
-
-function addToCart1(id) {
-    console.log(id + "-qty-selector")
-    let quantity = document.getElementById(id + "-qty-selector").value;
     let backendServerURL = backendServer()
-    let djangoServer = backendServerURL + "add/"
-    let token = sessionStorage.getItem('access').toString()
-    console.log("Access Token from sessionStorage: ", token)
-    var obj123 = {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Origin': '',
-        'Host': 'api.producthunt.com',
-        'Authorization': 'Bearer ' + token
-      },
-      body: JSON.stringify({
-        'product_id': id.toString(),
-        'quantity' : quantity
-      })
+    let djangoServerURL = backendServerURL + "products" + queryString
+    const productElements = document.getElementsByClassName("card-product-list prodcol");
+      while(productElements.length > 0){
+          productElements[0].parentNode.removeChild(productElements[0]);
     }
-    console.log("Sending:", obj123)
-    console.log("to", djangoServer)
-
-    fetch(djangoServer, obj123)
-      .then(response => response.json()) // extract the json from the response you get from the server
-      .then(data => {
-        console.log(data);
-        alert("Added Product to Cart");
-      })
-  }
-
-function GetAllProducts(searchterm) {
-    let backendServerURL = backendServer()
-    let djangoServer = backendServerURL + "products/"
-    if (searchterm !== "") {
-      var djangoServerURL = backendServerURL + "products/?product_name=" + searchterm
-    } else {
-      var djangoServerURL = djangoServer
-    }
-    console.log("sending data to ",djangoServer)
+    console.log("sending data to ",djangoServerURL)
     fetch(djangoServerURL)
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(data => {
@@ -133,7 +90,6 @@ function GetAllProducts(searchterm) {
             checkbox.className = "tag-checkbox"
             let spanner = document.createElement("span");
             spanner.className = "btn btn-light";
-            spanner.style = "margin-left:8px;"
             spanner.innerHTML = data[i].product_tag
             tag.appendChild(checkbox)
             tag.appendChild(spanner)
@@ -210,4 +166,31 @@ function GetAllProducts(searchterm) {
       } );
 }
 
-GetAllProducts("")
+function filter() {
+  var searchTerm = document.getElementById('product-search-text-box').value
+  var labels = document.getElementsByClassName('tag-checkbox')
+  var value = ""
+  var tagArray = []
+  var priceArray = []
+  for (let i = 0; i < labels.length; i++) {
+    value = labels[i].value;
+    if (labels[i].checked == true) {
+      tagArray.push(value)
+    }
+  }
+  console.log("Tags to filter by: ",tagArray)
+
+  var min_price = document.getElementById('min-price-input').value;
+  var max_price = document.getElementById('max-price-input').value;
+  if (min_price == "") {
+    min_price = "0"
+  }
+  if (max_price == "") {
+    max_price = "1000"
+  }
+  console.log('min price is ', min_price)
+  console.log('max price is ', max_price)
+  priceArray.push(min_price)
+  priceArray.push(max_price)
+  GetAllProductsFilter(tagArray, priceArray, searchTerm)
+}

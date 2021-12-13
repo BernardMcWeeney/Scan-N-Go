@@ -15,13 +15,32 @@ class ProductViewSet(viewsets.ModelViewSet):
       queryset = Product.objects.all()
       prod_id = self.request.query_params.get('product_id')
       prod_name = self.request.query_params.get('product_name')
-      print('product name ', prod_name)
-      if (prod_id is not None) and (prod_name is not None):
-        return Product.objects.none()
+      tags = self.request.query_params.get('tags')
+      min_price = self.request.query_params.get('min_price')
+      max_price = self.request.query_params.get('max_price')
+
       if prod_id is not None:
         queryset = queryset.filter(id=prod_id)
-      elif prod_name is not None:
-        queryset = queryset.filter(name__contains=prod_name)
+        return queryset
+      elif tags is not None or min_price is not None or max_price is not None or prod_name is not None:
+        if min_price is None:
+          min_price = 0
+        else:
+          min_price = float(min_price)
+
+        if max_price is None:
+          max_price = 1000
+        else:
+          max_price = float(max_price)
+        queryset = queryset.filter(price__gte=min_price, price__lte=max_price)
+
+        if tags is not None:
+          tags = tags.split(',')
+          queryset = queryset.filter(product_tag__in=tags)
+
+        if prod_name is not None:
+          queryset = queryset.filter(name__contains=prod_name)
+
       return queryset
 
 class BasketViewSet(viewsets.ModelViewSet):
