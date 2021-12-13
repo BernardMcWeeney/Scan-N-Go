@@ -70,6 +70,9 @@ function GetAllProducts(searchterm) {
           let prefigurediv = document.getElementsByClassName("prodcol");
           prefigurediv[i].appendChild((figurediv));
 
+          let anchor1 = document.createElement("a")
+          anchor1.setAttribute("href", "/product/" + data[i].id)
+
           let cardimage = document.createElement('img');
           cardimage.className = "rounded mx-auto d-block productimage";
           cardimage.setAttribute("height","200");
@@ -78,7 +81,8 @@ function GetAllProducts(searchterm) {
           cardimage.setAttribute("alt", "Product Image");
           cardimage.setAttribute("id", "productimage");
           let precardimage = document.getElementsByClassName("productfigure");
-          precardimage[i].appendChild(cardimage);
+          anchor1.appendChild(cardimage)
+          precardimage[i].appendChild(anchor1);
 
           let figcaptiondiv = document.createElement("figcaption");
           figcaptiondiv.className = "info-wrap productinfo";
@@ -89,7 +93,12 @@ function GetAllProducts(searchterm) {
           let prodname = document.createElement("p");
           prodname.className = "title producttitle";
           prodname.setAttribute("id", "productname");
-          prodname.appendChild(document.createTextNode(data[i].name));
+          let anchor = document.createElement("a")
+          anchor.setAttribute("href", "/product/" + data[i].id)
+          anchor.innerHTML = data[i].name
+          anchor.className = 'text-dark'
+          prodname.appendChild(anchor);
+
           preprodname[i].appendChild(prodname);
 
           let proddtag = document.createElement("span");
