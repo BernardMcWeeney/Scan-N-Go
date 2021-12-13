@@ -11,7 +11,7 @@
           <a class="dropdown-item" href="/">Home</a>
           <a class="dropdown-item" href="/allproducts">All Products</a>
           <a class="dropdown-item" href="/basket">Basket</a>
-          <a class="dropdown-item" href="#">Logout</a>
+          <a class="dropdown-item" href="#" onclick="displayLogoutMsg()">Logout</a>
         </div>
       </li>
     </ul>
@@ -36,4 +36,4 @@
     $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
   });
 </script>
-<div class="scan-n-go-content">
+<div class="scan-n-go-content" id="scan-n-go-content-container">

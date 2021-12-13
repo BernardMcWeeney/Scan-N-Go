@@ -45,7 +45,7 @@ function checkLogin(){
   }
   if (isLoggedIn == false){
     //console.log("test")
-    location.href = '/login';
+    location.href = '/login/false';
    // console.log("User is not Logged In")
 }
 }

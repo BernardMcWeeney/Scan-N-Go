@@ -1,5 +1,10 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
+<% if(didLogOut == 'true'){ %>
+   <div class="alert alert-warning" role="alert" style="margin-bottom:0px;">
+      You've just been logged out! Please log-in to continue using Scan-N-Go
+    </div>
+<% } %>
 <div id="logreg-forms">
 
 <form class="form-signin" id="login-form">
@@ -17,15 +22,15 @@ function backendServer() {
   url = window.location.href;
   let domain = (new URL(url));
   if (domain.hostname == "scanngo-frontend-app.azurewebsites.net") {
-    let backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
+    var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
   }
   else if ( (domain.hostname == "127.0.0.1") || (domain.hostname == "localhost") || (domain.hostname == "0.0.0.0") ) {
-    let backendServerURL = "127.0.0.0:8000/";
+    var backendServerURL = "http://127.0.0.1:8000/";
     }
   else {
     alert("ERROR: Cannot determine Backend Server (Django) URL");
     }
-
+  console.log("domain ", domain)
   console.log('Backend Server URL', backendServerURL)
   return backendServerURL
 }
@@ -52,7 +57,7 @@ if (isLoggedIn() == true){
           console.log("Username:", uname,"Password:", pword)
           let url = backendServer()
           let backendServerURL1 = backendServer() + "api/token/"
-          console.log("Sending Login Data to ", backendServerURL1)
+          console.log("Sending Login Data to ", backendServerURL1 )
           fetch(backendServerURL1, {
                   method: 'POST',
                   headers: {
