@@ -2,6 +2,7 @@
 <%- include('partials/header.ejs') %>
 
 <style>
+
 body {
     padding-bottom:100px
 }
@@ -76,6 +77,35 @@ a:not([href]):not([tabindex]) {
 .filtersidebar {
     margin-bottom: 50px;
 }
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+#text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+.creditcarddiv {
+    position: fixed;
+    bottom: 40px;
+    width: 100%;
+}
+
+
 </style>
 
 <h3 id="user-welcome-message" class="display-4 text-center">Your Basket</h3>
@@ -87,7 +117,7 @@ a:not([href]):not([tabindex]) {
             </main>
             <aside class="col-md-3">
                 <div class="card">
-                <div class="card-body">
+                <div class="card-body center">
                     <dl class="dlist-align">
                       <dt>Grand Total:</dt>
                       <dd class="text-right text-dark grandtotal"><strong id="grandpricetotal"></strong></dd>
@@ -97,14 +127,15 @@ a:not([href]):not([tabindex]) {
 						<img src="images/payments.png" height="26">
 					</p>
 					<hr>
-					<button class="btn btn-dark btn-block applepaybtn" onclick="toggleText('applepay-display')"> Apple Pay </button>
-					    <p id="applepay-display" style="display:none" >Apple Page</p>
+					<input type="image" src="images/applepay button.png" onclick="toggleText('applepay-display')" width="320" />
+					   <p id="applepay-display" style="display:none">Apple Page</p>
+
 					<br>
-					<button class="btn btn-light btn-block googlepaybtn"onclick="toggleText('googlepay-display')"> Google Pay </button>
+					<input type="image" src="images/Buy-with-Google-Pay.png" onclick="toggleText('googlepay-display')" width="320"/>
 					    <p id="googlepay-display" style="display:none">Google Page</p>
 					<br>
-                    <button class="btn btn-primary btn-block creditcardbtn"onclick="toggleText('creditcard-display')"> Debit / Credit Card </button>
-                        <p id="creditcard-display"style="display:none">Card Page</p>
+                    <button class="btn btn-primary btn-block creditcardbtn"onclick="on()"> Debit / Credit Card </button>
+
 
                     <p class="small my-3 text-muted">Some extra informative text can be placed here as dummy text will be replaced</p>
 
@@ -115,6 +146,80 @@ a:not([href]):not([tabindex]) {
     </div>
 </div>
 
+<div id="overlay">
+    <div class="card creditcarddiv">
+        <header class="card-header">
+                <button class="float-right" height="24" onclick="off()">X</button>
+                <h4 class="card-title mb-4">Payment info</h4>
+		</header>
+        <div class="card-body">
+            <form role="form">
+                <div class="form-group">
+                    <label for="username">Name on card</label>
+                    <input type="text" class="form-control" name="username" placeholder="Ex. John Smith" required="">
+                </div>
+
+                <div class="form-group">
+                    <label for="cardNumber">Card number</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="cardNumber" placeholder="">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                            <i class="fab fa-cc-visa"></i> &nbsp; <i class="fab fa-cc-amex"></i> &nbsp;
+                            <i class="fab fa-cc-mastercard"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md flex-grow-0">
+                        <div class="form-group">
+                            <label><span class="hidden-xs">Expiration</span> </label>
+                            <div class="form-inline" style="min-width: 220px">
+                                <select class="form-control" style="width:100px">
+                                    <option>MM</option>
+                                    <option>01 - January</option>
+                                    <option>02 - February</option>
+                                    <option>03 - March</option>
+                                    <option>04 - April</option>
+                                    <option>05 - May</option>
+                                    <option>06 - June</option>
+                                    <option>07 - July</option>
+                                    <option>08 - August</option>
+                                    <option>09 - September</option>
+                                    <option>10 - October</option>
+                                    <option>11 - November</option>
+                                    <option>12 - December</option>
+                                </select>
+                                <span style="width:20px; text-align: center"> / </span>
+                                <select class="form-control" style="width:100px">
+                                    <option>YY</option>
+                                    <option>2020</option>
+                                    <option>2021</option>
+                                    <option>2022</option>
+                                    <option>2023</option>
+                                    <option>2024</option>
+                                    <option>2025</option>
+                                    <option>2026</option>
+                                    <option>2027</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
+                            <input class="form-control" required="" type="text">
+                        </div>
+                    </div>
+                </div>
+                <button class="subscribe btn btn-primary btn-block" type="button"> Confirm  </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <script>
 function toggleText(divid){
   var x = document.getElementById(divid);
@@ -124,6 +229,15 @@ function toggleText(divid){
     x.style.display = "none";
   }
 }
+
+function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
+
 </script>
 <script src="javascripts/getusersbasket.js"></script>
 <%- include('partials/footer.ejs') %>
