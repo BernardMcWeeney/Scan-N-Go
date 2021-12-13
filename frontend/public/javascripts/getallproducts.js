@@ -36,6 +36,8 @@ function addToCart1(id) {
         'quantity' : quantity
       })
     }
+    console.log("Sending:", obj123)
+    console.log("to", djangoServer)
 
     fetch(djangoServer, obj123)
       .then(response => response.json()) // extract the json from the response you get from the server

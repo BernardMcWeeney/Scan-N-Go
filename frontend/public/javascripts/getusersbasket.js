@@ -25,7 +25,7 @@ window.onload = function() {
 
 function removefromcart(id,QTY) {
     let backendServerURL = backendServer()
-    let djangoServer = backendServerURL + "add/"
+    let djangoServer = backendServerURL + "remove/"
     let token = sessionStorage.getItem('access').toString()
     console.log("Access Token from sessionStorage: ", token)
     var obj12 = {
@@ -39,7 +39,7 @@ function removefromcart(id,QTY) {
         },
         body: JSON.stringify({
             'product_id': id.toString(),
-            'quantity' : -QTY
+            'quantity' : QTY
         })
     }
     fetch(djangoServer, obj12)
@@ -47,7 +47,10 @@ function removefromcart(id,QTY) {
         .then(data => {
             console.log(data);
             alert("Removed Product From Cart");
-        }).then(window.location.reload())
+        })
+      .then(data => {
+        window.location.href = "/basket";
+      })
     };
 
 
@@ -136,8 +139,12 @@ function GetUserBasket() {
           cardimage.setAttribute("src", backendServer() + "media/" + UserCartData[i].product_image);
           cardimage.setAttribute("alt", "Product Image");
           cardimage.setAttribute("id", "productimage");
+          let anchor1 = document.createElement("a")
+          anchor1.setAttribute("href", "/product/" + UserCartData[i].product_id_num)
+          anchor1.appendChild(cardimage)
+          anchor1.className = 'text-dark'
           let precardimage = document.getElementsByClassName("imagediv");
-          precardimage[i].appendChild(cardimage);
+          precardimage[i].appendChild(anchor1);
 
           let figcaptiondiv = document.createElement("figcaption");
           figcaptiondiv.className = "info productinfo";
@@ -148,7 +155,11 @@ function GetUserBasket() {
           let prodname = document.createElement("p");
           prodname.className = "title text-dark producttitle";
           prodname.setAttribute("id", "productname");
-          prodname.appendChild(document.createTextNode(UserCartData[i].product_name));
+          let anchor = document.createElement("a")
+          anchor.setAttribute("href", "/product/" + UserCartData[i].product_id_num)
+          anchor.innerHTML = UserCartData[i].product_name
+          anchor.className = 'text-dark'
+          prodname.appendChild(anchor);
           preprodname[i].appendChild(prodname);
 
           let proddtag = document.createElement("span");

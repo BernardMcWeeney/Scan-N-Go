@@ -119,21 +119,24 @@ class RemoveBasketItemSerializer(serializers.ModelSerializer):
         product_id = validated_data['product_id']
         request = self.context.get('request', None)
         print("request", request.data)
+        quantity = 1
+        if "quantity" in request.data:
+          quantity = int(request.data['quantity'])
         if request:
             current_user = request.user
             shopping_basket = Basket.objects.filter(user_id=current_user, is_active=True).first()
             # Check if the item is already in the basket
-            basket_items = BasketItems.objects.filter(product_id=product_id).first()
+            basket_items = BasketItems.objects.filter(basket_id=shopping_basket, product_id=product_id).first()
 
             if basket_items:
-                if basket_items.quantity > 1:
-                    basket_items.quantity = basket_items.quantity - 1  # if it is already in the basket, add to the quantity
+                print(basket_items, "la")
+                if basket_items.quantity > quantity:
+                    basket_items.quantity = basket_items.quantity - quantity  # if it is already in the basket, add to the quantity
                     basket_items.save()
                     return basket_items
                 else:
                     basket_items.delete()
-                    return BasketItems.objects.create(basket_id=shopping_basket, product_id=product_id, quantity=0,
-                                                     user_id=current_user)
+                    return basket_items
             else:
                 return BasketItems.objects.create(basket_id=shopping_basket, product_id=product_id, quantity=0,
                                                  user_id=current_user)
