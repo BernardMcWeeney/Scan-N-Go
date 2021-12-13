@@ -10,7 +10,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
 class BasketItemsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BasketItems
-        fields = ['id', 'basket_id','product_name', 'product_id', 'quantity', 'user_id', 'product_image', 'product_price', 'product_tag','product_id_num','basket_id_num']
+        fields = ['id', 'basket_id','product_name', 'product_id', 'quantity', 'user_id', 'product_image', 'product_price', 'product_tag','product_id_num','basket_id_num', 'is_active']
 
 
 class BasketSerializer(serializers.HyperlinkedModelSerializer):
@@ -61,17 +61,17 @@ class UserRegistrationSerializer(serializers.HyperlinkedModelSerializer):
         username = validated_data['username']
         password = validated_data['password']
         if "id" in request:
-            print('here1')
+            #print('here1')
             forced_user_id = request['id']
-            print(list(APIUser.objects.filter(id=int(forced_user_id))))
+            #print(list(APIUser.objects.filter(id=int(forced_user_id))))
             if list(APIUser.objects.filter(id=int(forced_user_id))) == []:
                 # Extract the username, email and passwor from the serializer
-                print('here2')
+                #print('here2')
                 new_user = APIUser.objects.create_user(id=forced_user_id,username=username,email=email, password=password)  # Create a new APIUser
             else:
                 new_user = APIUser.objects.create_user(username=username, email=email, password=password)
         else:
-            print('here3')
+            #print('here3')
             new_user = APIUser.objects.create_user(username=username,email=email, password=password)
         new_user.save()  # Save the new user
         new_basket = Basket.objects.create(user_id=new_user)  # Create a shopping basket
@@ -95,10 +95,10 @@ class AddBasketItemSerializer(serializers.ModelSerializer):
             shopping_basket = Basket.objects.filter(user_id=current_user, is_active=True).first()
             # Check if the item is already in the basket
             basket_items = BasketItems.objects.filter(product_id=product_id).first()
-            print(456)
+            #print(456)
             if basket_items:
-                print(basket_items.id)
-                print(145)
+                #print(basket_items.id)
+                #print(145)
                 basket_items.quantity = basket_items.quantity + quantity  # if it is already in the basket, add to the quantity
                 basket_items.save()
                 return basket_items
@@ -118,7 +118,7 @@ class RemoveBasketItemSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         product_id = validated_data['product_id']
         request = self.context.get('request', None)
-        print("request", request.data)
+        #print("request", request.data)
         quantity = 1
         if "quantity" in request.data:
           quantity = int(request.data['quantity'])
@@ -129,7 +129,7 @@ class RemoveBasketItemSerializer(serializers.ModelSerializer):
             basket_items = BasketItems.objects.filter(basket_id=shopping_basket, product_id=product_id).first()
 
             if basket_items:
-                print(basket_items, "la")
+                #print(basket_items, "la")
                 if basket_items.quantity > quantity:
                     basket_items.quantity = basket_items.quantity - quantity  # if it is already in the basket, add to the quantity
                     basket_items.save()
@@ -145,25 +145,37 @@ class RemoveBasketItemSerializer(serializers.ModelSerializer):
 
 
 class CheckoutSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Order
-        fields = ['basket_id']
+  class Meta:
+    model = Order
+    fields = ['basket_id']
 
-    def create(self, validated_data):
-        request = self.context.get('request', None)
-        current_user = request.user
-        basket_id = validated_data['basket_id']
-        # get the sopping basket
-        #basket_id = Basket.objects.filter(basket_id=basket_id)
-        # mark as inactive
-        basket_id.is_active = False
-        basket_id.save()
-        # create a new order
-        order = Order.objects.create(basket_id=basket_id, user_id=current_user)
-        order.save()
-        # create a new empty basket for the customer
-        new_basket = Basket.objects.create(user_id=current_user)  # Create a shopping basket
-        new_basket.save()
-        # return the order
-        return order
+  def create(self, validated_data):
+    request = self.context.get('request', None)
+    current_user = request.user
+    basket_id = validated_data['basket_id']
+    # get the sopping basket
+    # basket_id = Basket.objects.filter(basket_id=basket_id)
+    # mark as inactive
+    basket_id.is_active = False
+    print("Basket ID", basket_id)
+    basket_id.save()
 
+    '''basket_items = BasketItems.objects.filter(basket_id=basket_id)
+    print("basket_items", basket_items.values())
+    for item in basket_items:
+      print('item', item)
+      product = Product.objects.filter(id=item.product_id_num).first()
+      print('product', product)
+      product.product_quantity = product.product_quantity - item.quantity
+      print('product.product_quantity', product.product_quantity)
+      print('item.quantity', item.quantity)
+      product.save()'''
+
+    # create a new order
+    order = Order.objects.create(basket_id=basket_id, user_id=current_user)
+    order.save()
+    # create a new empty basket for the customer
+    new_basket = Basket.objects.create(user_id=current_user)  # Create a shopping basket
+    new_basket.save()
+    # return the order
+    return order

@@ -60,6 +60,9 @@ class BasketItems(models.Model):
     def product_name(self):
         return self.product_id.name
 
+    def is_active(self):
+        return self.basket_id.is_active
+
     def price(self):
         return self.product_id.price * self.quantity
 
