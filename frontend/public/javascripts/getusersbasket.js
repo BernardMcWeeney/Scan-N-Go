@@ -17,7 +17,7 @@ function backendServer() {
 
 function UserWelcome() {
   var username = sessionStorage.getItem('username')
-  document.getElementById("user-welcome-message").innerHTML = "Welcome, " + username + " to your Basket!"
+  document.getElementById("user-welcome-message").innerHTML = "Welcome to your Basket, " + username + "!"
 }
 window.onload = function() {
   UserWelcome();
@@ -222,8 +222,10 @@ function GetUserBasket() {
           let checkoutcartbtn = document.getElementById("checkoutbtnconfirm");
           var BasketID = "checkoutcart(" + UserCartData[0].basket_id_num.toString() + ")"
           checkoutcartbtn.setAttribute('onclick', BasketID )
-
+          document.getElementById("basket-items-payment-container").setAttribute('style','')
+          document.getElementById("user-welcome-message-small").innerHTML = "Here is your basket with all your selected products! You can remove a product from your basket or alternatively checkout your basket from this page"
       }
+
       console.log(grandtotal);
       document.getElementById("grandpricetotal").innerHTML = grandtotal.toFixed(2);
       } );

@@ -108,9 +108,9 @@ a:not([href]):not([tabindex]) {
 
 </style>
 
-<h3 id="user-welcome-message" class="display-4 text-center">Your Basket</h3>
-<p class="lead text-center">Here is your basket with all your selected products! You can remove a product from your basket or alternatively checkout your basket from this page</p>
-<div class="container">
+<h3 id="user-welcome-message" class="display-4 text-center">Welcome to your Basket!</h3>
+<p id="user-welcome-message-small" class="lead text-center">Hmmmm... It seems like you haven't got any products in your basket. Head over to our <a href="/allproducts">All Products</a> page to add some stuff to your basket</p>
+<div class="container" id="basket-items-payment-container" style="display:none;">
     <div class="row">
             <main class="col-md-9 productdata">
                  <!-- Product Card is Inserted here with JavaScript -->
@@ -127,11 +127,11 @@ a:not([href]):not([tabindex]) {
 						<img src="images/payments.png" height="26">
 					</p>
 					<hr>
-					<input type="image" src="images/applepay button.png" onclick="toggleText('applepay-display')" width="320" />
+					<input type="image" src="images/applepay button.png" onclick="toggleText('applepay-display')" style="width:100%" />
 					   <p id="applepay-display" style="display:none">Apple Page</p>
 
 					<br>
-					<input type="image" src="images/Buy-with-Google-Pay.png" onclick="toggleText('googlepay-display')" width="320"/>
+					<input type="image" src="images/Buy-with-Google-Pay.png" onclick="toggleText('googlepay-display')" style="width:100%"/>
 					    <p id="googlepay-display" style="display:none">Google Page</p>
 					<br>
                     <button class="btn btn-primary btn-block creditcardbtn"onclick="on()"> Debit / Credit Card </button>
