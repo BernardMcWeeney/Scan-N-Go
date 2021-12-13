@@ -48,6 +48,33 @@ function removefromcart(id,QTY) {
             console.log(data);
             alert("Removed Product From Cart");
         }).then(window.location.reload())
+    };
+
+
+function checkoutcart(basketid) {
+    let backendServerURL = backendServer()
+    let djangoServer = backendServerURL + "checkout/"
+    let token = sessionStorage.getItem('access').toString()
+    console.log("Access Token from sessionStorage: ", token)
+    var obj1 = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Origin': '',
+            'Host': 'api.producthunt.com',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({
+            'basket_id': basketid.toString()
+        })
+    }
+    fetch(djangoServer, obj1)
+        .then(response => response.json()) // extract the json from the response you get from the server
+        .then(data => {
+            console.log(data);
+            alert("Checked Out");
+        }).then(window.location.href= backendServerURL + "receipt/")
     }
 
 function GetUserBasket() {
@@ -180,6 +207,10 @@ function GetUserBasket() {
           removefromcarti.appendChild(document.createTextNode("Remove"));
           let preremovefromcarti = document.getElementsByClassName("removeproductbutton");
           preremovefromcarti[i].appendChild(removefromcarti);
+
+          let checkoutcartbtn = document.getElementById("checkoutbtnconfirm");
+          var BasketID = "checkoutcart(" + UserCartData[0].basket_id_num.toString() + ")"
+          checkoutcartbtn.setAttribute('onclick', BasketID )
 
       }
       console.log(grandtotal);

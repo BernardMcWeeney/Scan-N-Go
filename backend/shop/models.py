@@ -48,6 +48,9 @@ class BasketItems(models.Model):
     def product_id_num(self):
       return self.product_id.id
 
+    def basket_id_num(self):
+      return self.basket_id.id
+
     def product_price(self):
       return float(self.product_id.price)
 
