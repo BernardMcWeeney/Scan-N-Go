@@ -5,6 +5,12 @@
       You've just been logged out! Please log-in to continue using Scan-N-Go
     </div>
 <% } %>
+
+<% if(didLogOut == 'basketError'){ %>
+   <div class="alert alert-warning" role="alert" style="margin-bottom:0px;">
+      Oops! You can't access the basket page if your not logged in. Log-in to access the full functionality of Scan-N-Go
+    </div>
+<% } %>
 <div id="logreg-forms">
 
 <form class="form-signin" id="login-form">
@@ -12,8 +18,8 @@
     <input type="text" name="username-input" id="inputEmail" class="form-control" placeholder="Your Username" required>
     <input type="password" id="inputPassword" name="password-input" class="form-control" placeholder="Your password" required>
     <button class="btn btn-success btn-block" type="submit">Login</button>
-    <hr>
-    <button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up New Account</button>
+    <!-- <hr> -->
+    <button style="display:none" class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up New Account</button>
 </form>
 </div>
 <script>

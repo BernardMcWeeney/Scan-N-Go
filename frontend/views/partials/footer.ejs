@@ -7,10 +7,14 @@
 <script src="/javascripts/filtering.js"></script>
 <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="javascripts/loginScript.js"></script>
+<script src="/javascripts/basketPreview.js"></script>
+
 <script>
+
   var isLoggedIn = isLoggedIn();
   console.log("Is the user logged in? -> ", isLoggedIn)
   if (isLoggedIn == true) {
+    loadBasketPreview()
     let label = document.getElementById("lblCartCount")
     label.innerHTML = "?"
     let spinnerdiv = document.createElement('div');
