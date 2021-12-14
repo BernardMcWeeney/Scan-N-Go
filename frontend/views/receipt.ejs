@@ -111,20 +111,78 @@ a:not([href]):not([tabindex]) {
 <h3 id="user-welcome-message" class="display-4 text-center">Your Digital Receipt</h3>
 <p class="lead text-center">Here is a copy of your receipt. Thanks for using Scan-N-Go!</p>
 <div class="container">
-    <div class="row">
-            <main class="col-md-9 productdata">
-                 <!-- Product Card is Inserted here with JavaScript -->
-            </main>
-    </div>
-</div>
-
-<div class="container">
 	<main>
 		<article class="card">
-		<header class="card-header">
-			<strong class="d-inline-block mr-3">Order ID: </strong>
-			<span>Order Date: 16 December 2018</span>
-		</header>
+            <header class="card-header">
+                <strong class="d-inline-block mr-3">Order ID: </strong>
+                <span>Order Date: 16 December 2018</span>
+            </header>
+		<div class="card-body">
+			<div class="row">
+				<div class="col-md-8">
+					<h6 class="text-muted">Delivery to</h6>
+					<p>Username: <br>
+					  Email: myname@pixsellz.com <br>
+			 		</p>
+				</div>
+				<div class="col-md-4">
+					<h6 class="text-muted">Payment</h6>
+					<span class="text-success">
+						<i class="fab fa-lg fa-cc-visa"></i>
+					    Digital Payment
+					</span>
+					 <span class="b">Total:  $X </span>
+					</p>
+				</div>
+			</div> <!-- row.// -->
+		</div> <!-- card-body .// -->
+		<div class="table-responsive">
+		<table class="table table-hover">
+			<tbody><tr>
+				<td width="65">
+					<img src="http://127.0.0.1:8000/media/images/5449000131805_3.JPG" width="50" height="50" class="img-xs border">
+				</td>
+				<td>
+					<p class="title mb-0">Product name goes here </p>
+					<var class="price text-muted">USD 145</var>
+				</td>
+				<td> Seller <br> Nike clothing </td>
+				<td width="250"> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
+			</tr>
+			<tr>
+				<td>
+					<img src="http://127.0.0.1:8000/media/images/5449000131805_3.JPG" width="50" height="50" class="img-xs border">
+				</td>
+				<td>
+					<p class="title mb-0">Another name goes here </p>
+					<var class="price text-muted">USD 15</var>
+				</td>
+				<td> Seller <br> ABC shop </td>
+				<td> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
+			</tr>
+			<tr>
+				<td>
+					<img src="http://127.0.0.1:8000/media/images/5449000131805_3.JPG" width="50" height="50" class="img-xs border">
+				</td>
+				<td>
+					<p class="title mb-0">The name of the product  goes here </p>
+					<var class="price text-muted">USD 145</var>
+				</td>
+				<td> Seller <br> Wallmart </td>
+				<td> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
+			</tr>
+		</tbody></table>
+		</div> <!-- table-responsive .end// -->
+		</article> <!-- order-group.// -->
+	</main>
+</div>
+<div class="container">
+	<main class="OrderData">
+		<article class="card ">
+            <header class="card-header">
+                <strong class="d-inline-block mr-3">Order ID: </strong>
+                <span>Order Date: 16 December 2018</span>
+            </header>
 		<div class="card-body">
 			<div class="row">
 				<div class="col-md-8">
@@ -185,5 +243,137 @@ a:not([href]):not([tabindex]) {
 	</main>
 </div>
 
-<script src="javascripts/getorderinfo.js"></script>
+<script>
+
+function backendServer() {
+  const domain = window.location.hostname.toString();
+  console.log("Domain: ", domain)
+  if (domain == "scanngo-frontend-app.azurewebsites.net") {
+    var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
+  }
+  else if ( (domain == "127.0.0.1") || (domain == "localhost") || (domain == "0.0.0.0") ) {
+    var backendServerURL = "http://127.0.0.1:8000/";
+    }
+  else {
+    alert("ERROR: Cannot determine Backend Server (Django) URL");
+    }
+
+  console.log('Backend Server URL', backendServerURL)
+  return backendServerURL
+}
+
+function Username() {
+  var username = sessionStorage.getItem('username')
+  return username
+}
+function Useremail() {
+  var useremail = sessionStorage.getItem('email')
+  console.log(sessionStorage)
+  return useremail
+}
+
+function GetUserOrder() {
+    let backendServerURL = backendServer()
+    let djangoServer = backendServerURL + "orders/"
+    let token = sessionStorage.getItem('access').toString()
+
+    var obj = {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Origin': '',
+        'Host': 'api.producthunt.com',
+        'Authorization': 'Bearer ' + token
+      },}
+
+    console.log("sending data to ",djangoServer)
+    fetch(djangoServer, obj)
+      .then(response => response.json()) // extract the json from the response you get from the server
+      .then(data => {
+
+          let UserOrderData = data;
+          console.log(UserOrderData)
+          for (var i = 0; i < UserOrderData.length; i++) {
+              console.log(UserOrderData[i]);
+
+              let orderarticle = document.createElement("article");
+              orderarticle.className = "card orderarticle";
+              let preorderarticle = document.getElementsByClassName("OrderData");
+              preorderarticle[0].appendChild((orderarticle));
+
+              let cardheader = document.createElement("header");
+              cardheader.className = "card-header cardheader";
+              let precardheader = document.getElementsByClassName("orderarticle");
+              precardheader[i].appendChild((cardheader));
+
+              let preheaderOrderID = document.getElementsByClassName("cardheader");
+              let headerOrderID = document.createElement("strong");
+              headerOrderID.className = "d-inline-block mr-3 headerOrderID";
+              headerOrderID.appendChild(document.createTextNode("Order ID: " + UserOrderData[i].id));
+              preheaderOrderID[i].appendChild((headerOrderID));
+
+              let headerOrderDate = document.createElement("span");
+              headerOrderDate.className = "d-inline-block mr-3 headerOrderDate";
+              const orderdate = new Date(UserOrderData[i].date_ordered); // 1 for February
+              const dateFormatter = new Intl.DateTimeFormat('en-IE');
+              headerOrderDate.appendChild(document.createTextNode("Order Date: " + dateFormatter.format(orderdate)));
+              preheaderOrderID[i].appendChild((headerOrderDate));
+
+              let cardBody = document.createElement("div");
+              cardBody.className = "card-body cardBody";
+              let precardBody = document.getElementsByClassName("orderarticle");
+              precardBody[i].appendChild((cardBody));
+
+              let cardrow = document.createElement("div");
+              cardrow.className = "row cardrow";
+              let precardrow = document.getElementsByClassName("cardBody");
+              precardrow[i].appendChild((cardrow));
+
+              let precardrows = document.getElementsByClassName("cardrow");
+              let deliveryrow = document.createElement("div");
+              deliveryrow.className = "col-md-8 deliveryrow";
+              precardrows[i].appendChild((deliveryrow));
+
+              let paymentrow = document.createElement("div");
+              paymentrow.className = "col-md-4 paymentrow";
+              precardrows[i].appendChild((paymentrow));
+
+              let deliverytitle = document.createElement("h6");
+              deliverytitle.className = "text-muted deliverytitle";
+              deliverytitle.appendChild(document.createTextNode("Delivery"));
+              let predeliverytitle = document.getElementsByClassName("deliveryrow");
+              predeliverytitle[i].appendChild((deliverytitle));
+
+              let predeliveryinfo = document.getElementsByClassName("deliveryrow");
+              let deliveryUser = document.createElement("p");
+              deliveryUser.className = "deliveryUser";
+              deliveryUser.appendChild(document.createTextNode("Username: " + Username()));
+              predeliveryinfo[i].appendChild((deliveryUser));
+
+              let deliveryEmail = document.createElement("p");
+              deliveryEmail.className = "deliveryEmail";
+              deliveryEmail.appendChild(document.createTextNode("Email: " + Useremail()));
+              predeliveryinfo[i].appendChild((deliveryEmail));
+
+              let paymenttitle = document.createElement("h6");
+              paymenttitle.className = "text-muted paymenttitle";
+              paymenttitle.appendChild(document.createTextNode("Payment"));
+              let prepaymenttitle = document.getElementsByClassName("paymentrow");
+              prepaymenttitle[i].appendChild((paymenttitle));
+
+              let prepaymentinfo = document.getElementsByClassName("paymentrow");
+              let paymentinfo = document.createElement("p");
+              paymentinfo.className = "paymentinfo text-success";
+              paymentinfo.appendChild(document.createTextNode("Digital Payment"));
+              prepaymentinfo[i].appendChild((paymentinfo));
+
+          }
+
+      } );
+}
+GetUserOrder()
+
+
+</script>
 <%- include('partials/footer.ejs') %>
