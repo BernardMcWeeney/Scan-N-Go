@@ -159,18 +159,6 @@ class CheckoutSerializer(serializers.ModelSerializer):
     basket_id.is_active = False
     print("Basket ID", basket_id)
     basket_id.save()
-
-    '''basket_items = BasketItems.objects.filter(basket_id=basket_id)
-    print("basket_items", basket_items.values())
-    for item in basket_items:
-      print('item', item)
-      product = Product.objects.filter(id=item.product_id_num).first()
-      print('product', product)
-      product.product_quantity = product.product_quantity - item.quantity
-      print('product.product_quantity', product.product_quantity)
-      print('item.quantity', item.quantity)
-      product.save()'''
-
     # create a new order
     order = Order.objects.create(basket_id=basket_id, user_id=current_user)
     order.save()
