@@ -22,11 +22,12 @@ class BasketSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
+    items = BasketItemsSerializer(many=True, read_only=True, source='basketitems_set')
     basket = BasketSerializer(many=True, read_only=True, source='basket_set')
     class Meta:
         model = Order
         fields = ['id', 'date_ordered', 'basket_id', 'user_id', 'total_price', 'status', 'payment_status',
-                  'customer_order_notes', 'internal_order_notes', 'basket']
+                  'customer_order_notes', 'internal_order_notes', 'basket', 'items']
 
 
 class IrishBillingAddressSerializer(serializers.HyperlinkedModelSerializer):

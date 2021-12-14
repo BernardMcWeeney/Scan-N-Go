@@ -128,11 +128,11 @@ a:not([href]):not([tabindex]) {
 					</p>
 					<hr>
 					<input type="image" src="images/applepay button.png" onclick="toggleText('applepay-display')" style="width:100%" />
-					   <p id="applepay-display" style="display:none">Apple Page</p>
+					   <p id="applepay-display" style="display:none"><a class='text-primary' onclick="">"Checkout" with Apple Pay</a></p>
 
 					<br>
 					<input type="image" src="images/Buy-with-Google-Pay.png" onclick="toggleText('googlepay-display')" style="width:100%"/>
-					    <p id="googlepay-display" style="display:none">Google Page</p>
+					    <p id="googlepay-display" style="display:none"><a class='text-primary' onclick="">Checkout" with Google Pay</a></p>
 					<br>
                     <button class="btn btn-primary btn-block creditcardbtn"onclick="on()"> Debit / Credit Card </button>
 
@@ -149,7 +149,7 @@ a:not([href]):not([tabindex]) {
 <div id="overlay">
     <div class="card creditcarddiv">
         <header class="card-header">
-                <button class="float-right" height="24" onclick="off()">X</button>
+                <button class="float-right btn btn-danger" height="24" onclick="off()">X</button>
                 <h4 class="card-title mb-4">Payment info</h4>
 		</header>
         <div class="card-body">
@@ -221,6 +221,23 @@ a:not([href]):not([tabindex]) {
 
 
 <script>
+function backendServer() {
+  const domain = window.location.hostname.toString();
+  console.log("Domain: ", domain)
+  if (domain == "scanngo-frontend-app.azurewebsites.net") {
+    var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
+  }
+  else if ( (domain == "127.0.0.1") || (domain == "localhost") || (domain == "0.0.0.0") ) {
+    var backendServerURL = "http://127.0.0.1:8000/";
+    }
+  else {
+    alert("ERROR: Cannot determine Backend Server (Django) URL");
+    }
+
+  console.log('Backend Server URL', backendServerURL)
+  return backendServerURL
+}
+
 function toggleText(divid){
   var x = document.getElementById(divid);
   if (x.style.display === "none") {
@@ -237,6 +254,36 @@ function on() {
 function off() {
   document.getElementById("overlay").style.display = "none";
 }
+
+
+function checkoutcart(id) {
+  let backendServerURL = backendServer()
+  let djangoServer = backendServerURL + "checkout/"
+  let token = sessionStorage.getItem('access').toString()
+
+  var obj = {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Origin': '',
+      'Host': 'api.producthunt.com',
+      'Authorization': 'Bearer ' + token
+    },
+    body: JSON.stringify({
+        'basket_id' : id
+      })
+    }
+
+  console.log("sending data to ",djangoServer)
+  fetch(djangoServer, obj)
+    .then(response => response.json()) // extract the json from the response you get from the server
+    .then(data => {
+      console.log(data)
+      window.location.href = "receipt/";
+    })
+}
+
 
 </script>
 <script src="javascripts/getusersbasket.js"></script>

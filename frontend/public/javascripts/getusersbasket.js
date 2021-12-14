@@ -54,31 +54,6 @@ function removefromcart(id,QTY) {
     };
 
 
-function checkoutcart(basketid) {
-    let backendServerURL = backendServer()
-    let djangoServer = backendServerURL + "checkout/"
-    let token = sessionStorage.getItem('access').toString()
-    console.log("Access Token from sessionStorage: ", token)
-    var obj1 = {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Origin': '',
-            'Host': 'api.producthunt.com',
-            'Authorization': 'Bearer ' + token
-        },
-        body: JSON.stringify({
-            'basket_id': basketid.toString()
-        })
-    }
-    fetch(djangoServer, obj1)
-        .then(response => response.json()) // extract the json from the response you get from the server
-        .then(data => {
-            console.log(data);
-            alert("Checked Out");
-        }).then(window.location.href=  "http://127.0.0.1:3000/receipt/")
-    }
 
 function GetUserBasket() {
     let backendServerURL = backendServer()

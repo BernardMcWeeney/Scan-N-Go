@@ -90,6 +90,9 @@ class Order(models.Model):
     customer_order_notes = models.CharField(max_length=5000, null=True)
     internal_order_notes = models.CharField(max_length=5000, null=True)
 
+'''    def items(self):
+      return self.product_id.productImage'''
+
 
 class IrishBillingAddress(models.Model):
     class Meta:
