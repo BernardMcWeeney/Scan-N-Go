@@ -75,6 +75,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         else:
             # For normal users, only return the current active basket
             orders = Order.objects.filter(user_id=user)
+            orders = Order.objects.order_by('-date_ordered')
             return orders
 
 class IrishBillingAddressViewSet(viewsets.ModelViewSet):
