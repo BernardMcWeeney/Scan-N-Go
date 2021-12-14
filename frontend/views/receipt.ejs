@@ -298,11 +298,9 @@ function GetUserOrder() {
       .then(async (data) => {
 
           let UserOrderData = data;
-          console.log(UserOrderData)
-          console.log("testghfjhfghg"+UserOrderData.length-1)
-          var bar = UserOrderData.length -1
-          for (var i = bar; i >= 0; i--) {
-              console.log("testIIi" , i);
+          console.log("log",UserOrderData)
+          for (var i = 0; i < UserOrderData.length; i++) {
+              //console.log(UserOrderData[i]);
 
               let orderarticle = document.createElement("article");
               orderarticle.className = "card orderarticle";
