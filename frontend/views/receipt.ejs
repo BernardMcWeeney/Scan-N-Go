@@ -268,7 +268,6 @@ function Username() {
 }
 function Useremail() {
   var useremail = sessionStorage.getItem('email')
-  console.log(sessionStorage)
   return useremail
 }
 
@@ -276,6 +275,10 @@ function GetUserOrder() {
     let backendServerURL = backendServer()
     let djangoServer = backendServerURL + "orders/"
     let token = sessionStorage.getItem('access').toString()
+
+    let djangoServer_User = backendServerURL + "api_users/"
+
+    let djangoServer_BasketItems = backendServerURL + "basket_items/"
 
     var obj = {
       method: 'GET',
@@ -287,15 +290,19 @@ function GetUserOrder() {
         'Authorization': 'Bearer ' + token
       },}
 
+
+
     console.log("sending data to ",djangoServer)
     fetch(djangoServer, obj)
       .then(response => response.json()) // extract the json from the response you get from the server
-      .then(data => {
+      .then(async (data) => {
 
           let UserOrderData = data;
           console.log(UserOrderData)
-          for (var i = 0; i < UserOrderData.length; i++) {
-              console.log(UserOrderData[i]);
+          console.log("testghfjhfghg"+UserOrderData.length-1)
+          var bar = UserOrderData.length -1
+          for (var i = bar; i >= 0; i--) {
+              console.log("testIIi" , i);
 
               let orderarticle = document.createElement("article");
               orderarticle.className = "card orderarticle";
@@ -368,10 +375,59 @@ function GetUserOrder() {
               paymentinfo.appendChild(document.createTextNode("Digital Payment"));
               prepaymentinfo[i].appendChild((paymentinfo));
 
-          }
+              let paymentTotal = document.createElement("p");
+              paymentTotal.className = "paymentTotal";
+              paymentTotal.appendChild(document.createTextNode("Total: €" + Useremail()));
+              prepaymentinfo[i].appendChild((paymentTotal));
 
-      } );
-}
+              await fetch(djangoServer_BasketItems, obj)
+                  .then(BasketItems_response => BasketItems_response.json()) // extract the json from the response you get from the server
+                  .then(basketdata => {
+                      let UserBasketItemData = basketdata;
+                      for (var j = 0; j < UserBasketItemData.length; j++) {
+                           if (UserBasketItemData[j].basket_id_num == UserOrderData[i].basket_id_num) {
+
+                              let receipttable = document.createElement("div");
+                              receipttable.className = "table-responsive receipttable";
+                              let prereceipttable = document.getElementsByClassName("orderarticle");
+                              prereceipttable[i].appendChild((receipttable));
+
+                              let receiptTable = document.createElement("table");
+                              receiptTable.className = "table-hover receiptTable";
+                              let prereceiptTable = document.getElementsByClassName("receipttable");
+                              prereceiptTable[i].appendChild((receiptTable));
+
+                              let Tablebody = document.createElement("tbody");
+                              Tablebody.className = "Tablebody";
+                              let preTablebody = document.getElementsByClassName("receiptTable");
+                              preTablebody[i].appendChild((Tablebody));
+
+                              let Tablebodyitem = document.createElement("tr");
+                              Tablebodyitem.className = "Tablebodyitem";
+                              let preTablebodyitem = document.getElementsByClassName("Tablebody");
+                              preTablebodyitem[i].appendChild((Tablebodyitem));
+
+                              let preTableitem = document.getElementsByClassName("Tablebodyitem");
+                              let Tableimage = document.createElement("td");
+                              Tableimage.className = "Tableimage";
+                              Tableimage.setAttribute("width", "65");
+                              preTableitem[i].appendChild((Tableimage));
+
+                              let productimage = document.createElement('img');
+                              productimage.className = "img-xs border productimage";
+                              productimage.setAttribute("height","50");
+                              productimage.setAttribute("width", "50");
+                              productimage.setAttribute("src", backendServer() + "media/"+UserBasketItemData[j].product_image);
+                              productimage.setAttribute("alt", "Product Image");
+                              productimage.setAttribute("id", "productimage");
+                              let preproductimage = document.getElementsByClassName("Tableimage");
+                              preproductimage[i].appendChild((productimage));
+                           }
+                      }
+                  })
+              }
+          })
+      }
 GetUserOrder()
 
 

@@ -27,7 +27,7 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
         fields = ['id', 'date_ordered', 'basket_id', 'user_id', 'total_price', 'status', 'payment_status',
-                  'customer_order_notes', 'internal_order_notes', 'basket', 'items']
+                  'customer_order_notes', 'internal_order_notes', 'basket', 'items', 'basket_id_num']
 
 
 class IrishBillingAddressSerializer(serializers.HyperlinkedModelSerializer):

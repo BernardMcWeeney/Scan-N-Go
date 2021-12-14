@@ -43,16 +43,16 @@ class BasketItems(models.Model):
     user_id = models.ForeignKey(APIUser, on_delete=models.CASCADE, null=False)
 
     def product_image(self):
-      return str(self.product_id.productImage)
+        return str(self.product_id.productImage)
 
     def product_id_num(self):
-      return self.product_id.id
+        return self.product_id.id
 
     def basket_id_num(self):
-      return self.basket_id.id
+        return self.basket_id.id
 
     def product_price(self):
-      return float(self.product_id.price)
+        return float(self.product_id.price)
 
     def product_tag(self):
         return self.product_id.product_tag
@@ -90,9 +90,9 @@ class Order(models.Model):
     customer_order_notes = models.CharField(max_length=5000, null=True)
     internal_order_notes = models.CharField(max_length=5000, null=True)
 
-'''    def items(self):
-      return self.product_id.productImage'''
-
+    def basket_id_num(self):
+        print(self.basket_id.id)
+        return self.basket_id.id
 
 class IrishBillingAddress(models.Model):
     class Meta:
