@@ -153,7 +153,7 @@ function GetAllProducts(searchterm) {
 
           let subpricespan = document.createElement("span");
           subpricespan.className = "price h5 productprice";
-          subpricespan.appendChild(document.createTextNode(data[i].price));
+          subpricespan.appendChild(document.createTextNode("€"+data[i].price));
           let prepricewrapdiv = document.getElementsByClassName("subwrapdiv");
           prepricewrapdiv[i].appendChild(subpricespan);
 
