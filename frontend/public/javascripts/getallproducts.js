@@ -43,8 +43,8 @@ function addToCart1(id) {
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(data => {
         console.log(data);
-        alert("Added Product to Cart");
-      })
+        window.location.reload()
+      }).then(alert("Added Product to Cart"))
   }
 
 function GetAllProducts(searchterm) {
