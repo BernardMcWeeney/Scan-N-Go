@@ -99,7 +99,39 @@ a:not([href]):not([tabindex]) {
   transform: translate(-50%,-50%);
   -ms-transform: translate(-50%,-50%);
 }
+#applepayoverlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+#googlepayoverlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
 .creditcarddiv {
+    position: fixed;
+    bottom: 40px;
+    width: 100%;
+}
+.paymentdiv {
     position: fixed;
     bottom: 40px;
     width: 100%;
@@ -128,14 +160,14 @@ a:not([href]):not([tabindex]) {
 						<img src="images/payments.png" height="26">
 					</p>
 					<hr>
-					<input type="image" src="images/applepay button.png" onclick="toggleText('applepay-display')" style="width:100%" />
+					<input type="image" src="images/applepay button.png" onclick="on('applepayoverlay')" style="width:100%" />
 					   <p id="applepay-display" style="display:none"><a class='text-primary' onclick="">Apple Pay To Checkout</a></p>
 
 					<br>
-					<input type="image" src="images/Buy-with-Google-Pay.png" onclick="toggleText('googlepay-display')" style="width:100%"/>
+					<input type="image" src="images/Buy-with-Google-Pay.png" onclick="on('googlepayoverlay')" style="width:100%"/>
 					    <p id="googlepay-display" style="display:none"><a class='text-primary' onclick="">Google Pay To Checkout</a></p>
 					<br>
-                    <button class="btn btn-primary btn-block creditcardbtn"onclick="on()"> Debit / Credit Card </button>
+                    <button class="btn btn-primary btn-block creditcardbtn"onclick="on('overlay')"> Debit / Credit Card </button>
 
 
                     <p class="small my-3 text-muted">Some extra informative text can be placed here as dummy text will be replaced</p>
@@ -147,10 +179,48 @@ a:not([href]):not([tabindex]) {
     </div>
 </div>
 
+<div id="applepayoverlay">
+    <div class="card applepaydiv paymentdiv">
+        <header class="card-header">
+                <button class="float-right btn btn-danger" height="24" onclick="off('googlepayoverlay')">X</button>
+                <h4 class="card-title mb-4">Apple Pay</h4>
+		</header>
+        <div class="card-body">
+            <form role="form">
+                <div class="form-group center">
+                    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                    <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_oc7vjc4z.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+                </div>
+
+                <input id="applebtn" type="image" src="images/applepay button.png" style="width:100%">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="googlepayoverlay">
+    <div class="card googlepayddiv paymentdiv">
+        <header class="card-header">
+                <button class="float-right btn btn-danger" height="24" onclick="off('googlepayoverlay')">X</button>
+                <h4 class="card-title mb-4">Google Pay</h4>
+		</header>
+        <div class="card-body">
+            <form role="form">
+                <div class="form-group center">
+                    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                    <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_iev4cmrb.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+                </div>
+
+                <input id="googlebtn" type="image" src="images/Buy-with-Google-Pay.png" style="width:100%">
+            </form>
+        </div>
+    </div>
+</div>
+
 <div id="overlay">
     <div class="card creditcarddiv">
         <header class="card-header">
-                <button class="float-right btn btn-danger" height="24" onclick="off()">X</button>
+                <button class="float-right btn btn-danger" height="24" onclick="off('overlay')">X</button>
                 <h4 class="card-title mb-4">Payment info</h4>
 		</header>
         <div class="card-body">
@@ -248,13 +318,14 @@ function toggleText(divid){
   }
 }
 
-function on() {
-  document.getElementById("overlay").style.display = "block";
+function on(opt) {
+  document.getElementById(opt).style.display = "block";
 }
 
-function off() {
-  document.getElementById("overlay").style.display = "none";
+function off(opt) {
+  document.getElementById(opt).style.display = "none";
 }
+
 
 
 function checkoutcart(id) {
@@ -282,7 +353,7 @@ function checkoutcart(id) {
     .then(data => {
       console.log(data)
       window.location.href = "receipt/";
-    })
+    }).then(alert("Checked Out"))
 }
 
 function checkLogin(){

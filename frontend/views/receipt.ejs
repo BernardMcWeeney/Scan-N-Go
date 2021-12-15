@@ -1,6 +1,6 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 
 body {
@@ -15,7 +15,7 @@ body {
     background-color: #fff;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 0.37rem;
+
 }
 
 .card:hover {
@@ -104,144 +104,42 @@ a:not([href]):not([tabindex]) {
     bottom: 40px;
     width: 100%;
 }
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
 
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
 
 </style>
 
 <h3 id="user-welcome-message" class="display-4 text-center">Your Digital Receipt</h3>
 <p class="lead text-center">Here is a copy of your receipt. Thanks for using Scan-N-Go!</p>
-<div class="container">
-	<main>
-		<article class="card">
-            <header class="card-header">
-                <strong class="d-inline-block mr-3">Order ID: </strong>
-                <span>Order Date: 16 December 2018</span>
-            </header>
-		<div class="card-body">
-			<div class="row">
-				<div class="col-md-8">
-					<h6 class="text-muted">Delivery to</h6>
-					<p>Username: <br>
-					  Email: myname@pixsellz.com <br>
-			 		</p>
-				</div>
-				<div class="col-md-4">
-					<h6 class="text-muted">Payment</h6>
-					<span class="text-success">
-						<i class="fab fa-lg fa-cc-visa"></i>
-					    Digital Payment
-					</span>
-					 <span class="b">Total:  $X </span>
-					</p>
-				</div>
-			</div> <!-- row.// -->
-		</div> <!-- card-body .// -->
-		<div class="table-responsive">
-		<table class="table table-hover">
-			<tbody><tr>
-				<td width="65">
-					<img src="http://127.0.0.1:8000/media/images/5449000131805_3.JPG" width="50" height="50" class="img-xs border">
-				</td>
-				<td>
-					<p class="title mb-0">Product name goes here </p>
-					<var class="price text-muted">USD 145</var>
-				</td>
-				<td> Seller <br> Nike clothing </td>
-				<td width="250"> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
-			</tr>
-			<tr>
-				<td>
-					<img src="http://127.0.0.1:8000/media/images/5449000131805_3.JPG" width="50" height="50" class="img-xs border">
-				</td>
-				<td>
-					<p class="title mb-0">Another name goes here </p>
-					<var class="price text-muted">USD 15</var>
-				</td>
-				<td> Seller <br> ABC shop </td>
-				<td> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
-			</tr>
-			<tr>
-				<td>
-					<img src="http://127.0.0.1:8000/media/images/5449000131805_3.JPG" width="50" height="50" class="img-xs border">
-				</td>
-				<td>
-					<p class="title mb-0">The name of the product  goes here </p>
-					<var class="price text-muted">USD 145</var>
-				</td>
-				<td> Seller <br> Wallmart </td>
-				<td> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
-			</tr>
-		</tbody></table>
-		</div> <!-- table-responsive .end// -->
-		</article> <!-- order-group.// -->
-	</main>
-</div>
+
 <div class="container">
 	<main class="OrderData">
-		<article class="card ">
-            <header class="card-header">
-                <strong class="d-inline-block mr-3">Order ID: </strong>
-                <span>Order Date: 16 December 2018</span>
-            </header>
-		<div class="card-body">
-			<div class="row">
-				<div class="col-md-8">
-					<h6 class="text-muted">Delivery to</h6>
-					<p>Username: <br>
-					  Email: myname@pixsellz.com <br>
-			 		</p>
-				</div>
-				<div class="col-md-4">
-					<h6 class="text-muted">Payment</h6>
-					<span class="text-success">
-						<i class="fab fa-lg fa-cc-visa"></i>
-					    Digital Payment
-					</span>
-					 <span class="b">Total:  $X </span>
-					</p>
-				</div>
-			</div> <!-- row.// -->
-		</div> <!-- card-body .// -->
-		<div class="table-responsive">
-		<table class="table table-hover">
-			<tbody><tr>
-				<td width="65">
-					<img src="http://127.0.0.1:8000/media/images/5449000131805_3.JPG" width="50" height="50" class="img-xs border">
-				</td>
-				<td>
-					<p class="title mb-0">Product name goes here </p>
-					<var class="price text-muted">USD 145</var>
-				</td>
-				<td> Seller <br> Nike clothing </td>
-				<td width="250"> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
-			</tr>
-			<tr>
-				<td>
-					<img src="http://127.0.0.1:8000/media/images/5449000131805_3.JPG" width="50" height="50" class="img-xs border">
-				</td>
-				<td>
-					<p class="title mb-0">Another name goes here </p>
-					<var class="price text-muted">USD 15</var>
-				</td>
-				<td> Seller <br> ABC shop </td>
-				<td> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
-			</tr>
-			<tr>
-				<td>
-					<img src="http://127.0.0.1:8000/media/images/5449000131805_3.JPG" width="50" height="50" class="img-xs border">
-				</td>
-				<td>
-					<p class="title mb-0">The name of the product  goes here </p>
-					<var class="price text-muted">USD 145</var>
-				</td>
-				<td> Seller <br> Wallmart </td>
-				<td> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
-			</tr>
-		</tbody></table>
-		</div> <!-- table-responsive .end// -->
-		</article> <!-- order-group.// -->
+        <!-- Order Cards is Inserted here with JavaScript -->
 	</main>
 </div>
+
+
 
 <script>
 
@@ -262,13 +160,14 @@ function backendServer() {
   return backendServerURL
 }
 
-function Username() {
-  var username = sessionStorage.getItem('username')
-  return username
-}
-function Useremail() {
-  var useremail = sessionStorage.getItem('email')
-  return useremail
+function AccordianFunc(DivID) {
+  var x = document.getElementById(DivID.id);
+
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
 }
 
 function GetUserOrder() {
@@ -277,7 +176,6 @@ function GetUserOrder() {
     let token = sessionStorage.getItem('access').toString()
 
     let djangoServer_User = backendServerURL + "api_users/"
-
     let djangoServer_BasketItems = backendServerURL + "basket_items/"
 
     var obj = {
@@ -290,6 +188,14 @@ function GetUserOrder() {
         'Authorization': 'Bearer ' + token
       },}
 
+    fetch(djangoServer_User, obj)
+      .then(response => response.json()) // extract the json from the response you get from the server
+      .then(async (data) => {
+          let UserData = data;
+          detail = UserData[0]
+          USERNAME = detail.username;
+          USEREMAIL = detail.email;
+    })
 
 
     console.log("sending data to ",djangoServer)
@@ -300,15 +206,17 @@ function GetUserOrder() {
           let UserOrderData = data;
           console.log("log",UserOrderData)
           for (var i = 0; i < UserOrderData.length; i++) {
-              //console.log(UserOrderData[i]);
+              console.log(UserOrderData[i]);
 
               let orderarticle = document.createElement("article");
               orderarticle.className = "card orderarticle";
               let preorderarticle = document.getElementsByClassName("OrderData");
               preorderarticle[0].appendChild((orderarticle));
 
-              let cardheader = document.createElement("header");
-              cardheader.className = "card-header cardheader";
+              let cardheader = document.createElement("button");
+              cardheader.className = "card-header cardheader accordion";
+              var DivID = "AccordianFunc(ACC" + i+")";
+              cardheader.setAttribute('onclick',DivID)
               let precardheader = document.getElementsByClassName("orderarticle");
               precardheader[i].appendChild((cardheader));
 
@@ -325,9 +233,20 @@ function GetUserOrder() {
               headerOrderDate.appendChild(document.createTextNode("Order Date: " + dateFormatter.format(orderdate)));
               preheaderOrderID[i].appendChild((headerOrderDate));
 
+              let accordianBody = document.createElement("div");
+
+              if (i == 0) {
+                accordianBody.className = "accordianBody panel w3-show";
+                } else {
+                  accordianBody.className = "accordianBody panel w3-hide";
+                }
+              accordianBody.setAttribute('id', 'ACC'+i)
+              let preaccordianBody = document.getElementsByClassName("orderarticle");
+              preaccordianBody[i].appendChild((accordianBody));
+
               let cardBody = document.createElement("div");
               cardBody.className = "card-body cardBody";
-              let precardBody = document.getElementsByClassName("orderarticle");
+              let precardBody = document.getElementsByClassName("accordianBody");
               precardBody[i].appendChild((cardBody));
 
               let cardrow = document.createElement("div");
@@ -353,12 +272,12 @@ function GetUserOrder() {
               let predeliveryinfo = document.getElementsByClassName("deliveryrow");
               let deliveryUser = document.createElement("p");
               deliveryUser.className = "deliveryUser";
-              deliveryUser.appendChild(document.createTextNode("Username: " + Username()));
+              deliveryUser.appendChild(document.createTextNode("Username: " + USERNAME));
               predeliveryinfo[i].appendChild((deliveryUser));
 
               let deliveryEmail = document.createElement("p");
               deliveryEmail.className = "deliveryEmail";
-              deliveryEmail.appendChild(document.createTextNode("Email: " + Useremail()));
+              deliveryEmail.appendChild(document.createTextNode("Email: " + USEREMAIL));
               predeliveryinfo[i].appendChild((deliveryEmail));
 
               let paymenttitle = document.createElement("h6");
@@ -374,10 +293,11 @@ function GetUserOrder() {
               prepaymentinfo[i].appendChild((paymentinfo));
 
               let paymentTotal = document.createElement("p");
-              paymentTotal.className = "paymentTotal";
-              paymentTotal.appendChild(document.createTextNode("Total: €" + Useremail()));
+              paymentTotal.className = "paymentTotal grandpricetotal-"+UserOrderData[i].id;
+              paymentTotal.appendChild(document.createTextNode("Total Order: €"));
               prepaymentinfo[i].appendChild((paymentTotal));
 
+<<<<<<< HEAD
 
               let receipttable = document.createElement("div");
               receipttable.className = "table-responsive receipttable";
@@ -386,45 +306,111 @@ function GetUserOrder() {
 
               let receiptTable = document.createElement("table");
               receiptTable.className = "table-hover receiptTable";
+=======
+              let receipttable = document.createElement("div");
+              receipttable.className = "table-responsive receipttable";
+              let prereceipttable = document.getElementsByClassName("accordianBody");
+              prereceipttable[i].appendChild((receipttable));
+
+              let receiptTable = document.createElement("table");
+              receiptTable.className = "table table-hover receiptTable";
+>>>>>>> cf2b52dc6897c5d1c4e2bb760dd1155f2f9f5402
               let prereceiptTable = document.getElementsByClassName("receipttable");
               prereceiptTable[i].appendChild((receiptTable));
 
               let Tablebody = document.createElement("tbody");
+<<<<<<< HEAD
               Tablebody.className = "Tablebody";
               let preTablebody = document.getElementsByClassName("receiptTable");
               preTablebody[i].appendChild((Tablebody));
 
 
+=======
+              Tablebody.className = "Tablebody-"+ UserOrderData[i].id;
+              let preTablebody = document.getElementsByClassName("receiptTable");
+              preTablebody[i].appendChild((Tablebody));
+
+>>>>>>> cf2b52dc6897c5d1c4e2bb760dd1155f2f9f5402
               await fetch(djangoServer_BasketItems, obj)
                   .then(BasketItems_response => BasketItems_response.json()) // extract the json from the response you get from the server
                   .then(basketdata => {
                       let UserBasketItemData = basketdata;
+                      let grandtotal = 0
                       for (var j = 0; j < UserBasketItemData.length; j++) {
                            if (UserBasketItemData[j].basket_id_num == UserOrderData[i].basket_id_num) {
 
                               let Tablebodyitem = document.createElement("tr");
-                              Tablebodyitem.className = "Tablebodyitem";
-                              let preTablebodyitem = document.getElementsByClassName("Tablebody");
-                              preTablebodyitem[i].appendChild((Tablebodyitem));
+                              Tablebodyitem.className = "Tablebodyitem-"+UserBasketItemData[j].id;
+                              let preTablebodyitem = document.getElementsByClassName("Tablebody-"+ UserOrderData[i].id);
+                              preTablebodyitem[0].appendChild((Tablebodyitem));
 
-                              let preTableitem = document.getElementsByClassName("Tablebodyitem");
+                              let preTableitem = document.getElementsByClassName("Tablebodyitem-"+UserBasketItemData[j].id);
                               let Tableimage = document.createElement("td");
-                              Tableimage.className = "Tableimage";
+                              Tableimage.className = "Tableimage-"+UserBasketItemData[j].id;
                               Tableimage.setAttribute("width", "65");
-                              preTableitem[i].appendChild((Tableimage));
+                              preTableitem[0].appendChild((Tableimage));
 
                               let productimage = document.createElement('img');
-                              productimage.className = "img-xs border productimage";
+                              productimage.className = "img-xs border productimage-"+UserBasketItemData[j].id;
                               productimage.setAttribute("height","50");
                               productimage.setAttribute("width", "50");
                               productimage.setAttribute("src", backendServer() + "media/"+UserBasketItemData[j].product_image);
                               productimage.setAttribute("alt", "Product Image");
                               productimage.setAttribute("id", "productimage");
-                              let preproductimage = document.getElementsByClassName("Tableimage");
-                              preproductimage[i].appendChild((productimage));
+                              let preproductimage = document.getElementsByClassName("Tableimage-"+UserBasketItemData[j].id);
+                              preproductimage[0].appendChild((productimage));
+
+                              let TBprodinfo = document.createElement("td");
+                              TBprodinfo.className = "TBprodinfo-"+UserBasketItemData[j].id;
+                              preTableitem[0].appendChild((TBprodinfo));
+
+                              let preprodname = document.getElementsByClassName("TBprodinfo-"+UserBasketItemData[j].id);
+                              let prodname = document.createElement("p");
+                              prodname.className = "title mb-0 prodname-"+UserBasketItemData[j].id;
+                              prodname.appendChild(document.createTextNode(UserBasketItemData[j].product_name));
+                              preprodname[0].appendChild((prodname));
+
+                              let prodindvPrice = document.createElement("p");
+                              prodindvPrice.className = "price text-muted prodindvPrice-"+UserBasketItemData[j].id;
+                              prodindvPrice.appendChild(document.createTextNode("€"+UserBasketItemData[j].product_price.toFixed(2)));
+                              preprodname[0].appendChild((prodindvPrice));
+
+                              let TBprodqty = document.createElement("td");
+                              TBprodqty.className = "TBprodqty-"+UserBasketItemData[j].id;
+                              preTableitem[0].appendChild((TBprodqty));
+
+                              let preprodqty = document.getElementsByClassName("TBprodqty-"+UserBasketItemData[j].id);
+                              let prodtotalprice = document.createElement("p");
+                              prodtotalprice.className = "title mb-0 prodtotalprice-"+UserBasketItemData[j].id;
+                              prodtotalprice.id = "prodtotalprice-"+UserBasketItemData[j].id;
+                              prodtotalprice.appendChild(document.createTextNode("Total: €"+ (UserBasketItemData[j].product_price * UserBasketItemData[j].quantity).toFixed(2)));
+                              preprodqty[0].appendChild((prodtotalprice));
+
+                              let prodqty = document.createElement("p");
+                              prodqty.className = "price text-muted prodindvPrice-"+UserBasketItemData[j].id;
+                              prodqty.appendChild(document.createTextNode("Quantity: "+UserBasketItemData[j].quantity));
+                              preprodqty[0].appendChild((prodqty));
+
+                              let TBproddetails = document.createElement("td");
+                              TBproddetails.className = "TBproddetails-"+UserBasketItemData[j].id;
+                              preTableitem[0].appendChild((TBproddetails));
+
+                              let preproddetailsbtn = document.getElementsByClassName("TBproddetails-"+UserBasketItemData[j].id);
+                              let proddetailsbtn = document.createElement("a");
+                              proddetailsbtn.setAttribute("href", "/product/" +UserBasketItemData[j].product_id_num)
+                              //proddetailsbtn.className = "btn btn-light proddetailsbtn-"+UserBasketItemData[j].id;
+                              proddetailsbtn.className = "btn btn-outline-primary proddetailsbtn-"+UserBasketItemData[j].id;
+                              proddetailsbtn.appendChild(document.createTextNode("Details"));
+                              preproddetailsbtn[0].appendChild((proddetailsbtn));
+
+                              grandtotal = UserBasketItemData[j].product_price * UserBasketItemData[j].quantity + grandtotal
                            }
                       }
+                      let pricetotal = document.getElementsByClassName("grandpricetotal-"+UserOrderData[i].id);
+
+                      pricetotal[0].appendChild(document.createTextNode(grandtotal.toFixed(2)));
                   })
+
               }
           })
       }

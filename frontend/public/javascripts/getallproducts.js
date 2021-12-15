@@ -43,8 +43,8 @@ function addToCart1(id) {
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(data => {
         console.log(data);
-        alert("Added Product to Cart");
-      })
+        window.location.reload()
+      }).then(alert("Added Product to Cart"))
   }
 
 function GetAllProducts(searchterm) {
@@ -153,7 +153,7 @@ function GetAllProducts(searchterm) {
 
           let subpricespan = document.createElement("span");
           subpricespan.className = "price h5 productprice";
-          subpricespan.appendChild(document.createTextNode(data[i].price));
+          subpricespan.appendChild(document.createTextNode("€"+data[i].price));
           let prepricewrapdiv = document.getElementsByClassName("subwrapdiv");
           prepricewrapdiv[i].appendChild(subpricespan);
 

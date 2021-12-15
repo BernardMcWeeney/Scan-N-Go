@@ -95,7 +95,7 @@ function loadProduct(id) {
       document.getElementById("product-price").innerHTML = shaunsData.price;
       document.getElementById("product-description").innerHTML = shaunsData.description;
       document.getElementById("product-image").src = shaunsData.productImage;
-      document.getElementById("product-price").innerHTML = shaunsData.price;
+      document.getElementById("product-price").innerHTML = "€"+shaunsData.price;
       document.getElementById("product-tag").innerHTML = shaunsData.product_tag;
       document.getElementById("product-add-to-cart").onclick = function() { addToCart1(<%= output %>, document.getElementById("product-qty-selector").value); }
       if (shaunsData.product_quantity > 0) {
