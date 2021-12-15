@@ -378,27 +378,29 @@ function GetUserOrder() {
               paymentTotal.appendChild(document.createTextNode("Total: €" + Useremail()));
               prepaymentinfo[i].appendChild((paymentTotal));
 
+
+              let receipttable = document.createElement("div");
+              receipttable.className = "table-responsive receipttable";
+              let prereceipttable = document.getElementsByClassName("orderarticle");
+              prereceipttable[i].appendChild((receipttable));
+
+              let receiptTable = document.createElement("table");
+              receiptTable.className = "table-hover receiptTable";
+              let prereceiptTable = document.getElementsByClassName("receipttable");
+              prereceiptTable[i].appendChild((receiptTable));
+
+              let Tablebody = document.createElement("tbody");
+              Tablebody.className = "Tablebody";
+              let preTablebody = document.getElementsByClassName("receiptTable");
+              preTablebody[i].appendChild((Tablebody));
+
+
               await fetch(djangoServer_BasketItems, obj)
                   .then(BasketItems_response => BasketItems_response.json()) // extract the json from the response you get from the server
                   .then(basketdata => {
                       let UserBasketItemData = basketdata;
                       for (var j = 0; j < UserBasketItemData.length; j++) {
                            if (UserBasketItemData[j].basket_id_num == UserOrderData[i].basket_id_num) {
-
-                              let receipttable = document.createElement("div");
-                              receipttable.className = "table-responsive receipttable";
-                              let prereceipttable = document.getElementsByClassName("orderarticle");
-                              prereceipttable[i].appendChild((receipttable));
-
-                              let receiptTable = document.createElement("table");
-                              receiptTable.className = "table-hover receiptTable";
-                              let prereceiptTable = document.getElementsByClassName("receipttable");
-                              prereceiptTable[i].appendChild((receiptTable));
-
-                              let Tablebody = document.createElement("tbody");
-                              Tablebody.className = "Tablebody";
-                              let preTablebody = document.getElementsByClassName("receiptTable");
-                              preTablebody[i].appendChild((Tablebody));
 
                               let Tablebodyitem = document.createElement("tr");
                               Tablebodyitem.className = "Tablebodyitem";
