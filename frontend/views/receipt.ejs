@@ -190,7 +190,7 @@ function GetUserOrder() {
 
     fetch(djangoServer_User, obj)
       .then(response => response.json()) // extract the json from the response you get from the server
-      .then( (data) => {
+      .then(async (data) => {
           let UserData = data;
           detail = UserData[0]
           USERNAME = detail.username;
@@ -206,7 +206,7 @@ function GetUserOrder() {
           let UserOrderData = data;
           console.log("log",UserOrderData)
           for (var i = 0; i < UserOrderData.length; i++) {
-              //console.log(UserOrderData[i]);
+              console.log(UserOrderData[i]);
 
               let orderarticle = document.createElement("article");
               orderarticle.className = "card orderarticle";
