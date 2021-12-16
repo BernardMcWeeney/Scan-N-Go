@@ -63,6 +63,16 @@ class BasketItemViewSet(viewsets.ModelViewSet):
     serializer_class = BasketItemsSerializer
     permission_classes = [IsAuthenticated]
 
+    def get_queryset(self):
+        user = self.request.user  # get the current user
+        if user.is_superuser:
+            return BasketItems.objects.all()  # return all the baskets if a superuser requests
+        else:
+            print('user', user)
+            # For normal users, only return the current active basket
+            basketitems = BasketItems.objects.filter(user_id=user)
+            return basketitems
+
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
@@ -73,9 +83,10 @@ class OrderViewSet(viewsets.ModelViewSet):
         if user.is_superuser:
             return Order.objects.all()  # return all the baskets if a superuser requests
         else:
+            print('user', user)
             # For normal users, only return the current active basket
             orders = Order.objects.filter(user_id=user)
-            orders = Order.objects.order_by('-date_ordered')
+            orders = orders.order_by('-date_ordered')
             return orders
 
 class IrishBillingAddressViewSet(viewsets.ModelViewSet):
