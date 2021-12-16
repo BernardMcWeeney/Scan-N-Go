@@ -17,7 +17,13 @@ from datetime import timedelta
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = False
 CORS_ALLOW_HEADERS = ['*']
-CSRF_TRUSTED_ORIGINS = ['*']
+CSRF_TRUSTED_ORIGINS = [    "http://localhost:3000", # node on port 3000
+    "http://127.0.0.1:3000",
+    "http://0.0.0.0:3000",
+    "https://scanngo-frontend-app.azurewebsites.net",
+     "http://127.0.0.1:8000",
+    "http://0.0.0.0:8000",
+]
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
