@@ -1,5 +1,6 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
+
 <% if(didLogOut == 'true'){ %>
    <div class="alert alert-warning" role="alert" style="margin-bottom:0px;">
       You've just been logged out! Please log-in to continue using Scan-N-Go
@@ -11,6 +12,11 @@
       Oops! You can't access the basket page if your not logged in. Log-in to access the full functionality of Scan-N-Go
     </div>
 <% } %>
+<script>
+function MyFunction() {
+  document.getElementById('registrationContainer').style = ""
+}
+</script>
 <div id="logreg-forms">
 
 <form class="form-signin" id="login-form">
@@ -18,11 +24,69 @@
     <input type="text" name="username-input" id="inputEmail" class="form-control" placeholder="Your Username" required>
     <input type="password" id="inputPassword" name="password-input" class="form-control" placeholder="Your password" required>
     <button class="btn btn-success btn-block" type="submit">Login</button>
-    <!-- <hr> -->
-    <button style="display:none" class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up New Account</button>
-</form>
+    </form>
+    <a href="#" onclick="MyFunction();" class="link-light" style='text-align:center;padding-bottom:10px'>Register an account</a>
+    <div id='registrationContainer' style="display:none">
+    <hr>
+    <h3 style="text-align: center">
+      <small class="text-muted " >Register</small>
+    </h3>
+    <form class="form-signin" id="register-form">
+    <input style="margin-bottom:6px;" type="text" name="username-register" id="registerUser" class="form-control" placeholder="Username" required>
+    <input style="margin-bottom:6px; type="text" name="email-register" id="registerEmail" class="form-control" placeholder="Email Address" required>
+    <input type="password" id="registerPassword" name="password-register" class="form-control" placeholder="Password" required>
+    <button style="margin-top:15px;background-color:#630436" class="btn btn-primary btn-block" type="submit" id="btn-register"><i class="fas fa-user-plus"></i>Sign up New Account</button>
+    </div>
+    </form>
 </div>
 <script>
+
+
+function registerUser(username, email, password) {
+  let backendServerURL = backendServer()
+  let djangoServer = backendServerURL + "register/"
+  var obj123 = {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Origin': '',
+      'Host': 'api.producthunt.com',
+    },
+    body: JSON.stringify({
+        "username" : username,
+        "password" : password,
+        "email" : email
+    })
+  }
+  console.log("Sending:", obj123)
+  console.log("to", djangoServer)
+
+  fetch(djangoServer, obj123)
+            .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Something went wrong creating the account. Please check your credentials before submitting');
+        }
+      }) // extract the json from the response you get from the server
+      .then(data => {
+        console.log(data);
+        if(!alert("Successfully created you a User Account! Your details can be checked below (This is top secret, don't show this to anyone!)")){window.location.reload();}
+        document.getElementById("registerUser").value = ""
+        // get the value in the password box
+        document.getElementById("registerEmail").value = ""
+        document.getElementById("registerPassword").value = ""
+      })
+      .catch((error) => {
+        alert("Error in creating account - Please check the credentials you have used\n\n",error)
+      });
+
+}
+
+function MyFunction() {
+  document.getElementById('registrationContainer').style = ""
+}
 
 function backendServer() {
   url = window.location.href;
@@ -94,6 +158,34 @@ if (isLoggedIn() == true){
   };
   let myform = document.getElementById("login-form");// get the form
   myform.addEventListener('submit', formValidator); // bind the validator function to the submit button for the for
+
+function registerFormValidator(event) {
+      event.preventDefault(); // always prevent default events when using javascript
+      // get the value the in the username box
+      let username = document.getElementById("registerUser").value;
+      // get the value in the password box
+      let email = document.getElementById("registerEmail").value;
+      let password = document.getElementById("registerPassword").value;
+      console.log(1)
+      if (username == "") {
+          alert("Username cannot be null");
+      } else if (password == "") {
+          alert("Password cannot be null");
+      } else if (email == "") {
+          alert("Email cannot be null");
+      } else {
+          username = document.getElementById("registerUser").value;
+          // get the value in the password box
+          email = document.getElementById("registerEmail").value;
+          password = document.getElementById("registerPassword").value;
+          console.log(username, password, email)
+          registerUser(username, email, password)
+      }
+  };
+  let myform1 = document.getElementById("register-form");// get the form
+  myform1.addEventListener('submit', registerFormValidator); // bind the validator function to the submit button for the for
+
+
 </script>
 
 
