@@ -94,10 +94,12 @@ class AddBasketItemSerializer(serializers.ModelSerializer):
           quantity = int(request.data['quantity'])
         if request:
             current_user = request.user
+            print(Basket.objects.all())
             shopping_basket = Basket.objects.filter(user_id=current_user, is_active=True).first()
+            print(shopping_basket)
             # Check if the item is already in the basket
-            basket_items = BasketItems.objects.filter(product_id=product_id).first()
-            #print(456)
+            basket_items = BasketItems.objects.filter(product_id=product_id, basket_id_id=shopping_basket).first()
+            print(basket_items)
             if basket_items:
                 #print(basket_items.id)
                 #print(145)
