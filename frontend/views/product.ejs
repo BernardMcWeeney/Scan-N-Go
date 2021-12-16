@@ -132,6 +132,7 @@ function addToCart1(id, qty) {
         .then(response => response.json()) // extract the json from the response you get from the server
         .then(data => {
           console.log(data)
+          if(!alert("Product has been added to the basket!")){window.location.reload()};
         })
   } else {
     alert('Product quantity cannot be zero or be a number less than zero!')

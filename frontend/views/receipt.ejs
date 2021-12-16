@@ -297,16 +297,6 @@ function GetUserOrder() {
               paymentTotal.appendChild(document.createTextNode("Total Order: €"));
               prepaymentinfo[i].appendChild((paymentTotal));
 
-<<<<<<< HEAD
-
-              let receipttable = document.createElement("div");
-              receipttable.className = "table-responsive receipttable";
-              let prereceipttable = document.getElementsByClassName("orderarticle");
-              prereceipttable[i].appendChild((receipttable));
-
-              let receiptTable = document.createElement("table");
-              receiptTable.className = "table-hover receiptTable";
-=======
               let receipttable = document.createElement("div");
               receipttable.className = "table-responsive receipttable";
               let prereceipttable = document.getElementsByClassName("accordianBody");
@@ -314,23 +304,14 @@ function GetUserOrder() {
 
               let receiptTable = document.createElement("table");
               receiptTable.className = "table table-hover receiptTable";
->>>>>>> cf2b52dc6897c5d1c4e2bb760dd1155f2f9f5402
               let prereceiptTable = document.getElementsByClassName("receipttable");
               prereceiptTable[i].appendChild((receiptTable));
 
               let Tablebody = document.createElement("tbody");
-<<<<<<< HEAD
-              Tablebody.className = "Tablebody";
-              let preTablebody = document.getElementsByClassName("receiptTable");
-              preTablebody[i].appendChild((Tablebody));
-
-
-=======
               Tablebody.className = "Tablebody-"+ UserOrderData[i].id;
               let preTablebody = document.getElementsByClassName("receiptTable");
               preTablebody[i].appendChild((Tablebody));
 
->>>>>>> cf2b52dc6897c5d1c4e2bb760dd1155f2f9f5402
               await fetch(djangoServer_BasketItems, obj)
                   .then(BasketItems_response => BasketItems_response.json()) // extract the json from the response you get from the server
                   .then(basketdata => {
