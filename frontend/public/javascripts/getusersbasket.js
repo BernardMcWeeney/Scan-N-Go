@@ -212,7 +212,7 @@ function GetUserBasket() {
       }
 
       console.log(grandtotal);
-      document.getElementById("grandpricetotal").innerHTML = grandtotal.toFixed(2);
+      document.getElementById("grandpricetotal").innerHTML = "€" + grandtotal.toFixed(2);
       } );
 }
 GetUserBasket()

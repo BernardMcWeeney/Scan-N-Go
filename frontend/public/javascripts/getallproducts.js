@@ -60,7 +60,7 @@ function GetAllProducts(searchterm) {
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(data => {
       console.log(data)
-      for (var i = 0; i < data.length; i++) { // for every product in the array
+      for (var i = 0; i < data.length; i++) {
 
           let prodcol = document.createElement("div");
           prodcol.className = "card-product-list prodcol";
@@ -193,6 +193,7 @@ function GetAllProducts(searchterm) {
               preprodquantityoption[i].appendChild(prodquantityoption);
           }
 
+
           let addtocartlink = document.createElement("a");
           var ProdID = "addToCart1(" + data[i].id.toString() + ")"
           addtocartlink.setAttribute('onclick', ProdID )
@@ -205,6 +206,12 @@ function GetAllProducts(searchterm) {
           addtocarti.appendChild(document.createTextNode("Add to cart"));
           let preaddtocarti = document.getElementsByClassName("productbutton");
           preaddtocarti[i].appendChild(addtocarti);
+
+          if (data[i].product_quantity == 0){
+              document.getElementsByClassName("ml-auto form-inline subquantdiv")[i].style = "display:none"
+             document.getElementsByClassName(" btn btn-primary productbutton")[i].style = "display:none"
+
+          }
 
       }
       } );
