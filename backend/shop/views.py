@@ -12,36 +12,39 @@ class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
 
     def get_queryset(self):
-      queryset = Product.objects.all()
-      prod_id = self.request.query_params.get('product_id')
-      prod_name = self.request.query_params.get('product_name')
-      tags = self.request.query_params.get('tags')
-      min_price = self.request.query_params.get('min_price')
-      max_price = self.request.query_params.get('max_price')
+        '''
+        return all products, but filter by parameters given
+        '''
+        queryset = Product.objects.all()
+        prod_id = self.request.query_params.get('product_id')
+        prod_name = self.request.query_params.get('product_name')
+        tags = self.request.query_params.get('tags')
+        min_price = self.request.query_params.get('min_price')
+        max_price = self.request.query_params.get('max_price')
 
-      if prod_id is not None:
-        queryset = queryset.filter(id=prod_id)
+        if prod_id is not None:
+          queryset = queryset.filter(id=prod_id)
+          return queryset
+        elif tags is not None or min_price is not None or max_price is not None or prod_name is not None:
+          if min_price is None:
+            min_price = 0
+          else:
+            min_price = float(min_price)
+
+          if max_price is None:
+            max_price = 1000
+          else:
+            max_price = float(max_price)
+          queryset = queryset.filter(price__gte=min_price, price__lte=max_price)
+
+          if tags is not None:
+            tags = tags.split(',')
+            queryset = queryset.filter(product_tag__in=tags)
+
+          if prod_name is not None:
+            queryset = queryset.filter(name__contains=prod_name)
+
         return queryset
-      elif tags is not None or min_price is not None or max_price is not None or prod_name is not None:
-        if min_price is None:
-          min_price = 0
-        else:
-          min_price = float(min_price)
-
-        if max_price is None:
-          max_price = 1000
-        else:
-          max_price = float(max_price)
-        queryset = queryset.filter(price__gte=min_price, price__lte=max_price)
-
-        if tags is not None:
-          tags = tags.split(',')
-          queryset = queryset.filter(product_tag__in=tags)
-
-        if prod_name is not None:
-          queryset = queryset.filter(name__contains=prod_name)
-
-      return queryset
 
 class BasketViewSet(viewsets.ModelViewSet):
     serializer_class = BasketSerializer
@@ -66,10 +69,10 @@ class BasketItemViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user  # get the current user
         if user.is_superuser:
-            return BasketItems.objects.all()  # return all the baskets if a superuser requests
+            return BasketItems.objects.all()  # return all the basket items if a superuser requests
         else:
             print('user', user)
-            # For normal users, only return the current active basket
+            # For normal users, only return their basket items
             basketitems = BasketItems.objects.filter(user_id=user)
             return basketitems
 
@@ -81,13 +84,14 @@ class OrderViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user  # get the current user
         if user.is_superuser:
-            return Order.objects.all()  # return all the baskets if a superuser requests
+            return Order.objects.all()  # return all the orders if a superuser requests
         else:
             print('user', user)
-            # For normal users, only return the current active basket
+            # For normal users, only return the current users orders
             orders = Order.objects.filter(user_id=user)
             orders = orders.order_by('-date_ordered')
             return orders
+
 
 class IrishBillingAddressViewSet(viewsets.ModelViewSet):
     queryset = IrishBillingAddress.objects.all()
@@ -105,9 +109,9 @@ class APIUserViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user  # get the current user
         if user.is_superuser:
-            return APIUser.objects.all()  # return all the baskets if a superuser requests
+            return APIUser.objects.all()  # return all the users if a superuser requests
         else:
-            # For normal users, only return the current active basket
+            # For normal users, only return the current users info
             APIUser1 = APIUser.objects.filter(username=user)
             return APIUser1
 
@@ -134,14 +138,3 @@ class CheckoutAPIView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Order.objects.all()
 
-'''
-class SearchResultsView(generics.ListAPIView):
-    model = Product
-    template_name = 'frontend/views/allproducts.ejs'
-    context_object_name = 'products'
-
-    def get_queryset(self):
-        query = self.request.GET.get('title_contains')
-        products = Product.objects.filter(Q(name__icontains=query))
-        return products
-'''

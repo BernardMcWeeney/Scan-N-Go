@@ -57,23 +57,21 @@ class UserRegistrationSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['username', 'email', 'password', 'id']
         extra_kwargs = {'password': {'write_only': True}}
 
+    '''
+    Create a user, if an ID is specified, force that ID for the user (as long as its available)
+    '''
     def create(self, validated_data):
         email = validated_data['email']
         request = self.context.get('request', None).data
         username = validated_data['username']
         password = validated_data['password']
         if "id" in request:
-            #print('here1')
             forced_user_id = request['id']
-            #print(list(APIUser.objects.filter(id=int(forced_user_id))))
             if list(APIUser.objects.filter(id=int(forced_user_id))) == []:
-                # Extract the username, email and passwor from the serializer
-                #print('here2')
                 new_user = APIUser.objects.create_user(id=forced_user_id,username=username,email=email, password=password)  # Create a new APIUser
             else:
                 new_user = APIUser.objects.create_user(username=username, email=email, password=password)
         else:
-            #print('here3')
             new_user = APIUser.objects.create_user(username=username,email=email, password=password)
         new_user.save()  # Save the new user
         new_basket = Basket.objects.create(user_id=new_user)  # Create a shopping basket
@@ -85,7 +83,9 @@ class AddBasketItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = BasketItems
         fields = ['product_id']
-
+    '''
+    Add a basket item, if there is a quantity specified, use that quantity instead of 1
+    '''
     def create(self, validated_data):
         product_id = validated_data['product_id']
         request = self.context.get('request', None)
@@ -101,8 +101,6 @@ class AddBasketItemSerializer(serializers.ModelSerializer):
             basket_items = BasketItems.objects.filter(product_id=product_id, basket_id_id=shopping_basket).first()
             print(basket_items)
             if basket_items:
-                #print(basket_items.id)
-                #print(145)
                 basket_items.quantity = basket_items.quantity + quantity  # if it is already in the basket, add to the quantity
                 basket_items.save()
                 return basket_items
@@ -119,21 +117,21 @@ class RemoveBasketItemSerializer(serializers.ModelSerializer):
         model = BasketItems
         fields = ['product_id']
 
+    '''
+    Completely removes basket item
+    '''
     def create(self, validated_data):
         product_id = validated_data['product_id']
         request = self.context.get('request', None)
-        #print("request", request.data)
         quantity = 1
         if "quantity" in request.data:
           quantity = int(request.data['quantity'])
         if request:
             current_user = request.user
             shopping_basket = Basket.objects.filter(user_id=current_user, is_active=True).first()
-            # Check if the item is already in the basket
             basket_items = BasketItems.objects.filter(basket_id=shopping_basket, product_id=product_id).first()
 
             if basket_items:
-                #print(basket_items, "la")
                 if basket_items.quantity > quantity:
                     basket_items.quantity = basket_items.quantity - quantity  # if it is already in the basket, add to the quantity
                     basket_items.save()
