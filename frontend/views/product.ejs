@@ -46,7 +46,7 @@
                         </div>
                     </div>
 
-                    <div class="row add-to-cart">
+                    <div id="row-add-to-cart" class="row add-to-cart">
                         <div class="col-sm product-qty" style="margin-top:10px">
                             <input style="width:100%;border: 1px solid #DDDDDD;" id="product-qty-selector"
                                    class="btn btn-default btn-lg btn-qty" value="1"/>
@@ -105,6 +105,8 @@
           document.getElementById("product-stock").innerHTML = "In Stock"
         } else {
           document.getElementById("product-stock").innerHTML = "Out of Stock"
+          document.getElementById("product-stock").className = "monospaced text-danger"
+          document.getElementById("row-add-to-cart").style = "display:none"
         }
         document.getElementById("product-details-card").setAttribute("style", "")
       });
