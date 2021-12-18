@@ -1,4 +1,4 @@
-function backendServer() {
+function backendServer() { // get the backend server URL
   const domain = window.location.hostname.toString();
   console.log("Domain: ", domain)
   if (domain == "scanngo-frontend-app.azurewebsites.net") {
@@ -15,12 +15,7 @@ function backendServer() {
   return backendServerURL
 }
 
-
-
-
-
-
-
+// load the preview qty into the basket icon in the nav bar
 function loadBasketPreview() {
   let backendServerURL = backendServer()
   let djangoServer = backendServerURL + "baskets/"
@@ -32,7 +27,6 @@ function loadBasketPreview() {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Origin': '',
-      'Host': 'api.producthunt.com',
       'Authorization': 'Bearer ' + token
     },}
 
@@ -41,6 +35,6 @@ function loadBasketPreview() {
     .then(response => response.json()) // extract the json from the response you get from the server
     .then(data => {
       console.log("data for basket", data[0].items.length)
-      document.getElementById('lblCartCount').innerHTML = data[0].items.length
+      document.getElementById('lblCartCount').innerHTML = data[0].items.length // add the value to the icon
     })
 }

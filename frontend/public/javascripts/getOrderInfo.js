@@ -1,4 +1,4 @@
-function backendServer() {
+function backendServer() { // get backend URL
   const domain = window.location.hostname.toString();
   console.log("Domain: ", domain)
   if (domain == "scanngo-frontend-app.azurewebsites.net") {
@@ -26,7 +26,6 @@ function GetUserOrder() {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Origin': '',
-        'Host': 'api.producthunt.com',
         'Authorization': 'Bearer ' + token
       },}
 
@@ -38,7 +37,7 @@ function GetUserOrder() {
           let UserOrderData = data;
           console.log(UserOrderData)
           for (var i = 0; i < UserOrderData.length; i++) {
-              console.log(UserOrderData[i])
+              console.log(UserOrderData[i]) // log each order to the console
           }
       })
 

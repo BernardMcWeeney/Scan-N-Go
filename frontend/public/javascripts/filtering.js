@@ -1,3 +1,4 @@
+// get all products with the filter parameters given (tags, prices, searchterm)
 function GetAllProductsFilter(tags, prices, searchterm)  {
     let queryString = "?product_name="
     queryString = queryString + searchterm + "&"
@@ -166,6 +167,7 @@ function GetAllProductsFilter(tags, prices, searchterm)  {
       } );
 }
 
+// scan the filters pane for selected values and call the GetAllProductsFilter function with these filters
 function filter() {
   var searchTerm = document.getElementById('product-search-text-box').value
   var labels = document.getElementsByClassName('tag-checkbox')

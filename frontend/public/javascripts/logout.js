@@ -1,5 +1,5 @@
 async function logout() {
-  window.sessionStorage.clear()
+  window.sessionStorage.clear() // logs out user
 }
 
 async function goHome() {

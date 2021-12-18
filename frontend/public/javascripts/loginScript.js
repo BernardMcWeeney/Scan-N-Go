@@ -1,4 +1,4 @@
-function backendServer() {
+function backendServer() { // get backend server URL
   const domain = window.location.hostname.toString();
   console.log("Domain: ", domain)
   if (domain == "scanngo-frontend-app.azurewebsites.net") {
@@ -36,6 +36,7 @@ $(()=>{
     $('#logreg-forms #cancel_signup').click(toggleSignUp);
 })
 
+// if user is not logged in, send them to the login page
 function checkLogin(){
   console.log(sessionStorage)
   if (sessionStorage.getItem('access') != null) {
