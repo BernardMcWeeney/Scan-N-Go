@@ -1,195 +1,180 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
 
+<!-- Basket Page Style -->
 <style>
 
-body {
-    padding-bottom:100px
-}
-.card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 0.37rem;
-}
+    body {
+        padding-bottom: 100px
+    }
 
-.card:hover {
-    box-shadow: 0 10pcd x 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06)
-}
-.tag {
-    display: inline-block;
-    padding: 3px 7px;
-    background: #f2f2f2;
-    border: 1px solid #eee;
-    border-radius: 3px;
-    margin-top: 4px;
-    margin-right: 2px;
-    font-size: 85%;
-}
-.card-product-grid .bottom-wrap {
-    padding: 18px;
-    border-top: 1px solid #e4e4e4;
-}
-.card-product-grid .info-wrap {
-    overflow: hidden;
-    padding: 18px 20px;
-}
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 0.37rem;
+    }
 
-.btn-primary {
-  background-color: #630436;
-  color:#FFF;
-  border-color: #630436;
-}
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-default {
-  background-color: #fff;
-  color:#630436;
-  border-color: #630436;
- }
-a:not([href]):not([tabindex]) {
-    color:#fff;
-}
-.btn-outline-primary {
-    background-color: #630436;
-    color:#FFF;
-    border-color: #630436;
-}
-.btn-outline-primary:hover, .btn-outline-primary.active {
-    color:#630436;
-    border-color: #630436;
-    background-color: transparent;
-    background-image: none;
-}
-.btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
-    color:#630436;
-    border-color: #630436;
-    background-color: transparent;
-    background-image: none;
-}
-.searchproduct {
-    margin-left: 10px;
-}
+    .tag {
+        display: inline-block;
+        padding: 3px 7px;
+        background: #f2f2f2;
+        border: 1px solid #eee;
+        border-radius: 3px;
+        margin-top: 4px;
+        margin-right: 2px;
+        font-size: 85%;
+    }
 
-.filtersidebar {
-    margin-bottom: 50px;
-}
-#overlay {
-  position: fixed; /* Sit on top of the page content */
-  display: none; /* Hidden by default */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
-}
-#text{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  font-size: 50px;
-  color: white;
-  transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-}
-#applepayoverlay {
-  position: fixed; /* Sit on top of the page content */
-  display: none; /* Hidden by default */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
-}
-#googlepayoverlay {
-  position: fixed; /* Sit on top of the page content */
-  display: none; /* Hidden by default */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
-}
+    .card-product-grid .bottom-wrap {
+        padding: 18px;
+        border-top: 1px solid #e4e4e4;
+    }
 
-.creditcarddiv {
-    position: fixed;
-    bottom: 40px;
-    width: 100%;
-}
-.paymentdiv {
-    position: fixed;
-    bottom: 40px;
-    width: 100%;
-}
+    .card-product-grid .info-wrap {
+        overflow: hidden;
+        padding: 18px 20px;
+    }
+
+    .btn-primary {
+        background-color: #630436;
+        color: #FFF;
+        border-color: #630436;
+    }
+
+    .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-default {
+        background-color: #fff;
+        color: #630436;
+        border-color: #630436;
+    }
+
+    a:not([href]):not([tabindex]) {
+        color: #fff;
+    }
+
+    #overlay {
+        position: fixed;
+        display: none;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    #applepayoverlay {
+        position: fixed;
+        display: none;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    #googlepayoverlay {
+        position: fixed;
+        display: none;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    .creditcarddiv {
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+    }
+
+    .paymentdiv {
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+    }
 
 
 </style>
-
+<!-- Basket Page Welcome Message - Variable response if user basket is empty or not -->
 <h3 id="user-welcome-message" class="display-4 text-center">Welcome to your Basket!</h3>
-<p id="user-welcome-message-small" class="lead text-center">Hmmmm... It seems like you haven't got any products in your basket. Head over to our <a href="/allproducts">All Products</a> page to add some stuff to your basket</p>
+<p id="user-welcome-message-small" class="lead text-center">Hmmmm... It seems like you haven't got any products in your
+    basket. Head over to our <a href="/allproducts">All Products</a> page to add some stuff to your basket</p>
 <div class="container" id="basket-items-payment-container" style="display:none;">
-   <a href='allproducts'><button type="button" class="btn btn-outline-info" style="width: 100%;margin-bottom: 15px;">Return to All Products Page</button></a>
+    <a href='allproducts'>
+        <button type="button" class="btn btn-outline-info" style="width: 100%;margin-bottom: 15px;">Return to All
+            Products Page
+        </button>
+    </a>
+
     <div class="row">
-            <main class="col-md-9 productdata">
-                 <!-- Product Card is Inserted here with JavaScript -->
-            </main>
-            <aside class="col-md-3">
-                <div class="card">
+        <main class="col-md-9 productdata">
+            <!-- Product Card is Inserted here with JavaScript - using the GetUserBasket() function in the getuserbasket.js -->
+        </main>
+
+        <!-- Payment Sidebar -- features order grand total which gets inserted from the getuserbasket function & displays mutliple payment option buttons  -->
+        <aside class="col-md-3">
+            <div class="card">
                 <div class="card-body center">
                     <dl class="dlist-align">
-                      <dt>Grand Total:</dt>
-                      <dd class="text-right text-dark grandtotal"><strong id="grandpricetotal"></strong></dd>
+                        <dt>Grand Total:</dt>
+                        <dd class="text-right text-dark grandtotal"><strong id="grandpricetotal"></strong></dd>
                     </dl>
                     <hr>
-                    <p class="text-center mb-3">
-						<img src="images/payments.png" height="26">
-					</p>
-					<hr>
-					<input type="image" src="images/applepay button.png" onclick="on('applepayoverlay')" style="width:100%" />
-					   <p id="applepay-display" style="display:none"><a class='text-primary' onclick="">Apple Pay To Checkout</a></p>
+                    <p class="text-center mb-3"><img src="images/payments.png" height="26"></p>
+                    <hr>
+                    <input type="image" src="images/applepay button.png" onclick="PopupTurnOn('applepayoverlay')"style="width:100%"/>
 
-					<br>
-					<input type="image" src="images/Buy-with-Google-Pay.png" onclick="on('googlepayoverlay')" style="width:100%"/>
-					    <p id="googlepay-display" style="display:none"><a class='text-primary' onclick="">Google Pay To Checkout</a></p>
-					<br>
-                    <button class="btn btn-primary btn-block creditcardbtn"onclick="on('overlay')"> Debit / Credit Card </button>
+                    <br>
+                    <input type="image" src="images/Buy-with-Google-Pay.png" onclick="PopupTurnOn('googlepayoverlay')"style="width:100%"/>
 
-
+                    <br>
+                    <button class="btn btn-primary btn-block creditcardbtn" onclick="PopupTurnOn('overlay')"> Debit / Credit Card</button>
+                    <hr>
                     <p class="small my-3 text-muted">Please choose a payment option above</p>
 
                 </div>
-                </div>
-            </aside>
+            </div>
+        </aside>
         </main>
     </div>
 </div>
 
+<!--
+Pop up for Apple Payment option
+Includes a Apple Pay animation from lottiefiles.com
+"Buy with google pay" button initiates the checkout function to checkout the order of the users basket.
+ -->
 <div id="applepayoverlay">
     <div class="card applepaydiv paymentdiv">
         <header class="card-header">
-                <button class="float-right btn btn-danger" height="24" onclick="off('applepayoverlay')">X</button>
-                <h4 class="card-title mb-4">Apple Pay</h4>
-		</header>
-        <div class="card-body">
+            <button class="float-right btn btn-danger" height="24" onclick="PopupTurnOff('applepayoverlay')">X</button>
+            <h4 class="card-title mb-4">Apple Pay</h4>
+        </header>
+        <div class="col-md-4 card-body "style="margin: auto;">
             <form role="form">
                 <div class="form-group center">
                     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                    <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_oc7vjc4z.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+                    <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_oc7vjc4z.json"
+                                   background="transparent" speed="1" style="width: 300px; height: 300px;" loop
+                                   autoplay></lottie-player>
                 </div>
 
                 <input id="applebtn" type="image" src="images/applepay button.png" style="width:100%">
@@ -198,17 +183,24 @@ a:not([href]):not([tabindex]) {
     </div>
 </div>
 
+<!--
+Pop up for Google Payment option
+Includes a google pay animation from lottiefiles.com
+"Buy with google pay" button initiates the checkout function to checkout the order of the users basket.
+ -->
 <div id="googlepayoverlay">
     <div class="card googlepayddiv paymentdiv">
         <header class="card-header">
-                <button class="float-right btn btn-danger" height="24" onclick="off('googlepayoverlay')">X</button>
-                <h4 class="card-title mb-4">Google Pay</h4>
-		</header>
-        <div class="card-body">
+            <button class="float-right btn btn-danger" height="24" onclick="PopupTurnOff('googlepayoverlay')">X</button>
+            <h4 class="card-title mb-4">Google Pay</h4>
+        </header>
+        <div class="col-md-4 card-body"style="margin: auto;">
             <form role="form">
                 <div class="form-group center">
                     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                    <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_iev4cmrb.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+                    <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_iev4cmrb.json"
+                                   background="transparent" speed="1" style="width: 300px; height: 300px;" loop
+                                   autoplay></lottie-player>
                 </div>
 
                 <input id="googlebtn" type="image" src="images/Buy-with-Google-Pay.png" style="width:100%">
@@ -217,12 +209,17 @@ a:not([href]):not([tabindex]) {
     </div>
 </div>
 
+<!--
+Pop up for Debit/Credit Card Payment option
+Includes a html form featuring several text inputs and dropdown options
+"Confirm" button initiates the checkout function to checkout the order of the users basket.
+ -->
 <div id="overlay">
     <div class="card creditcarddiv">
         <header class="card-header">
-                <button class="float-right btn btn-danger" height="24" onclick="off('overlay')">X</button>
-                <h4 class="card-title mb-4">Payment info</h4>
-		</header>
+            <button class="float-right btn btn-danger" height="24" onclick="PopupTurnOff('overlay')">X</button>
+            <h4 class="card-title mb-4">Payment info</h4>
+        </header>
         <div class="card-body">
             <form role="form">
                 <div class="form-group">
@@ -279,12 +276,15 @@ a:not([href]):not([tabindex]) {
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
+                            <label data-toggle="tooltip" title=""
+                                   data-original-title="3 digits code on back side of the card">CVV <i
+                                        class="fa fa-question-circle"></i></label>
                             <input class="form-control" required="" type="text">
                         </div>
                     </div>
                 </div>
-                <button id="checkoutbtnconfirm"class="subscribe btn btn-primary btn-block" type="button"> Confirm  </button>
+                <button id="checkoutbtnconfirm" class="subscribe btn btn-primary btn-block" type="button"> Confirm
+                </button>
             </form>
         </div>
     </div>
@@ -292,85 +292,78 @@ a:not([href]):not([tabindex]) {
 
 
 <script>
-function backendServer() {
-  const domain = window.location.hostname.toString();
-  console.log("Domain: ", domain)
-  if (domain == "scanngo-frontend-app.azurewebsites.net") {
-    var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
-  }
-  else if ( (domain == "127.0.0.1") || (domain == "localhost") || (domain == "0.0.0.0") ) {
-    var backendServerURL = "http://127.0.0.1:8000/";
-    }
-  else {
-    alert("ERROR: Cannot determine Backend Server (Django) URL");
-    }
+    function backendServer() {
+        const domain = window.location.hostname.toString();
+        console.log("Domain: ", domain)
+        if (domain == "scanngo-frontend-app.azurewebsites.net") {
+            var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
+        } else if ((domain == "127.0.0.1") || (domain == "localhost") || (domain == "0.0.0.0")) {
+            var backendServerURL = "http://127.0.0.1:8000/";
+        } else {
+            alert("ERROR: Cannot determine Backend Server (Django) URL");
+        }
 
-  console.log('Backend Server URL', backendServerURL)
-  return backendServerURL
-}
-
-function toggleText(divid){
-  var x = document.getElementById(divid);
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-
-function on(opt) {
-  document.getElementById(opt).style.display = "block";
-}
-
-function off(opt) {
-  document.getElementById(opt).style.display = "none";
-}
-
-
-
-function checkoutcart(id) {
-  let backendServerURL = backendServer()
-  let djangoServer = backendServerURL + "checkout/"
-  let token = sessionStorage.getItem('access').toString()
-
-  var obj = {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Origin': '',
-      'Host': 'api.producthunt.com',
-      'Authorization': 'Bearer ' + token
-    },
-    body: JSON.stringify({
-        'basket_id' : id
-      })
+        console.log('Backend Server URL', backendServerURL)
+        return backendServerURL
     }
 
-  console.log("sending data to ",djangoServer)
-  fetch(djangoServer, obj)
-    .then(response => response.json()) // extract the json from the response you get from the server
-    .then(data => {
-      console.log(data)
-      window.location.href = "receipt/";
-    }).then(alert("Checked Out"))
-}
+    <!-- Popup control for turning on the popup by getting a particular element id -->
+    function PopupTurnOn(opt) {
+        document.getElementById(opt).style.display = "block";
+    }
 
-function checkLogin(){
-  console.log(sessionStorage)
-  if (sessionStorage.getItem('access') != null) {
-    var isLoggedIn= true;
-  } else {
-    var isLoggedIn = false;
-  }
-  if (isLoggedIn == false){
-    //console.log("test")
-    location.href = '/login/basketError';
-   // console.log("User is not Logged In")
-}
-}
+    <!-- Popup control for turning off the popup by getting a particular element id -->
+    function PopupTurnOff(opt) {
+        document.getElementById(opt).style.display = "none";
+    }
+    <!-- Function called when user confirms they want to checkout their order
+     sends a POST request to the checkout/ api with the basket_id
+     once this process is completed, an alert is shown to confirm successuful checkout
+     When the alert is accepted the user is redirected to the receipt page
+     -->
+    function CheckOutCart(id) {
+        let backendServerURL = backendServer()
+        let djangoServer = backendServerURL + "checkout/"
+        let token = sessionStorage.getItem('access').toString()
 
-checkLogin()
+        var CheckoutCartObj = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Origin': '',
+                'Host': 'api.producthunt.com',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify({
+                'basket_id': id
+            })
+        }
+
+        console.log("sending data to ", djangoServer)
+        fetch(djangoServer, CheckoutCartObj)
+            .then(response => response.json()) // extract the json from the response you get from the server
+            .then(data => {
+                console.log(data)
+                window.location.href = "receipt/";
+            }).then(alert("Checked Out"))
+    }
+
+    function checkLogin() {
+        console.log(sessionStorage)
+        if (sessionStorage.getItem('access') != null) {
+            var isLoggedIn = true;
+        } else {
+            var isLoggedIn = false;
+        }
+        if (isLoggedIn == false) {
+            location.href = '/login/basketError';
+        }
+    }
+
+    checkLogin()
+
 </script>
+
 <script src="javascripts/getusersbasket.js"></script>
 <%- include('partials/footer.ejs') %>
