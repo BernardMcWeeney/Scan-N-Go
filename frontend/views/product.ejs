@@ -99,7 +99,13 @@
         document.getElementById("product-price").innerHTML = "€" + shaunsData.price;
         document.getElementById("product-tag").innerHTML = shaunsData.product_tag;
         document.getElementById("product-add-to-cart").onclick = function () {
-          addToCart1(<%= output %>, document.getElementById("product-qty-selector").value);
+          if (parseInt(document.getElementById("product-qty-selector").value) > shaunsData.product_quantity) {
+            alert("Sorry! We only have " + shaunsData.product_quantity + " " + shaunsData.name + " in stock\nPlease choose a smaller quantity to add to your basket")
+            document.getElementById("product-qty-selector").value = shaunsData.product_quantity
+          } else {
+                addToCart1(<%= output %>, document.getElementById("product-qty-selector").value);
+          }
+
         }
         if (shaunsData.product_quantity > 0) {
           document.getElementById("product-stock").innerHTML = "In Stock"
