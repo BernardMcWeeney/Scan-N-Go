@@ -1,3 +1,0 @@
-mkcert
-mkcert -install
-mkcert localhost
