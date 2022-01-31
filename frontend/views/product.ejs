@@ -1,0 +1,162 @@
+<%- include('partials/head.ejs') %>
+<%- include('partials/header.ejs') %>
+<div class="card" id="product-details-card" style="display:none">
+    <!-- Template for product card -->
+    <div class="card-body">
+        <div class="container" id="product-section">
+            <div class="row">
+                <div class="col-md-6">
+                    <img id="product-image" width="350" src="http://127.0.0.1:8000/media/images/hammer.jpg"
+                         class="image-responsive"
+                         style="margin: auto !important;display: block;max-width: 100%;max-height: 90%;"/>
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 id="product-title">Hammer</h1>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="badge badge-info" id="product-tag"></span>
+                            <span class="monospaced">Product ID: <%= output %></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="description" id="product-description">
+                                Classic film camera. Uses 620 roll film.
+                                Has a 2&frac14; x 3&frac14; inch image size.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 bottom-rule">
+                            <h2 class="product-price" id="product-price">$129.00</h2>
+                        </div>
+                    </div><!-- end row -->
+
+                    <div class="row">
+                        <div class="col-md-4 text-left text-success" style="margin-bottom:10px;">
+                            <span class="monospaced" id="product-stock">Stock</span>
+                        </div>
+                    </div>
+
+                    <div id="row-add-to-cart" class="row add-to-cart">
+                        <div class="col-sm product-qty" style="margin-top:10px">
+                            <input style="width:100%;border: 1px solid #DDDDDD;" id="product-qty-selector"
+                                   class="btn btn-default btn-lg btn-qty" value="1"/>
+                        </div>
+                        <div class="col-sm" style="margin-top:10px">
+                            <button id="product-add-to-cart" class="btn btn-lg btn-brand btn-full-width text-white"
+                                    style="width:100%;background-color:#630436">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div>
+</div>
+<script>
+
+  function backendServer() { // get the backend server URL
+    const domain = window.location.hostname.toString();
+    console.log("Domain: ", domain)
+    if (domain == "scanngo-frontend-app.azurewebsites.net") {
+      var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
+    } else if ((domain == "127.0.0.1") || (domain == "localhost") || (domain == "0.0.0.0")) {
+      var backendServerURL = "http://127.0.0.1:8000/";
+    } else {
+      alert("ERROR: Cannot determine Backend Server (Django) URL");
+    }
+
+    console.log('Backend Server URL', backendServerURL)
+    return backendServerURL
+  }
+
+  function loadProduct(id) {
+    let backendServerURL = backendServer()
+    let djangoServer = backendServerURL + "products?product_id=" + id // create query in URL
+    console.log("sending data to ", djangoServer)
+    fetch(djangoServer)
+      .then(response => response.json()) // extract the json from the response you get from the server
+      .then(data => {
+        console.log(data)
+        let productData = data[0]
+        document.getElementById("product-title").innerHTML = productData.name;
+        document.getElementById("product-price").innerHTML = productData.price;
+        document.getElementById("product-description").innerHTML = productData.description;
+        document.getElementById("product-image").src = productData.productImage;
+        document.getElementById("product-price").innerHTML = "€" + productData.price;
+        document.getElementById("product-tag").innerHTML = productData.product_tag;
+        document.getElementById("product-add-to-cart").onclick = function () {
+          // if the value in qty selector is greater than the stock level then alert the user
+          if (parseInt(document.getElementById("product-qty-selector").value) > productData.product_quantity) {
+            alert("Sorry! We only have " + productData.product_quantity + " " + productData.name + " in stock\nPlease choose a smaller quantity to add to your basket")
+            document.getElementById("product-qty-selector").value = productData.product_quantity
+          } else {
+                addToCart1(<%= output %>, document.getElementById("product-qty-selector").value);
+          }
+
+        }
+        // if the item is out of stock then mark it as out of stock and disable the add to cart functionality
+        if (productData.product_quantity > 0) {
+          document.getElementById("product-stock").innerHTML = "In Stock"
+        } else {
+          document.getElementById("product-stock").innerHTML = "Out of Stock"
+          document.getElementById("product-stock").className = "monospaced text-danger"
+          document.getElementById("row-add-to-cart").style = "display:none"
+        }
+        document.getElementById("product-details-card").setAttribute("style", "")
+      });
+  }
+
+  function addToCartWithQty(id, qty) {
+    // if the qty is less than 0 or equals 0 then show the user an alert
+    if (parseInt(qty) > 0) {
+      let backendServerURL = backendServer()
+      let djangoServer = backendServerURL + "add/"
+      let token = sessionStorage.getItem('access').toString()
+      console.log("Access Token from sessionStorage: ", token)
+      var requestObject = {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Origin': '',
+          'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({
+          'product_id': id.toString(),
+          'quantity': qty
+        })
+      }
+
+      fetch(djangoServer, requestObject)
+        .then(response => response.json()) // extract the json from the response you get from the server
+        .then(data => {
+          console.log(data)
+          if (!alert("Product has been added to the basket!")) {
+            window.location.reload()
+          }
+          ;
+        })
+    } else {
+      alert('Product quantity cannot be zero or be a number less than zero!')
+      document.getElementById("product-qty-selector").value = 1
+    }
+  }
+
+  loadProduct(<%= output %>) // load product ID from ejs template rendering
+</script>
+<%- include('partials/footer.ejs') %>

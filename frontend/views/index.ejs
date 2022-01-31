@@ -1,0 +1,66 @@
+<%- include('partials/head.ejs') %>
+<%- include('partials/header.ejs') %>
+<style>
+#scan-n-go-content-container {
+padding-top:0 !important;
+}
+</style>
+<div class="container">
+<div class="bg">
+<div style='padding:5px;position: relative;top: 50%;transform: translateY(-50%);'>
+<h1 class="text-white display-4 text-center" style='font-weight:bold'>Scan N Go</h1>
+<h4 id="welcome-message" class="text-white display-4 text-center">Scan N Go</h4>
+<p class="lead text-white text-center">Welcome to Scan-N-Go. Add products to your basket to get started!</p></div>
+</div>
+
+<!-- create the three cards at the bottom of the page -->
+  <div class="row" style="margin-top:15px">
+    <div class="col-sm">
+     <div class="card mb-3">
+        <img class="card-img-top" src="https://images.unsplash.com/photo-1608686207856-001b95cf60ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">All Products</h5>
+          <p class="card-text">Check out our all products page to add products to your basket</p>
+          <a href="allproducts" class="btn btn-primary" style='background-color:#630436;width:100%'>Go To All Products</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm">
+      <div class="card mb-3">
+        <img class="card-img-top" src="https://images.unsplash.com/photo-1525328437458-0c4d4db7cab4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Your Basket</h5>
+          <p class="card-text">Head over to the basket page to view the products in your basket and checkout</p>
+          <a href="basket" class="btn btn-primary" style='background-color:#630436;width:100%'>Go To Basket Page</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm">
+      <div class="card mb-3">
+        <img class="card-img-top" src="https://images.unsplash.com/photo-1619946755819-d34a04637cdd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Card image cap">
+        <div class="card-body" style="position: relative;" >
+          <h5 class="card-title">Logout</h5>
+          <p class="card-text">Finished up? Click here to logout, we'll miss you!</p>
+          <a  href="#" class="btn btn-primary" style='background-color:#630436;width:100%' onclick="displayLogoutMsg()">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+// create personalised message on homescreen banner
+function createWelcome() {
+  var username = sessionStorage.getItem('username')
+  document.getElementById("welcome-message").innerHTML = "Welcome, " + username + "!"
+}
+
+// check if user is logged in and create the welcome message on the banner
+window.onload = function() {
+  checkLogin();
+  createWelcome();
+};
+
+</script>
+<%- include('partials/footer.ejs') %>
