@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3db31b5-3baa-4626-b246-4fac17954eba" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7fac747e-1d32-459d-a5a7-c1097e7556ed.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7fac747e-1d32-459d-a5a7-c1097e7556ed.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/routes/store-scanner.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/views/store-scanner.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/shop/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/shop/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/shop/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/shop/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/backend/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/index.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/login.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,10 +33,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/routes" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/routes" />
+      <recent name="$PROJECT_DIR$/frontend/views" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="2022-ca4094-template" type="Python.DjangoServer" factoryName="Django server">
@@ -72,11 +78,22 @@
       <option name="presentableId" value="Default" />
       <updated>1638188238953</updated>
       <workItem from="1638188247172" duration="13872000" />
-      <workItem from="1645207791396" duration="942000" />
+      <workItem from="1645207791396" duration="3585000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

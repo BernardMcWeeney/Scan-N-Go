@@ -14,6 +14,7 @@ var productRouter = require('./routes/product');
 var allproductsRouter = require('./routes/allproducts');
 var basketRouter = require('./routes/basket');
 var receiptRouter = require('./routes/receipt');
+var storeScannerRouter = require('./routes/store-scanner');
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use('/basket', basketRouter);
 app.use('/', productRouter);
 app.use('/allproducts', allproductsRouter);
 app.use('/receipt', receiptRouter);
+app.use('/store-scanner', storeScannerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

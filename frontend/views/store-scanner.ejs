@@ -5,7 +5,7 @@
 padding-top:0 !important;
 }
 </style>
-<h1 class='text-center'>Scan a Product</h1>
+<h1 class='text-center'>Store Scan-In</h1>
 <div id="scandit-barcode-picker" style="max-width: 1280px; max-height: 80%;"></div>
 
 
@@ -23,8 +23,8 @@ ScanditSDK.configure("AQwRTCedBl9MFixspSOOt7UdpWJKRNo1XHpK565iHqMMVHMysVEPMC1LEz
   .then((barcodePicker) => {
     // barcodePicker is ready here, show a message every time a barcode is scanned
     barcodePicker.on("scan", (scanResult) => {
-      alert("Your barcode is " + scanResult.barcodes[0].data);
-      location.href = '/product/8/';
+      alert("Your Store Barcode is " + scanResult.barcodes[0].data);
+      location.href = '/';
     });
   });
 
@@ -36,11 +36,10 @@ function createWelcome() {
 }
 
 // check if user is logged in and create the welcome message on the banner
-window.onload = function() {
-  checkLogin();
-  createWelcome();
-
-};
+//window.onload = function() {
+  //checkLogin();
+  //createWelcome();
+//};
 
 </script>
 <%- include('partials/footer.ejs') %>
