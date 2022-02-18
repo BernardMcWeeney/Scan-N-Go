@@ -3,8 +3,13 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth.models import AbstractUser
 
+class Store(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=200, null=False)
+
 class APIUser(AbstractUser):
-    pass
+    last_store = models.ForeignKey(Store, on_delete=models.CASCADE)
+    store_login = models.DateTimeField()
 
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
@@ -13,6 +18,7 @@ class Product(models.Model):
     description = models.CharField(max_length=5000, null=True)
     productImage = models.FileField(upload_to='images/')
     product_quantity = models.PositiveIntegerField(default=0)
+    store = models.ForeignKey(Store, on_delete=models.CASCADE)
 
     productTags = [
         ("Confectionary", 'Confectionary'),
@@ -35,6 +41,7 @@ class Basket(models.Model):
     user_id = models.ForeignKey(APIUser, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
     dateCreated = models.DateTimeField(auto_now_add=True)
+    models.ForeignKey(Store, on_delete=models.CASCADE)
 
 class BasketItems(models.Model):
     id = models.AutoField(primary_key=True)
@@ -74,6 +81,7 @@ class Order(models.Model):
     basket_id = models.ForeignKey(Basket, on_delete=models.CASCADE)
     user_id = models.ForeignKey(APIUser, on_delete=models.CASCADE)
     total_price = models.DecimalField(max_digits=6, decimal_places=2, default=0.0)
+    models.ForeignKey(Store, on_delete=models.CASCADE)
     statuses = [
         ('Prepared', 'Prepared'),
         ('Order', 'Order'),
