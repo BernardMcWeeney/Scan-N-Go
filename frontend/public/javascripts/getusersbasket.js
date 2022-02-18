@@ -1,6 +1,6 @@
-function backendServer() {
+function backendServer() { // get backend server URL
   const domain = window.location.hostname.toString();
-  console.log("Domain: ", domain)
+  //console.log("Domain: ", domain)
   if (domain == "scanngo-frontend-app.azurewebsites.net") {
     var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
   }
@@ -11,11 +11,11 @@ function backendServer() {
     alert("ERROR: Cannot determine Backend Server (Django) URL");
     }
 
-  console.log('Backend Server URL', backendServerURL)
+  //console.log('Backend Server URL', backendServerURL)
   return backendServerURL
 }
 
-function UserWelcome() {
+function UserWelcome() { // create personalised user welcome and add it to the user basket header
   var username = sessionStorage.getItem('username')
   document.getElementById("user-welcome-message").innerHTML = "Welcome to your Basket, " + username + "!"
 }
@@ -23,18 +23,18 @@ window.onload = function() {
   UserWelcome();
 };
 
+// remove item from cart (qty is specified as a parameter)
 function removefromcart(id,QTY) {
     let backendServerURL = backendServer()
     let djangoServer = backendServerURL + "remove/"
     let token = sessionStorage.getItem('access').toString()
-    console.log("Access Token from sessionStorage: ", token)
-    var obj12 = {
+    //console.log("Access Token from sessionStorage: ", token)
+    var requestObject = {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Origin': '',
-            'Host': 'api.producthunt.com',
             'Authorization': 'Bearer ' + token
         },
         body: JSON.stringify({
@@ -42,10 +42,10 @@ function removefromcart(id,QTY) {
             'quantity' : QTY
         })
     }
-    fetch(djangoServer, obj12)
+    fetch(djangoServer, requestObject)
         .then(response => response.json()) // extract the json from the response you get from the server
         .then(data => {
-            console.log(data);
+            //console.log(data);
             alert("Removed Product From Cart");
         })
       .then(data => {
@@ -54,7 +54,7 @@ function removefromcart(id,QTY) {
     };
 
 
-
+// get a users basket and basket items
 function GetUserBasket() {
     let backendServerURL = backendServer()
     let djangoServer = backendServerURL + "baskets/"
@@ -66,22 +66,22 @@ function GetUserBasket() {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Origin': '',
-        'Host': 'api.producthunt.com',
         'Authorization': 'Bearer ' + token
       },}
 
-    console.log("sending data to ",djangoServer)
+    //console.log("sending data to ",djangoServer)
     fetch(djangoServer, obj)
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(data => {
 
       let UserCartData = data[0]['items'];
       let grandtotal = 0;
-      console.log(UserCartData)
+      //console.log(UserCartData)
+      // for basket item in basket show the basket item on the basket page
       for (var i = 0; i < UserCartData.length; i++) { // for every product in the basket array
 
           grandtotal = grandtotal + (UserCartData[i].product_price * UserCartData[i].quantity)
-          console.log(UserCartData[i]);
+          //console.log(UserCartData[i]);
           let prodcarticle = document.createElement("article");
           prodcarticle.className = "card card-body mb-3 prodcarticle";
           let preprodcarticle = document.getElementsByClassName("productdata");
@@ -211,7 +211,7 @@ function GetUserBasket() {
           document.getElementById("user-welcome-message-small").innerHTML = "Here is your basket with all your selected products! You can remove a product from your basket or alternatively checkout your basket from this page"
       }
 
-      console.log(grandtotal);
+      //console.log(grandtotal);
       document.getElementById("grandpricetotal").innerHTML = "€" + grandtotal.toFixed(2);
       } );
 }

@@ -69,29 +69,31 @@
 </div>
 <script>
 
-  function backendServer() { // get the backend server URL
-    const domain = window.location.hostname.toString();
-    console.log("Domain: ", domain)
-    if (domain == "scanngo-frontend-app.azurewebsites.net") {
+    function backendServer() {
+    url = window.location.href;
+    let domain = (new URL(url));
+    if (domain.hostname == "scanngo-frontend-app.azurewebsites.net") {
       var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
-    } else if ((domain == "127.0.0.1") || (domain == "localhost") || (domain == "0.0.0.0")) {
+    } else if ((domain.hostname == "127.0.0.1") || (domain.hostname == "localhost") || (domain.hostname == "0.0.0.0")) {
       var backendServerURL = "http://127.0.0.1:8000/";
+    } else if (domain.hostname == "192.168.1.20") {
+      var backendServerURL = "http://192.168.1.20:8000/";
     } else {
       alert("ERROR: Cannot determine Backend Server (Django) URL");
     }
-
-    console.log('Backend Server URL', backendServerURL)
+    //console.log("domain ", domain)
+    //console.log('Backend Server URL', backendServerURL)
     return backendServerURL
   }
 
   function loadProduct(id) {
     let backendServerURL = backendServer()
-    let djangoServer = backendServerURL + "products?product_id=" + id // create query in URL
-    console.log("sending data to ", djangoServer)
+    let djangoServer = backendServerURL + "products?barcode=" + id // create query in URL
+    //console.log("sending data to ", djangoServer)
     fetch(djangoServer)
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(data => {
-        console.log(data)
+        //console.log(data)
         let productData = data[0]
         document.getElementById("product-title").innerHTML = productData.name;
         document.getElementById("product-price").innerHTML = productData.price;
@@ -127,7 +129,7 @@
       let backendServerURL = backendServer()
       let djangoServer = backendServerURL + "add/"
       let token = sessionStorage.getItem('access').toString()
-      console.log("Access Token from sessionStorage: ", token)
+      //console.log("Access Token from sessionStorage: ", token)
       var requestObject = {
         method: 'POST',
         headers: {
@@ -145,7 +147,7 @@
       fetch(djangoServer, requestObject)
         .then(response => response.json()) // extract the json from the response you get from the server
         .then(data => {
-          console.log(data)
+          //console.log(data)
           if (!alert("Product has been added to the basket!")) {
             window.location.reload()
           }

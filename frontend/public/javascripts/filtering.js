@@ -4,7 +4,7 @@ function GetAllProductsFilter(tags, prices, searchterm)  {
     queryString = queryString + searchterm + "&"
     queryString = queryString + "min_price=" + prices[0] + "&"
     queryString = queryString + "max_price=" + prices[1] + "&"
-  console.log('tags', tags)
+  //console.log('tags', tags)
     if (tags.length > 0) { queryString = queryString + 'tags=' + tags.join()}
 
     let backendServerURL = backendServer()
@@ -13,11 +13,11 @@ function GetAllProductsFilter(tags, prices, searchterm)  {
       while(productElements.length > 0){
           productElements[0].parentNode.removeChild(productElements[0]);
     }
-    console.log("sending data to ",djangoServerURL)
+    //console.log("sending data to ",djangoServerURL)
     fetch(djangoServerURL)
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(data => {
-      console.log(data)
+      //console.log(data)
       for (var i = 0; i < data.length; i++) { // for every product in the array
 
           let prodcol = document.createElement("div");
@@ -69,12 +69,12 @@ function GetAllProductsFilter(tags, prices, searchterm)  {
 
 
           var currentTabs = document.getElementsByClassName("btn btn-light");
-          console.log(currentTabs)
+          //console.log(currentTabs)
 
           let isTagged = false
 
           for (var counter = 0; counter < currentTabs.length; counter++) {
-              console.log('i', counter);
+              //console.log('i', counter);
               if (currentTabs[counter].innerHTML === data[i].product_tag) {
                 isTagged = true;
               };
@@ -180,7 +180,7 @@ function filter() {
       tagArray.push(value)
     }
   }
-  console.log("Tags to filter by: ",tagArray)
+  //console.log("Tags to filter by: ",tagArray)
 
   var min_price = document.getElementById('min-price-input').value;
   var max_price = document.getElementById('max-price-input').value;
@@ -190,8 +190,8 @@ function filter() {
   if (max_price == "") {
     max_price = "1000"
   }
-  console.log('min price is ', min_price)
-  console.log('max price is ', max_price)
+  //console.log('min price is ', min_price)
+  //console.log('max price is ', max_price)
   priceArray.push(min_price)
   priceArray.push(max_price)
   GetAllProductsFilter(tagArray, priceArray, searchTerm)

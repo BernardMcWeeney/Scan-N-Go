@@ -8,12 +8,11 @@
 
 <script src="/bootstrap/dist/js/bootstrap.min.js"></script> <!-- Bootstrap JS -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- JQuery -->
-<script src="/javascripts/quagga.min.js"></script> <!-- Mobile Camera barcode scanning software (to be implemented) -->
 
 <!-- Our handmade Javascript files to import -->
 <script src="/javascripts/logout.js"></script>
 <script src="/javascripts/filtering.js"></script>
-<script src="javascripts/loginScript.js"></script>
+<script src="/javascripts/loginScript.js"></script>
 <script src="/javascripts/basketPreview.js"></script>
 
 <!--
@@ -22,7 +21,7 @@ and display this in the basket preview just above the cart in the navbar
 -->
 <script>
   var isLoggedIn = isLoggedIn(); // Call isLoggedIn func to find out if the user is logged in
-  console.log("Is the user logged in? -> ", isLoggedIn)
+  //console.log("Is the user logged in? -> ", isLoggedIn)
 
   // If the user is logged in, change the value in the cart preview icon
   if (isLoggedIn == true) {

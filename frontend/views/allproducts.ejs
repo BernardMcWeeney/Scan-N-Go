@@ -81,6 +81,7 @@ a:not([href]):not([tabindex]) {
 <h1 id="welcome-message" class="display-4 text-center">All Products</h1>
 <p class="lead text-center">Check our all of our Products! You can filter products using the filter pane and add products to the cart from this page</p>
 
+<!-- Filter pane -->
 <div class="container">
     <div class="row">
         <aside class="col-md-3 filtersidebar">
@@ -116,10 +117,7 @@ a:not([href]):not([tabindex]) {
                 </article>
                 <article class="filter-group">
                     <header class="card-header">
-                        <!--<a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
-                            <i class="icon-control fa fa-chevron-down"></i>-->
                             <h6 class="title">Price range </h6>
-                        </a>
                     </header>
                     <div class="filter-content collapse show" id="collapse_3" style="">
                         <div class="card-body">
@@ -146,26 +144,30 @@ a:not([href]):not([tabindex]) {
 </div>
 </div>
 
-<script src="javascripts/getallproducts.js"></script>
+<script src="javascripts/getallproducts.js"></script> <!-- load in JS function for loading products -->
 
 <script>
+// set focus on search button
 document.getElementById('filter-search-button').focus()
 
 var input = document.getElementById("product-search-text-box");
 
+// listen for enter button to trigger search
 input.addEventListener("keyup", function(event) {
   if (event.keyCode === 13) {
     event.preventDefault();
     document.getElementById("filter-search-button").click();
   }
 });
+
+// search product DB with search term
 function searchProducts() {
   if (document.getElementById("product-search-text-box").value !== "") {
     const productElements = document.getElementsByClassName("card-product-list prodcol");
       while(productElements.length > 0){
           productElements[0].parentNode.removeChild(productElements[0]);
     }
-    console.log('searchterm', document.getElementById("product-search-text-box").value)
+    //console.log('searchterm', document.getElementById("product-search-text-box").value)
     var searchterm = document.getElementById("product-search-text-box").value
     let stringSearchTerm = searchterm.toString().trim();
     GetAllProducts(searchterm)

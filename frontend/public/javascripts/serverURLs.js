@@ -1,16 +1,18 @@
 function backendServer() {
-  const domain = window.location.hostname.toString();
-  console.log("Domain: ", domain)
-  if (domain == "scanngo-frontend-app.azurewebsites.net") {
-    var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
+    url = window.location.href;
+    let domain = (new URL(url));
+    if (domain.hostname == "scanngo-frontend-app.azurewebsites.net") {
+      var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
+    } else if ((domain.hostname == "127.0.0.1") || (domain.hostname == "localhost") || (domain.hostname == "0.0.0.0")) {
+      var backendServerURL = "http://127.0.0.1:8000/";
+    } else if (domain.hostname == "192.168.1.20") {
+      var backendServerURL = "http://192.168.1.20:8000/";
+    } else {
+      alert(domain.hostname);
+      alert(domain.hostname);
+alert("ERROR: Cannot determine Backend Server (Django) URL");
+    }
+    //console.log("domain ", domain)
+    //console.log('Backend Server URL', backendServerURL)
+    return backendServerURL
   }
-  else if ( (domain == "127.0.0.1") || (domain == "localhost") || (domain == "0.0.0.0") ) {
-    var backendServerURL = "http://127.0.0.1:8000/";
-    }
-  else {
-    alert("ERROR: Cannot determine Backend Server (Django) URL");
-    }
-
-  console.log('Backend Server URL', backendServerURL)
-  return backendServerURL
-}

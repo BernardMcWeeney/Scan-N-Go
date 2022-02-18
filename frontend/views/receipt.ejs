@@ -141,24 +141,25 @@ a:not([href]):not([tabindex]) {
 
 
 <script>
-
+checkLogin()
 function backendServer() {
-  const domain = window.location.hostname.toString();
-  console.log("Domain: ", domain)
-  if (domain == "scanngo-frontend-app.azurewebsites.net") {
-    var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
+    url = window.location.href;
+    let domain = (new URL(url));
+    if (domain.hostname == "scanngo-frontend-app.azurewebsites.net") {
+      var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
+    } else if ((domain.hostname == "127.0.0.1") || (domain.hostname == "localhost") || (domain.hostname == "0.0.0.0")) {
+      var backendServerURL = "http://127.0.0.1:8000/";
+    } else if (domain.hostname == "192.168.1.20") {
+      var backendServerURL = "http://192.168.1.20:8000/";
+    } else {
+      alert("ERROR: Cannot determine Backend Server (Django) URL");
+    }
+    //console.log("domain ", domain)
+    //console.log('Backend Server URL', backendServerURL)
+    return backendServerURL
   }
-  else if ( (domain == "127.0.0.1") || (domain == "localhost") || (domain == "0.0.0.0") ) {
-    var backendServerURL = "http://127.0.0.1:8000/";
-    }
-  else {
-    alert("ERROR: Cannot determine Backend Server (Django) URL");
-    }
 
-  console.log('Backend Server URL', backendServerURL)
-  return backendServerURL
-}
-
+// function to enable accordian, first should be open by default
 function AccordianFunc(DivID) {
   var x = document.getElementById(DivID.id);
 
@@ -169,6 +170,7 @@ function AccordianFunc(DivID) {
   }
 }
 
+// function to get all orders for a particular user (logged in user)
 function GetUserOrder() {
     let backendServerURL = backendServer()
     let djangoServer = backendServerURL + "orders/"
@@ -183,7 +185,6 @@ function GetUserOrder() {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Origin': '',
-        'Host': 'api.producthunt.com',
         'Authorization': 'Bearer ' + token
       },}
 
@@ -197,15 +198,16 @@ function GetUserOrder() {
     })
 
 
-    console.log("sending data to ",djangoServer)
+    //console.log("sending data to ",djangoServer)
     fetch(djangoServer, obj)
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(async (data) => {
 
           let UserOrderData = data;
-          console.log("log",UserOrderData)
+          //console.log("log",UserOrderData)
+            // for every order
           for (var i = 0; i < UserOrderData.length; i++) {
-              console.log(UserOrderData[i]);
+              //console.log(UserOrderData[i]);
 
               let orderarticle = document.createElement("article");
               orderarticle.className = "card orderarticle";
@@ -316,6 +318,7 @@ function GetUserOrder() {
                   .then(basketdata => {
                       let UserBasketItemData = basketdata;
                       let grandtotal = 0
+                    // for every basket item
                       for (var j = 0; j < UserBasketItemData.length; j++) {
                            if (UserBasketItemData[j].basket_id_num == UserOrderData[i].basket_id_num) {
 
@@ -394,8 +397,8 @@ function GetUserOrder() {
               }
           })
       }
-GetUserOrder()
 
+GetUserOrder()
 
 </script>
 <%- include('partials/footer.ejs') %>

@@ -1,6 +1,6 @@
 function backendServer() { // get the backend server URL
   const domain = window.location.hostname.toString();
-  console.log("Domain: ", domain)
+  //console.log("Domain: ", domain)
   if (domain == "scanngo-frontend-app.azurewebsites.net") {
     var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
   }
@@ -11,7 +11,7 @@ function backendServer() { // get the backend server URL
     alert("ERROR: Cannot determine Backend Server (Django) URL");
     }
 
-  console.log('Backend Server URL', backendServerURL)
+  //console.log('Backend Server URL', backendServerURL)
   return backendServerURL
 }
 
@@ -30,11 +30,11 @@ function loadBasketPreview() {
       'Authorization': 'Bearer ' + token
     },}
 
-  console.log("sending data to ",djangoServer)
+  //console.log("sending data to ",djangoServer)
   fetch(djangoServer, obj)
     .then(response => response.json()) // extract the json from the response you get from the server
     .then(data => {
-      console.log("data for basket", data[0].items.length)
+      //console.log("data for basket", data[0].items.length)
       document.getElementById('lblCartCount').innerHTML = data[0].items.length // add the value to the icon
     })
 }

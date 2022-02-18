@@ -1,6 +1,6 @@
 function backendServer() { // get backend server URL
   const domain = window.location.hostname.toString();
-  console.log("Domain: ", domain)
+  //console.log("Domain: ", domain)
   if (domain == "scanngo-frontend-app.azurewebsites.net") {
     var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
   }
@@ -11,7 +11,7 @@ function backendServer() { // get backend server URL
     alert("ERROR: Cannot determine Backend Server (Django) URL");
     }
 
-  console.log('Backend Server URL', backendServerURL)
+  //console.log('Backend Server URL', backendServerURL)
   return backendServerURL
 }
 
@@ -38,16 +38,16 @@ $(()=>{
 
 // if user is not logged in, send them to the login page
 function checkLogin(){
-  console.log(sessionStorage)
+  //console.log(sessionStorage)
   if (sessionStorage.getItem('access') != null) {
     var isLoggedIn= true;
   } else {
     var isLoggedIn = false;
   }
   if (isLoggedIn == false){
-    //console.log("test")
+    ////console.log("test")
     location.href = '/login/false';
-   // console.log("User is not Logged In")
+   // //console.log("User is not Logged In")
 }
 }
 
@@ -61,7 +61,7 @@ function getUsername() {
 }
 
 function isLoggedIn(){
-  // console.log(sessionStorage)
+  // //console.log(sessionStorage)
   if (sessionStorage.getItem('access') != null) {
     return true;
   } else {

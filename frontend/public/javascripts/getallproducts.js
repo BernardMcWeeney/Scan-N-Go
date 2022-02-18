@@ -1,6 +1,6 @@
-function backendServer() {
+function backendServer() { // get backend URL
   const domain = window.location.hostname.toString();
-  console.log("Domain: ", domain)
+  //console.log("Domain: ", domain)
   if (domain == "scanngo-frontend-app.azurewebsites.net") {
     var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
   }
@@ -11,24 +11,24 @@ function backendServer() {
     alert("ERROR: Cannot determine Backend Server (Django) URL");
     }
 
-  console.log('Backend Server URL', backendServerURL)
+  //console.log('Backend Server URL', backendServerURL)
   return backendServerURL
 }
 
-function addToCart1(id) {
-    console.log(id + "-qty-selector")
+// add item to cart with ID (qty 1)
+function addToCartFromID(id) {
+    //console.log(id + "-qty-selector")
     let quantity = document.getElementById(id + "-qty-selector").value;
     let backendServerURL = backendServer()
     let djangoServer = backendServerURL + "add/"
     let token = sessionStorage.getItem('access').toString()
-    console.log("Access Token from sessionStorage: ", token)
-    var obj123 = {
+    //console.log("Access Token from sessionStorage: ", token)
+    var requestObject = {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Origin': '',
-        'Host': 'api.producthunt.com',
         'Authorization': 'Bearer ' + token
       },
       body: JSON.stringify({
@@ -36,17 +36,18 @@ function addToCart1(id) {
         'quantity' : quantity
       })
     }
-    console.log("Sending:", obj123)
-    console.log("to", djangoServer)
+    //console.log("Sending:", requestObject)
+    //console.log("to", djangoServer)
 
-    fetch(djangoServer, obj123)
+    fetch(djangoServer, requestObject)
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(data => {
-        console.log(data);
+        //console.log(data);
         window.location.reload()
       }).then(alert("Added Product to Cart"))
   }
 
+// get all products from product DB that contains searchterm
 function GetAllProducts(searchterm) {
     let backendServerURL = backendServer()
     let djangoServer = backendServerURL + "products/"
@@ -55,11 +56,12 @@ function GetAllProducts(searchterm) {
     } else {
       var djangoServerURL = djangoServer
     }
-    console.log("sending data to ",djangoServer)
+    //console.log("sending data to ",djangoServer)
     fetch(djangoServerURL)
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(data => {
-      console.log(data)
+      //console.log(data)
+      // for product in product list add the product to the results page
       for (var i = 0; i < data.length; i++) {
 
           let prodcol = document.createElement("div");
@@ -111,12 +113,12 @@ function GetAllProducts(searchterm) {
 
 
           var currentTabs = document.getElementsByClassName("btn btn-light");
-          console.log(currentTabs)
-
+          //console.log(currentTabs)
+          // check is product's tag is in filter pane, if it is not there, add it
           let isTagged = false
 
           for (var counter = 0; counter < currentTabs.length; counter++) {
-              console.log('i', counter);
+              //console.log('i', counter);
               if (currentTabs[counter].innerHTML === data[i].product_tag) {
                 isTagged = true;
               };
@@ -162,6 +164,8 @@ function GetAllProducts(searchterm) {
 
           let availabilitystatus = document.createElement("small");
           availabilitystatus.className = "text-success product-availability-status";
+
+          // if product is out of stock, then mark it out of stock on the product tile
           if (data[i].product_quantity > 0){
               availabilitystatus.className = "text-success productinstock";
               availabilitystatus.appendChild(document.createTextNode("In Stock"));
@@ -185,6 +189,7 @@ function GetAllProducts(searchterm) {
           let prodquantityoption = document.createElement("option");
           prodquantityoption.className = "quantity-option productquantity";
 
+          // set product dropdown to max product stock
           for (var quantity = 1; quantity <= data[i].product_quantity; quantity++) {
               let prodquantityoption = document.createElement("option");
               prodquantityoption.setAttribute("value", quantity);
@@ -195,7 +200,7 @@ function GetAllProducts(searchterm) {
 
 
           let addtocartlink = document.createElement("a");
-          var ProdID = "addToCart1(" + data[i].id.toString() + ")"
+          var ProdID = "addToCartFromID(" + data[i].id.toString() + ")"
           addtocartlink.setAttribute('onclick', ProdID )
           addtocartlink.id = "add-to-cart-a-link";
           addtocartlink.className = "btn btn-primary productbutton";
@@ -207,6 +212,7 @@ function GetAllProducts(searchterm) {
           let preaddtocarti = document.getElementsByClassName("productbutton");
           preaddtocarti[i].appendChild(addtocarti);
 
+          // if product is out of stock, remove add to cart functionality
           if (data[i].product_quantity == 0){
               document.getElementsByClassName("ml-auto form-inline subquantdiv")[i].style = "display:none"
              document.getElementsByClassName(" btn btn-primary productbutton")[i].style = "display:none"

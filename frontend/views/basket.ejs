@@ -172,8 +172,8 @@ Includes a Apple Pay animation from lottiefiles.com
             <form role="form">
                 <div class="form-group center">
                     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                    <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_oc7vjc4z.json"
-                                   background="transparent" speed="1" style="width: 300px; height: 300px;" loop
+                    <lottie-player style='margin:auto' src="https://assets7.lottiefiles.com/packages/lf20_oc7vjc4z.json"
+                                   background="transparent" speed="1" style="width: 300px; height: 300px;"
                                    autoplay></lottie-player>
                 </div>
 
@@ -198,8 +198,8 @@ Includes a google pay animation from lottiefiles.com
             <form role="form">
                 <div class="form-group center">
                     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-                    <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_iev4cmrb.json"
-                                   background="transparent" speed="1" style="width: 300px; height: 300px;" loop
+                    <lottie-player style='margin:auto' src="https://assets9.lottiefiles.com/packages/lf20_iev4cmrb.json"
+                                   background="transparent" speed="1" style="width: 300px; height: 300px;"
                                    autoplay></lottie-player>
                 </div>
 
@@ -292,47 +292,48 @@ Includes a html form featuring several text inputs and dropdown options
 
 
 <script>
-    function backendServer() {
-        const domain = window.location.hostname.toString();
-        console.log("Domain: ", domain)
-        if (domain == "scanngo-frontend-app.azurewebsites.net") {
-            var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
-        } else if ((domain == "127.0.0.1") || (domain == "localhost") || (domain == "0.0.0.0")) {
-            var backendServerURL = "http://127.0.0.1:8000/";
-        } else {
-            alert("ERROR: Cannot determine Backend Server (Django) URL");
-        }
-
-        console.log('Backend Server URL', backendServerURL)
-        return backendServerURL
+      function backendServer() {
+    url = window.location.href;
+    let domain = (new URL(url));
+    if (domain.hostname == "scanngo-frontend-app.azurewebsites.net") {
+      var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
+    } else if ((domain.hostname == "127.0.0.1") || (domain.hostname == "localhost") || (domain.hostname == "0.0.0.0")) {
+      var backendServerURL = "http://127.0.0.1:8000/";
+    } else if (domain.hostname == "192.168.1.20") {
+      var backendServerURL = "http://192.168.1.20:8000/";
+    } else {
+      alert("ERROR: Cannot determine Backend Server (Django) URL");
     }
+    //console.log("domain ", domain)
+    //console.log('Backend Server URL', backendServerURL)
+    return backendServerURL
+  }
 
-    <!-- Popup control for turning on the popup by getting a particular element id -->
+    // Popup control for turning on the popup by getting a particular element id
     function PopupTurnOn(opt) {
         document.getElementById(opt).style.display = "block";
     }
 
-    <!-- Popup control for turning off the popup by getting a particular element id -->
+    //Popup control for turning off the popup by getting a particular element id
     function PopupTurnOff(opt) {
         document.getElementById(opt).style.display = "none";
     }
-    <!-- Function called when user confirms they want to checkout their order
-     sends a POST request to the checkout/ api with the basket_id
-     once this process is completed, an alert is shown to confirm successuful checkout
-     When the alert is accepted the user is redirected to the receipt page
-     -->
-    function CheckOutCart(id) {
+    //Function called when user confirms they want to checkout their order
+     //sends a POST request to the checkout/ api with the basket_id
+     //once this process is completed, an alert is shown to confirm successuful checkout
+    // When the alert is accepted the user is redirected to the receipt page
+
+    function checkoutcart(id) {
         let backendServerURL = backendServer()
         let djangoServer = backendServerURL + "checkout/"
         let token = sessionStorage.getItem('access').toString()
 
-        var CheckoutCartObj = {
+        var checkoutcartObj = {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Origin': '',
-                'Host': 'api.producthunt.com',
                 'Authorization': 'Bearer ' + token
             },
             body: JSON.stringify({
@@ -340,17 +341,17 @@ Includes a html form featuring several text inputs and dropdown options
             })
         }
 
-        console.log("sending data to ", djangoServer)
-        fetch(djangoServer, CheckoutCartObj)
+        //console.log("sending data to ", djangoServer)
+        fetch(djangoServer, checkoutcartObj)
             .then(response => response.json()) // extract the json from the response you get from the server
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 window.location.href = "receipt/";
             }).then(alert("Checked Out"))
     }
 
     function checkLogin() {
-        console.log(sessionStorage)
+        //console.log(sessionStorage)
         if (sessionStorage.getItem('access') != null) {
             var isLoggedIn = true;
         } else {

@@ -70,11 +70,13 @@
       var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
     } else if ((domain.hostname == "127.0.0.1") || (domain.hostname == "localhost") || (domain.hostname == "0.0.0.0")) {
       var backendServerURL = "http://127.0.0.1:8000/";
+    } else if (domain.hostname == "192.168.1.20") {
+      var backendServerURL = "http://192.168.1.20:8000/";
     } else {
       alert("ERROR: Cannot determine Backend Server (Django) URL");
     }
-    console.log("domain ", domain)
-    console.log('Backend Server URL', backendServerURL)
+    //console.log("domain ", domain)
+    //console.log('Backend Server URL', backendServerURL)
     return backendServerURL
   }
 
@@ -93,10 +95,10 @@
     } else {
       uname = document.getElementById("inputEmail").value;
       pword = document.getElementById("inputPassword").value;
-      console.log("Username:", uname, "Password:", pword)
+      //console.log("Username:", uname, "Password:", pword)
       let url = backendServer() // get the hostname of the backend server
       let backendServerURL1 = backendServer() + "api/token/" // create the URL to call
-      console.log("Sending Login Data to ", backendServerURL1)
+      //console.log("Sending Login Data to ", backendServerURL1)
 
       // get the token from the backend server
       fetch(backendServerURL1, {
@@ -112,7 +114,7 @@
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data)
+          //console.log(data)
           if ('access' in data) {
             let accessToken = data['access'];
             let refreshToken = data['refresh'];
@@ -121,7 +123,7 @@
             sessionStorage.setItem("username", uname); // write the username to sessionStorage
             window.location.href = "/"; // go to homepage
           } else {
-            console.log(data);
+            //console.log(data);
             // if invalid login, alert the user
             alert("username or password invalid");
           }
@@ -149,8 +151,8 @@
         "email": email
       })
     }
-    console.log("Sending:", requestObject)
-    console.log("to", djangoServer)
+    //console.log("Sending:", requestObject)
+    //console.log("to", djangoServer)
 
     fetch(djangoServer, requestObject)
       .then((response) => {
@@ -162,7 +164,7 @@
         }
       }) // extract the json from the response you get from the server
       .then(data => {
-        console.log(data);
+        //console.log(data);
         // alert the user that their account is created and reload the page
         if (!alert("Successfully created you a User Account! Your details can be checked below (This is top secret, don't show this to anyone!)")) {
           window.location.reload();
@@ -199,7 +201,7 @@
       username = document.getElementById("registerUser").value;
       email = document.getElementById("registerEmail").value;
       password = document.getElementById("registerPassword").value;
-      console.log(username, password, email)
+      //console.log(username, password, email)
       // register the user
       registerUser(username, email, password)
     }

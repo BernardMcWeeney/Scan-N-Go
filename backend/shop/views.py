@@ -17,12 +17,15 @@ class ProductViewSet(viewsets.ModelViewSet):
         '''
         queryset = Product.objects.all()
         prod_id = self.request.query_params.get('product_id')
+        barcode_query = self.request.query_params.get('barcode')
         prod_name = self.request.query_params.get('product_name')
         tags = self.request.query_params.get('tags')
         min_price = self.request.query_params.get('min_price')
         max_price = self.request.query_params.get('max_price')
-
-        if prod_id is not None:
+        if barcode_query is not None:
+          queryset_query = queryset.filter(barcode=barcode_query)
+          return queryset
+        elif prod_id is not None:
           queryset = queryset.filter(id=prod_id)
           return queryset
         elif tags is not None or min_price is not None or max_price is not None or prod_name is not None:
