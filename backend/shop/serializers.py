@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import *
 
-
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
@@ -11,7 +10,6 @@ class BasketItemsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BasketItems
         fields = ['id', 'basket_id','product_name', 'product_id', 'quantity', 'user_id', 'product_image', 'product_price', 'product_tag','product_id_num','basket_id_num', 'is_active']
-
 
 class BasketSerializer(serializers.HyperlinkedModelSerializer):
     items = BasketItemsSerializer(many=True, read_only=True, source='basketitems_set')
@@ -48,8 +46,12 @@ class IrishShippingAddressSerializer(serializers.HyperlinkedModelSerializer):
 class APIUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = APIUser
-        fields = ['id', 'username', 'email', 'date_joined', 'last_login']
+        fields = ['id', 'username', 'email', 'date_joined', 'last_login', 'is_superuser', 'last_store', 'store_login']
 
+class StoreSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Store
+        fields = ['id', 'name']
 
 class UserRegistrationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

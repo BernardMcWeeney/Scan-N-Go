@@ -100,6 +100,10 @@ class IrishBillingAddressViewSet(viewsets.ModelViewSet):
     queryset = IrishBillingAddress.objects.all()
     serializer_class = IrishBillingAddressSerializer
 
+class StoreViewSet(viewsets.ModelViewSet):
+    queryset = Store.objects.all()
+    serializer_class = StoreSerializer
+
 class IrishShippingAddressViewSet(viewsets.ModelViewSet):
     queryset = IrishShippingAddress.objects.all()
     serializer_class = IrishShippingAddressSerializer

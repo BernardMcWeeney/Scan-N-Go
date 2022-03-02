@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3db31b5-3baa-4626-b246-4fac17954eba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/routes/store-scanner.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/views/store-scanner.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/backend/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/login.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/backend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/backend/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/shop/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/shop/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/shop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/shop/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
