@@ -1,0 +1,116 @@
+<%- include('../partials/adminhead.ejs') %>
+<%- include('../partials/adminheader.ejs') %>
+
+
+<style>
+body {
+    padding-bottom:100px
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.37rem;
+}
+
+.card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06)
+}
+.tag {
+    display: inline-block;
+    padding: 3px 7px;
+    background: #f2f2f2;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    margin-top: 4px;
+    margin-right: 2px;
+    font-size: 85%;
+}
+.card-product-grid .bottom-wrap {
+    padding: 18px;
+    border-top: 1px solid #e4e4e4;
+}
+.card-product-grid .info-wrap {
+    overflow: hidden;
+    padding: 18px 20px;
+}
+.nav-link {
+    display: block;
+    padding: 0.5rem 0.9rem;
+    font-weight: 400;
+    color: #51585e;
+    transition: color .1s ease-in-out,background-color .1s ease-in-out,border-color .1s ease-in-out;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #FFF;
+    background-color: #630436;
+}
+.btn-primary {
+  background-color: #630436;
+  color:#FFF;
+  border-color: #630436;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-default {
+  background-color: #fff;
+  color:#630436;
+  border-color: #630436;
+ }
+a:not([href]):not([tabindex]) {
+    color:#fff;
+}
+.btn-outline-primary {
+    background-color: #630436;
+    color:#FFF;
+    border-color: #630436;
+}
+.btn-outline-primary:hover, .btn-outline-primary.active {
+    color:#630436;
+    border-color: #630436;
+    background-color: transparent;
+    background-image: none;
+}
+.btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
+    color:#630436;
+    border-color: #630436;
+    background-color: transparent;
+    background-image: none;
+}
+.searchproduct {
+    margin-left: 10px;
+}
+
+.filtersidebar {
+    margin-bottom: 50px;
+}
+
+</style>
+
+<h1 id="welcome-message" class="display-4 text-center">Admin DashBoard [STORE NAME]</h1>
+<p class="lead text-center">Live data processing</p>
+
+
+<div class="row">
+  <aside class="col-lg-3">
+    <!-- Dashbaord SIDEBAR LIST -->
+    <div class="card p-3 h-100">
+      <nav class="nav flex-column nav-pills">
+        <a class="nav-link" href="#">Store Account</a>
+        <a class="nav-link active" href="#">Dashboard</a>
+        <a class="nav-link" href="#">Orders history</a>
+        <a class="nav-link" href="#">Transactions</a>
+        <a class="nav-link" href="#">Profile setting</a>
+        <a class="nav-link" href="#">Log out</a>
+      </nav>
+    </div>
+    <!-- Dashbaord SIDEBAR LIST -->
+  </aside>
+</div>
+
+
+<%- include('../partials/footer.ejs') %>
+
