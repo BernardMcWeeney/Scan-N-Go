@@ -18,6 +18,12 @@ class BasketSerializer(serializers.HyperlinkedModelSerializer):
         model = Basket
         fields = ['id', 'user_id', 'is_active', 'dateCreated', 'items']
 
+class StoreSerializer(serializers.HyperlinkedModelSerializer):
+    #current_store_usersBasket = BasketSerializer(many=True, read_only=True, source='basket_set')
+
+    class Meta:
+        model = Store
+        fields = ['id', 'name', 'current_store_users', 'current_store_usersBasket', 'current_store_usersOrder']
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     basket = BasketSerializer(many=True, read_only=True, source='basket_set')
@@ -47,11 +53,6 @@ class APIUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = APIUser
         fields = ['id', 'username', 'email', 'date_joined', 'last_login', 'is_superuser', 'last_store', 'store_login']
-
-class StoreSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Store
-        fields = ['id', 'name']
 
 class UserRegistrationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

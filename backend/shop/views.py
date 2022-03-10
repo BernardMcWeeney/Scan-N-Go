@@ -11,6 +11,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
+
     def get_queryset(self):
         '''
         return all products, but filter by parameters given
@@ -54,6 +55,7 @@ class BasketViewSet(viewsets.ModelViewSet):
     queryset = Basket.objects.all()
     permission_classes = [IsAuthenticated]
 
+
     def get_queryset(self):
         user = self.request.user  # get the current user
         if user.is_superuser:
@@ -63,11 +65,11 @@ class BasketViewSet(viewsets.ModelViewSet):
             shopping_basket = Basket.objects.filter(user_id=user, is_active=True)
             return shopping_basket
 
-
 class BasketItemViewSet(viewsets.ModelViewSet):
     queryset = BasketItems.objects.all()
     serializer_class = BasketItemsSerializer
     permission_classes = [IsAuthenticated]
+
 
     def get_queryset(self):
         user = self.request.user  # get the current user
@@ -103,6 +105,9 @@ class IrishBillingAddressViewSet(viewsets.ModelViewSet):
 class StoreViewSet(viewsets.ModelViewSet):
     queryset = Store.objects.all()
     serializer_class = StoreSerializer
+    permission_classes = [IsAuthenticated]
+
+
 
 class IrishShippingAddressViewSet(viewsets.ModelViewSet):
     queryset = IrishShippingAddress.objects.all()

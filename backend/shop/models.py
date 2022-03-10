@@ -6,6 +6,10 @@ from django.contrib.auth.models import AbstractUser
 class Store(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, null=False)
+    current_store_users = []
+    current_store_usersBasket = []
+    current_store_usersOrder = []
+
 
 class APIUser(AbstractUser):
     last_store = models.ForeignKey(Store, on_delete=models.CASCADE)
