@@ -55,7 +55,6 @@ class BasketViewSet(viewsets.ModelViewSet):
     queryset = Basket.objects.all()
     permission_classes = [IsAuthenticated]
 
-
     def get_queryset(self):
         user = self.request.user  # get the current user
         if user.is_superuser:
@@ -107,7 +106,10 @@ class StoreViewSet(viewsets.ModelViewSet):
     serializer_class = StoreSerializer
     permission_classes = [IsAuthenticated]
 
-
+    def get_queryset(self):
+        user = self.request.user  # get the current user
+        if user.is_superuser:
+            return Store.objects.all()
 
 class IrishShippingAddressViewSet(viewsets.ModelViewSet):
     queryset = IrishShippingAddress.objects.all()

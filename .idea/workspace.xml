@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a3db31b5-3baa-4626-b246-4fac17954eba" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/backend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/backend/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/shop/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/shop/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/shop/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/shop/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/shop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/shop/views.py" afterDir="false" />
     </list>
@@ -14,6 +15,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />

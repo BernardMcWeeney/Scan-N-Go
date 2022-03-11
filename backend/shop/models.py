@@ -22,7 +22,7 @@ class Product(models.Model):
     description = models.CharField(max_length=5000, null=True)
     productImage = models.FileField(upload_to='images/')
     product_quantity = models.PositiveIntegerField(default=0)
-    store = models.ForeignKey(Store, on_delete=models.CASCADE)
+    store_id = models.ForeignKey(Store, default=2, on_delete=models.CASCADE)
 
     productTags = [
         ("Confectionary", 'Confectionary'),
@@ -46,6 +46,7 @@ class Basket(models.Model):
     is_active = models.BooleanField(default=True)
     dateCreated = models.DateTimeField(auto_now_add=True)
     models.ForeignKey(Store, on_delete=models.CASCADE)
+    store_id = models.ForeignKey(Store, default=2, on_delete=models.CASCADE)
 
 class BasketItems(models.Model):
     id = models.AutoField(primary_key=True)
@@ -86,6 +87,7 @@ class Order(models.Model):
     user_id = models.ForeignKey(APIUser, on_delete=models.CASCADE)
     total_price = models.DecimalField(max_digits=6, decimal_places=2, default=0.0)
     models.ForeignKey(Store, on_delete=models.CASCADE)
+    store_id = models.ForeignKey(Store, default=2, on_delete=models.CASCADE)
     statuses = [
         ('Prepared', 'Prepared'),
         ('Order', 'Order'),

@@ -18,12 +18,10 @@ class BasketSerializer(serializers.HyperlinkedModelSerializer):
         model = Basket
         fields = ['id', 'user_id', 'is_active', 'dateCreated', 'items']
 
-class StoreSerializer(serializers.HyperlinkedModelSerializer):
-    #current_store_usersBasket = BasketSerializer(many=True, read_only=True, source='basket_set')
-
+class APIUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Store
-        fields = ['id', 'name', 'current_store_users', 'current_store_usersBasket', 'current_store_usersOrder']
+        model = APIUser
+        fields = ['id', 'username', 'email', 'date_joined', 'last_login', 'is_superuser', 'last_store', 'store_login']
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     basket = BasketSerializer(many=True, read_only=True, source='basket_set')
@@ -33,6 +31,17 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
         model = Order
         fields = ['id', 'date_ordered', 'basket_id', 'user_id', 'total_price', 'status', 'payment_status',
                   'customer_order_notes', 'internal_order_notes', 'basket', 'items', 'basket_id_num']
+
+class StoreSerializer(serializers.HyperlinkedModelSerializer):
+    users = APIUserSerializer(many=True, read_only=True, source='apiuser_set')
+    orders = OrderSerializer(many=True, read_only=True, source='order_set')
+    baskets = BasketSerializer(many=True, read_only=True, source='basket_set')
+
+    class Meta:
+        model = Store
+        fields = ['id', 'name', 'users', 'orders', 'baskets']
+
+
 
 
 class IrishBillingAddressSerializer(serializers.HyperlinkedModelSerializer):
@@ -48,11 +57,6 @@ class IrishShippingAddressSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['user_id', 'order_id', 'contact_name', 'company_name', 'address_line1', 'address_line2',
                   'address_line3', 'eir_code', 'county']
 
-
-class APIUserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = APIUser
-        fields = ['id', 'username', 'email', 'date_joined', 'last_login', 'is_superuser', 'last_store', 'store_login']
 
 class UserRegistrationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
