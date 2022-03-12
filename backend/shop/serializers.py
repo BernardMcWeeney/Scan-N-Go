@@ -9,14 +9,14 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
 class BasketItemsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BasketItems
-        fields = ['id', 'basket_id','product_name', 'product_id', 'quantity', 'user_id', 'product_image', 'product_price', 'product_tag','product_id_num','basket_id_num', 'is_active']
+        fields = ['id', 'basket_id','product_name', 'product_id', 'quantity', 'user_id', 'product_image', 'product_price', 'product_tag','product_id_num','basket_id_num', 'user_id_num','is_active']
 
 class BasketSerializer(serializers.HyperlinkedModelSerializer):
     items = BasketItemsSerializer(many=True, read_only=True, source='basketitems_set')
 
     class Meta:
         model = Basket
-        fields = ['id', 'user_id', 'is_active', 'dateCreated', 'items']
+        fields = ['id', 'user_id', 'is_active', 'dateCreated','store_id','user_id_num',  'items']
 
 class APIUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -30,7 +30,7 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
         fields = ['id', 'date_ordered', 'basket_id', 'user_id', 'total_price', 'status', 'payment_status',
-                  'customer_order_notes', 'internal_order_notes', 'basket', 'items', 'basket_id_num']
+                  'customer_order_notes', 'internal_order_notes','store_id' ,'basket', 'items', 'user_id_num', 'basket_id_num', 'store_id_num']
 
 class StoreSerializer(serializers.HyperlinkedModelSerializer):
     users = APIUserSerializer(many=True, read_only=True, source='apiuser_set')

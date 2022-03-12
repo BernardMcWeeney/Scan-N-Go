@@ -6,9 +6,7 @@ from django.contrib.auth.models import AbstractUser
 class Store(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, null=False)
-    current_store_users = []
-    current_store_usersBasket = []
-    current_store_usersOrder = []
+
 
 
 class APIUser(AbstractUser):
@@ -48,6 +46,10 @@ class Basket(models.Model):
     models.ForeignKey(Store, on_delete=models.CASCADE)
     store_id = models.ForeignKey(Store, default=2, on_delete=models.CASCADE)
 
+    def user_id_num(self):
+        return self.user_id.id
+
+
 class BasketItems(models.Model):
     id = models.AutoField(primary_key=True)
     basket_id = models.ForeignKey(Basket, on_delete=models.CASCADE)
@@ -80,6 +82,9 @@ class BasketItems(models.Model):
     def price(self):
         return self.product_id.price * self.quantity
 
+    def user_id_num(self):
+        return self.user_id.id
+
 class Order(models.Model):
     id = models.AutoField(primary_key=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
@@ -109,6 +114,12 @@ class Order(models.Model):
     def basket_id_num(self):
         print(self.basket_id.id)
         return self.basket_id.id
+
+    def store_id_num(self):
+        return self.store_id.id
+
+    def user_id_num(self):
+        return self.user_id.id
 
 class IrishBillingAddress(models.Model):
     class Meta:
