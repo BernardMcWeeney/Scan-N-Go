@@ -3,9 +3,34 @@
 
 
 <style>
+
 body {
     padding-bottom:100px
 }
+
+.fa, .fab, .fal, .far, .fas {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+.icon-lg {
+    width: 72px;
+    height: 72px;
+    font-size: 32px;
+}
+.icon-xs, .icon-sm, .icon-md, .icon-lg {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
 .card {
     position: relative;
     display: flex;
@@ -16,6 +41,7 @@ body {
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 0.37rem;
+    margin-bottom: 25px;
 }
 
 .card:hover {
@@ -88,10 +114,78 @@ a:not([href]):not([tabindex]) {
     margin-bottom: 50px;
 }
 
-</style>
+.white_card {
+    background-color: #FFFFFF;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
 
-<h1 id="welcome-message" class="display-4 text-center">Admin DashBoard [STORE NAME]</h1>
+.container-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+</style>
+<div class="container-fluid plr_30 body_white_bg pt_30">
+<h1 id="welcome-message" class="display-4 text-center"></h1>
 <p class="lead text-center">Live data processing</p>
+
+
+    <div class="row gy-3">
+  <div class="col-lg-4 col-md-4">
+    <article class="card content-body">
+      <div class="text-center mx-lg-4">
+        <span class="rounded-circle text-primary icon-lg bg-primary-light">
+          <i class="fa fa-user"></i>
+        </span>
+        <div class="pt-3">
+          <h3 class="title">In Store Users</h3>
+            <h4 id="numberofuser" class="mb-0"> 0</h4>
+        </div>
+      </div>
+      <!-- itemside // -->
+    </article>
+    <!-- card.// -->
+  </div>
+  <!-- col // -->
+  <div class="col-lg-4 col-md-4">
+    <article class="card content-body">
+      <div class="text-center mx-lg-4">
+        <span class="rounded-circle text-primary icon-lg bg-primary-light">
+          <i class="fa-solid fa-user-clock"></i>
+        </span>
+        <div class="pt-3">
+          <h3 class="title">Current Time </h3>
+          <h4 id="currenttime" class="mb-0">0:00</h4>
+        </div>
+      </div>
+      <!-- itemside // -->
+    </article>
+    <!-- card.// -->
+  </div>
+  <!-- col // -->
+  <div class="col-lg-4 col-md-4">
+    <article class="card content-body">
+      <div class="text-center mx-lg-4">
+        <span class="rounded-circle text-primary icon-lg bg-primary-light">
+          <i class="fa fa-box"></i>
+        </span>
+        <div class="pt-3">
+          <h3 class="title">*Some other Metric*</h3>
+          <h4 class="mb-0">*Some other Metric* </h4>
+        </div>
+      </div>
+      <!-- itemside // -->
+    </article>
+    <!-- card.// -->
+  </div>
+  <!-- col // -->
+</div>
 
 
 <div class="row">
@@ -113,6 +207,8 @@ a:not([href]):not([tabindex]) {
 
 
 <h1 id="test"></h1>
+
+</div>
 
 <script src="javascripts/getStoreData.js"></script>
 

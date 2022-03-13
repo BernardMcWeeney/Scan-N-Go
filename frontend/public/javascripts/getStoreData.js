@@ -31,28 +31,52 @@ function GetStoreData() {
               'Authorization': 'Bearer ' + token
           },
       }
-      let StoreUserData_Dict = {};
+      let StoreUser_Dict = {};
+      let StoreUserOrder_Dict = {};
+      let StoreUserBasket_Dict = {};
       fetch(djangoServer_User, obj)
           .then(response => response.json()) // extract the json from the response you get from the server
           .then(async (data) => {
               console.log(data)
-              //document.getElementById("test").innerHTML= data.users[0].username
+
+              // Gets all users in store that have scanned in between now and 35mins ago
               for (var i = 0; i < data.users.length; i++) {
                   console.log(data.users[i].username);
                   var currentTime = new Date().getTime();
-                  var minutes = 30;
+                  var minutes = 3500;
                   var timeLimit = new Date(currentTime -minutes*60000).getTime();
                   var userScanInTime = new Date(data.users[i].store_login).getTime();
 
                   if(userScanInTime <= currentTime && userScanInTime >= timeLimit) {
-                      console.log(data.users[i].email)
-                      StoreUserData_Dict[i] = data.users[i]
+                      //console.log(data.users[i].email)
+                      StoreUser_Dict[data.users[i].id] = data.users[i]
                   }
 
               }
-              console.log(StoreUserData_Dict)
 
-              document.getElementById("test").innerHTML= ("Number of users in Store: " + Object.keys(StoreUserData_Dict).length);
+              for (var j = 0; j < data.baskets.length; j++) {
+
+                  if(data.baskets[j].user_id_num in StoreUser_Dict && data.baskets[j].is_active === true ) {
+                          StoreUserBasket_Dict[j] = data.baskets[j]
+
+                      }
+              }
+
+              for (var l = 0; l < data.orders.length; l++) {
+
+                  if(data.orders[l].user_id_num in StoreUser_Dict ) {
+                          StoreUserOrder_Dict[l] = data.orders[l]
+
+                      }
+              }
+              console.log(StoreUser_Dict)
+              //console.log(StoreUser_Dict[19])
+              console.log(StoreUserBasket_Dict)
+              console.log(StoreUserOrder_Dict)
+
+              document.getElementById("welcome-message").innerHTML= (data.name + " -  Admin DashBoard");
+              document.getElementById("numberofuser").innerHTML= (Object.keys(StoreUser_Dict).length);
+              document.getElementById("currenttime").innerHTML= (new Date().toLocaleTimeString());
 
 
 
