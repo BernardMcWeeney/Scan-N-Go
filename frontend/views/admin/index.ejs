@@ -47,16 +47,7 @@ body {
 .card:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06)
 }
-.tag {
-    display: inline-block;
-    padding: 3px 7px;
-    background: #f2f2f2;
-    border: 1px solid #eee;
-    border-radius: 3px;
-    margin-top: 4px;
-    margin-right: 2px;
-    font-size: 85%;
-}
+
 .card-product-grid .bottom-wrap {
     padding: 18px;
     border-top: 1px solid #e4e4e4;
@@ -106,28 +97,31 @@ a:not([href]):not([tabindex]) {
     background-color: transparent;
     background-image: none;
 }
-.searchproduct {
-    margin-left: 10px;
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
 }
-
-.filtersidebar {
-    margin-bottom: 50px;
-}
-
-.white_card {
-    background-color: #FFFFFF;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
-}
-
-.container-fluid {
+.table {
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+    margin-bottom: 1rem;
+    color: #212529;
+    background-color: rgba(0,0,0,0);
 }
+table {
+    border-collapse: collapse;
+}
+user agent stylesheet
+table {
+    border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 2px;
+}
+.flex-grow-1 {
+    flex-grow: 1 !important;
+}
+
+
 
 
 </style>
@@ -135,79 +129,263 @@ a:not([href]):not([tabindex]) {
 <h1 id="welcome-message" class="display-4 text-center"></h1>
 <p class="lead text-center">Live data processing</p>
 
+<div class="container">
+    <div class="row">
+          <aside class="col-lg-3">
+            <!-- DashBoard SIDEBAR LIST -->
+                <div class="card p-3 h-100">
+                      <nav class="nav flex-column nav-pills">
+                        <a class="nav-link" href="#">Store Account</a>
+                        <a class="nav-link active" href="#">Dashboard</a>
+                        <a class="nav-link" href="#">Orders history</a>
+                        <a class="nav-link" href="#">Transactions</a>
+                        <a class="nav-link" href="#">Profile setting</a>
+                        <a class="nav-link" href="#">Log out</a>
+                      </nav>
+                </div>
+            <!-- DashBoard SIDEBAR LIST -->
+          </aside>
 
-    <div class="row gy-3">
-  <div class="col-lg-4 col-md-4">
-    <article class="card content-body">
-      <div class="text-center mx-lg-4">
-        <span class="rounded-circle text-primary icon-lg bg-primary-light">
-          <i class="fa fa-user"></i>
-        </span>
-        <div class="pt-3">
-          <h3 class="title">In Store Users</h3>
-            <h4 id="numberofuser" class="mb-0"> 0</h4>
+            <div class="padding col-lg-9">
+
+                <div id="userdatacard">
+                <!-- User Info Card is Inserted here with JavaScript -->
+                </div>
+
+                <h2 class="mb-0 text-success"> Active Store Users - *This is what it will look like*</h2>
+                <div id="accordion">
+                      <div class="card">
+                           <div class="card-header" id="headingOne">
+                              <h5 class="mb-0">
+                                 <header class="d-md-flex">
+                                    <div class="flex-grow-1">
+                                       <img src="/images/usericon.png" class="icon-md img-avatar" width="80" height="80">
+                                       <span>Name: Mr. Jackson Mike</span>
+                                    </div>
+                                    <div>
+                                       <a href="#" class="btn btn-sm btn-primary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">View Details </a>
+                                    </div>
+                                 </header>
+                              </h5>
+                           </div>
+                           <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+
+                               <div class="card-body">
+
+                                   <div class="row">
+                                        <div class="col-md-8">
+                                            <h6 class="text-muted">Details</h6>
+                                            <p>Michael Jackson <br> Phone +1234567890 Email: myname@gmail.com <br> Location: Home number, Building name, Street 123</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h6 class="text-muted">Payment</h6>
+                                            <span class="text-success">
+                                                <i class="fab fa-lg fa-cc-visa"></i> Visa **** 4216 </span>
+                                            <p>Subtotal: $356 <br>
+                                                <span class="b">Total: $456 </span>
+                                            </p>
+                                        </div>
+                                   </div>
+
+
+                                  <article class="card-group card-stat">
+                                        <figure class="card">
+                                            <div class="p-3">
+                                                 <h4 class="title">38</h4>
+                                                <span>Orders</span>
+                                            </div>
+                                        </figure>
+                                        <figure class="card">
+                                            <div class="p-3">
+                                                 <h4 class="title">5</h4>
+                                                <span>Wishlists</span>
+                                            </div>
+                                        </figure>
+                                        <figure class="card">
+                                            <div class="p-3">
+                                                 <h4 class="title">12</h4>
+                                                <span>Awaiting delivery</span>
+                                            </div>
+                                        </figure>
+                                        <figure class="card">
+                                            <div class="p-3">
+                                                 <h4 class="title">50</h4>
+                                                <span>Delivered items</span>
+                                            </div>
+                                        </figure>
+                                  </article>
+
+
+                                  <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="65">
+                                                        <img src="images/8711327483071.h-30012247-png.jpg" width="60" height="60" class="img-xs border">
+                                                    </td>
+                                                    <td>
+                                                        <p class="title mb-0">Product name goes here </p>
+                                                        <var class="price text-muted">USD 145</var>
+                                                    </td>
+                                                    <td> Seller <br> Nike clothing </td>
+                                                    <td width="250">
+                                                        <h6>Quantity: x2</h6>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <img src="images/8711327483071.h-30012247-png.jpg" width="60" height="60" class="img-xs border">
+                                                    </td>
+                                                    <td>
+                                                        <p class="title mb-0">Another name goes here </p>
+                                                        <var class="price text-muted">USD 15</var>
+                                                    </td>
+                                                    <td> Seller <br> ABC shop </td>
+                                                    <td>
+                                                        <h6>Quantity: x2</h6>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <img src="images/8711327483071.h-30012247-png.jpg" width="60" height="60" class="img-xs border">
+                                                    </td>
+                                                    <td>
+                                                        <p class="title mb-0">The name of the product goes here </p>
+                                                        <var class="price text-muted">USD 145</var>
+                                                    </td>
+                                                    <td> Seller <br> Wallmart </td>
+                                                    <td>
+                                                        <h6>Quantity: x2</h6>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                              </div>
+                           </div>
+                      </div>
+                </div>
+
+                <div id="accordion1">
+                  <div class="card">
+                       <div class="card-header" id="headingTwo">
+                          <h5 class="mb-0">
+                             <header class="d-md-flex">
+                                <div class="flex-grow-1">
+                                   <img src="/images/usericon.png" class="icon-md img-avatar" width="80" height="80">
+                                   <span>Name: Mr. Jackson Mike</span>
+                                </div>
+                                <div>
+                                   <a href="#" class="btn btn-sm btn-primary" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">View Details </a>
+                                </div>
+                             </header>
+                          </h5>
+                       </div>
+                       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion1">
+
+                           <div class="card-body">
+
+                               <div class="row">
+                                    <div class="col-md-8">
+                                        <h6 class="text-muted">Details</h6>
+                                        <p style="margin:0px">Michael Jackson</p>
+                                        <p style="margin:0px">Phone +1234567890 Email: myname@gmail.com</p>
+                                        <p style="margin:0px">Location: Home number, Building name, Street 123</p>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6 class="text-muted">Payment</h6>
+                                         <span class="text-success">Visa **** 4216 </span>
+                                         <p style="margin:0px">Subtotal: $356</p>
+                                         <span style="margin:0px" class="b">Total: $456 </span>
+
+                                    </div>
+                               </div>
+
+
+                              <article class="card-group card-stat">
+                                    <figure class="card">
+                                        <div class="p-3">
+                                             <h4 class="title">38</h4>
+                                            <span>Orders</span>
+                                        </div>
+                                    </figure>
+                                    <figure class="card">
+                                        <div class="p-3">
+                                             <h4 class="title">5</h4>
+                                            <span>Wishlists</span>
+                                        </div>
+                                    </figure>
+                                    <figure class="card">
+                                        <div class="p-3">
+                                             <h4 class="title">12</h4>
+                                            <span>Awaiting delivery</span>
+                                        </div>
+                                    </figure>
+                                    <figure class="card">
+                                        <div class="p-3">
+                                             <h4 class="title">50</h4>
+                                            <span>Delivered items</span>
+                                        </div>
+                                    </figure>
+                              </article>
+
+
+                              <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <tbody>
+                                            <tr>
+                                                <td width="65">
+                                                    <img src="images/8711327483071.h-30012247-png.jpg" width="60" height="60" class="img-xs border">
+                                                </td>
+                                                <td>
+                                                    <p class="title mb-0">Product name goes here </p>
+                                                    <var class="price text-muted">USD 145</var>
+                                                </td>
+                                                <td> Seller <br> Nike clothing </td>
+                                                <td width="250">
+                                                    <h6>Quantity: x2</h6>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img src="images/8711327483071.h-30012247-png.jpg" width="60" height="60" class="img-xs border">
+                                                </td>
+                                                <td>
+                                                    <p class="title mb-0">Another name goes here </p>
+                                                    <var class="price text-muted">USD 15</var>
+                                                </td>
+                                                <td> Seller <br> ABC shop </td>
+                                                <td>
+                                                    <h6>Quantity: x2</h6>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img src="images/8711327483071.h-30012247-png.jpg" width="60" height="60" class="img-xs border">
+                                                </td>
+                                                <td>
+                                                    <p class="title mb-0">The name of the product goes here </p>
+                                                    <var class="price text-muted">USD 145</var>
+                                                </td>
+                                                <td> Seller <br> Wallmart </td>
+                                                <td>
+                                                    <h6>Quantity: x2</h6>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                          </div>
+                       </div>
+                  </div>
         </div>
-      </div>
-      <!-- itemside // -->
-    </article>
-    <!-- card.// -->
-  </div>
-  <!-- col // -->
-  <div class="col-lg-4 col-md-4">
-    <article class="card content-body">
-      <div class="text-center mx-lg-4">
-        <span class="rounded-circle text-primary icon-lg bg-primary-light">
-          <i class="fa-solid fa-user-clock"></i>
-        </span>
-        <div class="pt-3">
-          <h3 class="title">Current Time </h3>
-          <h4 id="currenttime" class="mb-0">0:00</h4>
-        </div>
-      </div>
-      <!-- itemside // -->
-    </article>
-    <!-- card.// -->
-  </div>
-  <!-- col // -->
-  <div class="col-lg-4 col-md-4">
-    <article class="card content-body">
-      <div class="text-center mx-lg-4">
-        <span class="rounded-circle text-primary icon-lg bg-primary-light">
-          <i class="fa fa-box"></i>
-        </span>
-        <div class="pt-3">
-          <h3 class="title">*Some other Metric*</h3>
-          <h4 class="mb-0">*Some other Metric* </h4>
-        </div>
-      </div>
-      <!-- itemside // -->
-    </article>
-    <!-- card.// -->
-  </div>
-  <!-- col // -->
-</div>
 
 
-<div class="row">
-  <aside class="col-lg-3">
-    <!-- Dashbaord SIDEBAR LIST -->
-    <div class="card p-3 h-100">
-      <nav class="nav flex-column nav-pills">
-        <a class="nav-link" href="#">Store Account</a>
-        <a class="nav-link active" href="#">Dashboard</a>
-        <a class="nav-link" href="#">Orders history</a>
-        <a class="nav-link" href="#">Transactions</a>
-        <a class="nav-link" href="#">Profile setting</a>
-        <a class="nav-link" href="#">Log out</a>
-      </nav>
-    </div>
-    <!-- Dashbaord SIDEBAR LIST -->
-  </aside>
-</div>
 
-
-<h1 id="test"></h1>
-
+          </div>
 </div>
 
 <script src="javascripts/getStoreData.js"></script>

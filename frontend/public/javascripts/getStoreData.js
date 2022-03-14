@@ -32,8 +32,9 @@ function GetStoreData() {
           },
       }
       let StoreUser_Dict = {};
-      let StoreUserOrder_Dict = {};
-      let StoreUserBasket_Dict = {};
+      let StoreUser_List = [];
+      let StoreUserOrder_List = [];
+      let StoreUserBasket_List = [];
       fetch(djangoServer_User, obj)
           .then(response => response.json()) // extract the json from the response you get from the server
           .then(async (data) => {
@@ -50,35 +51,192 @@ function GetStoreData() {
                   if(userScanInTime <= currentTime && userScanInTime >= timeLimit) {
                       //console.log(data.users[i].email)
                       StoreUser_Dict[data.users[i].id] = data.users[i]
+                      StoreUser_List.push(data.users[i])
                   }
 
               }
-
+                // gets valid users basket info
               for (var j = 0; j < data.baskets.length; j++) {
 
                   if(data.baskets[j].user_id_num in StoreUser_Dict && data.baskets[j].is_active === true ) {
-                          StoreUserBasket_Dict[j] = data.baskets[j]
+                          StoreUserBasket_List.push(data.baskets[j])
 
                       }
               }
-
+                // gets valid users order info
               for (var l = 0; l < data.orders.length; l++) {
 
                   if(data.orders[l].user_id_num in StoreUser_Dict ) {
-                          StoreUserOrder_Dict[l] = data.orders[l]
+                          StoreUserOrder_List.push(data.orders[l])
 
                       }
               }
+              //debug
               console.log(StoreUser_Dict)
+              console.log(StoreUser_List)
               //console.log(StoreUser_Dict[19])
-              console.log(StoreUserBasket_Dict)
-              console.log(StoreUserOrder_Dict)
+              console.log(StoreUserBasket_List)
+              console.log(StoreUserOrder_List)
+              console.log("Current Time" + new Date().toLocaleTimeString())
+              console.log("Total users: " + Object.keys(StoreUser_Dict).length)
 
+              //store name
               document.getElementById("welcome-message").innerHTML= (data.name + " -  Admin DashBoard");
-              document.getElementById("numberofuser").innerHTML= (Object.keys(StoreUser_Dict).length);
-              document.getElementById("currenttime").innerHTML= (new Date().toLocaleTimeString());
+
+                // generate cards for users in store
+              for (var usercount = 0; usercount < StoreUser_List.length; usercount++) {
+
+                 let userdatacardstart = document.getElementById("userdatacard");
+                 let accordiondiv = document.createElement("div");
+                 accordiondiv.id = "accordion"+usercount;
+                 userdatacardstart.appendChild(accordiondiv);
+
+                 let accordioncarddiv = document.createElement("div");
+                 accordioncarddiv.className = "card";
+                 accordioncarddiv.id = "accordioncarddiv"+usercount;
+                 let preaccordioncarddiv = document.getElementById("accordion"+usercount);
+                 preaccordioncarddiv.appendChild(accordioncarddiv);
+
+                 let accordionheaderdiv = document.createElement("div");
+                 accordionheaderdiv.className = "card-header";
+                 accordionheaderdiv.id = "heading"+usercount;
+                 let preaccordionheaderdiv = document.getElementById("accordioncarddiv"+usercount);
+                 preaccordionheaderdiv.appendChild(accordionheaderdiv);
+
+                 let accordionheaderh5 = document.createElement("h5");
+                 accordionheaderh5.className = "mb-0";
+                 accordionheaderh5.id = "accordionheaderh5"+usercount;
+                 let preaccordionheaderh5 = document.getElementById("heading"+usercount);
+                 preaccordionheaderh5.appendChild(accordionheaderh5);
+
+                 let headerdiv = document.createElement("header");
+                 headerdiv.className = "d-md-flex";
+                 headerdiv.id = "headerdiv"+usercount;
+                 let preheaderdiv = document.getElementById("accordionheaderh5"+usercount);
+                 preheaderdiv.appendChild(headerdiv);
+
+                 let flexdiv = document.createElement("div");
+                 flexdiv.className = "flex-grow-1";
+                 flexdiv.id = "flexdiv"+usercount;
+                 let preflexdiv = document.getElementById("headerdiv"+usercount);
+                 preflexdiv.appendChild(flexdiv);
+
+                 let userprofilepic = document.createElement("img");
+                 userprofilepic.className = "icon-md img-avatar";
+                 userprofilepic.id = "userprofilepic"+usercount;
+                 userprofilepic.setAttribute("height","80");
+                 userprofilepic.setAttribute("width", "80");
+                 //userprofilepic.setAttribute("src", backendServer() + "media/"+UserBasketItemData[j].product_image);
+                 userprofilepic.setAttribute("src", "/images/usericon.png");
+                 let preuserprofilepic = document.getElementById("flexdiv"+usercount);
+                 preuserprofilepic.appendChild(userprofilepic);
+
+                 let userprofilepicname = document.createElement("span");
+                 userprofilepicname.appendChild(document.createTextNode(StoreUser_List[usercount].username));
+                 preuserprofilepic.appendChild(userprofilepicname);
+
+                 let expandbuttondiv = document.createElement("div");
+                 expandbuttondiv.id = "expandbuttondiv"+usercount;
+                 let preexpandbuttondiv = document.getElementById("headerdiv"+usercount);
+                 preexpandbuttondiv.appendChild(expandbuttondiv);
+
+                 let expandbuttonlink = document.createElement("a");
+                 expandbuttonlink.id = "expandbuttondiv"+usercount;
+                 expandbuttonlink.className = "btn btn-sm btn-primary";
+                 expandbuttonlink.setAttribute("href","#");
+                 expandbuttonlink.setAttribute("data-toggle","collapse");
+                 expandbuttonlink.setAttribute("data-target","#collapse"+usercount);
+                 expandbuttonlink.setAttribute("aria-expanded","true");
+                 expandbuttonlink.setAttribute("aria-controls","#collapse"+usercount);
+                 expandbuttonlink.appendChild(document.createTextNode("View Details"))
+                 let preexpandbuttonlink = document.getElementById("expandbuttondiv"+usercount);
+                 preexpandbuttonlink.appendChild(expandbuttonlink);
+
+                 let accordiandetials = document.createElement("div");
+                 accordiandetials.className = "collapse";
+                 accordiandetials.id = "collapse"+usercount;
+                 accordiandetials.setAttribute("data-parent","#accordion"+usercount);
+                 accordiandetials.setAttribute("aria-labelledby","heading"+usercount);
+                 preaccordionheaderdiv.appendChild(accordiandetials);
+
+                 let accordiandetialsbody = document.createElement("div");
+                 accordiandetialsbody.id = "accordiandetialsbody"+usercount;
+                 accordiandetialsbody.className = "card-body";
+                 let preaccordiandetialsbody = document.getElementById("collapse"+usercount);
+                 preaccordiandetialsbody.appendChild(accordiandetialsbody);
+
+                 let accordianbodyrow = document.createElement("div");
+                 accordianbodyrow.id = "accordianbodyrow"+usercount;
+                 accordianbodyrow.className = "row";
+                 let preaccordianbodyrow = document.getElementById("accordiandetialsbody"+usercount);
+                 preaccordianbodyrow.appendChild(accordianbodyrow);
+
+                 let accordianuserinfodiv = document.createElement("div");
+                 accordianuserinfodiv.id = "accordianuserinfodiv"+usercount;
+                 accordianuserinfodiv.className = "col-md-8";
+                 let preaccordianuserinfodiv = document.getElementById("accordianbodyrow"+usercount);
+                 preaccordianuserinfodiv.appendChild(accordianuserinfodiv);
+
+                 let userinfoh6 = document.createElement("h6");
+                 userinfoh6.id = "userinfoh6"+usercount;
+                 userinfoh6.className = "text-muted";
+                 userinfoh6.appendChild(document.createTextNode("Details"));
+                 let preuserinfoh6 = document.getElementById("accordianuserinfodiv"+usercount);
+                 preuserinfoh6.appendChild(userinfoh6);
+
+                 let userinfoName = document.createElement("p");
+                 userinfoName.setAttribute("style","margin:0px");
+                 userinfoName.appendChild(document.createTextNode(StoreUser_List[usercount].username));
+                 preuserinfoh6.appendChild(userinfoName);
+
+                 let userinfoPhone = document.createElement("p");
+                 userinfoPhone.setAttribute("style","margin:0px");
+                 userinfoPhone.appendChild(document.createTextNode("Phone: " + StoreUser_List[usercount].username));
+                 preuserinfoh6.appendChild(userinfoPhone);
+
+                 let userinfoEmail = document.createElement("p");
+                 userinfoEmail.setAttribute("style","margin:0px");
+                 userinfoEmail.appendChild(document.createTextNode("Email: " + StoreUser_List[usercount].email));
+                 preuserinfoh6.appendChild(userinfoEmail);
+
+                 let userinfoLocation = document.createElement("p");
+                 userinfoLocation.setAttribute("style","margin:0px");
+                 userinfoLocation.appendChild(document.createTextNode("Location: " + StoreUser_List[usercount].email));
+                 preuserinfoh6.appendChild(userinfoLocation);
+
+                 let accordianuserpaymentdiv = document.createElement("div");
+                 accordianuserpaymentdiv.id = "accordianuserpaymentdiv"+usercount;
+                 accordianuserpaymentdiv.className = "col-md-4";
+                 preaccordianuserinfodiv.appendChild(accordianuserpaymentdiv);
+
+                 let userpaymenth6 = document.createElement("h6");
+                 userpaymenth6.id = "userpaymenth6"+usercount;
+                 userpaymenth6.className = "text-muted";
+                 userpaymenth6.appendChild(document.createTextNode("Payment"));
+                 let preuserpaymenth6 = document.getElementById("accordianuserpaymentdiv"+usercount);
+                 preuserpaymenth6.appendChild(userpaymenth6);
+
+                 let usercardinfo = document.createElement("span");
+                 usercardinfo.className = "text-success";
+                 usercardinfo.setAttribute("style","margin:0px");
+                 usercardinfo.appendChild(document.createTextNode("Visa **** 4216"));
+                 preuserpaymenth6.appendChild(usercardinfo);
+
+                 let usersubtotalinfo= document.createElement("p");
+                 usersubtotalinfo.setAttribute("style","margin:0px");
+                 usersubtotalinfo.appendChild(document.createTextNode("Subtotal: $356"));
+                 preuserpaymenth6.appendChild(usersubtotalinfo);
+
+                 let usertotalinfo = document.createElement("span");
+                 usertotalinfo.className = "b";
+                 usertotalinfo.setAttribute("style","margin:0px");
+                 usertotalinfo.appendChild(document.createTextNode("Total: $456"));
+                 preuserpaymenth6.appendChild(usertotalinfo);
 
 
+
+
+              }
 
           })
   }
