@@ -44,7 +44,7 @@ function GetStoreData() {
               for (var i = 0; i < data.users.length; i++) {
                   console.log(data.users[i].username);
                   var currentTime = new Date().getTime();
-                  var minutes = 3500;
+                  var minutes = 2500;
                   var timeLimit = new Date(currentTime -minutes*60000).getTime();
                   var userScanInTime = new Date(data.users[i].store_login).getTime();
 
@@ -71,6 +71,15 @@ function GetStoreData() {
 
                       }
               }
+                // auto clear dashabord before refresh
+              function removeAllChildNodes(parent) {
+                    while (parent.firstChild) {
+                        parent.removeChild(parent.firstChild);
+                    }
+                }
+              const container = document.querySelector('#userdatacard');
+              removeAllChildNodes(container);
+
               //debug
               console.log(StoreUser_Dict)
               console.log(StoreUser_List)
@@ -240,5 +249,5 @@ function GetStoreData() {
 
           })
   }
-  //var timer = setInterval(GetStoreData, 9000);
+  var timer = setInterval(GetStoreData, 9000);
   GetStoreData()
