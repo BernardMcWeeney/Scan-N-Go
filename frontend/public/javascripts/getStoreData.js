@@ -91,9 +91,6 @@ function GetStoreData() {
               console.log("Current Time" + new Date().toLocaleTimeString())
               console.log("Total users: " + Object.keys(StoreUser_Dict).length)
 
-              //store name
-              document.getElementById("welcome-message").innerHTML= (data.name + " -  Admin DashBoard");
-
                 // generate cards for users in store
               for (var usercount = 0; usercount < StoreUser_List.length; usercount++) {
 
@@ -244,7 +241,12 @@ function GetStoreData() {
                  usertotalinfo.appendChild(document.createTextNode("Total: $456"));
                  preuserpaymenth6.appendChild(usertotalinfo);
 
-                 // 4 card group div
+                 //Information for users stats
+
+                 // To Be Done
+
+
+                 // user stats - 4 card group div
                   // card 1
                  let articlecardgroup = document.createElement("article");
                  articlecardgroup.id = "articlecardgroup"+usercount;
@@ -274,7 +276,7 @@ function GetStoreData() {
                  let figuretitleA = document.createElement("span");
                  figuretitleA.id = "figuretitleA"+usercount;
                  figuretitleA.className = "title";
-                 figuretitleA.appendChild(document.createTextNode("Total Items"));
+                 figuretitleA.appendChild(document.createTextNode("Total User Orders"));
                  prefiguretitle.appendChild(figuretitleA);
 
                  //card 2
@@ -300,7 +302,7 @@ function GetStoreData() {
                  let figuretitleA1 = document.createElement("span");
                  figuretitleA1.id = "figuretitleA1"+usercount;
                  figuretitleA1.className = "title";
-                 figuretitleA1.appendChild(document.createTextNode("Unique Items"));
+                 figuretitleA1.appendChild(document.createTextNode("Total Basket Items"));
                  prefiguretitle1.appendChild(figuretitleA1);
 
                  //card 3
@@ -326,7 +328,7 @@ function GetStoreData() {
                  let figuretitleA2 = document.createElement("span");
                  figuretitleA2.id = "figuretitleA2"+usercount;
                  figuretitleA2.className = "title";
-                 figuretitleA2.appendChild(document.createTextNode("Total Price"));
+                 figuretitleA2.appendChild(document.createTextNode("Total Basket Price"));
                  prefiguretitle2.appendChild(figuretitleA2);
 
                  //card 4
@@ -382,13 +384,121 @@ function GetStoreData() {
                       if(StoreUser_List[usercount].id === StoreUserBasket_List[basketitem].user_id_num && StoreUserBasket_List[basketitem].is_active === true) {
                               console.log(usercount + "yes")
                           for (var basketITEMS = 0; basketITEMS < StoreUserBasket_List[basketitem].items.length; basketITEMS++) {
-                              console.log(StoreUserBasket_List[basketitem].items)
+                                 let tableTR = document.createElement("tr");
+                                 tableTR.id = "tableTR"+usercount;
+                                 let pretableTR = document.getElementById("tablebody"+usercount);
+                                 pretableTR.appendChild(tableTR);
+
+                                 let tableTDimg = document.createElement("td");
+                                 tableTDimg.id = "tableTDimg"+usercount;
+                                 tableTDimg.setAttribute("width","65");
+                                 let pretableTDimg = document.getElementById("tableTR"+usercount);
+                                 pretableTDimg.appendChild(tableTDimg);
+
+                                 // display product image
+                                 let tableProdimage = document.createElement("img");
+                                 tableProdimage.id = "tableProdimage"+usercount;
+                                 tableProdimage.className = "img-xs border";
+                                 tableProdimage.setAttribute("src","/"+StoreUserBasket_List[basketitem].items[basketITEMS].product_image);
+                                 tableProdimage.setAttribute("width","60");
+                                 tableProdimage.setAttribute("height","60");
+                                 let pretableProdimage = document.getElementById("tableTDimg"+usercount);
+                                 pretableProdimage.appendChild(tableProdimage);
+
+                                 let tableTDTitle = document.createElement("td");
+                                 tableTDTitle.id = "tableTDTitle"+usercount;
+                                 tableTDTitle.setAttribute("width","250");
+                                 pretableTDimg.appendChild(tableTDTitle);
+
+                                 // display product title
+                                 let TitleforProdTitle = document.createElement("h6");
+                                 TitleforProdTitle.id = "TitleforProdTitle"+usercount;
+                                 TitleforProdTitle.setAttribute("style","margin:0px");
+                                 TitleforProdTitle.appendChild(document.createTextNode("Product"));
+                                 let preTitleforProdTitle = document.getElementById("tableTDTitle"+usercount);
+                                 preTitleforProdTitle.appendChild(TitleforProdTitle);
+
+                                 let ProductTitle = document.createElement("p");
+                                 ProductTitle.id = "ProductTitle"+usercount;
+                                 ProductTitle.className = "title mb-0";
+                                 ProductTitle.appendChild(document.createTextNode(StoreUserBasket_List[basketitem].items[basketITEMS].product_name));
+                                 let preProductTitle = document.getElementById("tableTDTitle"+usercount);
+                                 preProductTitle.appendChild(ProductTitle);
+
+                                 let tableTDTag = document.createElement("td");
+                                 tableTDTag.setAttribute("width","250");
+                                 tableTDTag.id = "tableTDTag"+usercount;
+                                 pretableTDimg.appendChild(tableTDTag);
+
+                                 // display TAG
+                                 let TitleforTAG = document.createElement("h6");
+                                 TitleforTAG.id = "TitleforTAG"+usercount;
+                                 TitleforTAG.setAttribute("style","margin:0px");
+                                 TitleforTAG.appendChild(document.createTextNode("Tag"));
+                                 let preTitleforTAG = document.getElementById("tableTDTag"+usercount);
+                                 preTitleforTAG.appendChild(TitleforTAG);
+
+                                 // display product tags
+                                 let ProductTag = document.createElement("p");
+                                 ProductTag.id = "ProductTag"+usercount;
+                                 ProductTag.setAttribute("style","margin:0px");
+                                 ProductTag.appendChild(document.createTextNode(StoreUserBasket_List[basketitem].items[basketITEMS].product_tag));
+                                 preTitleforTAG.appendChild(ProductTag);
+
+                                 // display PRICE
+                                 let tableTDPrice = document.createElement("td");
+                                 tableTDPrice.setAttribute("width","250");
+                                 tableTDPrice.id = "tableTDPrice"+usercount;
+                                 pretableTDimg.appendChild(tableTDPrice);
+
+                                 let TitleforPrice = document.createElement("h6");
+                                 TitleforPrice.id = "TitleforPrice"+usercount;
+                                 TitleforPrice.setAttribute("style","margin:0px");
+                                 TitleforPrice.appendChild(document.createTextNode("Price"));
+                                 let preTitleforPrice = document.getElementById("tableTDPrice"+usercount);
+                                 preTitleforPrice.appendChild(TitleforPrice);
+
+                                 // display product price
+                                 let ProductPrice = document.createElement("p");
+                                 ProductPrice.id = "ProductPrice"+usercount;
+                                 ProductPrice.className = "price text-muted";
+                                 ProductPrice.appendChild(document.createTextNode("€"+StoreUserBasket_List[basketitem].items[basketITEMS].product_price));
+                                 preTitleforPrice.appendChild(ProductPrice);
+
+                                 // display product Quantity
+                                 let tableTDQTY = document.createElement("td");
+                                 tableTDQTY.id = "tableTDQTY"+usercount;
+                                 tableTDQTY.setAttribute("width","260");
+                                 pretableTDimg.appendChild(tableTDQTY);
+
+                                 let titleProductQty = document.createElement("h6");
+                                 titleProductQty.id = "titleProductQty"+usercount;
+                                 titleProductQty.appendChild(document.createTextNode("Quantity"));
+                                 let pretitleProductQty = document.getElementById("tableTDQTY"+usercount);
+                                 pretitleProductQty.appendChild(titleProductQty);
+                                 
+                                 let ProductQty = document.createElement("p");
+                                 ProductQty.id = "ProductQty"+usercount;
+                                 ProductQty.appendChild(document.createTextNode(StoreUserBasket_List[basketitem].items[basketITEMS].quantity));
+                                 pretitleProductQty.appendChild(ProductQty);
 
                           }
 
                       }
                   }
+              //Dashboard Useful info
+              document.getElementById("welcome-message").innerHTML= (data.name + " -  Admin DashBoard");
+              document.getElementById("ActiveUsers").innerHTML= (StoreUser_List.length);
+              document.getElementById("CurrentTime").innerHTML= (new Date().toLocaleTimeString());
 
+              let validbasketcount = 0
+                  for (var validbasket = 0; validbasket < StoreUserBasket_List.length; validbasket++) {
+                      if(StoreUserBasket_List[validbasket].items.length != 0) {
+                          validbasketcount = validbasketcount + 1
+                      }
+                  }
+              document.getElementById("EmptyBaskets").innerHTML= (StoreUser_List.length - validbasketcount);
+              document.getElementById("InuseBaskets").innerHTML= (validbasketcount);
 
 
 
