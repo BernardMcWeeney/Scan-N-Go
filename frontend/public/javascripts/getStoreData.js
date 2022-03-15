@@ -44,7 +44,7 @@ function GetStoreData() {
               for (var i = 0; i < data.users.length; i++) {
                   console.log(data.users[i].username);
                   var currentTime = new Date().getTime();
-                  var minutes = 2500;
+                  var minutes = 6500;
                   var timeLimit = new Date(currentTime -minutes*60000).getTime();
                   var userScanInTime = new Date(data.users[i].store_login).getTime();
 
@@ -84,7 +84,9 @@ function GetStoreData() {
               console.log(StoreUser_Dict)
               console.log(StoreUser_List)
               //console.log(StoreUser_Dict[19])
+              console.log("Users Basket")
               console.log(StoreUserBasket_List)
+              console.log("Users Orders")
               console.log(StoreUserOrder_List)
               console.log("Current Time" + new Date().toLocaleTimeString())
               console.log("Total users: " + Object.keys(StoreUser_Dict).length)
@@ -242,6 +244,156 @@ function GetStoreData() {
                  usertotalinfo.appendChild(document.createTextNode("Total: $456"));
                  preuserpaymenth6.appendChild(usertotalinfo);
 
+                 // 4 card group div
+                  // card 1
+                 let articlecardgroup = document.createElement("article");
+                 articlecardgroup.id = "articlecardgroup"+usercount;
+                 articlecardgroup.className = "card-group card-stat";
+                 let prearticlecardgroup = document.getElementById("accordiandetialsbody"+usercount);
+                 prearticlecardgroup.appendChild(articlecardgroup);
+
+                 let articlefigure = document.createElement("figure");
+                 articlefigure.id = "articlefigure"+usercount;
+                 articlefigure.className = "card";
+                 let prearticlefigure = document.getElementById("articlecardgroup"+usercount);
+                 prearticlefigure.appendChild(articlefigure);
+
+                 let figurediv = document.createElement("div");
+                 figurediv.id = "figurediv"+usercount;
+                 figurediv.className = "p-3";
+                 let prefigurediv = document.getElementById("articlefigure"+usercount);
+                 prefigurediv.appendChild(figurediv);
+
+                 let figuretitle = document.createElement("h4");
+                 figuretitle.id = "figuretitle"+usercount;
+                 figuretitle.className = "title";
+                 figuretitle.appendChild(document.createTextNode("40"));
+                 let prefiguretitle = document.getElementById("figurediv"+usercount);
+                 prefiguretitle.appendChild(figuretitle);
+
+                 let figuretitleA = document.createElement("span");
+                 figuretitleA.id = "figuretitleA"+usercount;
+                 figuretitleA.className = "title";
+                 figuretitleA.appendChild(document.createTextNode("Total Items"));
+                 prefiguretitle.appendChild(figuretitleA);
+
+                 //card 2
+                 let articlefigure1 = document.createElement("figure");
+                 articlefigure1.id = "articlefigure1"+usercount;
+                 articlefigure1.className = "card";
+                 let prearticlefigure1 = document.getElementById("articlecardgroup"+usercount);
+                 prearticlefigure1.appendChild(articlefigure1);
+
+                 let figurediv1 = document.createElement("div");
+                 figurediv1.id = "figurediv1"+usercount;
+                 figurediv1.className = "p-3";
+                 let prefigurediv1 = document.getElementById("articlefigure1"+usercount);
+                 prefigurediv1.appendChild(figurediv1);
+
+                 let figuretitle1 = document.createElement("h4");
+                 figuretitle1.id = "figuretitle1"+usercount;
+                 figuretitle1.className = "title";
+                 figuretitle1.appendChild(document.createTextNode("40"));
+                 let prefiguretitle1 = document.getElementById("figurediv1"+usercount);
+                 prefiguretitle1.appendChild(figuretitle1);
+
+                 let figuretitleA1 = document.createElement("span");
+                 figuretitleA1.id = "figuretitleA1"+usercount;
+                 figuretitleA1.className = "title";
+                 figuretitleA1.appendChild(document.createTextNode("Unique Items"));
+                 prefiguretitle1.appendChild(figuretitleA1);
+
+                 //card 3
+                 let articlefigure2 = document.createElement("figure");
+                 articlefigure2.id = "articlefigure2"+usercount;
+                 articlefigure2.className = "card";
+                 let prearticlefigure2 = document.getElementById("articlecardgroup"+usercount);
+                 prearticlefigure2.appendChild(articlefigure2);
+
+                 let figurediv2 = document.createElement("div");
+                 figurediv2.id = "figurediv2"+usercount;
+                 figurediv2.className = "p-3";
+                 let prefigurediv2 = document.getElementById("articlefigure2"+usercount);
+                 prefigurediv2.appendChild(figurediv2);
+
+                 let figuretitle2 = document.createElement("h4");
+                 figuretitle2.id = "figuretitle2"+usercount;
+                 figuretitle2.className = "title";
+                 figuretitle2.appendChild(document.createTextNode("40"));
+                 let prefiguretitle2 = document.getElementById("figurediv2"+usercount);
+                 prefiguretitle2.appendChild(figuretitle2);
+
+                 let figuretitleA2 = document.createElement("span");
+                 figuretitleA2.id = "figuretitleA2"+usercount;
+                 figuretitleA2.className = "title";
+                 figuretitleA2.appendChild(document.createTextNode("Total Price"));
+                 prefiguretitle2.appendChild(figuretitleA2);
+
+                 //card 4
+                 let articlefigure3 = document.createElement("figure");
+                 articlefigure3.id = "articlefigure3"+usercount;
+                 articlefigure3.className = "card";
+                 let prearticlefigure3 = document.getElementById("articlecardgroup"+usercount);
+                 prearticlefigure3.appendChild(articlefigure3);
+
+                 let figurediv3 = document.createElement("div");
+                 figurediv3.id = "figurediv3"+usercount;
+                 figurediv3.className = "p-3";
+                 let prefigurediv3 = document.getElementById("articlefigure3"+usercount);
+                 prefigurediv3.appendChild(figurediv3);
+
+                 let figuretitle3 = document.createElement("h4");
+                 figuretitle3.id = "figuretitle3"+usercount;
+                 figuretitle3.className = "title";
+                 figuretitle3.appendChild(document.createTextNode("40"));
+                 let prefiguretitle3 = document.getElementById("figurediv3"+usercount);
+                 prefiguretitle3.appendChild(figuretitle3);
+
+                 let figuretitleA3 = document.createElement("span");
+                 figuretitleA3.id = "figuretitleA3"+usercount;
+                 figuretitleA3.className = "title";
+                 figuretitleA3.appendChild(document.createTextNode("Status"));
+                 prefiguretitle3.appendChild(figuretitleA3);
+
+
+                 // current users basket items
+
+                 let tablediv = document.createElement("div");
+                 tablediv.id = "tablediv"+usercount;
+                 tablediv.className = "table-responsive";
+                 let pretablediv = document.getElementById("accordiandetialsbody"+usercount);
+                 pretablediv.appendChild(tablediv);
+
+                 let basketitemtable = document.createElement("table");
+                 basketitemtable.id = "basketitemtable"+usercount;
+                 basketitemtable.className = "table table-hover";
+                 let prebasketitemtable = document.getElementById("tablediv"+usercount);
+                 prebasketitemtable.appendChild(basketitemtable);
+
+                 let tablebody = document.createElement("tbody");
+                 tablebody.id = "tablebody"+usercount;
+                 let pretablebody = document.getElementById("basketitemtable"+usercount);
+                 pretablebody.appendChild(tablebody);
+
+                 // Get basket items and populate table
+
+                  for (var basketitem = 0; basketitem < StoreUserBasket_List.length; basketitem++) {
+
+                      if(StoreUser_List[usercount].id === StoreUserBasket_List[basketitem].user_id_num && StoreUserBasket_List[basketitem].is_active === true) {
+                              console.log(usercount + "yes")
+                          for (var basketITEMS = 0; basketITEMS < StoreUserBasket_List[basketitem].items.length; basketITEMS++) {
+                              console.log(StoreUserBasket_List[basketitem].items)
+
+                          }
+
+                      }
+                  }
+
+
+
+
+
+
 
 
 
@@ -249,5 +401,5 @@ function GetStoreData() {
 
           })
   }
-  var timer = setInterval(GetStoreData, 9000);
+  //var timer = setInterval(GetStoreData, 9000);
   GetStoreData()
