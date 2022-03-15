@@ -511,5 +511,5 @@ function GetStoreData() {
 
           })
   }
-  //var timer = setInterval(GetStoreData, 9000);
+  var timer = setInterval(GetStoreData, 9000);
   GetStoreData()
