@@ -1,5 +1,9 @@
+from django.utils import timezone
+import pytz
 from rest_framework import serializers
 from .models import *
+
+
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -117,6 +121,23 @@ class AddBasketItemSerializer(serializers.ModelSerializer):
                 return new_basket_item
         else:
             return None
+
+class SetUserStoreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = APIUser
+        fields = ['last_store']
+
+    def create(self, validated_data):
+        request = self.context.get('request', None)
+        store_id = request.data['last_store']
+        store = Store.objects.filter(id=store_id).first()
+        current_user = request.user
+        user = APIUser.objects.filter(id=current_user.id).first()
+        if user:
+            user.last_store = store
+            user.store_login = timezone.now()
+            user.save()
+            return user
 
 
 class RemoveBasketItemSerializer(serializers.ModelSerializer):

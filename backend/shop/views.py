@@ -141,6 +141,10 @@ class AddBasketItemAPIView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = BasketItems.objects.all()
 
+class SetUserStoreAPIView(generics.CreateAPIView):
+    serializer_class = SetUserStoreSerializer
+    permission_classes = [AllowAny]
+    queryset = APIUser.objects.all()
 
 class RemoveBasketItemAPIView(generics.CreateAPIView):
     serializer_class = RemoveBasketItemSerializer
