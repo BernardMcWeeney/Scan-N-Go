@@ -130,17 +130,19 @@ function GetStoreData() {
                  preflexdiv.appendChild(flexdiv);
 
                  let userprofilepic = document.createElement("img");
+                 userprofilepic.style.borderRadius = "6px";
                  userprofilepic.className = "icon-md img-avatar";
                  userprofilepic.id = "userprofilepic"+usercount;
                  userprofilepic.setAttribute("height","80");
                  userprofilepic.setAttribute("width", "80");
                  //userprofilepic.setAttribute("src", backendServer() + "media/"+UserBasketItemData[j].product_image);
-                 userprofilepic.setAttribute("src", "/images/usericon.png");
+                 userprofilepic.setAttribute("src", StoreUser_List[usercount].user_image);
                  let preuserprofilepic = document.getElementById("flexdiv"+usercount);
                  preuserprofilepic.appendChild(userprofilepic);
 
                  let userprofilepicname = document.createElement("span");
-                 userprofilepicname.appendChild(document.createTextNode(StoreUser_List[usercount].username));
+
+                 userprofilepicname.appendChild(document.createTextNode(StoreUser_List[usercount].first_name + " " + StoreUser_List[usercount].last_name + " (" + StoreUser_List[usercount].username + ")"));
                  preuserprofilepic.appendChild(userprofilepicname);
 
                  let expandbuttondiv = document.createElement("div");
@@ -213,6 +215,7 @@ function GetStoreData() {
                  preuserinfoh6.appendChild(userinfoLocation);
 
                  let accordianuserpaymentdiv = document.createElement("div");
+                 accordianuserpaymentdiv.style.display = 'none';
                  accordianuserpaymentdiv.id = "accordianuserpaymentdiv"+usercount;
                  accordianuserpaymentdiv.className = "col-md-4";
                  preaccordianuserinfodiv.appendChild(accordianuserpaymentdiv);
@@ -249,6 +252,7 @@ function GetStoreData() {
                  // user stats - 4 card group div
                   // card 1
                  let articlecardgroup = document.createElement("article");
+                 articlecardgroup.style.display = "none";
                  articlecardgroup.id = "articlecardgroup"+usercount;
                  articlecardgroup.className = "card-group card-stat";
                  let prearticlecardgroup = document.getElementById("accordiandetialsbody"+usercount);
@@ -385,62 +389,62 @@ function GetStoreData() {
                               console.log(usercount + "yes")
                           for (var basketITEMS = 0; basketITEMS < StoreUserBasket_List[basketitem].items.length; basketITEMS++) {
                                  let tableTR = document.createElement("tr");
-                                 tableTR.id = "tableTR"+usercount;
+                                 tableTR.id = "tableTR"+basketITEMS;
                                  let pretableTR = document.getElementById("tablebody"+usercount);
                                  pretableTR.appendChild(tableTR);
 
                                  let tableTDimg = document.createElement("td");
-                                 tableTDimg.id = "tableTDimg"+usercount;
+                                 tableTDimg.id = "tableTDimg"+basketITEMS;
                                  tableTDimg.setAttribute("width","65");
-                                 let pretableTDimg = document.getElementById("tableTR"+usercount);
+                                 let pretableTDimg = document.getElementById("tableTR"+basketITEMS);
                                  pretableTDimg.appendChild(tableTDimg);
 
                                  // display product image
                                  let tableProdimage = document.createElement("img");
-                                 tableProdimage.id = "tableProdimage"+usercount;
+                                 tableProdimage.id = "tableProdimage"+basketITEMS;
                                  tableProdimage.className = "img-xs border";
                                  tableProdimage.setAttribute("src","/"+StoreUserBasket_List[basketitem].items[basketITEMS].product_image);
                                  tableProdimage.setAttribute("width","60");
                                  tableProdimage.setAttribute("height","60");
-                                 let pretableProdimage = document.getElementById("tableTDimg"+usercount);
+                                 let pretableProdimage = document.getElementById("tableTDimg"+basketITEMS);
                                  pretableProdimage.appendChild(tableProdimage);
 
                                  let tableTDTitle = document.createElement("td");
-                                 tableTDTitle.id = "tableTDTitle"+usercount;
+                                 tableTDTitle.id = "tableTDTitle"+basketITEMS;
                                  tableTDTitle.setAttribute("width","250");
                                  pretableTDimg.appendChild(tableTDTitle);
 
                                  // display product title
                                  let TitleforProdTitle = document.createElement("h6");
-                                 TitleforProdTitle.id = "TitleforProdTitle"+usercount;
+                                 TitleforProdTitle.id = "TitleforProdTitle"+basketITEMS;
                                  TitleforProdTitle.setAttribute("style","margin:0px");
                                  TitleforProdTitle.appendChild(document.createTextNode("Product"));
-                                 let preTitleforProdTitle = document.getElementById("tableTDTitle"+usercount);
+                                 let preTitleforProdTitle = document.getElementById("tableTDTitle"+basketITEMS);
                                  preTitleforProdTitle.appendChild(TitleforProdTitle);
 
                                  let ProductTitle = document.createElement("p");
-                                 ProductTitle.id = "ProductTitle"+usercount;
+                                 ProductTitle.id = "ProductTitle"+basketITEMS;
                                  ProductTitle.className = "title mb-0";
                                  ProductTitle.appendChild(document.createTextNode(StoreUserBasket_List[basketitem].items[basketITEMS].product_name));
-                                 let preProductTitle = document.getElementById("tableTDTitle"+usercount);
+                                 let preProductTitle = document.getElementById("tableTDTitle"+basketITEMS);
                                  preProductTitle.appendChild(ProductTitle);
 
                                  let tableTDTag = document.createElement("td");
                                  tableTDTag.setAttribute("width","250");
-                                 tableTDTag.id = "tableTDTag"+usercount;
+                                 tableTDTag.id = "tableTDTag"+basketITEMS;
                                  pretableTDimg.appendChild(tableTDTag);
 
                                  // display TAG
                                  let TitleforTAG = document.createElement("h6");
-                                 TitleforTAG.id = "TitleforTAG"+usercount;
+                                 TitleforTAG.id = "TitleforTAG"+basketITEMS;
                                  TitleforTAG.setAttribute("style","margin:0px");
                                  TitleforTAG.appendChild(document.createTextNode("Tag"));
-                                 let preTitleforTAG = document.getElementById("tableTDTag"+usercount);
+                                 let preTitleforTAG = document.getElementById("tableTDTag"+basketITEMS);
                                  preTitleforTAG.appendChild(TitleforTAG);
 
                                  // display product tags
                                  let ProductTag = document.createElement("p");
-                                 ProductTag.id = "ProductTag"+usercount;
+                                 ProductTag.id = "ProductTag"+basketITEMS;
                                  ProductTag.setAttribute("style","margin:0px");
                                  ProductTag.appendChild(document.createTextNode(StoreUserBasket_List[basketitem].items[basketITEMS].product_tag));
                                  preTitleforTAG.appendChild(ProductTag);
@@ -448,37 +452,37 @@ function GetStoreData() {
                                  // display PRICE
                                  let tableTDPrice = document.createElement("td");
                                  tableTDPrice.setAttribute("width","250");
-                                 tableTDPrice.id = "tableTDPrice"+usercount;
+                                 tableTDPrice.id = "tableTDPrice"+basketITEMS;
                                  pretableTDimg.appendChild(tableTDPrice);
 
                                  let TitleforPrice = document.createElement("h6");
-                                 TitleforPrice.id = "TitleforPrice"+usercount;
+                                 TitleforPrice.id = "TitleforPrice"+basketITEMS;
                                  TitleforPrice.setAttribute("style","margin:0px");
                                  TitleforPrice.appendChild(document.createTextNode("Price"));
-                                 let preTitleforPrice = document.getElementById("tableTDPrice"+usercount);
+                                 let preTitleforPrice = document.getElementById("tableTDPrice"+basketITEMS);
                                  preTitleforPrice.appendChild(TitleforPrice);
 
                                  // display product price
                                  let ProductPrice = document.createElement("p");
-                                 ProductPrice.id = "ProductPrice"+usercount;
+                                 ProductPrice.id = "ProductPrice"+basketITEMS;
                                  ProductPrice.className = "price text-muted";
                                  ProductPrice.appendChild(document.createTextNode("€"+StoreUserBasket_List[basketitem].items[basketITEMS].product_price));
                                  preTitleforPrice.appendChild(ProductPrice);
 
                                  // display product Quantity
                                  let tableTDQTY = document.createElement("td");
-                                 tableTDQTY.id = "tableTDQTY"+usercount;
+                                 tableTDQTY.id = "tableTDQTY"+basketITEMS;
                                  tableTDQTY.setAttribute("width","260");
                                  pretableTDimg.appendChild(tableTDQTY);
 
                                  let titleProductQty = document.createElement("h6");
-                                 titleProductQty.id = "titleProductQty"+usercount;
+                                 titleProductQty.id = "titleProductQty"+basketITEMS;
                                  titleProductQty.appendChild(document.createTextNode("Quantity"));
-                                 let pretitleProductQty = document.getElementById("tableTDQTY"+usercount);
+                                 let pretitleProductQty = document.getElementById("tableTDQTY"+basketITEMS);
                                  pretitleProductQty.appendChild(titleProductQty);
                                  
                                  let ProductQty = document.createElement("p");
-                                 ProductQty.id = "ProductQty"+usercount;
+                                 ProductQty.id = "ProductQty"+basketITEMS;
                                  ProductQty.appendChild(document.createTextNode(StoreUserBasket_List[basketitem].items[basketITEMS].quantity));
                                  pretitleProductQty.appendChild(ProductQty);
 
@@ -511,5 +515,5 @@ function GetStoreData() {
 
           })
   }
-  var timer = setInterval(GetStoreData, 9000);
+  //var timer = setInterval(GetStoreData, 9000);
   GetStoreData()

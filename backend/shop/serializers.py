@@ -25,7 +25,7 @@ class BasketSerializer(serializers.HyperlinkedModelSerializer):
 class APIUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = APIUser
-        fields = ['id', 'username', 'email', 'date_joined', 'last_login', 'is_superuser', 'last_store', 'store_login']
+        fields = ['id', 'username', 'email', 'date_joined', 'last_login', 'is_superuser', 'last_store', 'store_login','user_image', "first_name", "last_name"]
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     basket = BasketSerializer(many=True, read_only=True, source='basket_set')
@@ -44,8 +44,6 @@ class StoreSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Store
         fields = ['id', 'name', 'users', 'orders', 'baskets']
-
-
 
 
 class IrishBillingAddressSerializer(serializers.HyperlinkedModelSerializer):
@@ -133,6 +131,14 @@ class SetUserStoreSerializer(serializers.ModelSerializer):
         store = Store.objects.filter(id=store_id).first()
         current_user = request.user
         user = APIUser.objects.filter(id=current_user.id).first()
+
+        old_basket = Basket.objects.filter(user_id=current_user, is_active=True).first()
+        old_basket.is_active = False
+        old_basket.save()
+
+        new_basket = Basket.objects.create(user_id=current_user, is_active=True, store_id=store)  # Create a shopping basket
+        new_basket.save()  # save the shopping basket
+
         if user:
             user.last_store = store
             user.store_login = timezone.now()
@@ -193,7 +199,10 @@ class CheckoutSerializer(serializers.ModelSerializer):
     order = Order.objects.create(basket_id=basket_id, user_id=current_user)
     order.save()
     # create a new empty basket for the customer
-    new_basket = Basket.objects.create(user_id=current_user)  # Create a shopping basket
+    new_basket = Basket.objects.create(user_id=current_user, store_id=Store.objects.filter(id=5).first())  # Create a shopping basket
     new_basket.save()
+    user = APIUser.objects.filter(id=current_user.id).first()
+    user.last_store = Store.objects.filter(id=5).first()
+    user.save()
     # return the order
     return order

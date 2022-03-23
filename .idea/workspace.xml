@@ -2,19 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3db31b5-3baa-4626-b246-4fac17954eba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/public/javascripts/setStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6789788f-f561-4cb3-b171-f9a3057674d2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7fac747e-1d32-459d-a5a7-c1097e7556ed.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/backend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/backend/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/shop/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/shop/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/shop/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/shop/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/shop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/shop/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/public/javascripts/getStoreData.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/javascripts/getStoreData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/routes/admin/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/routes/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/admin/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/admin.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views/partials/footer.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/partials/footer.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views/partials/head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/partials/head.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views/partials/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/partials/header.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/views/store-scanner.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/store-scanner.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,6 +44,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="database.data.extractors.current.export.id" value="Comma-separated (CSV)_id" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/routes" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -55,6 +52,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/routes" />
+      <recent name="$PROJECT_DIR$/frontend/views" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/frontend/routes" />
       <recent name="$PROJECT_DIR$/frontend/views" />
     </key>
@@ -94,7 +95,8 @@
       <updated>1638188238953</updated>
       <workItem from="1638188247172" duration="13872000" />
       <workItem from="1645207791396" duration="3585000" />
-      <workItem from="1647690557496" duration="14386000" />
+      <workItem from="1647690557496" duration="25517000" />
+      <workItem from="1648035655042" duration="5433000" />
     </task>
     <servers />
   </component>

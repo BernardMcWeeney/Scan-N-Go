@@ -7,11 +7,11 @@ class Store(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, null=False)
 
-
-
 class APIUser(AbstractUser):
-    last_store = models.ForeignKey(Store, on_delete=models.CASCADE)
-    store_login = models.DateTimeField()
+    last_store = models.ForeignKey(Store, on_delete=models.CASCADE,default=5)
+    store_login = models.DateTimeField(auto_now_add=True, blank=True)
+    user_image = models.FileField(upload_to='images/user_images/', default='images/user_images/defaultUser.jpg')
+
 
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
