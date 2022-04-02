@@ -28,6 +28,7 @@ ScanditSDK.configure("AcwRWhrVOx+fAw/oAhAg/7w/zNFaMBqI1G+QtwgSQp+deFEez3tjgVtBow
     barcodePicker.on("scan", (scanResult) => {
       if (scanResult.barcodes[0].data.slice(0,6) === "store-") {
         setUserStore(scanResult.barcodes[0].data.slice(6))
+        barcodePicker.destroy()
       } else {
         alert("Invalid Store Barcode! The barcode you scanned was " + scanResult.barcodes[0].data);
       }

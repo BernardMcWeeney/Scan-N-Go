@@ -36,7 +36,8 @@ function setUserStore(storeID) {
         .then(response => response.json()) // extract the json from the response you get from the server
         .then(data => {
             //console.log(data);
-            alert("Set store to store ID: "+ storeID.toString());
+            //alert("Set store to store ID: "+ storeID.toString());
+            sessionStorage.setItem("storeID", parseInt(storeID.toString()));
         })
       .then(data => {
         window.location.href = "/";
