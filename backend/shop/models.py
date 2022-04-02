@@ -21,7 +21,7 @@ class Product(models.Model):
     productImage = models.FileField(upload_to='images/')
     product_quantity = models.PositiveIntegerField(default=0)
     store_id = models.ForeignKey(Store, default=2, on_delete=models.CASCADE)
-
+    is_restricted = models.BooleanField(default=False)
     productTags = [
         ("Confectionary", 'Confectionary'),
         ("Drinks", 'Drinks'),
