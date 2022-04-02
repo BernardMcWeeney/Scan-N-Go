@@ -26,7 +26,7 @@ ScanditSDK.configure("AcwRWhrVOx+fAw/oAhAg/7w/zNFaMBqI1G+QtwgSQp+deFEez3tjgVtBow
   .then((barcodePicker) => {
     // barcodePicker is ready here, show a message every time a barcode is scanned
     barcodePicker.on("scan", (scanResult) => {
-      if (scanResult.barcodes[0].data.slice(0,6) == "store-") {
+      if (scanResult.barcodes[0].data.slice(0,6) === "store-") {
         setUserStore(scanResult.barcodes[0].data.slice(6))
       } else {
         alert("Invalid Store Barcode! The barcode you scanned was " + scanResult.barcodes[0].data);
