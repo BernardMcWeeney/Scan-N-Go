@@ -95,6 +95,7 @@
       .then(data => {
         //console.log(data)
         let productData = data[0]
+          console.log('productdata',productData)
         document.getElementById("product-title").innerHTML = productData.name;
         document.getElementById("product-price").innerHTML = productData.price;
         document.getElementById("product-description").innerHTML = productData.description;
@@ -107,7 +108,7 @@
             alert("Sorry! We only have " + productData.product_quantity + " " + productData.name + " in stock\nPlease choose a smaller quantity to add to your basket")
             document.getElementById("product-qty-selector").value = productData.product_quantity
           } else {
-                addToCart1(<%= output %>, document.getElementById("product-qty-selector").value);
+                addToCartWithQty(productData.id, document.getElementById("product-qty-selector").value)
           }
 
         }
