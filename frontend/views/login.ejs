@@ -1,6 +1,10 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
-
+<style>
+    .invalid-feedback {
+        margin-top: 0;
+    }
+</style>
 <%# Start code to determine the origin of the user %>
 <% if(didLogOut == 'true'){ %> <%# if user came to this page because they logged out, show this alert %>
 <div class="alert alert-warning" role="alert" style="margin-bottom:0px;">
@@ -20,10 +24,8 @@
     <!-- Login form -->
     <form class="form-signin" id="login-form">
         <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Login</h1>
-        <input type="text" name="username-input" id="inputEmail" class="form-control" placeholder="Your Username"
-               required>
-        <input type="password" id="inputPassword" name="password-input" class="form-control" placeholder="Your password"
-               required>
+        <input type="text" name="username-input" id="inputEmail" class="form-control" placeholder="Your Username" required>
+        <input type="password" id="inputPassword" name="password-input" class="form-control" placeholder="Your password" required>
         <button class="btn btn-success btn-block" type="submit">Login</button>
     </form>
     <a href="#" onclick="showRegistrationContainer();" class="link-light" style='text-align:center;padding-bottom:10px'>Register
@@ -37,32 +39,95 @@
         </h3>
     <!-- Registration form -->
         <form class="form-signin needs-validation" id="register-form" novalidate>
+
             <div class="row">
-                <div class="col" style="padding-left: 5px;padding-right: 5px;">
-                  <input style="margin-bottom:6px;" type="text" class="form-control" name="fname-register" id="registerFname" placeholder="First name">
+
+                <div class="col" style="margin-bottom:6px;padding-left: 5px;padding-right: 5px;">
+                  <input  type="text" class="form-control" name="fname-register" id="validationCustom01" placeholder="First name" required>
+                <div class="valid-feedback">
+                  Looks good!
                 </div>
-                <div class="col" style="padding-left: 5px;padding-right: 5px;">
-                  <input style="margin-bottom:6px;" type="text" class="form-control" name="lname-register" id="registerLname" placeholder="Last name">
+                   <!-- <div class="invalid-feedback feedback-pos">
+                        Please input your first name
+                      </div> -->
                 </div>
+
+
+                <div class="col" style="margin-bottom:6px;padding-left: 5px;padding-right: 5px;">
+                  <input type="text" class="form-control" name="lname-register" id="validationCustom02" placeholder="Last name" required>
+                <!--<div class="valid-feedback">
+                  Looks good!
+                </div>-->
+                    <div class="invalid-feedback feedback-pos">
+                        Please input your last name
+                      </div>
+                </div>
+
+
               </div>
+
             <div class="row" style="padding: 0 5px;">
-            <input style="margin-bottom:6px;" type="text" name="username-register" id="registerUser"
-                   class="form-control" placeholder="Username" required>
+                <div style="margin-bottom:6px;"class="input-group has-validation">
+                  <span class="input-group-text" id="inputGroupPrepend">@</span>
+                  <input placeholder='Username' type="text" class="form-control" id="validationCustomUsername" pattern="[^' ']+" name="username-register" aria-describedby="inputGroupPrepend" required>
+                  <div class="invalid-feedback">
+                    Please choose a username (No spaces allowed!)
+                  </div>
+                    <div class="valid-feedback">
+                  Looks good!
+                </div>
+                </div>
+
             </div>
-            <div class="row" style="padding: 0 5px;">
-            <input style="margin-bottom:6px;" type="email" name="email-register" id="registerEmail" class="form-control"
-            placeholder="Email Address" required>
+
+
+            <div  class="row" style="margin-bottom:6px;padding: 0 5px;">
+            <input  type="email" name="email-register" id="registerEmail" class="form-control" placeholder="Email Address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,4}$" required>
+            <!--<div class="valid-feedback feedback-pos">
+                Looks good!
+              </div>-->
+              <div class="invalid-feedback feedback-pos">
+                Please input valid email address
+              </div>
             </div>
-            <div class="row" style="padding: 0 5px;">
-            <input style="margin-bottom:6px;" type="password" id="registerPassword" name="password-register" class="form-control"
+
+            <div class="row" style="margin-bottom:6px;padding: 0 5px;">
+            <input type="password" id="registerPassword" pattern="[^' ']+" name="password-register" class="form-control"
                    placeholder="Password" required>
+                <div class="invalid-feedback feedback-pos">
+                Please input valid password (No whitespace allowed!)
+              </div>
             </div>
-            <div class="row" style="padding: 0 5px;">
-            <input  style="margin-bottom:6px;" type="password" id="registerPasswordRetype" name="password-register-retype" class="form-control"
-                   placeholder="Confirm Password" required>
+
+            <div class="row" style="margin-bottom:6px;padding: 0 5px;">
+            <input type="password" id="registerPasswordRetype"  name="password-register-retype" class="form-control"
+                   placeholder="Confirm Password" oninput="check(this)" required>
+                <div class="invalid-feedback feedback-pos">
+                Please confirm passwords match
+              </div>
+                <div class="valid-feedback feedback-pos">
+                Passwords match!
+              </div>
             </div>
-            <div class="row" style="padding: 0 5px;">
-            <input class="form-control" type="file" id="formFile" accept="image/*">
+
+            <div class="row" style="margin-bottom:6px;padding: 0 5px;">
+            <input class="form-control" type="file" id="formFile" accept="image/*" required>
+                <div class="invalid-feedback">
+                You must upload a personal image to create an account.
+              </div>
+                <div class="valid-feedback feedback-pos">
+                Looks great!
+              </div>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+              <label class="form-check-label" for="invalidCheck">
+                Agree to terms and conditions
+              </label>
+              <div class="invalid-feedback">
+                You must agree before submitting
+              </div>
             </div>
 
             <div class="row" style="padding: 0 5px;">
@@ -73,6 +138,16 @@
     </div>
     </form>
 </div>
+<script language='javascript' type='text/javascript'>
+    function check(input) {
+        if (input.value != document.getElementById('registerPassword').value) {
+            input.setCustomValidity('Password Must be Matching.');
+        } else {
+            // input is valid -- reset the error message
+            input.setCustomValidity('');
+        }
+    }
+</script>
 <script>
   // If the user is logged in already, send them to the homepage
   if (isLoggedIn() == true) {
@@ -233,6 +308,27 @@
   let registerForm = document.getElementById("register-form");// get the form
   registerForm.addEventListener('submit', validateRegisterUser); // bind the validator function to the submit button
 
+</script>
+<script>
+    (function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
 </script>
 <%- include('partials/footer.ejs') %>
 
