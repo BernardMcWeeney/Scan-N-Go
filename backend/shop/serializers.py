@@ -191,13 +191,24 @@ class CheckoutSerializer(serializers.ModelSerializer):
     basket_id = validated_data['basket_id']
     # get the sopping basket
     # basket_id = Basket.objects.filter(basket_id=basket_id)
-    # mark as inactive
     basket_id.is_active = False
     print("Basket ID", basket_id)
     basket_id.save()
     # create a new order
     order = Order.objects.create(basket_id=basket_id, user_id=current_user)
     order.save()
+
+    print('BasketItems.objects.filter(basket_id=basket_id)',BasketItems.objects.filter(basket_id=basket_id))
+    for basketitem in BasketItems.objects.filter(basket_id=basket_id):
+        print('selectedproduct', Product.objects.filter(id=basketitem.product_id.id).first())
+        selectedProduct = Product.objects.filter(id=basketitem.product_id.id).first()
+        print('selectedProduct.product_quantity', selectedProduct.product_quantity)
+        print('basketitem.quantity', basketitem.quantity)
+        selectedProduct.product_quantity = selectedProduct.product_quantity - basketitem.quantity
+        selectedProduct.save()
+    # take order quantity out of stock for products in order
+
+
     # create a new empty basket for the customer
     new_basket = Basket.objects.create(user_id=current_user, store_id=Store.objects.filter(id=5).first())  # Create a shopping basket
     new_basket.save()
