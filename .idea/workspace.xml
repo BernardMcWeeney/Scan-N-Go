@@ -2,10 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3db31b5-3baa-4626-b246-4fac17954eba" name="Changes" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/views/product.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/product.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/views/store-scanner.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/store-scanner.ejs" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/589e1fbb-af5e-470a-97d6-3ae36989f63f.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/stylesheets/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/partials/head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/partials/head.ejs" afterDir="false" />
+>>>>>>> 10239eec59b9d6988bc5a4e6371c9cd440c717d5
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,5 +122,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
