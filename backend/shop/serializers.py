@@ -63,25 +63,30 @@ class IrishShippingAddressSerializer(serializers.HyperlinkedModelSerializer):
 class UserRegistrationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = APIUser
-        fields = ['username', 'email', 'password', 'id']
+        fields = ['first_name','last_name','username', 'email', 'password','user_image', 'id']
         extra_kwargs = {'password': {'write_only': True}}
 
     '''
     Create a user, if an ID is specified, force that ID for the user (as long as its available)
     '''
     def create(self, validated_data):
+        request = self.context.get('request', None)
+        print(request.data)
+        print('teehee',request.FILES['user_image'])
         email = validated_data['email']
-        request = self.context.get('request', None).data
+        first_name = validated_data['first_name']
+        last_name = validated_data['last_name']
+        user_image = request.FILES['user_image']
         username = validated_data['username']
         password = validated_data['password']
-        if "id" in request:
-            forced_user_id = request['id']
+        if "id" in request.GET:
+            forced_user_id = request.__getitem('id')
             if list(APIUser.objects.filter(id=int(forced_user_id))) == []:
-                new_user = APIUser.objects.create_user(id=forced_user_id,username=username,email=email, password=password)  # Create a new APIUser
+                new_user = APIUser.objects.create_user(id=forced_user_id,username=username,first_name=first_name,last_name=last_name,email=email, password=password,user_image=user_image)  # Create a new APIUser
             else:
-                new_user = APIUser.objects.create_user(username=username, email=email, password=password)
+                new_user = APIUser.objects.create_user(username=username,first_name=first_name,last_name=last_name,email=email, password=password,user_image=user_image)
         else:
-            new_user = APIUser.objects.create_user(username=username,email=email, password=password)
+            new_user = APIUser.objects.create_user(username=username,first_name=first_name,last_name=last_name,email=email, password=password,user_image=user_image)
         new_user.save()  # Save the new user
         new_basket = Basket.objects.create(user_id=new_user)  # Create a shopping basket
         new_basket.save()  # save the shopping basket
