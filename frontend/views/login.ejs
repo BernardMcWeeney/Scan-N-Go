@@ -101,7 +101,7 @@
 
             <div class="row" style="margin-bottom:6px;padding: 0 5px;">
                 <input type="password" id="registerPasswordRetype" name="password-register-retype" class="form-control"
-                       placeholder="Confirm Password" required> <!-- oninput="check(this)"-->
+                       placeholder="Confirm Password" oninput="check(this)" required> <!-- oninput="check(this)"-->
                 <div class="invalid-feedback feedback-pos">
                     Please confirm passwords match
                 </div>
@@ -137,5 +137,15 @@
     </form>
     </div>
 </div>
+<script>
+function check(input) {
+    if (input.value !== document.getElementById('registerPassword').value) {
+        input.setCustomValidity('Password Must be Matching.');
+    } else {
+        // input is valid -- reset the error message
+        input.setCustomValidity('');
+    }
+}
+</script>
 <%- include('partials/footer.ejs') %>
 
