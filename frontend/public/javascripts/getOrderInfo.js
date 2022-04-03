@@ -35,7 +35,7 @@ function GetUserOrder() {
       .then(data => {
 
           let UserOrderData = data;
-          //console.log(UserOrderData)
+          console.log(UserOrderData)
           for (var i = 0; i < UserOrderData.length; i++) {
               //console.log(UserOrderData[i]) // log each order to the console
           }

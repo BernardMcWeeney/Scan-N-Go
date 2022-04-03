@@ -92,7 +92,7 @@ class Order(models.Model):
     user_id = models.ForeignKey(APIUser, on_delete=models.CASCADE)
     total_price = models.DecimalField(max_digits=6, decimal_places=2, default=0.0)
     models.ForeignKey(Store, on_delete=models.CASCADE)
-    store_id = models.ForeignKey(Store, default=2, on_delete=models.CASCADE)
+    store_id = models.ForeignKey(Store, default=5, on_delete=models.CASCADE)
     statuses = [
         ('Prepared', 'Prepared'),
         ('Order', 'Order'),

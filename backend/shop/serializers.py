@@ -137,9 +137,12 @@ class SetUserStoreSerializer(serializers.ModelSerializer):
         current_user = request.user
         user = APIUser.objects.filter(id=current_user.id).first()
 
-        old_basket = Basket.objects.filter(user_id=current_user, is_active=True).first()
-        old_basket.is_active = False
-        old_basket.save()
+        try:
+            old_basket = Basket.objects.filter(user_id=current_user, is_active=True).first()
+            old_basket.is_active = False
+            old_basket.save()
+        except:
+            pass
 
         new_basket = Basket.objects.create(user_id=current_user, is_active=True, store_id=store)  # Create a shopping basket
         new_basket.save()  # save the shopping basket
@@ -197,10 +200,12 @@ class CheckoutSerializer(serializers.ModelSerializer):
     # get the sopping basket
     # basket_id = Basket.objects.filter(basket_id=basket_id)
     basket_id.is_active = False
+    store_id = basket_id.store_id
     print("Basket ID", basket_id)
     basket_id.save()
+
     # create a new order
-    order = Order.objects.create(basket_id=basket_id, user_id=current_user)
+    order = Order.objects.create(basket_id=basket_id, user_id=current_user,store_id=store_id)
     order.save()
 
     print('BasketItems.objects.filter(basket_id=basket_id)',BasketItems.objects.filter(basket_id=basket_id))

@@ -192,7 +192,7 @@ function GetUserOrder() {
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(async (data) => {
           let UserData = data;
-          detail = UserData[0]
+          var detail = UserData[0]
           USERNAME = detail.username;
           USEREMAIL = detail.email;
     })
@@ -204,7 +204,7 @@ function GetUserOrder() {
       .then(async (data) => {
 
           let UserOrderData = data;
-          //console.log("log",UserOrderData)
+          console.log("log",UserOrderData)
             // for every order
           for (var i = 0; i < UserOrderData.length; i++) {
               //console.log(UserOrderData[i]);

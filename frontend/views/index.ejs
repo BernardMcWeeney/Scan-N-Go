@@ -33,8 +33,8 @@ ScanditSDK.configure("AcwRWhrVOx+fAw/oAhAg/7w/zNFaMBqI1G+QtwgSQp+deFEez3tjgVtBow
   .then((barcodePicker) => {
     // barcodePicker is ready here, show a message every time a barcode is scanned
     barcodePicker.on("scan", (scanResult) => {
-      barcodePicker.destroy()
-      location.href = '/product/8/';
+    barcodePicker.destroy()
+    location.href = '/product/' + scanResult.barcodes[0].data + "/";
     });
   });
 
