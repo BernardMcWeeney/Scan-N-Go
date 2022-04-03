@@ -138,6 +138,11 @@
     </div>
 </div>
 <script>
+// If the user is logged in already, send them to the homepage
+if (isLoggedIn() === true) {
+  location.href = '/';
+}
+
 function check(input) {
     if (input.value !== document.getElementById('registerPassword').value) {
         input.setCustomValidity('Password Must be Matching.');
@@ -146,6 +151,8 @@ function check(input) {
         input.setCustomValidity('');
     }
 }
+
+document.getElementById("basket-navbar-icon").style.display = "none"; // Don't display the basket icon in navbar because user is logged out
 </script>
 <%- include('partials/footer.ejs') %>
 

@@ -1,10 +1,3 @@
-// If the user is logged in already, send them to the homepage
-if (isLoggedIn() == true) {
-  location.href = '/';
-}
-
-document.getElementById("basket-navbar-icon").style.display = "none"; // Don't display the basket icon in navbar because user is logged out
-
 // If the user clicks the link to create a user, the registration form is displayed
 function showRegistrationContainer() {
   document.getElementById('registrationContainer').style = ""
@@ -164,7 +157,3 @@ function logInUser(event) {
 };
 let loginForm = document.getElementById("login-form"); // get the form
 loginForm.addEventListener('submit', logInUser); // bind the login function to the submit button
-
-// bind the register new user function to the submit button
-let registerForm = document.getElementById("register-form");// get the form
-//registerForm.addEventListener('submit', registerNewUser);
