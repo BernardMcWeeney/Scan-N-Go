@@ -230,18 +230,6 @@ function GetUserOrder() {
                               prodqty.appendChild(document.createTextNode("Quantity: "+UserBasketItemData[j].quantity));
                               preprodqty[0].appendChild((prodqty));
 
-                              let TBproddetails = document.createElement("td");
-                              TBproddetails.className = "TBproddetails-"+UserBasketItemData[j].id;
-                              preTableitem[0].appendChild((TBproddetails));
-
-                              let preproddetailsbtn = document.getElementsByClassName("TBproddetails-"+UserBasketItemData[j].id);
-                              let proddetailsbtn = document.createElement("a");
-                              proddetailsbtn.setAttribute("href", "/product/" +UserBasketItemData[j].product_id_num)
-                              //proddetailsbtn.className = "btn btn-light proddetailsbtn-"+UserBasketItemData[j].id;
-                              proddetailsbtn.className = "btn btn-outline-primary proddetailsbtn-"+UserBasketItemData[j].id;
-                              proddetailsbtn.appendChild(document.createTextNode("Details"));
-                              preproddetailsbtn[0].appendChild((proddetailsbtn));
-
                               grandtotal = UserBasketItemData[j].product_price * UserBasketItemData[j].quantity + grandtotal
                            }
                       }
