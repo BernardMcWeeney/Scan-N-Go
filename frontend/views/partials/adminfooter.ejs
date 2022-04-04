@@ -1,0 +1,45 @@
+</div><!-- End of main container div (1200px width) -->
+
+<!-- Our footer, made with Bootstrap -->
+<footer class="navbar-fixed-bottom" style="background-color: #2d8180; padding-top: 18px;padding-bottom: 18px;">
+    <p style='margin-bottom:0' class="text-center text-white">&copy; Copyright 2021 - Scan N Go</p>
+</footer>
+
+
+<script src="/bootstrap/dist/js/bootstrap.min.js"></script> <!-- Bootstrap JS -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- JQuery -->
+
+<!-- Our handmade Javascript files to import -->
+<script src="/javascripts/logout.js"></script>
+<script src="/javascripts/filtering.js"></script>
+<script src="/javascripts/loginScript.js"></script>
+<script src="/javascripts/basketPreview.js"></script>
+<script src="/javascripts/setStore.js"></script>
+<script src="/javascripts/formValidation.js"></script>
+<script src="/javascripts/registerUser.js"></script>
+
+<!--
+This script checks if the user is logged in, if they are logged in, calculate the number of basket items,
+and display this in the basket preview just above the cart in the navbar
+-->
+<script>
+  var isLoggedIn = isLoggedIn(); // Call isLoggedIn func to find out if the user is logged in
+  //console.log("Is the user logged in? -> ", isLoggedIn)
+
+  // If the user is logged in, change the value in the cart preview icon
+  if (isLoggedIn == true) {
+    loadBasketPreview()
+    let label = document.getElementById("lblCartCount")
+    label.innerHTML = "?"
+    let spinnerdiv = document.createElement('div');
+    spinnerdiv.className = "spinner-border text-light";
+    spinnerdiv.setAttribute('role', 'status');
+    let spandiv = document.createElement('span');
+    spandiv.className = "sr-only";
+    spandiv.innerHTML = "Loading..."
+    spinnerdiv.appendChild(spandiv)
+    label.appendChild(spinnerdiv)
+  }
+</script>
+</body>
+</html>
