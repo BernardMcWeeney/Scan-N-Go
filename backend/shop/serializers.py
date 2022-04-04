@@ -43,7 +43,7 @@ class StoreSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Store
-        fields = ['id', 'name', 'users', 'orders', 'baskets']
+        fields = ['id', 'name', 'address_line1', 'address_line2', 'eir_code', 'county', 'users', 'orders', 'baskets']
 
 
 class IrishBillingAddressSerializer(serializers.HyperlinkedModelSerializer):
