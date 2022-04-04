@@ -53,6 +53,42 @@ function removefromcart(id,QTY) {
       })
     };
 
+// update item in cart (qty is specified as a parameter)
+function updateqty(id,option) {
+    let backendServerURL = backendServer()
+    let djangoServer = backendServerURL
+    let token = sessionStorage.getItem('access').toString()
+    //console.log("Access Token from sessionStorage: ", token)
+
+    if (option === 0){
+        djangoServer = djangoServer + "remove/"
+    }
+    if (option === 1){
+        djangoServer = djangoServer + "add/"
+    }
+    var requestObject = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Origin': '',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({
+            'product_id': id.toString(),
+            'quantity' : 1
+        })
+    }
+    fetch(djangoServer, requestObject)
+        .then(response => response.json()) // extract the json from the response you get from the server
+        .then(data => {
+            //console.log(data);
+            alert("Cart Updated");
+        })
+      .then(data => {
+        window.location.href = "/basket";
+      })
+    };
 
 // get a users basket and basket items
 function GetUserBasket() {
@@ -88,7 +124,7 @@ function GetUserBasket() {
           preprodcarticle[0].appendChild((prodcarticle));
 
           let prodcol = document.createElement("div");
-          prodcol.className = "row align-items-center prodcol";
+          prodcol.className = "row gy-3 align-items-center prodcol";
           let preprodcol = document.getElementsByClassName("prodcarticle");
           preprodcol[i].appendChild((prodcol));
 
@@ -98,7 +134,7 @@ function GetUserBasket() {
           preprodcol1[i].appendChild((prodcol1));
 
           let figurediv = document.createElement("figure");
-          figurediv.className = "itemside  productfigure";
+          figurediv.className = "itemside align-items-center  productfigure";
           let prefigurediv = document.getElementsByClassName("prodcol1");
           prefigurediv[i].appendChild((figurediv));
 
@@ -108,34 +144,32 @@ function GetUserBasket() {
           preimagediv[i].appendChild((imagediv));
 
           let cardimage = document.createElement('img');
-          cardimage.className = "border img-sm productimage";
+          cardimage.className = "border img-sm img-thumbnail productimage";
           cardimage.setAttribute("height","80");
           cardimage.setAttribute("width", "80");
           cardimage.setAttribute("src", backendServer() + "media/" + UserCartData[i].product_image);
           cardimage.setAttribute("alt", "Product Image");
           cardimage.setAttribute("id", "productimage");
-          let anchor1 = document.createElement("a")
-          anchor1.setAttribute("href", "/product/" + UserCartData[i].product_id_num)
-          anchor1.appendChild(cardimage)
-          anchor1.className = 'text-dark'
           let precardimage = document.getElementsByClassName("imagediv");
-          precardimage[i].appendChild(anchor1);
+          precardimage[i].appendChild(cardimage);
 
-          let figcaptiondiv = document.createElement("figcaption");
+          let figcaptiondiv = document.createElement("div");
           figcaptiondiv.className = "info productinfo";
-          let prefigcaptiondiv = document.getElementsByClassName("imagediv");
+          let prefigcaptiondiv = document.getElementsByClassName("productfigure");
           prefigcaptiondiv[i].appendChild((figcaptiondiv));
 
           let preprodname = document.getElementsByClassName("productinfo");
           let prodname = document.createElement("p");
           prodname.className = "title text-dark producttitle";
           prodname.setAttribute("id", "productname");
-          let anchor = document.createElement("a")
-          anchor.setAttribute("href", "/product/" + UserCartData[i].product_id_num)
-          anchor.innerHTML = UserCartData[i].product_name
-          anchor.className = 'text-dark'
-          prodname.appendChild(anchor);
+          prodname.innerHTML = UserCartData[i].product_name
+          prodname.className = 'text-dark'
           preprodname[i].appendChild(prodname);
+
+          let subprice = document.createElement("small");
+          subprice.className = "text-muted productsubprice productprice";
+          subprice.appendChild(document.createTextNode("€"+ (UserCartData[i].product_price).toFixed(2) + " each"));
+          preprodname[i].appendChild(subprice);
 
           let proddtag = document.createElement("span");
           proddtag.className = "tag text-muted small producttag";
@@ -143,38 +177,52 @@ function GetUserBasket() {
           proddtag.appendChild(document.createTextNode(UserCartData[i].product_tag));
           preprodname[i].appendChild(proddtag);
 
-          let prodcol2 = document.createElement("div");
-          prodcol2.className = "col prodcol2";
-          let preprodcol2 = document.getElementsByClassName("prodcol");
-          preprodcol2[i].appendChild((prodcol2));
+          let prodinputgroup = document.createElement("div");
+          prodinputgroup.className = "input-group input-spinner prodinputgroup";
+          let preprodinputgroup = document.getElementsByClassName("prodcol");
+          preprodinputgroup[i].appendChild((prodinputgroup));
 
-          let prodQTY = document.createElement("p");
-          prodQTY.className = "title text-dark prodQTY";
-          prodQTY.id = UserCartData[i].product_id_num + "-qty-selector";
-          prodQTY.appendChild(document.createTextNode("Quantity: " + UserCartData[i].quantity));
-          let preprodQTY = document.getElementsByClassName("prodcol2");
-          preprodQTY[i].appendChild(prodQTY);
+          let buttonminus = document.createElement("a");
+          var minusprod = "updateqty(" + UserCartData[i].product_id_num.toString() + "," + "0" + ")"
+          buttonminus.setAttribute('onclick', minusprod )
+          buttonminus.id = UserCartData[i].product_id_num.toString() +"-minus-from-cart";
+          buttonminus.className = "btn btn-light buttonminus";
+          let prebuttonminus = document.getElementsByClassName("prodinputgroup");
+          prebuttonminus[i].appendChild((buttonminus));
+          let minusbuttonicon = document.createElement("i");
+          minusbuttonicon.className = "fa fa-minus minusbuttonicon";
+          let preminusbuttonicon = document.getElementsByClassName("buttonminus");
+          preminusbuttonicon[i].appendChild(minusbuttonicon);
+
+          let prodqtyinput = document.createElement("input");
+          prodqtyinput.className = "form-control prodqtyinput";
+          prodqtyinput.setAttribute("type", "text" )
+          prodqtyinput.setAttribute("value", UserCartData[i].quantity)
+          let preprodqtyinput = document.getElementsByClassName("prodinputgroup");
+          preprodqtyinput[i].appendChild((prodqtyinput));
+
+          let buttonplus = document.createElement("a");
+          var plusprod = "updateqty(" + UserCartData[i].product_id_num.toString() + "," + "1" + ")"
+          buttonplus.setAttribute('onclick', plusprod )
+          buttonplus.id = UserCartData[i].product_id_num.toString() +"-plus-from-cart";
+          buttonplus.className = "btn btn-light buttonplus";
+          let prebuttonplus = document.getElementsByClassName("prodinputgroup");
+          prebuttonplus[i].appendChild((buttonplus));
+          let plusbuttonicon = document.createElement("i");
+          plusbuttonicon.className = "fa fa-plus plusbuttonicon";
+          let preplusbuttonicon = document.getElementsByClassName("buttonplus");
+          preplusbuttonicon[i].appendChild(plusbuttonicon);
 
           let prodcol3 = document.createElement("div");
           prodcol3.className = "col prodcol3";
           let preprodcol3 = document.getElementsByClassName("prodcol");
           preprodcol3[i].appendChild((prodcol3));
 
-          let pricewrap = document.createElement("div");
-          pricewrap.className = "price-wrap pricewrap";
-          let prepricewrap = document.getElementsByClassName("prodcol3");
-          prepricewrap[i].appendChild((pricewrap));
-
-          let priceP = document.createElement("p");
+          let priceP = document.createElement("h5");
           priceP.className = "price totalproductprice";
           priceP.appendChild(document.createTextNode("€"+ (UserCartData[i].product_price * UserCartData[i].quantity).toFixed(2)));
-          let prepriceP = document.getElementsByClassName("pricewrap");
+          let prepriceP = document.getElementsByClassName("prodcol3");
           prepriceP[i].appendChild(priceP);
-
-          let subprice = document.createElement("small");
-          subprice.className = "text-muted productprice";
-          subprice.appendChild(document.createTextNode("€"+ (UserCartData[i].product_price).toFixed(2) + " each"));
-          prepriceP[i].appendChild(subprice);
 
           let prodcol4 = document.createElement("div");
           prodcol4.className = "col flex-grow-0 text-right prodcol4";
@@ -185,12 +233,11 @@ function GetUserBasket() {
           var ProdID = "removefromcart(" + UserCartData[i].product_id_num.toString() + "," + UserCartData[i].quantity + ")"
           remfromcart.setAttribute('onclick', ProdID )
           remfromcart.id = UserCartData[i].product_id_num.toString() +"-remove-from-cart";
-          remfromcart.className = "btn btn-primary removeproductbutton";
+          remfromcart.className = "btn btn-light removeproductbutton";
           let preremovefromcart = document.getElementsByClassName("prodcol4");
           preremovefromcart[i].appendChild(remfromcart);
           let removefromcarti = document.createElement("i");
-          removefromcarti.className = "fas fa-shopping-cart productshoppingcart";
-          removefromcarti.appendChild(document.createTextNode("Remove"));
+          removefromcarti.className = "fa fa-trash productshoppingcart";
           let preremovefromcarti = document.getElementsByClassName("removeproductbutton");
           preremovefromcarti[i].appendChild(removefromcarti);
 
