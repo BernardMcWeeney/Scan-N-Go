@@ -34,7 +34,7 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
         fields = ['id', 'date_ordered', 'basket_id', 'user_id', 'total_price', 'status', 'payment_status',
-                  'customer_order_notes', 'internal_order_notes','store_id' ,'basket', 'items', 'user_id_num', 'basket_id_num', 'store_id_num']
+                  'customer_order_notes', 'internal_order_notes', 'store_id','basket', 'items', 'user_id_num', 'basket_id_num', 'store_id_num']
 
 class StoreSerializer(serializers.HyperlinkedModelSerializer):
     users = APIUserSerializer(many=True, read_only=True, source='apiuser_set')
