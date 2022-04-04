@@ -63,7 +63,7 @@ function GetUserOrder() {
           console.log("log",UserOrderData)
             // for every order
           for (var i = 0; i < UserOrderData.length; i++) {
-              //console.log(UserOrderData[i]);
+              console.log(UserOrderData[i]);
 
               let orderarticle = document.createElement("article");
               orderarticle.className = "card orderarticle";
@@ -71,7 +71,7 @@ function GetUserOrder() {
               preorderarticle[0].appendChild((orderarticle));
 
               let cardheader = document.createElement("button");
-              cardheader.className = "card-header cardheader accordion";
+              cardheader.className = "card-header cardheader accordion d-flex justify-content-between";
               var DivID = "AccordianFunc(ACC" + i+")";
               cardheader.setAttribute('onclick',DivID)
               let precardheader = document.getElementsByClassName("orderarticle");
@@ -94,6 +94,11 @@ function GetUserOrder() {
 
               if (i == 0) {
                 accordianBody.className = "accordianBody panel w3-show";
+
+                let livereceiptpulse = document.createElement("div");
+                livereceiptpulse.className = "circle pulse purple";
+                let prelivereceiptpulse = document.getElementsByClassName("cardheader");
+                prelivereceiptpulse[i].appendChild((livereceiptpulse));
                 } else {
                   accordianBody.className = "accordianBody panel w3-hide";
                 }
@@ -112,46 +117,87 @@ function GetUserOrder() {
               precardrow[i].appendChild((cardrow));
 
               let precardrows = document.getElementsByClassName("cardrow");
-              let deliveryrow = document.createElement("div");
-              deliveryrow.className = "col-md-8 deliveryrow";
-              precardrows[i].appendChild((deliveryrow));
+
+              let locationrow = document.createElement("div");
+              locationrow.className = "col-md-8 locationrow";
+              precardrows[i].appendChild((locationrow));
+
+              let timerow = document.createElement("div");
+              timerow.className = "col-md-8 timerow";
+              precardrows[i].appendChild((timerow));
+
+              let contactrow = document.createElement("div");
+              contactrow.className = "col-md-8 contactrow";
+              precardrows[i].appendChild((contactrow));
 
               let paymentrow = document.createElement("div");
               paymentrow.className = "col-md-4 paymentrow";
               precardrows[i].appendChild((paymentrow));
 
-              let deliverytitle = document.createElement("h6");
-              deliverytitle.className = "text-muted deliverytitle";
-              deliverytitle.appendChild(document.createTextNode("Delivery"));
-              let predeliverytitle = document.getElementsByClassName("deliveryrow");
-              predeliverytitle[i].appendChild((deliverytitle));
+              let locationtitle = document.createElement("h6");
+              locationtitle.className = "text-muted locationtitle";
+              locationtitle.appendChild(document.createTextNode("Location"));
+              let prelocationtitle = document.getElementsByClassName("locationrow");
+              prelocationtitle[i].appendChild((locationtitle));
 
-              let predeliveryinfo = document.getElementsByClassName("deliveryrow");
-              let deliveryUser = document.createElement("p");
-              deliveryUser.className = "deliveryUser";
-              deliveryUser.appendChild(document.createTextNode("Username: " + userdetails[0]));
-              predeliveryinfo[i].appendChild((deliveryUser));
+              let prelocationinfo = document.getElementsByClassName("locationrow");
+              let locationUser = document.createElement("h6");
+              locationUser.className = "locationUser";
+              locationUser.appendChild(document.createTextNode(userdetails[0]));
+              prelocationinfo[i].appendChild((locationUser));
 
-              let deliveryEmail = document.createElement("p");
-              deliveryEmail.className = "deliveryEmail";
-              deliveryEmail.appendChild(document.createTextNode("Email: " + userdetails[1]));
-              predeliveryinfo[i].appendChild((deliveryEmail));
+              let locationEmail = document.createElement("h6");
+              locationEmail.className = "locationEmail";
+              locationEmail.appendChild(document.createTextNode(userdetails[1]));
+              prelocationinfo[i].appendChild((locationEmail));
+
+              let locationseperator = document.createElement("hr");
+              prelocationinfo[i].appendChild((locationseperator));
+
+              let timetitle = document.createElement("h6");
+              timetitle.className = "text-muted timetitle";
+              timetitle.appendChild(document.createTextNode("When"));
+              let pretimetitle = document.getElementsByClassName("timerow");
+              pretimetitle[i].appendChild((timetitle));
+
+              let locationTime = document.createElement("h6");
+              locationTime.className = "locationTime";
+              locationTime.appendChild(document.createTextNode(orderdate.toLocaleString()));
+              pretimetitle[i].appendChild((locationTime));
+
+              let timeseperator = document.createElement("hr");
+              pretimetitle[i].appendChild((timeseperator));
+
+              let contacttitle = document.createElement("h6");
+              contacttitle.className = "text-muted contacttitle";
+              contacttitle.appendChild(document.createTextNode("Contact"));
+              let precontacttitle = document.getElementsByClassName("contactrow");
+              precontacttitle[i].appendChild((contacttitle));
+
+              let precontactinfo = document.getElementsByClassName("contactrow");
+              let contactUser = document.createElement("h6");
+              contactUser.className = "contactUser";
+              contactUser.appendChild(document.createTextNode(userdetails[0]));
+              precontactinfo[i].appendChild((contactUser));
+
+              let contactEmail = document.createElement("h6");
+              contactEmail.className = "contactEmail title";
+              contactEmail.appendChild(document.createTextNode(userdetails[1]));
+              precontactinfo[i].appendChild((contactEmail));
+
+              let contactseperator = document.createElement("hr");
+              precontactinfo[i].appendChild((contactseperator));
 
               let paymenttitle = document.createElement("h6");
               paymenttitle.className = "text-muted paymenttitle";
-              paymenttitle.appendChild(document.createTextNode("Payment"));
+              paymenttitle.appendChild(document.createTextNode("Order Total"));
               let prepaymenttitle = document.getElementsByClassName("paymentrow");
               prepaymenttitle[i].appendChild((paymenttitle));
 
               let prepaymentinfo = document.getElementsByClassName("paymentrow");
-              let paymentinfo = document.createElement("p");
-              paymentinfo.className = "paymentinfo text-success";
-              paymentinfo.appendChild(document.createTextNode("Digital Payment"));
-              prepaymentinfo[i].appendChild((paymentinfo));
-
-              let paymentTotal = document.createElement("p");
+              let paymentTotal = document.createElement("strong");
               paymentTotal.className = "paymentTotal grandpricetotal-"+UserOrderData[i].id;
-              paymentTotal.appendChild(document.createTextNode("Total Order: €"));
+              paymentTotal.appendChild(document.createTextNode("Total: €"));
               prepaymentinfo[i].appendChild((paymentTotal));
 
               let receipttable = document.createElement("div");
@@ -191,8 +237,8 @@ function GetUserOrder() {
 
                               let productimage = document.createElement('img');
                               productimage.className = "img-xs border productimage-"+UserBasketItemData[j].id;
-                              productimage.setAttribute("height","50");
-                              productimage.setAttribute("width", "50");
+                              productimage.setAttribute("height","75");
+                              productimage.setAttribute("width", "75");
                               productimage.setAttribute("src", backendServer() + "media/"+UserBasketItemData[j].product_image);
                               productimage.setAttribute("alt", "Product Image");
                               productimage.setAttribute("id", "productimage");
@@ -204,31 +250,34 @@ function GetUserOrder() {
                               preTableitem[0].appendChild((TBprodinfo));
 
                               let preprodname = document.getElementsByClassName("TBprodinfo-"+UserBasketItemData[j].id);
-                              let prodname = document.createElement("p");
-                              prodname.className = "title mb-0 prodname-"+UserBasketItemData[j].id;
+                              let prodname = document.createElement("h5");
+                              prodname.className = "title prodname-"+UserBasketItemData[j].id;
                               prodname.appendChild(document.createTextNode(UserBasketItemData[j].product_name));
                               preprodname[0].appendChild((prodname));
 
                               let prodindvPrice = document.createElement("p");
                               prodindvPrice.className = "price text-muted prodindvPrice-"+UserBasketItemData[j].id;
-                              prodindvPrice.appendChild(document.createTextNode("€"+UserBasketItemData[j].product_price.toFixed(2)));
+                              prodindvPrice.appendChild(document.createTextNode("Price: €"+UserBasketItemData[j].product_price.toFixed(2)));
                               preprodname[0].appendChild((prodindvPrice));
 
-                              let TBprodqty = document.createElement("td");
+                              let TBprodqty = document.createElement("p");
                               TBprodqty.className = "TBprodqty-"+UserBasketItemData[j].id;
                               preTableitem[0].appendChild((TBprodqty));
-
-                              let preprodqty = document.getElementsByClassName("TBprodqty-"+UserBasketItemData[j].id);
-                              let prodtotalprice = document.createElement("p");
-                              prodtotalprice.className = "title mb-0 prodtotalprice-"+UserBasketItemData[j].id;
-                              prodtotalprice.id = "prodtotalprice-"+UserBasketItemData[j].id;
-                              prodtotalprice.appendChild(document.createTextNode("Total: €"+ (UserBasketItemData[j].product_price * UserBasketItemData[j].quantity).toFixed(2)));
-                              preprodqty[0].appendChild((prodtotalprice));
 
                               let prodqty = document.createElement("p");
                               prodqty.className = "price text-muted prodindvPrice-"+UserBasketItemData[j].id;
                               prodqty.appendChild(document.createTextNode("Quantity: "+UserBasketItemData[j].quantity));
-                              preprodqty[0].appendChild((prodqty));
+                              preprodname[0].appendChild((prodqty));
+
+                              let seperator = document.createElement("hr");
+                              seperator.className = "seperator-"+UserBasketItemData[j].id;
+                              preprodname[0].appendChild((seperator));
+
+                              let prodtotalprice = document.createElement("p");
+                              prodtotalprice.className = "title prodtotalprice-"+UserBasketItemData[j].id;
+                              prodtotalprice.id = "prodtotalprice-"+UserBasketItemData[j].id;
+                              prodtotalprice.appendChild(document.createTextNode("Total: €"+ (UserBasketItemData[j].product_price * UserBasketItemData[j].quantity).toFixed(2)));
+                              preprodname[0].appendChild((prodtotalprice));
 
                               grandtotal = UserBasketItemData[j].product_price * UserBasketItemData[j].quantity + grandtotal
                            }

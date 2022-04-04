@@ -18,7 +18,7 @@ function backendServer() {
 function GetStoreData() {
       let backendServerURL = backendServer();
 
-      let djangoServer_User = backendServerURL + "stores/2"
+      let djangoServer_User = backendServerURL + "stores/3"
 
       let token = sessionStorage.getItem('access').toString()
 
@@ -135,7 +135,6 @@ function GetStoreData() {
                  userprofilepic.id = "userprofilepic"+usercount;
                  userprofilepic.setAttribute("height","80");
                  userprofilepic.setAttribute("width", "80");
-                 //userprofilepic.setAttribute("src", backendServer() + "media/"+UserBasketItemData[j].product_image);
                  userprofilepic.setAttribute("src", StoreUser_List[usercount].user_image);
                  let preuserprofilepic = document.getElementById("flexdiv"+usercount);
                  preuserprofilepic.appendChild(userprofilepic);
