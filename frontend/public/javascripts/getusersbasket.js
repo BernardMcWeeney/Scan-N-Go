@@ -81,7 +81,7 @@ function GetUserBasket() {
       for (var i = 0; i < UserCartData.length; i++) { // for every product in the basket array
 
           grandtotal = grandtotal + (UserCartData[i].product_price * UserCartData[i].quantity)
-          //console.log(UserCartData[i]);
+          console.log(UserCartData[i].product_price);
           let prodcarticle = document.createElement("article");
           prodcarticle.className = "card card-body mb-3 prodcarticle";
           let preprodcarticle = document.getElementsByClassName("productdata");
@@ -173,7 +173,7 @@ function GetUserBasket() {
 
           let subprice = document.createElement("small");
           subprice.className = "text-muted productprice";
-          subprice.appendChild(document.createTextNode("€"+ UserCartData[i].product_price + " each"));
+          subprice.appendChild(document.createTextNode("€"+ (UserCartData[i].product_price).toFixed(2) + " each"));
           prepriceP[i].appendChild(subprice);
 
           let prodcol4 = document.createElement("div");
