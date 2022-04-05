@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="701fba4a-7c1c-450d-a27f-984732ebd524" name="Changes" comment="">
+<<<<<<< HEAD
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/basket.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/basket.ejs" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/backend/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/javascripts/getusersbasket.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/javascripts/getusersbasket.js" afterDir="false" />
+>>>>>>> 3c255d184a60a7c4e3e260328d2659c2c796dc93
+>>>>>>> e8f74feb8c6e7bd1c4ae138ef07dc8b763673612
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +44,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/public/fonts" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -76,8 +89,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1649172629415</updated>
+<<<<<<< HEAD
       <workItem from="1649172635218" duration="361000" />
       <workItem from="1649174031641" duration="954000" />
+=======
+      <workItem from="1649172635218" duration="3477000" />
+>>>>>>> e8f74feb8c6e7bd1c4ae138ef07dc8b763673612
     </task>
     <servers />
   </component>
