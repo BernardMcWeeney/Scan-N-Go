@@ -118,13 +118,15 @@ class StoreViewSet(viewsets.ModelViewSet):
         if user.is_superuser:
             return Store.objects.all()
 
-class StoreDetailsViewSet(viewsets.ModelViewSet):
-    queryset = Store.objects.all()
-    serializer_class = StoreDetailsSerializer
+class OrderDetailsViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderDetailsSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Store.objects.all()  # return store details
+        user = self.request.user  # get the current user
+        if user.is_superuser:
+            return Order.objects.all()
 
 class IrishShippingAddressViewSet(viewsets.ModelViewSet):
     queryset = IrishShippingAddress.objects.all()
