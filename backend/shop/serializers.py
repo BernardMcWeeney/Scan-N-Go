@@ -8,7 +8,7 @@ from .models import *
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
-        fields = ['id', 'name', 'price', 'description', 'productImage','product_quantity',"product_tag", "store_id"]
+        fields = ['id', 'name', 'price', 'description','is_restricted', 'productImage','product_quantity',"product_tag", "store_id"]
 
 class BasketItemsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
