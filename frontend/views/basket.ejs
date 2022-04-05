@@ -29,6 +29,7 @@
         margin-top: 4px;
         margin-right: 2px;
         font-size: 85%;
+        margin-left: 80px;
     }
 
     .card-product-grid .bottom-wrap {
@@ -40,6 +41,42 @@
         overflow: hidden;
         padding: 18px 20px;
     }
+    .itemside {
+    position: relative;
+    display: flex;
+    width: 100%;
+    }
+    .align-items-center {
+    align-items: center !important;
+    }
+    .img-thumbnail {
+    padding: 0.25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.35rem;
+    max-width: 100%;
+    height: auto;
+    margin-right: 10px;
+    }
+    .btn {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #51585e;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.43rem 0.84rem;
+    font-size: 1rem;
+    border-radius: 0.35rem;
+    transition: color .1s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
 
     .btn-primary {
         background-color: #630436;
@@ -55,6 +92,22 @@
 
     a:not([href]):not([tabindex]) {
         color: #fff;
+    }
+    .productsubprice{
+        margin-right: 2px;
+    }
+    .btn-light {
+    background-color: #fff;
+    border-color: #dee2e6;
+    color: #212529;
+    }
+    .btn-light i {
+    color: #9da1a7;
+    }
+    .btn-icon {
+    width: 2.6rem;
+    padding-left: 0px;
+    padding-right: 0px;
     }
 
     #overlay {
@@ -110,6 +163,54 @@
         bottom: 0px;
         width: 100%;
     }
+    .input-spinner {
+    max-width: 140px;
+    flex-wrap: nowrap;
+    display: inline-flex;
+    }
+    .input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 15px;
+    align-items: stretch;
+    width: 100%;
+    }
+    .form-control:not(:focus):hover, .form-select:not(:focus):hover {
+    border-color: #6ea8fe;
+}
+    .input-spinner input.form-control {
+    text-align: center;
+    border-color: #dee2e6;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+    .form-control {
+    display: block;
+    width: 100%;
+    padding: 0.43rem 0.84rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #51585e;
+    background-color: #f9f9f9;
+    background-clip: padding-box;
+    border: 1px solid #dee2e6;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.35rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.input-group>.form-control, .input-group>.form-select {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+}
+.totalproductprice {
+    margin-left: 40px;
+}
 
 
 </style>
@@ -117,10 +218,11 @@
 <h3 id="user-welcome-message" class="display-4 text-center">Welcome to your Basket!</h3>
 <p id="user-welcome-message-small" class="lead text-center">Hmmmm... It seems like you haven't got any products in your
     basket. Head over to our <a href="/allproducts">All Products</a> page to add some stuff to your basket</p>
+
+
 <div class="container" id="basket-items-payment-container" style="display:none;">
-    <a href='allproducts'>
-        <button type="button" class="btn btn-outline-info" style="width: 100%;margin-bottom: 15px;">Return to All
-            Products Page
+    <a href='/'>
+        <button type="button" class="btn btn-primary" style="width: 100%;margin-bottom: 15px;">Return to Product Scanner
         </button>
     </a>
 
@@ -292,7 +394,7 @@ Includes a html form featuring several text inputs and dropdown options
 
 
 <script>
-      function backendServer() {
+    function backendServer() {
     url = window.location.href;
     let domain = (new URL(url));
     if (domain.hostname == "scanngo.ie") {

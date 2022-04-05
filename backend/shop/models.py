@@ -6,6 +6,47 @@ from django.contrib.auth.models import AbstractUser
 class Store(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, null=False)
+    address_line1 = models.CharField("Address line 1", max_length=1024, blank=True, null=False)
+    address_line2 = models.CharField("Address line 2", max_length=1024, blank=True, null=False)
+    eir_code = models.CharField("Eir Code", max_length=8, blank=True, null=False)
+    Store_Basket_Item_limit = models.IntegerField(default=25, blank=True, null=True)
+    Store_Basket_Value_limit = models.DecimalField(max_digits=6, decimal_places=2, default=50.00, blank=True, null=True)
+    county_choices = [
+        ('Carlow', 'Carlow'),
+        ('Cavan', 'Cavan'),
+        ('Clare', 'Clare'),
+        ('Cork', 'Cork'),
+        ('Donegal', 'Donegal'),
+        ('Dublin', 'Dublin'),
+        ('Galway', 'Galway'),
+        ('Kerry', 'Kerry'),
+        ('Kildare', 'Kildare'),
+        ('Kilkenny', 'Kilkenny'),
+        ('Laois', 'Laois'),
+        ('Leitrim', 'Leitrim'),
+        ('Limerick', 'Limerick'),
+        ('Longford', 'Longford'),
+        ('Louth', 'Louth'),
+        ('Mayo', 'Mayo'),
+        ('Meath', 'Meath'),
+        ('Monaghan', 'Monaghan'),
+        ('Offaly', 'Offaly'),
+        ('Roscommon', 'Roscommon'),
+        ('Sligo', 'Sligo'),
+        ('Tipperary', 'Tipperary'),
+        ('Waterford', 'Waterford'),
+        ('Westmeath', 'Westmeath'),
+        ('Wexford', 'Wexford'),
+        ('Wicklow', 'Wicklow'),
+    ]
+    county = models.CharField(
+        max_length=10,
+        choices=county_choices,
+        default='Carlow',
+    )
+
+    def __str__(self):
+        return self.name
 
 class APIUser(AbstractUser):
     last_store = models.ForeignKey(Store, on_delete=models.CASCADE,default=5)

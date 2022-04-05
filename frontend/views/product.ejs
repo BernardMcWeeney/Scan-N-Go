@@ -1,8 +1,19 @@
-    <%- include('partials/head.ejs') %>
+<%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
+
 <div class="card" id="product-details-card" style="display:none">
     <!-- Template for product card -->
     <div class="card-body">
+
+        <article id="product-restrictive-warning" class="card p-4 bg-danger" style="visibility:hidden">
+          <div class="row align-items-center">
+            <div class="col">
+              <h4 class="mb-0 text-white ">This is a restrictive product!</h4>
+              <h6 class="mb-0 text-white">Please go to store till for assistance.</h6>
+            </div>
+          </div>
+        </article>
+
         <div class="container" id="product-section">
             <div class="row">
                 <div class="col-md-6">
@@ -59,6 +70,17 @@
                             </button>
                         </div>
                     </div>
+
+                    <article id="product-restrictive-info" class="alert alert-dark" role="alert" style="visibility:hidden">
+                      <div class="row align-items-center">
+                        <div class="col">
+                          <p class="mb-0 text-white-50">This product requires approval from a member of staff.</p>
+                        </div>
+                        <div class="col-auto">
+                          <a class="btn btn-info" href="/">Go Home</a>
+                        </div>
+                      </div>
+                    </article>
 
 
                 </div>
@@ -128,6 +150,17 @@
               document.getElementById("row-add-to-cart").style = "display:none"
             }
             document.getElementById("product-details-card").setAttribute("style", "")
+
+            // if product restricted
+            if(productData.is_restricted === true) {
+                console.log("This product is restricted!")
+                document.getElementById("row-add-to-cart").style = "display:none"
+                document.getElementById("product-restrictive-warning").style.visibility = "visible"
+                document.getElementById("product-restrictive-info").style.visibility = "visible"
+
+            }
+
+
             }
       });
   }
