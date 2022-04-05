@@ -24,7 +24,9 @@ class ProductViewSet(viewsets.ModelViewSet):
         tags = self.request.query_params.get('tags')
         min_price = self.request.query_params.get('min_price')
         max_price = self.request.query_params.get('max_price')
+        print(store_id)
         if barcode_query is not None and store_id is not None:
+          print('hi')
           queryset = queryset.filter(barcode=barcode_query,store_id=store_id)
           return queryset
         elif barcode_query is not None:
