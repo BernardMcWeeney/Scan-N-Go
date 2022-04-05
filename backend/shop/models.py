@@ -52,6 +52,7 @@ class APIUser(AbstractUser):
     last_store = models.ForeignKey(Store, on_delete=models.CASCADE,default=5)
     store_login = models.DateTimeField(auto_now_add=True, blank=True)
     user_image = models.FileField(upload_to='images/user_images/', default='images/user_images/defaultUser.jpg')
+    owned_store = models.ForeignKey(Store, default=5, on_delete=models.CASCADE, related_name="owned")
 
 
 class Product(models.Model):

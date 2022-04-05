@@ -199,17 +199,36 @@ function logInUser(event) {
       .then(data => {
         //console.log(data)
         if ('access' in data) {
-          let accessToken = data['access'];
+          var accessToken = data['access'];
           let refreshToken = data['refresh'];
           sessionStorage.setItem("access", accessToken); // write the access token to sessionStorage
           sessionStorage.setItem("refresh", refreshToken); // write the refresh token to sessionStorage
-          sessionStorage.setItem("username", uname); // write the username to sessionStorage
-          window.location.href = "/store-scanner"; // go to homepage
+          sessionStorage.setItem("username", uname); // write the username to sessionStorage// go to homepage
         } else {
           //console.log(data);
           // if invalid login, alert the user
           alert("username or password invalid");
         }
+        return fetch(backendServer() + "api_users", {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + accessToken
+          }})
+          .then(response => response.json())
+          .then(data =>  {
+              console.log
+              if (new URL(data[0]["owned_store"]).pathname !== "/stores/5/") {
+                  sessionStorage.setItem("admin", "true");
+                  sessionStorage.setItem("owned_store", new URL(data[0]["owned_store"]).pathname.slice(8,9));
+                  window.location.href = "/admin";
+              } else {
+                  sessionStorage.setItem("admin", "false");
+                  window.location.href = "/store-scanner";
+              }
+
+          })
       });
   }
 };
