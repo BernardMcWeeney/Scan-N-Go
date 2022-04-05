@@ -25,7 +25,7 @@ class BasketSerializer(serializers.HyperlinkedModelSerializer):
 class APIUserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = APIUser
-        fields = ['id', 'username', 'email', 'date_joined', 'last_login', 'is_superuser', 'last_store', 'store_login','user_image', "first_name", "last_name"]
+        fields = ['id', 'username', 'email', 'date_joined', 'last_login', 'is_superuser', 'last_store', 'store_login','user_image', "first_name", "last_name", "owned_store"]
 
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):

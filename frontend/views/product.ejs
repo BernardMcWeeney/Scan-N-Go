@@ -1,5 +1,10 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
+<script>
+    checkLogin()
+    redirectAdmin()
+    redirectNonStoreLoggedInUser()
+</script>
 
 <div class="card" id="product-details-card" style="display:none">
     <!-- Template for product card -->
@@ -77,7 +82,7 @@
                           <p class="mb-0 text-white-50">This product requires approval from a member of staff.</p>
                         </div>
                         <div class="col-auto">
-                          <a class="btn btn-info" href="/">Go Home</a>
+                          <a class="btn btn-info" href="/">Go Back</a>
                         </div>
                       </div>
                     </article>

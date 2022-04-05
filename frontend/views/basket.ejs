@@ -1,6 +1,9 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
-
+<script>
+    checkLogin()
+    redirectAdmin()
+</script>
 <!-- Basket Page Style -->
 <style>
 
@@ -216,8 +219,7 @@
 </style>
 <!-- Basket Page Welcome Message - Variable response if user basket is empty or not -->
 <h3 id="user-welcome-message" class="display-4 text-center">Welcome to your Basket!</h3>
-<p id="user-welcome-message-small" class="lead text-center">Hmmmm... It seems like you haven't got any products in your
-    basket. Head over to our <a href="/allproducts">All Products</a> page to add some stuff to your basket</p>
+<p id="user-welcome-message-small" class="lead text-center">Hmmmm... You haven't scanned any products! Head over to the <a href="/">Product Scanner</a> to add items to your basket!</p>
 
 
 <div class="container" id="basket-items-payment-container" style="display:none;">
