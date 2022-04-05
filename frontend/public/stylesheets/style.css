@@ -13,6 +13,12 @@ a {
   padding-top: 20px;
   min-height: 100vh;
 }
+.scan-n-go-admin-content {
+  max-width: 1800px;
+  margin: auto;
+  padding-top: 20px;
+  min-height: 100vh;
+}
 
 #scanning-area {
   height: 380px;

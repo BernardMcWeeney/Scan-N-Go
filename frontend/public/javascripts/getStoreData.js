@@ -71,7 +71,7 @@ function GetStoreData() {
 
                       }
               }
-                // auto clear dashabord before refresh
+                // auto clear dashboard before refresh
               function removeAllChildNodes(parent) {
                     while (parent.firstChild) {
                         parent.removeChild(parent.firstChild);
@@ -387,6 +387,9 @@ function GetStoreData() {
                       if(StoreUser_List[usercount].id === StoreUserBasket_List[basketitem].user_id_num && StoreUserBasket_List[basketitem].is_active === true) {
                               console.log(usercount + "yes")
                           for (var basketITEMS = 0; basketITEMS < StoreUserBasket_List[basketitem].items.length; basketITEMS++) {
+
+
+
                                  let tableTR = document.createElement("tr");
                                  tableTR.id = "tableTR"+basketITEMS;
                                  let pretableTR = document.getElementById("tablebody"+usercount);
