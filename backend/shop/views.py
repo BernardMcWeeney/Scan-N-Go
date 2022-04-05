@@ -111,11 +111,9 @@ class IrishBillingAddressViewSet(viewsets.ModelViewSet):
 class StoreViewSet(viewsets.ModelViewSet):
     queryset = Store.objects.all()
     serializer_class = StoreSerializer
+    permission_classes = [IsAuthenticated, AllowAny]
 
-    def get_queryset(self):
-        user = self.request.user  # get the current user
-        if user.is_superuser:
-            return Store.objects.all()
+
 '''
 class OrderDetailsViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
