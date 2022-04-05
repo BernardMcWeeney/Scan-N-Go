@@ -83,3 +83,9 @@ body, html {
     height: 15vw;
     object-fit: cover;
 }
+
+@font-face {
+    font-family: "Lato";
+    src: local("Lato"),
+        url("../fonts/Lato-Regular.ttf");
+}
