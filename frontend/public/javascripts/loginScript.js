@@ -1,8 +1,10 @@
 function backendServer() { // get backend server URL
   const domain = window.location.hostname.toString();
   //console.log("Domain: ", domain)
-  if (domain == "scanngo-frontend-app.azurewebsites.net") {
-    var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
+  if (domain == "scanngo.ie") {
+    var backendServerURL = "https://www.backend.scanngo.ie/";
+  } else if (domain == "www.scanngo.ie") {
+    var backendServerURL = "https://www.backend.scanngo.ie/";
   }
   else if ( (domain == "127.0.0.1") || (domain == "localhost") || (domain == "0.0.0.0") ) {
     var backendServerURL = "http://127.0.0.1:8000/";

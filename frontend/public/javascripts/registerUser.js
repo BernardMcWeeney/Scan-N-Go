@@ -7,8 +7,10 @@ function showRegistrationContainer() {
 function backendServer() {
   url = window.location.href;
   let domain = (new URL(url));
-  if (domain.hostname == "scanngo-frontend-app.azurewebsites.net") {
-    var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
+  if (domain.hostname == "scanngo.ie") {
+    var backendServerURL = "https://www.backend.scanngo.ie/";
+  } else if (domain.hostname == "www.scanngo.ie") {
+    var backendServerURL = "https://www.backend.scanngo.ie/";
   } else if ((domain.hostname == "127.0.0.1") || (domain.hostname == "localhost") || (domain.hostname == "0.0.0.0")) {
     var backendServerURL = "http://127.0.0.1:8000/";
   } else if (domain.hostname == "192.168.1.20") {
