@@ -1,6 +1,27 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script>
+checkLogin()
+function backendServer() {
+    url = window.location.href;
+    let domain = (new URL(url));
+    if (domain.hostname == "scanngo.ie") {
+      var backendServerURL = "https://www.backend.scanngo.ie/";
+    } else if (domain.hostname == "www.scanngo.ie") {
+      var backendServerURL = "https://www.backend.scanngo.ie/";
+    } else if ((domain.hostname == "127.0.0.1") || (domain.hostname == "localhost") || (domain.hostname == "0.0.0.0")) {
+      var backendServerURL = "http://127.0.0.1:8000/";
+    } else if (domain.hostname == "192.168.1.20") {
+      var backendServerURL = "http://192.168.1.20:8000/";
+    } else {
+      alert("ERROR: Cannot determine Backend Server (Django) URL");
+    }
+    //console.log("domain ", domain)
+    //console.log('Backend Server URL', backendServerURL)
+    return backendServerURL
+  }
+</script>
 <style>
 
 body {
@@ -138,13 +159,6 @@ a:not([href]):not([tabindex]) {
   justify-content: space-evenly;
   align-items: center;
   height: 100vh;
-}
-
-.circle {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  box-shadow: 0px 0px 1px 1px #0000001a;
 }
 
 .pulse {

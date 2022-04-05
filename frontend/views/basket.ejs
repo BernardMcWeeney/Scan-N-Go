@@ -397,8 +397,10 @@ Includes a html form featuring several text inputs and dropdown options
     function backendServer() {
     url = window.location.href;
     let domain = (new URL(url));
-    if (domain.hostname == "scanngo-frontend-app.azurewebsites.net") {
-      var backendServerURL = "https://scanngo-backend-app.azurewebsites.net/";
+    if (domain.hostname == "scanngo.ie") {
+      var backendServerURL = "https://www.backend.scanngo.ie/";
+    } else if (domain.hostname == "www.scanngo.ie") {
+      var backendServerURL = "https://www.backend.scanngo.ie/";
     } else if ((domain.hostname == "127.0.0.1") || (domain.hostname == "localhost") || (domain.hostname == "0.0.0.0")) {
       var backendServerURL = "http://127.0.0.1:8000/";
     } else if (domain.hostname == "192.168.1.20") {
@@ -448,6 +450,7 @@ Includes a html form featuring several text inputs and dropdown options
             .then(response => response.json()) // extract the json from the response you get from the server
             .then(data => {
                 //console.log(data)
+                sessionStorage.setItem('storeID', 5)
                 window.location.href = "receipt/";
             }).then(alert("Checked Out"))
     }
