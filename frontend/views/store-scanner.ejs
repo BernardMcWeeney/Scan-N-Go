@@ -3,6 +3,7 @@
 <script>
   checkLogin()
   redirectAdmin()
+  redirectStoreLoggedInUser()
 </script>
 <style>
 #scan-n-go-content-container {
@@ -23,7 +24,7 @@ ScanditSDK.configure("AZIxewriKzWICPhnjwR9HI4cjgXiFkKnrWpEM5NemQ6hbPkryyGU4vRgpa
   .then(() => {
     return ScanditSDK.BarcodePicker.create(document.getElementById("scandit-barcode-picker"), {
       // enable some common symbologies
-      scanSettings: new ScanditSDK.ScanSettings({ enabledSymbologies: ["aztec","ean8", "ean13", "upca", "upce"],playSoundOnScan: true,
+      scanSettings: new ScanditSDK.ScanSettings({ enabledSymbologies: ["aztec"],playSoundOnScan: true,
   vibrateOnScan: true, }),
     });
   })
