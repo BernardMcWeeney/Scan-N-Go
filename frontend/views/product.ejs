@@ -119,7 +119,8 @@
 
   function loadProduct(barcode, storeid) {
     let backendServerURL = backendServer()
-    let djangoServer = backendServerURL + "products?barcode=" + barcode + "&" + storeid// create query in URL
+    let djangoServer = backendServerURL + "products?barcode=" + barcode + "&" + "store_id=" + storeid// create query in URL
+    console.log(backendServerURL + "products?barcode=" + barcode + "&" + "store_id=" + storeid )
     //console.log("sending data to ", djangoServer)
     fetch(djangoServer)
       .then(response => response.json()) // extract the json from the response you get from the server
