@@ -111,6 +111,7 @@
             </div>
 
             <div class="row" style="margin-bottom:6px;padding: 0 5px;">
+                <label for="formFile" class="form-label" style="font-size: 85%">Please upload a profile image (Must match your ID!)</label>
                 <input class="form-control" type="file" id="formFile" accept="image/*" required>
                 <div class="invalid-feedback">
                     You must upload a personal image to create an account.
@@ -232,7 +233,8 @@ function logInUser(event) {
       });
   }
 };
-document.getElementById("basket-navbar-icon").style.display = "none"; // Don't display the basket icon in navbar because user is logged out
+document.getElementById("basket-navbar-icon").style.display = "none";
+document.getElementById("navbarDropdownMenuLink").style.display = "none";// Don't display the basket icon in navbar because user is logged out
 let loginForm = document.getElementById("login-form"); // get the form
 loginForm.addEventListener('submit', logInUser); // bind the login function to the submit button
 
