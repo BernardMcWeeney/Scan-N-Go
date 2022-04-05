@@ -71,6 +71,17 @@
                         </div>
                     </div>
 
+                    <article id="product-restrictive-info" class="alert alert-dark" role="alert" style="visibility:hidden">
+                      <div class="row align-items-center">
+                        <div class="col">
+                          <p class="mb-0 text-white-50">This product requires approval from a member of staff.</p>
+                        </div>
+                        <div class="col-auto">
+                          <a class="btn btn-info" href="/">Go Home</a>
+                        </div>
+                      </div>
+                    </article>
+
 
                 </div>
 
@@ -143,6 +154,7 @@
                 console.log("This product is restricted!")
                 document.getElementById("row-add-to-cart").style = "display:none"
                 document.getElementById("product-restrictive-warning").style.visibility = "visible"
+                document.getElementById("product-restrictive-info").style.visibility = "visible"
 
             }
 
