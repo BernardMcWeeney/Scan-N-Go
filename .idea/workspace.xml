@@ -2,24 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="701fba4a-7c1c-450d-a27f-984732ebd524" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/public/fonts/Lato-Black.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/fonts/Lato-BlackItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/fonts/Lato-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/fonts/Lato-BoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/fonts/Lato-Italic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/fonts/Lato-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/fonts/Lato-LightItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/fonts/Lato-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/fonts/Lato-Thin.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/public/fonts/Lato-ThinItalic.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/589e1fbb-af5e-470a-97d6-3ae36989f63f.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/stylesheets/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views/partials/head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/partials/head.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/basket.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/basket.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +24,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/public/fonts" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -82,7 +69,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1649172629415</updated>
-      <workItem from="1649172635218" duration="361000" />
+      <workItem from="1649172635218" duration="3477000" />
     </task>
     <servers />
   </component>
