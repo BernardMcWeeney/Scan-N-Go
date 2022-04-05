@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="701fba4a-7c1c-450d-a27f-984732ebd524" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/backend/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views/partials/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/partials/header.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/views/store-scanner.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/store-scanner.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/javascripts/getusersbasket.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/javascripts/getusersbasket.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

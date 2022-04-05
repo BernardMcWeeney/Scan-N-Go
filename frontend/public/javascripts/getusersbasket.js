@@ -84,8 +84,7 @@ function updateqty(id,option) {
     fetch(djangoServer, requestObject)
         .then(response => response.json()) // extract the json from the response you get from the server
         .then(data => {
-            //console.log(data);
-            alert("Cart Updated");
+            console.log(data);
         })
       .then(data => {
         window.location.href = "/basket";
