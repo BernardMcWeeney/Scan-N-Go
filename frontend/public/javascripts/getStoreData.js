@@ -41,6 +41,7 @@ function GetStoreData() {
       let StoreUser_List = [];
       let StoreUserOrder_List = [];
       let StoreUserBasket_List = [];
+      let StoreDATA_Dict = {}
       fetch(djangoServer_User, obj)
           .then(response => response.json()) // extract the json from the response you get from the server
           .then(async (data) => {
@@ -66,9 +67,12 @@ function GetStoreData() {
 
                   if(data.baskets[j].user_id_num in StoreUser_Dict && data.baskets[j].is_active === true ) {
                           StoreUserBasket_List.push(data.baskets[j])
+                          StoreDATA_Dict[data.baskets[j].user_id_num] = data.baskets[j]
 
                       }
               }
+              console.log(StoreDATA_Dict)
+              console.log(StoreDATA_Dict[28].user_id_num)
                 // gets valid users order info
               for (var l = 0; l < data.orders.length; l++) {
 
@@ -77,7 +81,7 @@ function GetStoreData() {
 
                       }
               }
-                // auto clear dashboard before refresh
+               // auto clear dashboard before refresh
               function removeAllChildNodes(parent) {
                     while (parent.firstChild) {
                         parent.removeChild(parent.firstChild);
@@ -86,19 +90,8 @@ function GetStoreData() {
               const container = document.querySelector('#userdatacard');
               removeAllChildNodes(container);
 
-              //debug
-              //console.log(StoreUser_Dict)
-              //console.log(StoreUser_List)
-              //console.log(StoreUser_Dict[19])
-              //console.log("Users Basket")
-              //console.log(StoreUserBasket_List)
-              //console.log("Users Orders")
-              //console.log(StoreUserOrder_List)
-              //console.log("Current Time" + new Date().toLocaleTimeString())
-              //console.log("Total users: " + Object.keys(StoreUser_Dict).length)
-
-                // generate cards for users in store
-              for (var usercount = 0; usercount < StoreUser_List.length; usercount++) {
+             // generate cards for users in store
+              for (var usercount = 0; usercount < Object.keys(StoreDATA_Dict).length; usercount++) {
 
                  let userdatacardstart = document.getElementById("userdatacard");
                  let accordiondiv = document.createElement("div");
@@ -370,134 +363,137 @@ function GetStoreData() {
                  // current users basket items
 
                  let tablediv = document.createElement("div");
-                 tablediv.id = "tablediv"+usercount;
+                 tablediv.id = "tablediv"+StoreUserBasket_List[usercount].id;
                  tablediv.className = "table-responsive";
                  let pretablediv = document.getElementById("accordiandetialsbody"+usercount);
                  pretablediv.appendChild(tablediv);
 
                  let basketitemtable = document.createElement("table");
-                 basketitemtable.id = "basketitemtable"+usercount;
+                 basketitemtable.id = "basketitemtable"+StoreUserBasket_List[usercount].id;
                  basketitemtable.className = "table table-hover";
-                 let prebasketitemtable = document.getElementById("tablediv"+usercount);
+                 let prebasketitemtable = document.getElementById("tablediv"+StoreUserBasket_List[usercount].id);
                  prebasketitemtable.appendChild(basketitemtable);
 
                  let tablebody = document.createElement("tbody");
-                 tablebody.id = "tablebody"+usercount;
-                 let pretablebody = document.getElementById("basketitemtable"+usercount);
+                 tablebody.id = "tablebody"+StoreUserBasket_List[usercount].id;
+                 let pretablebody = document.getElementById("basketitemtable"+StoreUserBasket_List[usercount].id);
                  pretablebody.appendChild(tablebody);
 
                  // Get basket items and populate table
-                 //console.log("bASKET")
+
                  //console.log(StoreUser_List[usercount].id)
-                 //console.log(StoreUserBasket_List[usercount].items.length)
-                 //console.log(StoreUserBasket_List[usercount].user_id_num)
-                 console.log(StoreUserBasket_List)
+                 //console.log(StoreDATA_Dict[StoreUser_List[usercount].id])
+                 //console.log(Object.keys(StoreDATA_Dict[StoreUser_List[usercount].id].items).length)
+
+                 for (let userbasket = 0; userbasket < Object.keys(StoreDATA_Dict[StoreUser_List[usercount].id].items).length; userbasket++) {
+                     console.log("GRAPE!")
+                     console.log(StoreDATA_Dict[StoreUser_List[usercount].id].items[userbasket])
+                     let basketitemdata = StoreDATA_Dict[StoreUser_List[usercount].id].items[userbasket]
+
+                     let tableTR = document.createElement("tr");
+                     tableTR.id = "tableTR" + userbasket + StoreUser_List[usercount].id;
+                     tableTR.className = "itembasket" + StoreUserBasket_List[usercount].id
+                     let pretableTR = document.getElementById("tablebody" + StoreUserBasket_List[usercount].id);
+                     pretableTR.appendChild(tableTR);
+
+                     let tableTDimg = document.createElement("td");
+                     tableTDimg.id = "tableTDimg" + userbasket + StoreUser_List[usercount].id;
+                     tableTDimg.setAttribute("width", "65");
+                     let pretableTDimg = document.getElementById("tableTR" + userbasket + StoreUser_List[usercount].id);
+                     pretableTDimg.appendChild(tableTDimg);
+
+                     // display product image
+                      let tableProdimage = document.createElement("img");
+                      tableProdimage.id = "tableProdimage" + userbasket + usercount;
+                      tableProdimage.className = "img-xs border";
+                      tableProdimage.setAttribute("src", backendServer() + "media/" + basketitemdata.product_image);
+                      tableProdimage.setAttribute("width", "60");
+                      tableProdimage.setAttribute("height", "60");
+                      let pretableProdimage = document.getElementById("tableTDimg" + userbasket + StoreUser_List[usercount].id);
+                      pretableProdimage.appendChild(tableProdimage);
+
+                      let tableTDTitle = document.createElement("td");
+                      tableTDTitle.id = "tableTDTitle" + userbasket + StoreUser_List[usercount].id;
+                      tableTDTitle.setAttribute("width", "250");
+                      pretableTDimg.appendChild(tableTDTitle);
+
+                      // display product title
+                      let TitleforProdTitle = document.createElement("h6");
+                      TitleforProdTitle.id = "TitleforProdTitle" + userbasket + StoreUser_List[usercount].id;
+                      TitleforProdTitle.setAttribute("style", "margin:0px");
+                      TitleforProdTitle.appendChild(document.createTextNode("Product"));
+                      let preTitleforProdTitle = document.getElementById("tableTDTitle" + userbasket + StoreUser_List[usercount].id);
+                      preTitleforProdTitle.appendChild(TitleforProdTitle);
+
+                      let ProductTitle = document.createElement("p");
+                      ProductTitle.id = "ProductTitle" + userbasket + StoreUser_List[usercount].id;
+                      ProductTitle.className = "title mb-0";
+                      ProductTitle.appendChild(document.createTextNode(basketitemdata.product_name));
+                      let preProductTitle = document.getElementById("tableTDTitle" + userbasket + StoreUser_List[usercount].id);
+                      preProductTitle.appendChild(ProductTitle);
+
+                      let tableTDTag = document.createElement("td");
+                      tableTDTag.setAttribute("width", "250");
+                      tableTDTag.id = "tableTDTag" + userbasket + StoreUser_List[usercount].id;
+                      pretableTDimg.appendChild(tableTDTag);
+
+                      // display TAG
+                      let TitleforTAG = document.createElement("h6");
+                      TitleforTAG.id = "TitleforTAG" + userbasket + StoreUser_List[usercount].id;
+                      TitleforTAG.setAttribute("style", "margin:0px");
+                      TitleforTAG.appendChild(document.createTextNode("Tag"));
+                      let preTitleforTAG = document.getElementById("tableTDTag" + userbasket + StoreUser_List[usercount].id);
+                      preTitleforTAG.appendChild(TitleforTAG);
+
+                      // display product tags
+                      let ProductTag = document.createElement("p");
+                      ProductTag.id = "ProductTag" + userbasket + StoreUser_List[usercount].id;
+                      ProductTag.setAttribute("style", "margin:0px");
+                      ProductTag.appendChild(document.createTextNode(basketitemdata.product_tag));
+                      preTitleforTAG.appendChild(ProductTag);
+
+                      // display PRICE
+                      let tableTDPrice = document.createElement("td");
+                      tableTDPrice.setAttribute("width", "250");
+                      tableTDPrice.id = "tableTDPrice" + userbasket + StoreUser_List[usercount].id;
+                      pretableTDimg.appendChild(tableTDPrice);
+
+                      let TitleforPrice = document.createElement("h6");
+                      TitleforPrice.id = "TitleforPrice" + userbasket + StoreUser_List[usercount].id;
+                      TitleforPrice.setAttribute("style", "margin:0px");
+                      TitleforPrice.appendChild(document.createTextNode("Price"));
+                      let preTitleforPrice = document.getElementById("tableTDPrice" + userbasket + StoreUser_List[usercount].id);
+                      preTitleforPrice.appendChild(TitleforPrice);
+
+                      // display product price
+                      let ProductPrice = document.createElement("p");
+                      ProductPrice.id = "ProductPrice" + userbasket + StoreUser_List[usercount].id;
+                      ProductPrice.className = "price text-muted";
+                      ProductPrice.appendChild(document.createTextNode("€" + basketitemdata.product_price));
+                      preTitleforPrice.appendChild(ProductPrice);
+
+                      // display product Quantity
+                      let tableTDQTY = document.createElement("td");
+                      tableTDQTY.id = "tableTDQTY" + userbasket + StoreUser_List[usercount].id;
+                      tableTDQTY.setAttribute("width", "260");
+                      pretableTDimg.appendChild(tableTDQTY);
+
+                      let titleProductQty = document.createElement("h6");
+                      titleProductQty.id = "titleProductQty" + userbasket + StoreUser_List[usercount].id;
+                      titleProductQty.appendChild(document.createTextNode("Quantity"));
+                      let pretitleProductQty = document.getElementById("tableTDQTY" + userbasket + StoreUser_List[usercount].id);
+                      pretitleProductQty.appendChild(titleProductQty);
+
+                      let ProductQty = document.createElement("p");
+                      ProductQty.id = "ProductQty" + userbasket + StoreUser_List[usercount].id;
+                      ProductQty.appendChild(document.createTextNode(basketitemdata.quantity));
+                      pretitleProductQty.appendChild(ProductQty);
 
 
-                  for(let userbasket = 0; userbasket < StoreUserBasket_List[usercount].items.length; userbasket++){
-                          console.log("GRAPE!")
-
-                         let tableTR = document.createElement("tr");
-                          tableTR.id = "tableTR" + userbasket + usercount;
-                          let pretableTR = document.getElementById("tablebody" + usercount);
-                          pretableTR.appendChild(tableTR);
-
-                          let tableTDimg = document.createElement("td");
-                          tableTDimg.id = "tableTDimg" + userbasket + usercount;
-                          tableTDimg.setAttribute("width", "65");
-                          let pretableTDimg = document.getElementById("tableTR" + userbasket + usercount);
-                          pretableTDimg.appendChild(tableTDimg);
-
-                          // display product image
-                          let tableProdimage = document.createElement("img");
-                          tableProdimage.id = "tableProdimage" + userbasket + usercount;
-                          tableProdimage.className = "img-xs border";
-                          tableProdimage.setAttribute("src", backendServer() + "media/" + StoreUserBasket_List[usercount].items[userbasket].product_image);
-                          tableProdimage.setAttribute("width", "60");
-                          tableProdimage.setAttribute("height", "60");
-                          let pretableProdimage = document.getElementById("tableTDimg" + userbasket + usercount);
-                          pretableProdimage.appendChild(tableProdimage);
-
-                          let tableTDTitle = document.createElement("td");
-                          tableTDTitle.id = "tableTDTitle" + userbasket + usercount;
-                          tableTDTitle.setAttribute("width", "250");
-                          pretableTDimg.appendChild(tableTDTitle);
-
-                          // display product title
-                          let TitleforProdTitle = document.createElement("h6");
-                          TitleforProdTitle.id = "TitleforProdTitle" + userbasket + usercount;
-                          TitleforProdTitle.setAttribute("style", "margin:0px");
-                          TitleforProdTitle.appendChild(document.createTextNode("Product"));
-                          let preTitleforProdTitle = document.getElementById("tableTDTitle" + userbasket + usercount);
-                          preTitleforProdTitle.appendChild(TitleforProdTitle);
-
-                          let ProductTitle = document.createElement("p");
-                          ProductTitle.id = "ProductTitle" + userbasket + usercount;
-                          ProductTitle.className = "title mb-0";
-                          ProductTitle.appendChild(document.createTextNode(StoreUserBasket_List[usercount].items[userbasket].product_name));
-                          let preProductTitle = document.getElementById("tableTDTitle" + userbasket + usercount);
-                          preProductTitle.appendChild(ProductTitle);
-
-                          let tableTDTag = document.createElement("td");
-                          tableTDTag.setAttribute("width", "250");
-                          tableTDTag.id = "tableTDTag" + userbasket + usercount;
-                          pretableTDimg.appendChild(tableTDTag);
-
-                          // display TAG
-                          let TitleforTAG = document.createElement("h6");
-                          TitleforTAG.id = "TitleforTAG" + userbasket + usercount;
-                          TitleforTAG.setAttribute("style", "margin:0px");
-                          TitleforTAG.appendChild(document.createTextNode("Tag"));
-                          let preTitleforTAG = document.getElementById("tableTDTag" + userbasket + usercount);
-                          preTitleforTAG.appendChild(TitleforTAG);
-
-                          // display product tags
-                          let ProductTag = document.createElement("p");
-                          ProductTag.id = "ProductTag" + userbasket + usercount;
-                          ProductTag.setAttribute("style", "margin:0px");
-                          ProductTag.appendChild(document.createTextNode(StoreUserBasket_List[usercount].items[userbasket].product_tag));
-                          preTitleforTAG.appendChild(ProductTag);
-
-                          // display PRICE
-                          let tableTDPrice = document.createElement("td");
-                          tableTDPrice.setAttribute("width", "250");
-                          tableTDPrice.id = "tableTDPrice" + userbasket + usercount;
-                          pretableTDimg.appendChild(tableTDPrice);
-
-                          let TitleforPrice = document.createElement("h6");
-                          TitleforPrice.id = "TitleforPrice" + userbasket + usercount;
-                          TitleforPrice.setAttribute("style", "margin:0px");
-                          TitleforPrice.appendChild(document.createTextNode("Price"));
-                          let preTitleforPrice = document.getElementById("tableTDPrice" + userbasket + usercount);
-                          preTitleforPrice.appendChild(TitleforPrice);
-
-                          // display product price
-                          let ProductPrice = document.createElement("p");
-                          ProductPrice.id = "ProductPrice" + userbasket + usercount;
-                          ProductPrice.className = "price text-muted";
-                          ProductPrice.appendChild(document.createTextNode("€" + StoreUserBasket_List[usercount].items[userbasket].product_price));
-                          preTitleforPrice.appendChild(ProductPrice);
-
-                          // display product Quantity
-                          let tableTDQTY = document.createElement("td");
-                          tableTDQTY.id = "tableTDQTY" + userbasket + usercount;
-                          tableTDQTY.setAttribute("width", "260");
-                          pretableTDimg.appendChild(tableTDQTY);
-
-                          let titleProductQty = document.createElement("h6");
-                          titleProductQty.id = "titleProductQty" + userbasket + usercount;
-                          titleProductQty.appendChild(document.createTextNode("Quantity"));
-                          let pretitleProductQty = document.getElementById("tableTDQTY" + userbasket + usercount);
-                          pretitleProductQty.appendChild(titleProductQty);
-
-                          let ProductQty = document.createElement("p");
-                          ProductQty.id = "ProductQty" + userbasket + usercount;
-                          ProductQty.appendChild(document.createTextNode(StoreUserBasket_List[usercount].items[userbasket].quantity));
-                          pretitleProductQty.appendChild(ProductQty);
+                 }
 
 
 
-                  }
 
 
 
