@@ -487,14 +487,7 @@ function GetStoreData() {
 
 
 
-
-
-
-
-
-
               //Dashboard Useful info
-              document.getElementById("welcome-message").innerHTML= (data.name + " -  Admin DashBoard");
               document.getElementById("ActiveUsers").innerHTML= (StoreUser_List.length);
               document.getElementById("CurrentTime").innerHTML= (new Date().toLocaleTimeString());
 
