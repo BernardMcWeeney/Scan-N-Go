@@ -39,7 +39,6 @@ function GetStoreData() {
       }
       let StoreUser_Dict = {};
       let StoreUser_List = [];
-      let StoreUserOrder_List = [];
       let StoreUserBasket_List = [];
       let StoreDATA_Dict = {}
       fetch(djangoServer_User, obj)
@@ -71,16 +70,10 @@ function GetStoreData() {
 
                       }
               }
+              console.log(StoreUser_List)
+              console.log(StoreUserBasket_List)
               console.log(StoreDATA_Dict)
-              console.log(StoreDATA_Dict[28].user_id_num)
-                // gets valid users order info
-              for (var l = 0; l < data.orders.length; l++) {
 
-                  if(data.orders[l].user_id_num in StoreUser_Dict ) {
-                          StoreUserOrder_List.push(data.orders[l])
-
-                      }
-              }
                // auto clear dashboard before refresh
               function removeAllChildNodes(parent) {
                     while (parent.firstChild) {

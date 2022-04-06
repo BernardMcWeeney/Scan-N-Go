@@ -44,10 +44,6 @@ body {
     margin-bottom: 25px;
 }
 
-.card:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06)
-}
-
 .card-product-grid .bottom-wrap {
     padding: 18px;
     border-top: 1px solid #e4e4e4;
@@ -184,12 +180,121 @@ span {
             <!-- DashBoard SIDEBAR LIST -->
           </aside>
 
-            <div class="padding col-lg-9">
+            <main class="col-md-9">
+              <div class="card">
+                <div class="card-body">
+                  <form class="row">
+                    <div class="col-md-9">
+                      <div class="form-row">
+                        <div class="col form-group">
+                          <label>Name</label>
+                          <input type="text" class="form-control" placeholder="Store Name">
+                        </div>
+                        <!-- form-group end.// -->
+                        <div class="col form-group">
+                          <label>Email</label>
+                          <!--<input type="email" class="form-control" placeholder="Store Email" value="StoreAdminEmail@store.com">-->
+                          <input type="email" class="form-control" placeholder="Store Email">
+                        </div>
+                        <!-- form-group end.// -->
+                      </div>
+                      <div class="form-row">
+                        <div class="col form-group">
+                          <label>Address line 1</label>
+                          <textarea class="form-control" placeholder="Address line 1" rows="3"></textarea>
+                        </div>
+                        <!-- form-group end.// -->
+                        <div class="col form-group">
+                          <label>Address line 2</label>
+                          <textarea class="form-control" placeholder="Address line 2" rows="3"></textarea>
+                        </div>
+                        <!-- form-group end.// -->
+                      </div>
+                      <!-- form-row.// -->
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label>County</label>
+                          <select id="inputState" class="form-control">
+                              <option> Choose...</option>
 
-          </div>
-</div>
-</div>
-</div>
+                              <option value="Carlow">Carlow</option>
+
+                              <option value="Cavan">Cavan</option>
+
+                              <option value="Clare">Clare</option>
+
+                              <option value="Cork">Cork</option>
+
+                              <option value="Donegal">Donegal</option>
+
+                              <option value="Dublin" selected="">Dublin</option>
+
+                              <option value="Galway">Galway</option>
+
+                              <option value="Kerry">Kerry</option>
+
+                              <option value="Kildare">Kildare</option>
+
+                              <option value="Kilkenny">Kilkenny</option>
+
+                              <option value="Laois">Laois</option>
+
+                              <option value="Leitrim">Leitrim</option>
+
+                              <option value="Limerick">Limerick</option>
+
+                              <option value="Longford">Longford</option>
+
+                              <option value="Louth">Louth</option>
+
+                              <option value="Mayo">Mayo</option>
+
+                              <option value="Meath">Meath</option>
+
+                              <option value="Monaghan">Monaghan</option>
+
+                              <option value="Offaly">Offaly</option>
+
+                              <option value="Roscommon">Roscommon</option>
+
+                              <option value="Sligo">Sligo</option>
+
+                              <option value="Tipperary">Tipperary</option>
+
+                              <option value="Waterford">Waterford</option>
+
+                              <option value="Westmeath">Westmeath</option>
+
+                              <option value="Wexford">Wexford</option>
+
+                              <option value="Wicklow">Wicklow</option>
+                          </select>
+                        </div>
+                        <!-- form-group end.// -->
+                        <div class="form-group col-md-6">
+                          <label>Eircode</label>
+                          <input type="text" class="form-control" placeholder="Eircode">
+                        </div>
+                      </div>
+                      <button class="btn btn-primary">Save</button>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                    </div>
+                  </form>
+                </div>
+                <!-- card-body.// -->
+              </div>
+              <!-- card .// -->
+            </main>
+
+                      </div>
+            </div>
+            </div>
+            </div>
 
 
 <%- include('partials/adminfooter.ejs') %>
