@@ -32,12 +32,10 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
     basket = BasketSerializer(many=True, read_only=True, source='basket_set')
     items = BasketItemsSerializer(many=True, read_only=True, source='basketitems_set')
 
-
     class Meta:
         model = Order
-        fields = ['id', 'date_ordered', 'basket_id', 'user_id', 'total_price', 'status', 'payment_status',
-                  'customer_order_notes', 'internal_order_notes', 'store_id','basket', 'items', 'user_id_num', 'basket_id_num', 'store_id_num']
-
+        fields = ['id', 'date_ordered', 'basket_id', 'user_id', 'total_price', 'status', 'payment_status','customer_order_notes', 'internal_order_notes', 'store_id','basket', 'items', 'user_id_num', 'basket_id_num', 'store_id_num']
+        depth = 1
 
 class StoreSerializer(serializers.HyperlinkedModelSerializer):
     users = APIUserSerializer(many=True, read_only=True, source='apiuser_set')
@@ -47,16 +45,8 @@ class StoreSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Store
         fields = ['id', 'name', 'address_line1', 'address_line2', 'eir_code', 'county', 'users', 'orders', 'baskets']
-'''
-class OrderDetailsSerializer(serializers.HyperlinkedModelSerializer):
-    store = StoreSerializer(many=True, read_only=True, source='store_set')
 
-    class Meta:
-        model = Order
-        fields = ['id', 'date_ordered', 'basket_id', 'user_id', 'total_price', 'status', 'payment_status',
-                  'customer_order_notes', 'internal_order_notes', 'store_id', 'user_id_num',
-                  'basket_id_num', 'store_id_num', 'store']
-'''
+
 class IrishBillingAddressSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = IrishBillingAddress

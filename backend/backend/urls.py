@@ -26,7 +26,6 @@ from shop import views
 
 router = routers.DefaultRouter()
 router.register(r'products', views.ProductViewSet)
-#router.register(r'orderdetails', views.OrderDetailsViewSet,'store_set')
 router.register(r'stores', views.StoreViewSet)
 router.register(r'baskets', views.BasketViewSet)
 router.register(r'basket_items', views.BasketItemViewSet)
