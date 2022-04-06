@@ -57,7 +57,7 @@ function GetUserOrder() {
     })
 
     //console.log("sending data to ",djangoServer)
-    fetch(djangoServer, obj)
+    return fetch(djangoServer, obj)
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(async (data) => {
 
