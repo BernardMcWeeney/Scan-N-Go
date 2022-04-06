@@ -143,15 +143,15 @@ function GetUserOrder() {
               prelocationtitle[i].appendChild((locationtitle));
 
               let prelocationinfo = document.getElementsByClassName("locationrow");
-              let locationUser = document.createElement("h6");
-              locationUser.className = "locationUser";
-              locationUser.appendChild(document.createTextNode(userdetails[0]));
-              prelocationinfo[i].appendChild((locationUser));
+              let locationname = document.createElement("h6");
+              locationname.className = "locationname";
+              locationname.appendChild(document.createTextNode(UserOrderData[i].store_id.name));
+              prelocationinfo[i].appendChild((locationname));
 
-              let locationEmail = document.createElement("h6");
-              locationEmail.className = "locationEmail";
-              locationEmail.appendChild(document.createTextNode(userdetails[1]));
-              prelocationinfo[i].appendChild((locationEmail));
+              let locationAddress = document.createElement("h6");
+              locationAddress.className = "locationAddress";
+              locationAddress.appendChild(document.createTextNode(UserOrderData[i].store_id.address_line1 + ", " + UserOrderData[i].store_id.address_line2 + ", " + UserOrderData[i].store_id.county + ", " + UserOrderData[i].store_id.eir_code));
+              prelocationinfo[i].appendChild((locationAddress));
 
               let locationseperator = document.createElement("hr");
               prelocationinfo[i].appendChild((locationseperator));

@@ -1,5 +1,3 @@
-
-
 function GetStoreData() {
       let backendServerURL = backendServer();
       if(sessionStorage.getItem("owned_store") === null ) {
