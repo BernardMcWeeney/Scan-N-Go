@@ -193,118 +193,125 @@ span {
               <div class="card">
                 <div class="card-body">
 
-                    <div class="col">
-                      <div class="form-row">
-                        <div class="col form-group">
-                          <label>Name</label>
-                          <input type="text" class="form-control" placeholder="Store Name">
-                        </div>
-                        <!-- form-group end.// -->
-                        <div class="col form-group">
-                          <label>Email</label>
-                          <!--<input type="email" class="form-control" placeholder="Store Email" value="StoreAdminEmail@store.com">-->
-                          <input type="email" class="form-control" placeholder="Store Email">
-                        </div>
-                        <!-- form-group end.// -->
-                      </div>
-                      <div class="form-row">
-                        <div class="col form-group">
-                          <label>Address line 1</label>
-                          <textarea class="form-control" placeholder="Address line 1" rows="3"></textarea>
-                        </div>
-                        <!-- form-group end.// -->
-                        <div class="col form-group">
-                          <label>Address line 2</label>
-                          <textarea class="form-control" placeholder="Address line 2" rows="3"></textarea>
-                        </div>
-                        <!-- form-group end.// -->
-                      </div>
-                      <!-- form-row.// -->
-                      <div class="form-row">
-                        <div class="form-group col-md-6">
-                          <label>County</label>
-                          <select id="inputState" class="form-control">
+                    <form>
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="row gx-3">
+                    <div class="col-6 mb-3">
+                      <label class="form-label">Name</label>
+                      <input class="form-control" type="text" placeholder="Store Name" id="register-store_name">
+                    </div>
+                    <!-- col .// -->
+                    <div class="col-6 mb-3">
+                      <label class="form-label">Email</label>
+                      <input class="form-control" type="email" placeholder="storename@mail.com" id="register-email">
+                    </div>
+                    <!-- col .// -->
+                    <div class="col-lg-6 col-md-6 mb-3">
+                      <label>Address line 1</label>
+                      <textarea class="form-control" placeholder="Address line 1" rows="3" id="register-address1"></textarea>
+                    </div>
+                    <!-- col .// -->
+                    <div class="col-lg-6 col-md-6 mb-3">
+                      <label>Address line 2</label>
+                      <textarea class="form-control" placeholder="Address line 1" rows="3" id="register-address2"></textarea>
+                    </div>
+                    <!-- col .// -->
+                    <div class="col-lg-6 col-md-6 mb-3">
+                      <label>County</label>
+                          <select id="inputState" class="form-control" id="register-county">
                               <option> Choose...</option>
 
-                              <option value="Carlow">Carlow</option>
+                              <option id="register-county-Carlow" value="Carlow">Carlow</option>
 
-                              <option value="Cavan">Cavan</option>
+                              <option id="register-county-Cavan" value="Cavan">Cavan</option>
 
-                              <option value="Clare">Clare</option>
+                              <option id="register-county-Clare" value="Clare">Clare</option>
 
-                              <option value="Cork">Cork</option>
+                              <option id="register-county-Cork" value="Cork">Cork</option>
 
-                              <option value="Donegal">Donegal</option>
+                              <option id="register-county-Donegal" value="Donegal">Donegal</option>
 
-                              <option value="Dublin" selected="">Dublin</option>
+                              <option id="register-county-Dublin" value="Dublin">Dublin</option>
 
-                              <option value="Galway">Galway</option>
+                              <option id="register-county-Galway" value="Galway">Galway</option>
 
-                              <option value="Kerry">Kerry</option>
+                              <option id="register-county-Kerry" value="Kerry">Kerry</option>
 
-                              <option value="Kildare">Kildare</option>
+                              <option id="register-county-Kildare" value="Kildare">Kildare</option>
 
-                              <option value="Kilkenny">Kilkenny</option>
+                              <option id="register-county-Kilkenny" value="Kilkenny">Kilkenny</option>
 
-                              <option value="Laois">Laois</option>
+                              <option id="register-county-Laois" value="Laois">Laois</option>
 
-                              <option value="Leitrim">Leitrim</option>
+                              <option id="register-county-Leitrim" value="Leitrim">Leitrim</option>
 
-                              <option value="Limerick">Limerick</option>
+                              <option id="register-county-Limerick" value="Limerick">Limerick</option>
 
-                              <option value="Longford">Longford</option>
+                              <option id="register-county-Longford" value="Longford">Longford</option>
 
-                              <option value="Louth">Louth</option>
+                              <option id="register-county-Louth" value="Louth">Louth</option>
 
-                              <option value="Mayo">Mayo</option>
+                              <option id="register-county-Mayo" value="Mayo">Mayo</option>
 
-                              <option value="Meath">Meath</option>
+                              <option id="register-county-Meath" value="Meath">Meath</option>
 
-                              <option value="Monaghan">Monaghan</option>
+                              <option id="register-county-Monaghan" value="Monaghan">Monaghan</option>
 
-                              <option value="Offaly">Offaly</option>
+                              <option id="register-county-Offaly" value="Offaly">Offaly</option>
 
-                              <option value="Roscommon">Roscommon</option>
+                              <option id="register-county-Roscommon" value="Roscommon">Roscommon</option>
 
-                              <option value="Sligo">Sligo</option>
+                              <option id="register-county-Sligo" value="Sligo">Sligo</option>
 
-                              <option value="Tipperary">Tipperary</option>
+                              <option id="register-county-Tipperary" value="Tipperary">Tipperary</option>
 
-                              <option value="Waterford">Waterford</option>
+                              <option id="register-county-Waterford" value="Waterford">Waterford</option>
 
-                              <option value="Westmeath">Westmeath</option>
+                              <option id="register-county-Westmeath" value="Westmeath">Westmeath</option>
 
-                              <option value="Wexford">Wexford</option>
+                              <option id="register-county-Wexford" value="Wexford">Wexford</option>
 
-                              <option value="Wicklow">Wicklow</option>
+                              <option id="register-county-Wicklow" value="Wicklow">Wicklow</option>
                           </select>
-                        </div>
-                        <!-- form-group end.// -->
-                        <div class="form-group col-md-6">
-                          <label>Eircode</label>
-                          <input type="text" class="form-control" placeholder="Eircode">
-                        </div>
-                      </div>
-                      <button class="btn btn-primary">Save</button>
-                      <br>
-                      <br>
-                      <br>
-                      <br>
-                      <br>
-                      <br>
                     </div>
-                  </form>
+                    <!-- col .// -->
+                    <div class="col-lg-6 col-md-6 mb-3">
+                      <label>Eircode</label>
+                      <input type="text" class="form-control" placeholder="Eircode" value="" id="register-eircode">
+                    </div>
+                    <!-- col .// -->
+                  </div>
+                  <!-- row.// -->
                 </div>
-                <!-- card-body.// -->
+                <!-- col.// -->
+                <aside class="col-lg-4" style="margin-top: 29%">
+                  <div class="text-lg-center mt-3">
+                    <div>
+                        <div class="row">
+                            <input type="file" class="form-control-file" id="register-storelogo">
+                            <div class="valid-feedback feedback-pos">
+                                Looks great!
+                            </div>
+                        <label for="formFile" class="form-label" style="font-size: 85%">Please upload a store logo image</label>
+                        </div>
+                    </div>
+                  </div>
+                </aside>
+                <!-- col.// -->
               </div>
-              <!-- card .// -->
-
-
-            </div>
-            </div>
+              <!-- row.// -->
+              <br>
+              <button class="btn btn-primary" type="submit">Save</button>
+            </form>
+           </div>
+        </div>
+        </div>
+        </div>
+    </div>
 </div>
 
-            </div>
+<script src="/javascripts/admin-profile-settings.js"></script>
 
 
 <%- include('partials/adminfooter.ejs') %>

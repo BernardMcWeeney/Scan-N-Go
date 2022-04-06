@@ -6,6 +6,7 @@ from django.contrib.auth.models import AbstractUser
 class Store(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, null=False)
+    email = models.EmailField(max_length=254, blank=True, null=False)
     address_line1 = models.CharField("Address line 1", max_length=1024, blank=True, null=False)
     address_line2 = models.CharField("Address line 2", max_length=1024, blank=True, null=False)
     eir_code = models.CharField("Eir Code", max_length=8, blank=True, null=False)

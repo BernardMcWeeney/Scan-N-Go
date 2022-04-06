@@ -1,19 +1,4 @@
-<header style="background-color: #266a69;">
-    <nav class="navbar navbar-expand-lg" style="background-color: #266a69; max-width: 1600px; margin: auto; padding-top: 30px;padding-bottom: 30px;> <!-- Start navbar code -->
-        <div class="container-fluid"> <!-- Navbar container (1200px width)-->
-            <!-- First navbar item (Menu dropdown) -->
-
-
-            <!-- Second navbar item (Brand icon) -->
-            <a class="navbar-brand" href="/admin"><img src="/images/logo.png" height="30" alt=""></a>
-
-
-        </div>
-    </nav> <!-- End navbar code -->
-</header>
-<script>
-  // Javascript to
-  function backendServer() {
+function backendServer() {
         url = window.location.href;
         let domain = (new URL(url));
         if (domain.hostname == "scanngo.ie") {
@@ -31,7 +16,7 @@
         //console.log('Backend Server URL', backendServerURL)
         return backendServerURL
   }
-  function GetStoreDetails() {
+  function LoadStoreProfileSettings() {
       let backendServerURL = backendServer();
       if (sessionStorage.getItem("owned_store") === null) {
           storenumber = "3"
@@ -54,14 +39,12 @@
       fetch(djangoServer_User, obj)
           .then(response => response.json()) // extract the json from the response you get from the server
           .then(async (data) => {
-              console.log(data)
-              document.getElementById("storename").innerHTML = (data.name);
-              document.getElementById("storeaddress").innerHTML = (data.address_line1 + ", " + data.address_line2 + ", " + data.eir_code + ", " + data.county);
-              document.getElementById("storelogo").setAttribute("src", data.storelogo_image);
+              document.getElementById("register-store_name").setAttribute("value", data.name);
+              document.getElementById("register-email").setAttribute("value", data.email);
+              document.getElementById("register-address1").innerText = (data.address_line1);
+              document.getElementById("register-address2").innerText = (data.address_line2);
+              document.getElementById("register-county-"+data.county).setAttribute("selected", "true");
+              document.getElementById("register-eircode").setAttribute("value", data.eir_code);
           })
   }
-GetStoreDetails()
-</script>
-
-<!-- Beginning of main content container. Keeps all content from .ejs files in a set width of 1200px -->
-<div class="scan-n-go-admin-content" id="scan-n-go-content-container">
+  LoadStoreProfileSettings()

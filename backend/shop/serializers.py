@@ -44,7 +44,7 @@ class StoreSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Store
-        fields = ['id', 'name', 'address_line1', 'address_line2', 'eir_code', 'county', 'storelogo_image', 'users', 'orders', 'baskets']
+        fields = ['id', 'name', 'email', 'address_line1', 'address_line2', 'eir_code', 'county', 'storelogo_image', 'users', 'orders', 'baskets']
 
 
 class IrishBillingAddressSerializer(serializers.HyperlinkedModelSerializer):
@@ -228,3 +228,26 @@ class CheckoutSerializer(serializers.ModelSerializer):
     user.save()
     # return the order
     return order
+
+class AdminUpdateStoreProfile(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Store
+        fields = ['name','email','address1', 'address2', 'county', 'eircode','store_logo', 'id']
+
+    def update(self, instance, validated_data):
+        request = self.context.get('request', None)
+        print(request.data)
+        print('teehee',request.FILES['store_logo'])
+        #email = validated_data['email']
+        store_name = validated_data['store_name']
+        address1 = validated_data['address1']
+        address2 = validated_data['address2']
+        county = validated_data['county']
+        eircode = validated_data['eircode']
+        store_logo = validated_data['store_logo']
+
+
+        updated_storeprofile = Store.objects.update(store_name=store_name,address1=address1,address2=address2,eir_code=eircode, county=county,storelogo_image=store_logo)
+
+        updated_storeprofile.save()  # Save the new user
+        return updated_storeprofile
