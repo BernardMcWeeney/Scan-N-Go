@@ -111,7 +111,7 @@ tr {
 table {
     border-collapse: collapse;
 }
-user agent stylesheet
+
 table {
     border-collapse: separate;
     text-indent: initial;
@@ -180,6 +180,12 @@ span {
     display: flex;
     width: 100%;
 }
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
 
 
 </style>
@@ -222,41 +228,41 @@ span {
                               <div class="aside">
                                 <img class="icon-md img-avatar" id="userprofilepic0" height="80" width="80" style="border-radius: 6px;" src="http://127.0.0.1:8000/media/images/user_images/lisa.jpg">
                               </div>
-                              <div class="info">
-                                <h5 style="margin-left: 20px">Lisa Simpson </h5>
-                                <h6 style="margin-left: 20px">myusername@gmail.com </h6>
+                              <div class="d-flex justify-content-center" style="margin-left: 20px">
+                                  <div class="mb-3">
+                                      <div class="d-flex justify-content">
+                                                 <span class="title">Mr. Jackson Mike</span>
+                                                 <span class="title" style="margin-left: 40px">Email: myusername@gmail.com</span>
+                                                 <span class="title" style="margin-left: 40px">Username: myusername</span>
+                                      </div>
+                                      <hr>
+                                          <div class="tag">
+                                            <i class="me-2 text fa fa-shopping-basket"> </i>
+                                            <span>Items: </span>
+                                            <span>4</span>
+                                          </div>
+                                          <div class="tag">
+                                            <i class="me-2 text fa fa-money"> </i>
+                                            <span>Value: </span>
+                                            <span>4</span>
+                                          </div>
+                                          <div class="tag">
+                                            <i class="me-2 text fa fa-clock-o"> </i>
+                                            <span>Time: </span>
+                                            <span>4</span>
+                                          </div>
+                                          <div class="tag">
+                                            <i class="me-2 text fa fa-archive"> </i>
+                                            <span>Orders: </span>
+                                            <span>4</span>
+                                          </div>
+                                             <a id="expandbuttondiv0" class="btn btn-sm btn-primary" style="margin-left: 40px" href="#" data-toggle="collapse" data-target="#collapse0" aria-expanded="true" aria-controls="#collapse0">View Details</a>
+
+                                  </div>
                               </div>
-                          </div>
-                          <div class="col" id="expandbuttondiv0" style="margin-top: 25px">
-                            <a id="expandbuttondiv0" class="btn btn-sm btn-primary align-middle" href="#" data-toggle="collapse" data-target="#collapse0" aria-expanded="true" aria-controls="#collapse0">View Details</a>
                           </div>
                         </header>
                       </div>
-                      <div class="d-flex justify-content-center">
-                        <div class="mb-3">
-                            <hr>
-                              <div class="tag">
-                                <i class="me-2 text fa fa-shopping-basket"> </i>
-                                <span>Items In Basket: </span>
-                                <span>4</span>
-                              </div>
-                              <div class="tag">
-                                <i class="me-2 text fa fa-money"> </i>
-                                <span>Value of Items: </span>
-                                <span>4</span>
-                              </div>
-                              <div class="tag">
-                                <i class="me-2 text fa fa-clock-o"> </i>
-                                <span>Time in Store: </span>
-                                <span>4</span>
-                              </div>
-                              <div class="tag">
-                                <i class="me-2 text fa fa-archive"> </i>
-                                <span>Number of Orders: </span>
-                                <span>4</span>
-                              </div>
-                        </div>
-                    </div>
                     </div>
                   </div>
         </div>

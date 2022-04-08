@@ -22,6 +22,7 @@ function GetStoreData() {
       let StoreUser_List = [];
       let StoreUserBasket_List = [];
       let StoreDATA_Dict = {}
+      let StoreORDERDATA_Dict = {}
       fetch(djangoServer_User, obj)
           .then(response => response.json()) // extract the json from the response you get from the server
           .then(async (data) => {
@@ -42,7 +43,7 @@ function GetStoreData() {
                   }
 
               }
-                // gets valid users basket info
+              // gets valid users basket info
               for (var j = 0; j < data.baskets.length; j++) {
 
                   if(data.baskets[j].user_id_num in StoreUser_Dict && data.baskets[j].is_active === true ) {
@@ -51,9 +52,20 @@ function GetStoreData() {
 
                       }
               }
-              console.log(StoreUser_List)
-              console.log(StoreUserBasket_List)
-              console.log(StoreDATA_Dict)
+
+              // gets valid users order info
+              console.log(data.orders.length)
+              for (var l = 0; l < data.orders.length; l++) {
+                  if(data.orders[l].user_id_num in StoreUser_Dict) {
+                      console.log(data.orders[l])
+                      StoreORDERDATA_Dict[data.orders[l].user_id_num] = 0
+                  }
+              }
+              for (var l = 0; l < data.orders.length; l++) {
+                  if(data.orders[l].user_id_num in StoreUser_Dict) {
+                      StoreORDERDATA_Dict[data.orders[l].user_id_num] = StoreORDERDATA_Dict[data.orders[l].user_id_num] +1
+                  }
+              }
 
                // auto clear dashboard before refresh
               function removeAllChildNodes(parent) {
@@ -84,7 +96,7 @@ function GetStoreData() {
                  let preaccordionheaderdiv = document.getElementById("accordioncarddiv"+usercount);
                  preaccordionheaderdiv.appendChild(accordionheaderdiv);
 
-                 let accordionheaderh5 = document.createElement("h5");
+                 let accordionheaderh5 = document.createElement("div");
                  accordionheaderh5.className = "mb-0";
                  accordionheaderh5.id = "accordionheaderh5"+usercount;
                  let preaccordionheaderh5 = document.getElementById("heading"+usercount);
@@ -97,10 +109,16 @@ function GetStoreData() {
                  preheaderdiv.appendChild(headerdiv);
 
                  let flexdiv = document.createElement("div");
-                 flexdiv.className = "flex-grow-1";
+                 flexdiv.className = "itemside align-items-center";
                  flexdiv.id = "flexdiv"+usercount;
                  let preflexdiv = document.getElementById("headerdiv"+usercount);
                  preflexdiv.appendChild(flexdiv);
+
+                 let asideuserclass = document.createElement("div");
+                 asideuserclass.className = "aside";
+                 asideuserclass.id = "asideuserclass"+usercount;
+                 let preasideuserclass = document.getElementById("flexdiv"+usercount);
+                 preasideuserclass.appendChild(asideuserclass);
 
                  let userprofilepic = document.createElement("img");
                  userprofilepic.style.borderRadius = "6px";
@@ -109,30 +127,129 @@ function GetStoreData() {
                  userprofilepic.setAttribute("height","80");
                  userprofilepic.setAttribute("width", "80");
                  userprofilepic.setAttribute("src", StoreUser_List[usercount].user_image);
-                 let preuserprofilepic = document.getElementById("flexdiv"+usercount);
+                 let preuserprofilepic = document.getElementById("asideuserclass"+usercount);
                  preuserprofilepic.appendChild(userprofilepic);
 
-                 let userprofilepicname = document.createElement("span");
+                 let userdetailssection = document.createElement("div");
+                 userdetailssection.className = "d-flex justify-content-center";
+                 userdetailssection.style = "margin-left: 20px";
+                 userdetailssection.id = "userdetailssection"+usercount;
+                 let preuserdetailssection = document.getElementById("flexdiv"+usercount);
+                 preuserdetailssection.appendChild(userdetailssection);
 
-                 userprofilepicname.appendChild(document.createTextNode(StoreUser_List[usercount].first_name + " " + StoreUser_List[usercount].last_name + " (" + StoreUser_List[usercount].username + ")"));
-                 preuserprofilepic.appendChild(userprofilepicname);
+                 let detailssectiondiv = document.createElement("div");
+                 detailssectiondiv.className = "mb-3";
+                 detailssectiondiv.id = "detailssectiondiv"+usercount;
+                 let predetailssectiondiv = document.getElementById("userdetailssection"+usercount);
+                 predetailssectiondiv.appendChild(detailssectiondiv);
 
-                 let expandbuttondiv = document.createElement("div");
-                 expandbuttondiv.id = "expandbuttondiv"+usercount;
-                 let preexpandbuttondiv = document.getElementById("headerdiv"+usercount);
-                 preexpandbuttondiv.appendChild(expandbuttondiv);
+                 let userdetaildiv = document.createElement("div");
+                 userdetaildiv.className = "d-flex justify-content";
+                 userdetaildiv.id = "userdetaildiv"+usercount;
+                 let preuserdetaildiv = document.getElementById("detailssectiondiv"+usercount);
+                 preuserdetaildiv.appendChild(userdetaildiv);
+
+                 let userdetailname = document.createElement("span");
+                 userdetailname.className = "title";
+                 userdetailname.id = "userdetailname"+usercount;
+                 userdetailname.appendChild(document.createTextNode("Name: "+ StoreUser_List[usercount].first_name + " " + StoreUser_List[usercount].last_name))
+                 let preuserdetailname = document.getElementById("userdetaildiv"+usercount);
+                 preuserdetailname.appendChild(userdetailname);
+
+                 let userdetailemail = document.createElement("span");
+                 userdetailemail.className = "title";
+                 userdetailemail.id = "userdetailemail"+usercount;
+                 userdetailemail.style = "margin-left: 40px";
+                 userdetailemail.appendChild(document.createTextNode("Email: "+StoreUser_List[usercount].email))
+                 preuserdetailname.appendChild(userdetailemail);
+
+                 let userdetailusername = document.createElement("span");
+                 userdetailusername.className = "title";
+                 userdetailusername.id = "userdetailusername"+usercount;
+                 userdetailusername.style = "margin-left: 40px";
+                 userdetailusername.appendChild(document.createTextNode("Username: "+StoreUser_List[usercount].username))
+                 preuserdetailname.appendChild(userdetailusername);
+
+                 let sectiondivider = document.createElement("hr");
+                 preuserdetaildiv.appendChild(sectiondivider);
+
+                  // tag 1
+                  console.log("tag" + usercount)
+                  console.log(StoreDATA_Dict[StoreUser_List[usercount].id])
+                 let tag1 = document.createElement("div");
+                 tag1.className = "tag";
+                 tag1.id = "tag1"+usercount;
+                 preuserdetaildiv.appendChild(tag1);
+                 let tagicon1 = document.createElement("i");
+                 tagicon1.className = "me-2 text fa fa-shopping-basket";
+                 tagicon1.id = "tagicon1"+usercount;
+                 let pretagicon1 = document.getElementById("tag1"+usercount);
+                 pretagicon1.appendChild(tagicon1);
+                 let taginfo1 = document.createElement("span");
+                 taginfo1.id = "taginfo1"+usercount;
+                 taginfo1.appendChild(document.createTextNode("Items: " + StoreDATA_Dict[StoreUser_List[usercount].id].items.length))
+                 pretagicon1.appendChild(taginfo1);
+
+                    // tag 2
+                 let tag2 = document.createElement("div");
+                 tag2.className = "tag";
+                 tag2.id = "tag2"+usercount;
+                 preuserdetaildiv.appendChild(tag2);
+                 let tagicon2 = document.createElement("i");
+                 tagicon2.className = "me-2 text fa fa-money";
+                 tagicon2.id = "tagicon2"+usercount;
+                 let pretagicon2 = document.getElementById("tag2"+usercount);
+                 pretagicon2.appendChild(tagicon2);
+                 let taginfo2 = document.createElement("span");
+                 taginfo2.id = "taginfo2"+usercount;
+                 taginfo2.appendChild(document.createTextNode("Value: "+0))
+                 pretagicon2.appendChild(taginfo2);
+
+
+                // tag 3
+                 let tag3 = document.createElement("div");
+                 tag3.className = "tag";
+                 tag3.id = "tag3"+usercount;
+                 preuserdetaildiv.appendChild(tag3);
+                 let tagicon3 = document.createElement("i");
+                 tagicon3.className = "me-2 text fa fa-clock-o";
+                 tagicon3.id = "tagicon3"+usercount;
+                 let pretagicon3 = document.getElementById("tag3"+usercount);
+                 pretagicon3.appendChild(tagicon3);
+                 let taginfo3 = document.createElement("span");
+                 taginfo3.id = "taginfo3"+usercount;
+                 taginfo3.appendChild(document.createTextNode("Time: "+10))
+                 pretagicon3.appendChild(taginfo3);
+
+
+                     // tag 4
+                 let tag4 = document.createElement("div");
+                 tag4.className = "tag";
+                 tag4.id = "tag4"+usercount;
+                 preuserdetaildiv.appendChild(tag4);
+                 let tagicon4 = document.createElement("i");
+                 tagicon4.className = "me-2 text fa fa-archive";
+                 tagicon4.id = "tagicon4"+usercount;
+                 let pretagicon4 = document.getElementById("tag4"+usercount);
+                 pretagicon4.appendChild(tagicon4);
+                 let taginfo4 = document.createElement("span");
+                 taginfo4.id = "taginfo4"+usercount;
+                 taginfo4.appendChild(document.createTextNode("Orders: "+10))
+                 pretagicon4.appendChild(taginfo4);
+
 
                  let expandbuttonlink = document.createElement("a");
                  expandbuttonlink.id = "expandbuttondiv"+usercount;
                  expandbuttonlink.className = "btn btn-sm btn-primary";
+                 expandbuttonlink.style = "margin-left: 40px";
                  expandbuttonlink.setAttribute("href","#");
                  expandbuttonlink.setAttribute("data-toggle","collapse");
                  expandbuttonlink.setAttribute("data-target","#collapse"+usercount);
                  expandbuttonlink.setAttribute("aria-expanded","true");
                  expandbuttonlink.setAttribute("aria-controls","#collapse"+usercount);
-                 expandbuttonlink.appendChild(document.createTextNode("View Details"))
-                 let preexpandbuttonlink = document.getElementById("expandbuttondiv"+usercount);
-                 preexpandbuttonlink.appendChild(expandbuttonlink);
+                 expandbuttonlink.appendChild(document.createTextNode("View Basket"))
+                 preuserdetaildiv.appendChild(expandbuttonlink);
+
 
                  let accordiandetials = document.createElement("div");
                  accordiandetials.className = "collapse";
@@ -146,193 +263,6 @@ function GetStoreData() {
                  accordiandetialsbody.className = "card-body";
                  let preaccordiandetialsbody = document.getElementById("collapse"+usercount);
                  preaccordiandetialsbody.appendChild(accordiandetialsbody);
-
-                 let accordianbodyrow = document.createElement("div");
-                 accordianbodyrow.id = "accordianbodyrow"+usercount;
-                 accordianbodyrow.className = "row";
-                 let preaccordianbodyrow = document.getElementById("accordiandetialsbody"+usercount);
-                 preaccordianbodyrow.appendChild(accordianbodyrow);
-
-                 let accordianuserinfodiv = document.createElement("div");
-                 accordianuserinfodiv.id = "accordianuserinfodiv"+usercount;
-                 accordianuserinfodiv.className = "col-md-8";
-                 let preaccordianuserinfodiv = document.getElementById("accordianbodyrow"+usercount);
-                 preaccordianuserinfodiv.appendChild(accordianuserinfodiv);
-
-                 let userinfoh6 = document.createElement("h6");
-                 userinfoh6.id = "userinfoh6"+usercount;
-                 userinfoh6.className = "text-muted";
-                 userinfoh6.appendChild(document.createTextNode("Details"));
-                 let preuserinfoh6 = document.getElementById("accordianuserinfodiv"+usercount);
-                 preuserinfoh6.appendChild(userinfoh6);
-
-                 let userinfoName = document.createElement("p");
-                 userinfoName.setAttribute("style","margin:0px");
-                 userinfoName.appendChild(document.createTextNode(StoreUser_List[usercount].username));
-                 preuserinfoh6.appendChild(userinfoName);
-
-                 let userinfoPhone = document.createElement("p");
-                 userinfoPhone.setAttribute("style","margin:0px");
-                 userinfoPhone.appendChild(document.createTextNode("Phone: " + StoreUser_List[usercount].username));
-                 preuserinfoh6.appendChild(userinfoPhone);
-
-                 let userinfoEmail = document.createElement("p");
-                 userinfoEmail.setAttribute("style","margin:0px");
-                 userinfoEmail.appendChild(document.createTextNode("Email: " + StoreUser_List[usercount].email));
-                 preuserinfoh6.appendChild(userinfoEmail);
-
-                 let userinfoLocation = document.createElement("p");
-                 userinfoLocation.setAttribute("style","margin:0px");
-                 userinfoLocation.appendChild(document.createTextNode("Location: " + StoreUser_List[usercount].email));
-                 preuserinfoh6.appendChild(userinfoLocation);
-
-                 let accordianuserpaymentdiv = document.createElement("div");
-                 accordianuserpaymentdiv.style.display = 'none';
-                 accordianuserpaymentdiv.id = "accordianuserpaymentdiv"+usercount;
-                 accordianuserpaymentdiv.className = "col-md-4";
-                 preaccordianuserinfodiv.appendChild(accordianuserpaymentdiv);
-
-                 let userpaymenth6 = document.createElement("h6");
-                 userpaymenth6.id = "userpaymenth6"+usercount;
-                 userpaymenth6.className = "text-muted";
-                 userpaymenth6.appendChild(document.createTextNode("Payment"));
-                 let preuserpaymenth6 = document.getElementById("accordianuserpaymentdiv"+usercount);
-                 preuserpaymenth6.appendChild(userpaymenth6);
-
-                 let usercardinfo = document.createElement("span");
-                 usercardinfo.className = "text-success";
-                 usercardinfo.setAttribute("style","margin:0px");
-                 usercardinfo.appendChild(document.createTextNode("Visa **** 4216"));
-                 preuserpaymenth6.appendChild(usercardinfo);
-
-                 let usersubtotalinfo= document.createElement("p");
-                 usersubtotalinfo.setAttribute("style","margin:0px");
-                 usersubtotalinfo.appendChild(document.createTextNode("Subtotal: $356"));
-                 preuserpaymenth6.appendChild(usersubtotalinfo);
-
-                 let usertotalinfo = document.createElement("span");
-                 usertotalinfo.className = "b";
-                 usertotalinfo.setAttribute("style","margin:0px");
-                 usertotalinfo.appendChild(document.createTextNode("Total: $456"));
-                 preuserpaymenth6.appendChild(usertotalinfo);
-
-                 //Information for users stats
-
-                 // To Be Done
-
-
-                 // user stats - 4 card group div
-                  // card 1
-                 let articlecardgroup = document.createElement("article");
-                 articlecardgroup.style.display = "none";
-                 articlecardgroup.id = "articlecardgroup"+usercount;
-                 articlecardgroup.className = "card-group card-stat";
-                 let prearticlecardgroup = document.getElementById("accordiandetialsbody"+usercount);
-                 prearticlecardgroup.appendChild(articlecardgroup);
-
-                 let articlefigure = document.createElement("figure");
-                 articlefigure.id = "articlefigure"+usercount;
-                 articlefigure.className = "card";
-                 let prearticlefigure = document.getElementById("articlecardgroup"+usercount);
-                 prearticlefigure.appendChild(articlefigure);
-
-                 let figurediv = document.createElement("div");
-                 figurediv.id = "figurediv"+usercount;
-                 figurediv.className = "p-3";
-                 let prefigurediv = document.getElementById("articlefigure"+usercount);
-                 prefigurediv.appendChild(figurediv);
-
-                 let figuretitle = document.createElement("h4");
-                 figuretitle.id = "figuretitle"+usercount;
-                 figuretitle.className = "title";
-                 figuretitle.appendChild(document.createTextNode("40"));
-                 let prefiguretitle = document.getElementById("figurediv"+usercount);
-                 prefiguretitle.appendChild(figuretitle);
-
-                 let figuretitleA = document.createElement("span");
-                 figuretitleA.id = "figuretitleA"+usercount;
-                 figuretitleA.className = "title";
-                 figuretitleA.appendChild(document.createTextNode("Total User Orders"));
-                 prefiguretitle.appendChild(figuretitleA);
-
-                 //card 2
-                 let articlefigure1 = document.createElement("figure");
-                 articlefigure1.id = "articlefigure1"+usercount;
-                 articlefigure1.className = "card";
-                 let prearticlefigure1 = document.getElementById("articlecardgroup"+usercount);
-                 prearticlefigure1.appendChild(articlefigure1);
-
-                 let figurediv1 = document.createElement("div");
-                 figurediv1.id = "figurediv1"+usercount;
-                 figurediv1.className = "p-3";
-                 let prefigurediv1 = document.getElementById("articlefigure1"+usercount);
-                 prefigurediv1.appendChild(figurediv1);
-
-                 let figuretitle1 = document.createElement("h4");
-                 figuretitle1.id = "figuretitle1"+usercount;
-                 figuretitle1.className = "title";
-                 figuretitle1.appendChild(document.createTextNode("40"));
-                 let prefiguretitle1 = document.getElementById("figurediv1"+usercount);
-                 prefiguretitle1.appendChild(figuretitle1);
-
-                 let figuretitleA1 = document.createElement("span");
-                 figuretitleA1.id = "figuretitleA1"+usercount;
-                 figuretitleA1.className = "title";
-                 figuretitleA1.appendChild(document.createTextNode("Total Basket Items"));
-                 prefiguretitle1.appendChild(figuretitleA1);
-
-                 //card 3
-                 let articlefigure2 = document.createElement("figure");
-                 articlefigure2.id = "articlefigure2"+usercount;
-                 articlefigure2.className = "card";
-                 let prearticlefigure2 = document.getElementById("articlecardgroup"+usercount);
-                 prearticlefigure2.appendChild(articlefigure2);
-
-                 let figurediv2 = document.createElement("div");
-                 figurediv2.id = "figurediv2"+usercount;
-                 figurediv2.className = "p-3";
-                 let prefigurediv2 = document.getElementById("articlefigure2"+usercount);
-                 prefigurediv2.appendChild(figurediv2);
-
-                 let figuretitle2 = document.createElement("h4");
-                 figuretitle2.id = "figuretitle2"+usercount;
-                 figuretitle2.className = "title";
-                 figuretitle2.appendChild(document.createTextNode("40"));
-                 let prefiguretitle2 = document.getElementById("figurediv2"+usercount);
-                 prefiguretitle2.appendChild(figuretitle2);
-
-                 let figuretitleA2 = document.createElement("span");
-                 figuretitleA2.id = "figuretitleA2"+usercount;
-                 figuretitleA2.className = "title";
-                 figuretitleA2.appendChild(document.createTextNode("Total Basket Price"));
-                 prefiguretitle2.appendChild(figuretitleA2);
-
-                 //card 4
-                 let articlefigure3 = document.createElement("figure");
-                 articlefigure3.id = "articlefigure3"+usercount;
-                 articlefigure3.className = "card";
-                 let prearticlefigure3 = document.getElementById("articlecardgroup"+usercount);
-                 prearticlefigure3.appendChild(articlefigure3);
-
-                 let figurediv3 = document.createElement("div");
-                 figurediv3.id = "figurediv3"+usercount;
-                 figurediv3.className = "p-3";
-                 let prefigurediv3 = document.getElementById("articlefigure3"+usercount);
-                 prefigurediv3.appendChild(figurediv3);
-
-                 let figuretitle3 = document.createElement("h4");
-                 figuretitle3.id = "figuretitle3"+usercount;
-                 figuretitle3.className = "title";
-                 figuretitle3.appendChild(document.createTextNode("40"));
-                 let prefiguretitle3 = document.getElementById("figurediv3"+usercount);
-                 prefiguretitle3.appendChild(figuretitle3);
-
-                 let figuretitleA3 = document.createElement("span");
-                 figuretitleA3.id = "figuretitleA3"+usercount;
-                 figuretitleA3.className = "title";
-                 figuretitleA3.appendChild(document.createTextNode("Status"));
-                 prefiguretitle3.appendChild(figuretitleA3);
-
 
                  // current users basket items
 
@@ -359,10 +289,13 @@ function GetStoreData() {
                  //console.log(StoreDATA_Dict[StoreUser_List[usercount].id])
                  //console.log(Object.keys(StoreDATA_Dict[StoreUser_List[usercount].id].items).length)
 
+                  let grandtotal = 0;
                  for (let userbasket = 0; userbasket < Object.keys(StoreDATA_Dict[StoreUser_List[usercount].id].items).length; userbasket++) {
-                     console.log("GRAPE!")
-                     console.log(StoreDATA_Dict[StoreUser_List[usercount].id].items[userbasket])
+                     //console.log("GRAPE!")
+                     //console.log(StoreDATA_Dict[StoreUser_List[usercount].id].items[userbasket])
                      let basketitemdata = StoreDATA_Dict[StoreUser_List[usercount].id].items[userbasket]
+
+                     grandtotal = grandtotal + (basketitemdata.product_price * basketitemdata.quantity)
 
                      let tableTR = document.createElement("tr");
                      tableTR.id = "tableTR" + userbasket + StoreUser_List[usercount].id;
@@ -480,13 +413,21 @@ function GetStoreData() {
                   }
               document.getElementById("EmptyBaskets").innerHTML= (StoreUser_List.length - validbasketcount);
               document.getElementById("InuseBaskets").innerHTML= (validbasketcount);
+              document.getElementById("taginfo2"+usercount).innerHTML= ("Value: "+ grandtotal.toFixed(2));
 
-              console.log(sessionStorage)
+              let currenttime = new Date().getTime()
+              let usertime = new Date(StoreUser_List[usercount].store_login).getTime()
+              let usertimevalue = currenttime - usertime
+              document.getElementById("taginfo3"+usercount).innerHTML= ("Time: "+ new Date(usertimevalue).toISOString().substr(11, 8));
 
-
-
+              let ordernumber = StoreORDERDATA_Dict[StoreUser_List[usercount].id]
+              if (ordernumber === undefined){
+                  document.getElementById("taginfo4"+usercount).innerHTML= ("Orders: 0!")
+              }  else {
+                  document.getElementById("taginfo4"+usercount).innerHTML= ("Orders: "+ StoreORDERDATA_Dict[StoreUser_List[usercount].id]);
               }
 
+              }
           })
   }
   //var timer = setInterval(GetStoreData, 9000);
