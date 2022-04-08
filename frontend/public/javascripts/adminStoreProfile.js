@@ -1,8 +1,3 @@
-// If the user clicks the link to create a user, the registration form is displayed
-function showRegistrationContainer() {
-  document.getElementById('registrationContainer').style = ""
-}
-
 // Function that returns the backend server URL. This is for the frontend to understand whether it is being run locally or on Azure
 function backendServer() {
   url = window.location.href;
@@ -58,6 +53,7 @@ function updatestoreprofile() {
 
   // Create form data
   var formData1 = new FormData();
+  formData1.append("id",3)
   formData1.append("store_name", store_name);
   formData1.append("email", email);
   formData1.append("address1", address1);
@@ -90,14 +86,6 @@ function updatestoreprofile() {
       if (!alert("Successfully Updated Store Profile!")) {
         window.location.reload();
       }
-      // set the values back to "" on the registration form
-      document.getElementById("register-store_name").value = ""
-      document.getElementById("register-email").value = ""
-      document.getElementById("register-address1").value = ""
-      document.getElementById("register-address2").value = ""
-      document.getElementById("register-county").value = ""
-      document.getElementById("register-eircode").value = ""
-      document.getElementById("register-storelogo").value = ""
     })
     // if there is an error, alert the user
     .catch((error) => {
