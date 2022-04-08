@@ -218,10 +218,86 @@ hr {
                     </div>
                     <img class="card-img-right flex-auto d-none d-md-block" id="storelogo" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 150px; height: 150px;"  data-holder-rendered="true">
                 </div>
-          </div>
-</div>
-</div>
-</div>
 
+                <div class="row">
+                    <div class="col-sm">
 
+                        <canvas id="donut" style="width:100%;max-width:400px"></canvas>
+                    </div>
+                     <div class="col-sm">
+                        <canvas id="bar" style="width:100%;max-width:400px"></canvas>
+
+                    </div>
+                </div>
+
+            </div>
+</div>
+</div>
+</div>
+<script>
+function LoadCharts() {
+      let backendServerURL = backendServer();
+      if (sessionStorage.getItem("owned_store") === null) {
+          storenumber = "3"
+      } else {
+          storenumber = sessionStorage.getItem("owned_store")
+      }
+      let djangoServer_User = backendServerURL + "stores/" + storenumber
+
+      let token = sessionStorage.getItem('access').toString()
+
+      var obj = {
+          method: 'GET',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Origin': '',
+              'Authorization': 'Bearer ' + token
+          },
+      }
+
+        var donutxValues = ["All Time", "Today"];
+        var donutyValues = [];
+        var donutbarColors = ["#266A69","#630436"];
+      fetch(djangoServer_User, obj)
+          .then(response => response.json()) // extract the json from the response you get from the server
+          .then(async (data) => {
+
+                donutyValues.push(data.orders.length) //all time value
+
+              let ordertoday = 0
+              for (var order = 0; order < data.orders.length; order++) {
+                  if ( new Date (data.orders[order].date_ordered).toDateString() === (new Date()).toDateString()) {
+                      ordertoday = ordertoday +1
+                  }
+              }
+
+              donutyValues.push(ordertoday) // todays value
+
+              new Chart("donut", {
+                  type: "doughnut",
+                  data: {
+                    labels: donutxValues,
+                    datasets: [{
+                      backgroundColor: donutbarColors,
+                      data: donutyValues
+                    }]
+                  },
+                  options: {
+                    title: {
+                      display: true,
+                      text: "Total Orders"
+                    }
+                  }
+                });
+
+          })
+
+  }
+var barColors = ["#630436", "#8790ab","#D9D9D9","#043663","#266A69"];
+
+LoadCharts()
+</script>
+
+<script src="/javascripts/admin-profile-settings.js"></script>
 <%- include('partials/adminfooter.ejs') %>
