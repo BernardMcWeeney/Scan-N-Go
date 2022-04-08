@@ -418,11 +418,17 @@ function GetStoreData() {
               let currenttime = new Date().getTime()
               let usertime = new Date(StoreUser_List[usercount].store_login).getTime()
               let usertimevalue = currenttime - usertime
-              document.getElementById("taginfo3"+usercount).innerHTML= ("Time: "+ new Date(usertimevalue).toISOString().substr(11, 8));
+                  if (new Date(usertimevalue).toISOString().substr(11, 8) >= "00:20:00"){
+                    document.getElementById("taginfo3"+usercount).innerHTML= ("Time: "+ new Date(usertimevalue).toISOString().substr(11, 8));
+                    document.getElementById("tag3"+usercount).style = "background-color: #bd2130"
+                  } else {
+                    document.getElementById("taginfo3"+usercount).innerHTML= ("Time: "+ new Date(usertimevalue).toISOString().substr(11, 8));
+                  }
 
               let ordernumber = StoreORDERDATA_Dict[StoreUser_List[usercount].id]
               if (ordernumber === undefined){
                   document.getElementById("taginfo4"+usercount).innerHTML= ("Orders: 0!")
+                  document.getElementById("tag4"+usercount).style = "background-color: #bd2130"
               }  else {
                   document.getElementById("taginfo4"+usercount).innerHTML= ("Orders: "+ StoreORDERDATA_Dict[StoreUser_List[usercount].id]);
               }
