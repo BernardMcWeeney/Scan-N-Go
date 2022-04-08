@@ -194,8 +194,6 @@ span {
                 <div class="card-body">
 
                     <form>
-                      <div class="row">
-                        <div class="col-lg-8">
                           <div class="row gx-3">
                             <div class="col-6 mb-3">
                               <label class="form-label">Name</label>
@@ -209,12 +207,12 @@ span {
                             <!-- col .// -->
                             <div class="col-lg-6 col-md-6 mb-3">
                               <label>Address line 1</label>
-                              <textarea class="form-control" placeholder="Address line 1" rows="3" id="register-address1"></textarea>
+                              <input class="form-control" placeholder="Address line 1" id="register-address1"></input>
                             </div>
                             <!-- col .// -->
                             <div class="col-lg-6 col-md-6 mb-3">
                               <label>Address line 2</label>
-                              <textarea class="form-control" placeholder="Address line 1" rows="3" id="register-address2"></textarea>
+                              <input class="form-control" placeholder="Address line 1"  id="register-address2"></input>
                             </div>
                             <!-- col .// -->
                             <div class="col-lg-6 col-md-6 mb-3">
@@ -281,28 +279,26 @@ span {
                               <input type="text" class="form-control" placeholder="Eircode" value="" id="register-eircode">
                             </div>
                             <!-- col .// -->
-                          </div>
-                          <!-- row.// -->
-                        </div>
-                        <!-- col.// -->
-                        <aside class="col-lg-4" style="margin-top: 29%">
-                          <div class="text-lg-center mt-3">
-                            <div>
-                                <div class="row">
-                                    <input type="file" class="form-control-file" id="register-storelogo">
+                              <div class="col-lg-12 col-md-12 mb-3">
                                     <div class="valid-feedback feedback-pos">
                                         Looks great!
                                     </div>
                                 <label for="formFile" class="form-label" style="font-size: 85%">Please upload a store logo image</label>
+                                  <input class="form-control" type="file" id="formFile" accept="image/*" required>
                                 </div>
-                            </div>
+                              <div style="margin-bottom: 0 !important;" class="col-lg-12 col-md-12 mb-3">
+                              <button class="btn btn-success btn-block" type="submit">Save</button>
+                                  </div>
+                              <div class="col-lg-12 col-md-12 mb-3">
+                              <button style="margin-top: 10px" class="btn btn-info btn-sm btn-block" onclick="">Reload Store Profile</button>
+                                  </div>
                           </div>
-                        </aside>
-                        <!-- col.// -->
-                      </div>
-              <!-- row.// -->
+                          <!-- row.// -->
+
+                        </div>
+
               <br>
-              <button class="btn btn-primary" type="submit">Save</button>
+
             </form>
            </div>
         </div>
