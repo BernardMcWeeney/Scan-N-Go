@@ -1,7 +1,6 @@
 <%- include('partials/adminhead.ejs') %>
 <%- include('partials/adminheader.ejs') %>
 
-
 <style>
 
 
@@ -60,40 +59,7 @@ body {
     color: #51585e;
     transition: color .1s ease-in-out,background-color .1s ease-in-out,border-color .1s ease-in-out;
 }
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-    color: #FFF;
-    background-color: #630436;
-}
-.btn-primary {
-  background-color: #630436;
-  color:#FFF;
-  border-color: #630436;
-}
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-default {
-  background-color: #fff;
-  color:#630436;
-  border-color: #630436;
- }
-a:not([href]):not([tabindex]) {
-    color:#fff;
-}
-.btn-outline-primary {
-    background-color: #630436;
-    color:#FFF;
-    border-color: #630436;
-}
-.btn-outline-primary:hover, .btn-outline-primary.active {
-    color:#630436;
-    border-color: #630436;
-    background-color: transparent;
-    background-image: none;
-}
-.btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
-    color:#630436;
-    border-color: #630436;
-    background-color: transparent;
-    background-image: none;
-}
+
 tr {
     display: table-row;
     vertical-align: inherit;
@@ -195,16 +161,27 @@ span {
 
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <form id="store_settings_form">
                               <div class="row gx-3">
                                 <div class="col-6 mb-3">
                                   <label class="form-label">Store Basket Item limit:</label>
                                   <input class="form-control" type="text" placeholder="Store Basket Item limit" id="register-BasketItem-limit">
                                 </div>
-                                <!-- col .// -->
-                                <div class="col-6 mb-3">
+                                <!--<div class="col-6 mb-3">
                                   <label class="form-label">Store Basket Value limit:</label>
                                   <input class="form-control" type="text" placeholder="Store Basket Value limit" id="register-BasketValue-limit">
+                                </div>  -->
+
+
+                                <div class="col-6 mb-3">
+                                    <label class="form-label">Store Basket Value limit:</label>
+                                    <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span style="margin-left:0" class="input-group-text">€</span>
+                                  </div>
+
+                                  <input type="text" class="form-control" placeholder="Store Basket Value limit" id="register-BasketValue-limit">
+                                    </div>
                                 </div>
 
                                 <div class="col-6 mb-3">
@@ -218,9 +195,10 @@ span {
                                 </div>
                               </div>
                           <br>
-                          <button class="btn btn-primary" type="submit">Save</button>
-                        </form>
 
+                          <button class="btn btn-success btn-lg btn-block" type="submit">Save</button>
+                        </form>
+                        <button style="margin-top: 10px" class="btn btn-info btn-sm btn-block" onclick="LoadStoreSettings()">Reload Store Settings</button>
                     </div>
                 </div>
             </div>
@@ -230,5 +208,12 @@ span {
     </div>
 </div>
 <script src="/javascripts/admin-store-settings.js"></script>
+<script>
+    window.onload = function() {
+      LoadStoreSettings()
+    };
+    let settingsForm = document.getElementById("store_settings_form"); // get the form
+    settingsForm.addEventListener('submit', updateStoreSettings) // bind the login function to the submit button
+</script>
 
 <%- include('partials/adminfooter.ejs') %>

@@ -229,7 +229,7 @@ class CheckoutSerializer(serializers.ModelSerializer):
     # return the order
     return order
 
-class AdminUpdateStoreProfile(serializers.HyperlinkedModelSerializer):
+'''class AdminUpdateStoreProfile(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Store
         fields = ['name','email','address1', 'address2', 'county', 'eircode','store_logo', 'id']
@@ -250,4 +250,31 @@ class AdminUpdateStoreProfile(serializers.HyperlinkedModelSerializer):
         updated_storeprofile = Store.objects.update(store_name=store_name,address1=address1,address2=address2,eir_code=eircode,email=email, county=county,storelogo_image=store_logo)
 
         updated_storeprofile.save()  # Save the new user
-        return updated_storeprofile
+        return updated_storeprofile'''
+
+class AdminUpdateStoreSettings(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Store
+        fields = ['Store_Basket_Item_limit','Store_Basket_Value_limit','POS_API_Publishable_Key', 'POS_API_Secret_Key']
+
+    def create(self, validated_data):
+        request = self.context.get('request', None)
+        print(request.data)
+        current_user = request.user
+        print(validated_data)
+        store = Store.objects.filter(id=current_user.owned_store.id).first()
+        if 'POS_API_Secret_Key' in validated_data:
+            store.POS_API_Secret_Key = validated_data['POS_API_Secret_Key']
+
+        if 'Store_Basket_Item_limit' in validated_data:
+            store.Store_Basket_Item_limit = validated_data['Store_Basket_Item_limit']
+
+        if 'Store_Basket_Value_limit' in validated_data:
+            store.Store_Basket_Value_limit = validated_data['Store_Basket_Value_limit']
+
+        if 'POS_API_Publishable_Key' in validated_data:
+            store.POS_API_Publishable_Key = validated_data['POS_API_Publishable_Key']
+
+        store.save()
+
+        return store

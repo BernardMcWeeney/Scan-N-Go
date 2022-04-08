@@ -149,8 +149,8 @@ class UserRegistrationAPIView(generics.CreateAPIView):
     permission_classes = [AllowAny] #No login is needed to access this route
     queryset = APIUser.objects.all()
 
-class AdminUpdateStoreProfileView(generics.CreateAPIView):
-    serializer_class = AdminUpdateStoreProfile
+class AdminUpdateStoreSettingsView(generics.CreateAPIView):
+    serializer_class = AdminUpdateStoreSettings
     permission_classes = [AllowAny] #No login is needed to access this route
     queryset = Store.objects.all()
 

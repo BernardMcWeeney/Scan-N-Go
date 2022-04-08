@@ -34,6 +34,7 @@ router.register(r'irish_billing_addresses', views.IrishBillingAddressViewSet)
 router.register(r'irish_shipping_addresses', views.IrishShippingAddressViewSet)
 router.register(r'api_users', views.APIUserViewSet)
 
+
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
@@ -44,5 +45,6 @@ urlpatterns = [
     path('add/', views.AddBasketItemAPIView.as_view(), name="add_to_basket"),
     path('remove/', views.RemoveBasketItemAPIView.as_view(), name="remove_from_basket"),
     path('checkout/', views.CheckoutAPIView.as_view(), name="checkout_basket"),
-    path('set_store/', views.SetUserStoreAPIView.as_view(), name="set_user_store")
+    path('set_store/', views.SetUserStoreAPIView.as_view(), name="set_user_store"),
+    path('store_settings/', views.AdminUpdateStoreSettingsView.as_view(), name="store_settings")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

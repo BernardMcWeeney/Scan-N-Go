@@ -13,8 +13,8 @@ class Store(models.Model):
     storelogo_image = models.FileField(upload_to='images/storelogo_images/', default='images/storelogo_images/defaultstorelogo.png')
     Store_Basket_Item_limit = models.IntegerField(default=25, blank=True, null=True)
     Store_Basket_Value_limit = models.DecimalField(max_digits=6, decimal_places=2, default=50.00, blank=True, null=True)
-    POS_API_Publishable_Key = models.CharField(max_length=1024, blank=True, null=True)
-    POS_API_Secret_Key = models.CharField(max_length=1024, blank=True, null=True)
+    POS_API_Publishable_Key = models.CharField(max_length=1024, blank=True, null=True,default='DEFAULT')
+    POS_API_Secret_Key = models.CharField(max_length=1024, blank=True, null=True,default='DEFAULT')
     county_choices = [
         ('Carlow', 'Carlow'),
         ('Cavan', 'Cavan'),
