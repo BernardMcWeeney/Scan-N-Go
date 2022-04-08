@@ -56,40 +56,46 @@ function removefromcart(id,QTY) {
     };
 
 // update item in cart (qty is specified as a parameter)
-function updateqty(id,option) {
+function updateqty(id,option,currentqty, availableqty) {
     let backendServerURL = backendServer()
     let djangoServer = backendServerURL
     let token = sessionStorage.getItem('access').toString()
     //console.log("Access Token from sessionStorage: ", token)
 
-    if (option === 0){
-        djangoServer = djangoServer + "remove/"
+
+    if (currentqty >= availableqty && option === 1) {
+        alert("Sorry! We only have " + availableqty + " available in stock\nPlease choose a smaller quantity to add to your basket")
+        return
     }
-    if (option === 1){
-        djangoServer = djangoServer + "add/"
-    }
-    var requestObject = {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Origin': '',
-            'Authorization': 'Bearer ' + token
-        },
-        body: JSON.stringify({
-            'product_id': id.toString(),
-            'quantity' : 1
-        })
-    }
-    fetch(djangoServer, requestObject)
-        .then(response => response.json()) // extract the json from the response you get from the server
-        .then(data => {
-            console.log(data);
-        })
-      .then(data => {
-        window.location.href = "/basket";
-      })
-    };
+        if (option === 0) {
+                djangoServer = djangoServer + "remove/"
+            }
+        if (option === 1) {
+            djangoServer = djangoServer + "add/"
+
+        }
+        var requestObject = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Origin': '',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify({
+                'product_id': id.toString(),
+                'quantity': 1
+            })
+        }
+        fetch(djangoServer, requestObject)
+            .then(response => response.json()) // extract the json from the response you get from the server
+            .then(data => {
+                console.log(data);
+            })
+            .then(data => {
+                window.location.href = "/basket";
+            })
+}
 
 // get a users basket and basket items
 function GetUserBasket() {
@@ -113,7 +119,7 @@ function GetUserBasket() {
 
       let UserCartData = data[0]['items'];
       let grandtotal = 0;
-      //console.log(UserCartData)
+      console.log(UserCartData)
       // for basket item in basket show the basket item on the basket page
       for (var i = 0; i < UserCartData.length; i++) { // for every product in the basket array
 
@@ -184,7 +190,7 @@ function GetUserBasket() {
           preprodinputgroup[i].appendChild((prodinputgroup));
 
           let buttonminus = document.createElement("a");
-          var minusprod = "updateqty(" + UserCartData[i].product_id_num.toString() + "," + "0" + ")"
+          var minusprod = "updateqty(" + UserCartData[i].product_id_num.toString() + "," + "0" + "," + UserCartData[i].quantity.toString() + "," + UserCartData[i].available_product_qty.toString() + ")"
           buttonminus.setAttribute('onclick', minusprod )
           buttonminus.id = UserCartData[i].product_id_num.toString() +"-minus-from-cart";
           buttonminus.className = "btn btn-light buttonminus";
@@ -203,7 +209,7 @@ function GetUserBasket() {
           preprodqtyinput[i].appendChild((prodqtyinput));
 
           let buttonplus = document.createElement("a");
-          var plusprod = "updateqty(" + UserCartData[i].product_id_num.toString() + "," + "1" + ")"
+          var plusprod = "updateqty(" + UserCartData[i].product_id_num.toString() + "," + "1"+"," + UserCartData[i].quantity.toString() + "," + UserCartData[i].available_product_qty.toString() + ")"
           buttonplus.setAttribute('onclick', plusprod )
           buttonplus.id = UserCartData[i].product_id_num.toString() +"-plus-from-cart";
           buttonplus.className = "btn btn-light buttonplus";

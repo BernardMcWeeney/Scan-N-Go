@@ -119,6 +119,9 @@ class BasketItems(models.Model):
     def product_tag(self):
         return self.product_id.product_tag
 
+    def available_product_qty(self):
+        return self.product_id.product_quantity
+
     def product_name(self):
         return self.product_id.name
 
