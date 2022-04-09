@@ -3,307 +3,332 @@
 
 <style>
 
-body {
-    padding-bottom:100px
-}
+    body {
+        padding-bottom: 100px
+    }
 
-.fa, .fab, .fal, .far, .fas {
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    line-height: 1;
-}
-.icon-lg {
-    width: 72px;
-    height: 72px;
-    font-size: 32px;
-}
-.icon-xs, .icon-sm, .icon-md, .icon-lg {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    flex-shrink: 0;
-    flex-grow: 0;
-}
+    .fa, .fab, .fal, .far, .fas {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+    }
 
-.card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 0.37rem;
-    margin-bottom: 25px;
-}
+    .icon-lg {
+        width: 72px;
+        height: 72px;
+        font-size: 32px;
+    }
 
-.card-product-grid .bottom-wrap {
-    padding: 18px;
-    border-top: 1px solid #e4e4e4;
-}
-.card-product-grid .info-wrap {
-    overflow: hidden;
-    padding: 18px 20px;
-}
-.nav-link {
-    display: block;
-    padding: 0.5rem 0.9rem;
-    font-weight: 400;
-    color: #51585e;
-    transition: color .1s ease-in-out,background-color .1s ease-in-out,border-color .1s ease-in-out;
-}
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-    color: #FFF;
-    background-color: #630436;
-}
-.btn-primary {
-  background-color: #630436;
-  color:#FFF;
-  border-color: #630436;
-}
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-default {
-  background-color: #fff;
-  color:#630436;
-  border-color: #630436;
- }
-a:not([href]):not([tabindex]) {
-    color:#fff;
-}
-.btn-outline-primary {
-    background-color: #630436;
-    color:#FFF;
-    border-color: #630436;
-}
-.btn-outline-primary:hover, .btn-outline-primary.active {
-    color:#630436;
-    border-color: #630436;
-    background-color: transparent;
-    background-image: none;
-}
-.btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
-    color:#630436;
-    border-color: #630436;
-    background-color: transparent;
-    background-image: none;
-}
-tr {
-    display: table-row;
-    vertical-align: inherit;
-    border-color: inherit;
-}
-.table {
-    width: 100%;
-    margin-bottom: 1rem;
-    color: #212529;
-    background-color: rgba(0,0,0,0);
-}
-table {
-    border-collapse: collapse;
-}
-user agent stylesheet
-table {
-    border-collapse: separate;
-    text-indent: initial;
-    border-spacing: 2px;
-}
-.flex-grow-1 {
-    flex-grow: 1 !important;
-}
-.dashbaordtop {
-    margin-bottom: 20px;
+    .icon-xs, .icon-sm, .icon-md, .icon-lg {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex-shrink: 0;
+        flex-grow: 0;
+    }
 
-}
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 0.37rem;
+        margin-bottom: 25px;
+    }
+
+    .card-product-grid .bottom-wrap {
+        padding: 18px;
+        border-top: 1px solid #e4e4e4;
+    }
+
+    .card-product-grid .info-wrap {
+        overflow: hidden;
+        padding: 18px 20px;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 0.5rem 0.9rem;
+        font-weight: 400;
+        color: #51585e;
+        transition: color .1s ease-in-out, background-color .1s ease-in-out, border-color .1s ease-in-out;
+    }
+
+    .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+        color: #FFF;
+        background-color: #630436;
+    }
+
+    .btn-primary {
+        background-color: #630436;
+        color: #FFF;
+        border-color: #630436;
+    }
+
+    .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-default {
+        background-color: #fff;
+        color: #630436;
+        border-color: #630436;
+    }
+
+    a:not([href]):not([tabindex]) {
+        color: #fff;
+    }
+
+    .btn-outline-primary {
+        background-color: #630436;
+        color: #FFF;
+        border-color: #630436;
+    }
+
+    .btn-outline-primary:hover, .btn-outline-primary.active {
+        color: #630436;
+        border-color: #630436;
+        background-color: transparent;
+        background-image: none;
+    }
+
+    .btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
+        color: #630436;
+        border-color: #630436;
+        background-color: transparent;
+        background-image: none;
+    }
+
+    tr {
+        display: table-row;
+        vertical-align: inherit;
+        border-color: inherit;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    user agent stylesheet
+    table {
+        border-collapse: separate;
+        text-indent: initial;
+        border-spacing: 2px;
+    }
+
+    .flex-grow-1 {
+        flex-grow: 1 !important;
+    }
+
+    .dashbaordtop {
+        margin-bottom: 20px;
+
+    }
 
 
-span {
-    margin-left: 7px;
-}
+    span {
+        margin-left: 7px;
+    }
 
-.list-group {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    padding-left: 0;
-    margin-bottom: 0;
-}
-.list-group-item {
-    position: relative;
-    display: block;
-    padding: 0.75rem 1.25rem;
-    margin-bottom: -1px;
-    background-color: #fff;
-    border: 1px solid rgba(0,0,0,0.125);
-    color: #2D8180
-}
-.list-group-item.active{
-    z-index: 2;
-    color: #fff;
-    background-color: #2D8180;
-    border-color: rgba(0,0,0,0);
-}
-.list-group-item:Hover{
-    z-index: 2;
-    color: #2D8180;
-    background-color: #d4d9d9;
-    border-color: rgba(0,0,0,0);
-}
+    .list-group {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+    }
+
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: -1px;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        color: #2D8180
+    }
+
+    .list-group-item.active {
+        z-index: 2;
+        color: #fff;
+        background-color: #2D8180;
+        border-color: rgba(0, 0, 0, 0);
+    }
+
+    .list-group-item:Hover {
+        z-index: 2;
+        color: #2D8180;
+        background-color: #d4d9d9;
+        border-color: rgba(0, 0, 0, 0);
+    }
 
 
 </style>
 
 <div class="container-fluid plr_30 body_white_bg pt_30" style="max-width: 1800px">
 
-<div class="container">
-    <div class="row">
-          <aside class="col-lg-3">
-            <!-- DashBoard SIDEBAR LIST -->
+    <div class="container">
+        <div class="row">
+            <aside class="col-lg-3">
+                <!-- DashBoard SIDEBAR LIST -->
 
-              <nav class="list-group nav-pills">
+                <nav class="list-group nav-pills">
                     <a class="list-group-item" href="/admin-store"><i class="fa fa-gears"></i> Store Settings</a>
                     <a class="list-group-item" href="/admin"><i class="fa fa-shield"></i> Security Dashboard</a>
                     <a class="list-group-item" href="/admin-orders"><i class="fa fa-shopping-bag"></i> Store Orders</a>
                     <a class="active list-group-item" href="/admin-profile"><i class="fa fa-address-card"></i> Store Profile</a>
                     <a class="list-group-item" href="#" onclick="displayLogoutMsg()"><i class="fa fa-lock"></i> Log out</a>
-              </nav>
-            <!-- DashBoard SIDEBAR LIST -->
-          </aside>
+                </nav>
+                <!-- DashBoard SIDEBAR LIST -->
+            </aside>
 
             <div class="padding col-lg-9">
                 <div class="card flex-md-row mb-4 box-shadow h-md-250">
                     <div class="card-body d-flex flex-column align-items-start">
-                      <strong class="d-inline-block mb-2" style="color:#266a69">Store Profile</strong>
-                      <h3 class="mb-0">
+                        <strong class="d-inline-block mb-2" style="color:#266a69">Store Profile</strong>
+                        <h3 class="mb-0">
                             <p class="text-dark" id="storename"></p>
-                      </h3>
+                        </h3>
                         <div class="mb-1 text-muted" id="storeaddress"></div>
                     </div>
                     <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" id="storelogo" style="width: 150px; height: 150px;" data-holder-rendered="true">
                 </div>
 
-              <div class="card">
-                <div class="card-body">
+                <div class="card">
+                    <div class="card-body">
 
-                    <form>
-                          <div class="row gx-3">
-                            <div class="col-6 mb-3">
-                              <label class="form-label">Name</label>
-                              <input class="form-control" type="text" placeholder="Store Name" id="register-store_name">
-                            </div>
-                            <!-- col .// -->
-                            <div class="col-6 mb-3">
-                              <label class="form-label">Email</label>
-                              <input class="form-control" type="email" placeholder="storename@mail.com" id="register-email">
-                            </div>
-                            <!-- col .// -->
-                            <div class="col-lg-6 col-md-6 mb-3">
-                              <label>Address line 1</label>
-                              <input class="form-control" placeholder="Address line 1" id="register-address1"></input>
-                            </div>
-                            <!-- col .// -->
-                            <div class="col-lg-6 col-md-6 mb-3">
-                              <label>Address line 2</label>
-                              <input class="form-control" placeholder="Address line 1"  id="register-address2"></input>
-                            </div>
-                            <!-- col .// -->
-                            <div class="col-lg-6 col-md-6 mb-3">
-                              <label>County</label>
-                                  <select id="inputState" class="form-control" id="register-county">
-                                      <option> Choose...</option>
+                        <form id="storeProfileForm">
+                            <div class="row gx-3">
+                                <div class="col-6 mb-3">
+                                    <label class="form-label">Name</label>
+                                    <input class="form-control" type="text" placeholder="Store Name" id="register-store_name" required>
+                                </div>
+                                <!-- col .// -->
+                                <div class="col-6 mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input class="form-control" type="email" placeholder="storename@mail.com" id="register-email" required type="email">
+                                </div>
+                                <!-- col .// -->
+                                <div class="col-lg-6 col-md-6 mb-3">
+                                    <label>Address line 1</label>
+                                    <input class="form-control" placeholder="Address line 1" id="register-address1" required></input>
+                                </div>
+                                <!-- col .// -->
+                                <div class="col-lg-6 col-md-6 mb-3">
+                                    <label>Address line 2</label>
+                                    <input class="form-control" placeholder="Address line 1" id="register-address2" required></input>
+                                </div>
+                                <!-- col .// -->
+                                <div class="col-lg-6 col-md-6 mb-3">
+                                    <label>County</label>
+                                    <select id="inputState" class="form-control" id="register-county" required>
+                                        <option> Choose...</option>
 
-                                      <option id="register-county-Carlow" value="Carlow">Carlow</option>
+                                        <option id="register-county-Carlow" value="Carlow">Carlow</option>
 
-                                      <option id="register-county-Cavan" value="Cavan">Cavan</option>
+                                        <option id="register-county-Cavan" value="Cavan">Cavan</option>
 
-                                      <option id="register-county-Clare" value="Clare">Clare</option>
+                                        <option id="register-county-Clare" value="Clare">Clare</option>
 
-                                      <option id="register-county-Cork" value="Cork">Cork</option>
+                                        <option id="register-county-Cork" value="Cork">Cork</option>
 
-                                      <option id="register-county-Donegal" value="Donegal">Donegal</option>
+                                        <option id="register-county-Donegal" value="Donegal">Donegal</option>
 
-                                      <option id="register-county-Dublin" value="Dublin">Dublin</option>
+                                        <option id="register-county-Dublin" value="Dublin">Dublin</option>
 
-                                      <option id="register-county-Galway" value="Galway">Galway</option>
+                                        <option id="register-county-Galway" value="Galway">Galway</option>
 
-                                      <option id="register-county-Kerry" value="Kerry">Kerry</option>
+                                        <option id="register-county-Kerry" value="Kerry">Kerry</option>
 
-                                      <option id="register-county-Kildare" value="Kildare">Kildare</option>
+                                        <option id="register-county-Kildare" value="Kildare">Kildare</option>
 
-                                      <option id="register-county-Kilkenny" value="Kilkenny">Kilkenny</option>
+                                        <option id="register-county-Kilkenny" value="Kilkenny">Kilkenny</option>
 
-                                      <option id="register-county-Laois" value="Laois">Laois</option>
+                                        <option id="register-county-Laois" value="Laois">Laois</option>
 
-                                      <option id="register-county-Leitrim" value="Leitrim">Leitrim</option>
+                                        <option id="register-county-Leitrim" value="Leitrim">Leitrim</option>
 
-                                      <option id="register-county-Limerick" value="Limerick">Limerick</option>
+                                        <option id="register-county-Limerick" value="Limerick">Limerick</option>
 
-                                      <option id="register-county-Longford" value="Longford">Longford</option>
+                                        <option id="register-county-Longford" value="Longford">Longford</option>
 
-                                      <option id="register-county-Louth" value="Louth">Louth</option>
+                                        <option id="register-county-Louth" value="Louth">Louth</option>
 
-                                      <option id="register-county-Mayo" value="Mayo">Mayo</option>
+                                        <option id="register-county-Mayo" value="Mayo">Mayo</option>
 
-                                      <option id="register-county-Meath" value="Meath">Meath</option>
+                                        <option id="register-county-Meath" value="Meath">Meath</option>
 
-                                      <option id="register-county-Monaghan" value="Monaghan">Monaghan</option>
+                                        <option id="register-county-Monaghan" value="Monaghan">Monaghan</option>
 
-                                      <option id="register-county-Offaly" value="Offaly">Offaly</option>
+                                        <option id="register-county-Offaly" value="Offaly">Offaly</option>
 
-                                      <option id="register-county-Roscommon" value="Roscommon">Roscommon</option>
+                                        <option id="register-county-Roscommon" value="Roscommon">Roscommon</option>
 
-                                      <option id="register-county-Sligo" value="Sligo">Sligo</option>
+                                        <option id="register-county-Sligo" value="Sligo">Sligo</option>
 
-                                      <option id="register-county-Tipperary" value="Tipperary">Tipperary</option>
+                                        <option id="register-county-Tipperary" value="Tipperary">Tipperary</option>
 
-                                      <option id="register-county-Waterford" value="Waterford">Waterford</option>
+                                        <option id="register-county-Waterford" value="Waterford">Waterford</option>
 
-                                      <option id="register-county-Westmeath" value="Westmeath">Westmeath</option>
+                                        <option id="register-county-Westmeath" value="Westmeath">Westmeath</option>
 
-                                      <option id="register-county-Wexford" value="Wexford">Wexford</option>
+                                        <option id="register-county-Wexford" value="Wexford">Wexford</option>
 
-                                      <option id="register-county-Wicklow" value="Wicklow">Wicklow</option>
-                                  </select>
-                            </div>
-                            <!-- col .// -->
-                            <div class="col-lg-6 col-md-6 mb-3">
-                              <label>Eircode</label>
-                              <input type="text" class="form-control" placeholder="Eircode" value="" id="register-eircode">
-                            </div>
-                            <!-- col .// -->
-                            <div class="col-lg-12 col-md-12 mb-3">
+                                        <option id="register-county-Wicklow" value="Wicklow">Wicklow</option>
+                                    </select>
+                                </div>
+                                <!-- col .// -->
+                                <div class="col-lg-6 col-md-6 mb-3">
+                                    <label>Eircode</label>
+                                    <input type="text" class="form-control" placeholder="Eircode" value="" id="register-eircode" required>
+                                </div>
+                                <!-- col .// -->
+                                <div class="col-lg-12 col-md-12 mb-3">
                                     <div class="valid-feedback feedback-pos">
                                         Looks great!
                                     </div>
-                                <label for="formFile" class="form-label" style="font-size: 85%">Please upload a store logo image</label>
-                                  <input class="form-control" type="file" id="formFile" accept="image/*" required>
+                                    <label for="formFile" class="form-label" style="font-size: 85%">Please upload a store logo image</label>
+                                    <input class="form-control" type="file" id="formFile" accept="image/*" >
+                                </div>
+
+                                <div style="margin-bottom: 0 !important;" class="col col-md-12 mb-3">
+                                    <button class="btn btn-success btn-block" type="submit"><i class="fa fa-save"></i> Save</button>
+                                </div>
+
                             </div>
 
-                            <div style="margin-bottom: 0 !important;" class="col col-md-12 mb-3">
-                                <button class="btn btn-success btn-block" type="submit"><i class="fa fa-save"></i> Save</button>
-                            </div>
-                            <div class="col col-md-12 mb-3">
-                                <button style="margin-top: 10px" class="btn btn-danger btn-sm btn-block" onclick=""><i class="fa fa-times"></i> Cancel</button>
-                            </div>
-                          </div>
-
-              <br>
-
-            </form>
-           </div>
-        </div>
-        </div>
+                        </form>
+                        <div style='padding:0'class="col col-md-12 mb-3">
+                                    <button style="margin-top: 10px" class="btn btn-danger btn-sm btn-block" onclick="loadStoreProfile()"><i class="fa fa-times"></i> Cancel</button>
+                                </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
+<script>
+    window.onload = function () {
+        loadStoreProfile()
+    };
+    let profileForm = document.getElementById("storeProfileForm"); // get the form
+    profileForm.addEventListener('submit', updateStoreProfile) // bind the login function to the submit button
+</script>
 
 <%- include('partials/adminfooter.ejs') %>

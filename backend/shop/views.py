@@ -154,6 +154,11 @@ class AdminUpdateStoreSettingsView(generics.CreateAPIView):
     permission_classes = [AllowAny] #No login is needed to access this route
     queryset = Store.objects.all()
 
+class AdminUpdateStoreProfileView(generics.CreateAPIView):
+    serializer_class = AdminUpdateStoreProfile
+    permission_classes = [AllowAny] #No login is needed to access this route
+    queryset = Store.objects.all()
+
 class AddBasketItemAPIView(generics.CreateAPIView):
     serializer_class = AddBasketItemSerializer
     permission_classes = [IsAuthenticated]

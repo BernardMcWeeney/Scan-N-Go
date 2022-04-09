@@ -46,5 +46,6 @@ urlpatterns = [
     path('remove/', views.RemoveBasketItemAPIView.as_view(), name="remove_from_basket"),
     path('checkout/', views.CheckoutAPIView.as_view(), name="checkout_basket"),
     path('set_store/', views.SetUserStoreAPIView.as_view(), name="set_user_store"),
-    path('store_settings/', views.AdminUpdateStoreSettingsView.as_view(), name="store_settings")
+    path('store_settings/', views.AdminUpdateStoreSettingsView.as_view(), name="store_settings"),
+    path('store_profile/', views.AdminUpdateStoreProfileView.as_view(), name="store_profile")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

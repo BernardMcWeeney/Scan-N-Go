@@ -229,28 +229,41 @@ class CheckoutSerializer(serializers.ModelSerializer):
     # return the order
     return order
 
-'''class AdminUpdateStoreProfile(serializers.HyperlinkedModelSerializer):
+class AdminUpdateStoreProfile(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Store
-        fields = ['name','email','address1', 'address2', 'county', 'eircode','store_logo', 'id']
+        fields = ['name','email','address_line1', 'address_line2', 'county', 'eir_code','storelogo_image']
 
-    def update(self, instance, validated_data):
+    def create(self, validated_data):
         request = self.context.get('request', None)
         print(request.data)
-        print('teehee',request.FILES['store_logo'])
-        email = validated_data['email']
-        store_name = validated_data['store_name']
-        address1 = validated_data['address1']
-        address2 = validated_data['address2']
-        county = validated_data['county']
-        eircode = validated_data['eircode']
-        store_logo = validated_data['store_logo']
+        current_user = request.user
+        print(validated_data)
+        store = Store.objects.filter(id=current_user.owned_store.id).first()
+        print(1, store)
+        if 'email' in validated_data:
+            store.email = validated_data['email']
 
+        if 'name' in validated_data:
+            store.name = validated_data['name']
 
-        updated_storeprofile = Store.objects.update(store_name=store_name,address1=address1,address2=address2,eir_code=eircode,email=email, county=county,storelogo_image=store_logo)
+        if 'address_line1' in validated_data:
+            store.address_line1 = validated_data['address_line1']
 
-        updated_storeprofile.save()  # Save the new user
-        return updated_storeprofile'''
+        if 'address_line2' in validated_data:
+            store.address_line2 = validated_data['address_line2']
+
+        if 'county' in validated_data:
+            store.county = validated_data['county']
+
+        if 'eir_code' in validated_data:
+            store.eir_code = validated_data['eir_code']
+
+        if 'storelogo_image' in request.FILES:
+            store.storelogo_image = validated_data['storelogo_image']
+
+        store.save()  # Save the new user
+        return store
 
 class AdminUpdateStoreSettings(serializers.HyperlinkedModelSerializer):
     class Meta:
