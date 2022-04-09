@@ -39,13 +39,10 @@ function backendServer() {
   fetch(djangoServer_User, obj)
       .then(response => response.json()) // extract the json from the response you get from the server
       .then(async (data) => {
-          //document.getElementById("register-BasketItem-limit").setAttribute("value", data.Store_Basket_Item_limit);
           document.getElementById("register-BasketItem-limit").value =  data.Store_Basket_Item_limit
           document.getElementById("register-BasketValue-limit").value =  data.Store_Basket_Value_limit
           document.getElementById("register-API_Publishable_key").value =  data.POS_API_Publishable_Key
           document.getElementById("register-API_Secret_Key").value =  ""
-          //document.getElementById("register-BasketValue-limit").setAttribute("value", data.Store_Basket_Value_limit);
-          //document.getElementById("register-API_Publishable_key").setAttribute("value", data.POS_API_Publishable_Key);
       })
 }
 
@@ -64,7 +61,7 @@ function updateStoreSettings(event) {
   } else if (value_limit == "" || parseFloat(value_limit) <= 0 || isNaN(basket_limit) == true) {
     alert("Basket value Limit cannot be null. Full numbers only please, no decimals!");
   } else if (publishable_key == "") {
-    alert("Publishable POS Key cannot be null cannot be null");
+    alert("Publishable POS Key cannot be null");
   } else {
       let token = sessionStorage.getItem('access').toString()
       console.log('New Store Settings (Read from input boxes):', 'basket limit', basket_limit, "value limit", value_limit, "publishable key", publishable_key, "secret key", secret_key)
@@ -109,7 +106,7 @@ function updateStoreSettings(event) {
         .then(data => {
           //console.log(data);
           // alert the user that their account is created and reload the page
-          if (!alert("Successfully updated user account!")) {
+          if (!alert("Successfully updated store settings!")) {
             window.location.reload();
           }
         })
