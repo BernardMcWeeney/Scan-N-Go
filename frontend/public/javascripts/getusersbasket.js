@@ -19,7 +19,23 @@ function backendServer() { // get backend server URL
 
 function UserWelcome() { // create personalised user welcome and add it to the user basket header
   var username = sessionStorage.getItem('username')
-  document.getElementById("user-welcome-message").innerHTML = "Welcome to your Basket, " + username + "!"
+  fetch(backendServer() + "api_users", {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem('access')
+          }})
+          .then(response => response.json())
+          .then(data =>  {
+              console.log(data)
+                if (data === []) {
+                    document.getElementById("user-welcome-message").innerHTML = "Welcome to your Basket, " + username + "!"
+                } else {
+                    document.getElementById("user-welcome-message").innerHTML = "Welcome to your Basket, " + data[0]['first_name'] + "!"
+                }
+          })
+
 }
 window.onload = function() {
   UserWelcome();
