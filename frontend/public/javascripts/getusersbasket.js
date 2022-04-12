@@ -252,17 +252,17 @@ function GetUserBasket() {
           var BasketID = "checkoutcart(" + UserCartData[0].basket_id_num.toString() + ")"
           checkoutcartbtn.setAttribute('onclick', BasketID )
           document.getElementById("basket-items-payment-container").setAttribute('style','')
-          document.getElementById("user-welcome-message-small").innerHTML = "Here is your basket with all your selected products! You can remove a product from your basket or alternatively checkout your basket from this page"
+          document.getElementById("user-welcome-message-small").innerHTML = "Use this page to edit your basket of checkout"
 
           let applebtn = document.getElementById("applebtn");
           applebtn.setAttribute('onclick', BasketID )
           document.getElementById("basket-items-payment-container").setAttribute('style','')
-          document.getElementById("user-welcome-message-small").innerHTML = "Here is your basket with all your selected products! You can remove a product from your basket or alternatively checkout your basket from this page"
+          document.getElementById("user-welcome-message-small").innerHTML = "Use this page to edit your basket of checkout"
 
           let googlebtn = document.getElementById("googlebtn");
           googlebtn.setAttribute('onclick', BasketID )
           document.getElementById("basket-items-payment-container").setAttribute('style','')
-          document.getElementById("user-welcome-message-small").innerHTML = "Here is your basket with all your selected products! You can remove a product from your basket or alternatively checkout your basket from this page"
+          document.getElementById("user-welcome-message-small").innerHTML = "Use this page to edit your basket of checkout"
       }
 
       //console.log(grandtotal);

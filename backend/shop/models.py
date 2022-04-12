@@ -68,6 +68,7 @@ class Product(models.Model):
     product_quantity = models.PositiveIntegerField(default=0)
     store_id = models.ForeignKey(Store, default=2, on_delete=models.CASCADE)
     is_restricted = models.BooleanField(default=False)
+    stripe_product_id = models.CharField(max_length=200, null=False, default='stripe')
     productTags = [
         ("Confectionary", 'Confectionary'),
         ("Drinks", 'Drinks'),

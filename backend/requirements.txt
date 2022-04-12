@@ -5,3 +5,4 @@ django-filter
 djangorestframework-simplejwt
 django-cors-headers
 pytz
+stripe
