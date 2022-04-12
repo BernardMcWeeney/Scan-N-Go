@@ -1,23 +1,12 @@
 <header style="background-color: #630436;">
-    <nav class="navbar navbar-expand-lg" style="min-height: 62px;background-color: #630436; max-width: 1200px; margin: auto;"> <!-- Start navbar code -->
+    <nav class="navbar-dark navbar navbar-expand-lg" style="min-height: 62px;background-color: #630436; max-width: 1200px; margin: auto;"> <!-- Start navbar code -->
         <div class="container-fluid"> <!-- Navbar container (1200px width)-->
+
             <!-- First navbar item (Menu dropdown) -->
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        <img src="/images/hamburger.png" height="30" alt="" style="">
-                    </a>
-                    <div class="dropdown-menu position-absolute" aria-labelledby="navbarDropdownMenuLink">
-                        <a id='hamburger-menu-home' class="dropdown-item" href="/">Product Scanner</a>
-                        <!--<a class="dropdown-item" href="/allproducts">All Products</a>-->
-                        <a id='hamburger-menu-basket' class="dropdown-item" href="/basket">Your Basket</a>
-                        <a id='hamburger-menu-orders' class="dropdown-item" href="/receipt">View Orders</a>
-                        <!-- <a class="dropdown-item" href="/admin">ADMIN DASHBOARD</a>-->
-                        <a id='hamburger-menu-logout' class="dropdown-item" href="#" onclick="displayLogoutMsg()">Logout</a>
-                    </div>
-                </li>
-            </ul>
+            <button id="navbarDropdownMenuLink" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
 
             <!-- Second navbar item (Brand icon) -->
             <a class="navbar-brand" href="/"><img src="/images/logo.png" height="30" alt=""></a>
@@ -32,18 +21,34 @@
                 </li>
             </ul>
         </div>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a style='color: white' id='hamburger-menu-home' class="nav-link" href="/">Product Scanner</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style='color: white' id='hamburger-menu-basket' class="nav-link" href="/basket">Your Basket</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style='color: white' id='hamburger-menu-orders' class="nav-link" href="/receipt">View Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style='color: white' id='hamburger-menu-logout' class="nav-link" href="#" onclick="displayLogoutMsg()">Logout</a>
+                    </li>
+                </ul>
+            </div>
     </nav> <!-- End navbar code -->
 </header>
 
 <script>
-  // Javascript to automatically animate the dropdown of the navbar menu
-  // Code taken from stackoverflow.com/questions/12115833/adding-a-slide-effect-to-bootstrap-dropdown
-  $('.dropdown').on('show.bs.dropdown', function () {
-    $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
-  });
-  $('.dropdown').on('hide.bs.dropdown', function () {
-    $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
-  });
+    // Javascript to automatically animate the dropdown of the navbar menu
+    // Code taken from stackoverflow.com/questions/12115833/adding-a-slide-effect-to-bootstrap-dropdown
+    $('.dropdown').on('show.bs.dropdown', function () {
+        $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
+    });
+    $('.dropdown').on('hide.bs.dropdown', function () {
+        $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
+    });
 </script>
 
 <!-- Beginning of main content container. Keeps all content from .ejs files in a set width of 1200px -->
