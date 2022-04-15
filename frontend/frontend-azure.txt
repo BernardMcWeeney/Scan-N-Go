@@ -10,3 +10,6 @@ To update the front-end on the LIVE site do the following steps (Make sure you h
 8) - Email is "shaun.kee2@outlook.com" || Password is "Scanngo123"
 9) - Go to the page on step 7 and press the "Restart" on the main header. This will restart the server
 10 - You're done! Wait a few minutes and the changes should appear on the live site
+
+
+docker buildx build --push --tag scanngofrontend.azurecr.io/scanngo-frontend:latest --platform=linux/arm64,linux/amd64 .
