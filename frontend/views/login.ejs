@@ -210,7 +210,7 @@ function logInUser(event) {
           // if invalid login, alert the user
           alert("username or password invalid");
         }
-        return fetch(backendServer() + "api_users", {
+        return fetch(backendServer() + "api_users/", {
           method: 'GET',
           headers: {
             'Accept': 'application/json',

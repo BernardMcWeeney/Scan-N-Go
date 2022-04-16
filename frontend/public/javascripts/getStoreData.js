@@ -1,3 +1,48 @@
+function checkForUpdate() {
+    let backendServerURL = backendServer();
+    if(sessionStorage.getItem("owned_store") === null ) {
+          storenumber = "3"
+      } else {
+          storenumber = sessionStorage.getItem("owned_store")
+      }
+    let djangoServer_User = backendServerURL + "stores/" + storenumber
+    let token = sessionStorage.getItem('access').toString()
+
+    var obj = {
+          method: 'GET',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Origin': '',
+              'Authorization': 'Bearer ' + token
+          },
+      }
+
+      fetch(djangoServer_User, obj)
+          .then(response => response.json()) // extract the json from the response you get from the server
+          .then(async (data) => {
+              var oldBasketsInfo = JSON.parse(sessionStorage.getItem('baskets'))
+              var oldUsersInfo = JSON.parse(sessionStorage.getItem('users'))
+              var newBasketsInfo = data.baskets
+              var newUsersInfo = data.users
+
+              console.log('Old baskets info', JSON.stringify(oldBasketsInfo))
+              console.log('New baskets info', JSON.stringify(newBasketsInfo))
+              console.log('Old users info', oldUsersInfo)
+              console.log('New users info', newUsersInfo)
+
+              if (JSON.stringify(oldBasketsInfo) !== JSON.stringify(newBasketsInfo) || JSON.stringify(oldUsersInfo) !== JSON.stringify(newUsersInfo)) {
+                  console.log('Change has been detected')
+                  GetStoreData()
+              } else {
+                  console.log('Nothing has changed in the store')
+
+              }
+          })
+
+
+}
+
 function GetStoreData() {
       let backendServerURL = backendServer();
       if(sessionStorage.getItem("owned_store") === null ) {
@@ -26,8 +71,12 @@ function GetStoreData() {
       fetch(djangoServer_User, obj)
           .then(response => response.json()) // extract the json from the response you get from the server
           .then(async (data) => {
-              console.log(data)
 
+              console.log(data)
+              sessionStorage.setItem('users',JSON.stringify(data.users))
+              sessionStorage.setItem('baskets',JSON.stringify(data.baskets))
+              console.log('Users from session storage', JSON.parse(sessionStorage.getItem('users')))
+              console.log('Baskets from session storage', JSON.parse(sessionStorage.getItem('baskets')))
               // Gets all users in store that have scanned in between now and 35mins ago
               for (var i = 0; i < data.users.length; i++) {
                   console.log(data.users[i].username);
@@ -436,5 +485,5 @@ function GetStoreData() {
               }
           })
   }
-  //var timer = setInterval(GetStoreData, 9000);
+  var timer = setInterval(checkForUpdate, 1000);
   GetStoreData()
