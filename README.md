@@ -1,3 +1,4 @@
+![](/scanngo-logo.png)
 # SCAN-N-GO
 ### A retail solution to turn the customer into the cashier
 
