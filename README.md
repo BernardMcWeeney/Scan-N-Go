@@ -40,3 +40,15 @@ Alternatively, if you would like to login as a store staff member, you can use t
 **Username:** dave
 
 **Password:** test
+
+## Using the web-app
+
+Once you log in to the SCAN-N-GO platform (as a customer), you will be asked to _"Scan-in"_ to a store. To do this, scan a store scan-in barcode (which can be found in the directory `/barcodes`). 
+
+Once you are logged in to a enrolled SCAN-N-GO store you will be able to being shopping! To access a product page you will need to scan a product (Products can be found in the `/barcodes/product_barcodes.jpg`)
+
+**Information: ** Not all products belong to every store, so some barcoded products may not work in certain stores. Exceptions are listed below:
+
+**Monster Original Energy Drink** belongs to the store Londis DCU. Therefore it will not scan if you are logged into Spar Shanowen Rd.
+
+**Fulfil Peanut Butter Bar** belongs to the store Spar Shanowen Rd. Therefore it will not scan if you are logged into Londis DCU
