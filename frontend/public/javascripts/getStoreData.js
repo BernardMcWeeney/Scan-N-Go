@@ -81,7 +81,7 @@ function GetStoreData() {
               for (var i = 0; i < data.users.length; i++) {
                   console.log(data.users[i].username);
                   var currentTime = new Date().getTime();
-                  var minutes = 650000000; // valid minutes
+                  var minutes = 20; // valid minutes
                   var timeLimit = new Date(currentTime -minutes*60000).getTime();
                   var userScanInTime = new Date(data.users[i].store_login).getTime();
 
